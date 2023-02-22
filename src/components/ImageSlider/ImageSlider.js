@@ -1,20 +1,24 @@
 import classNames from 'classnames/bind';
 import styles from './ImageSlider.module.scss';
-
-import { React, useState, useRef, useEffect } from 'react';
+import { React, useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode } from 'swiper';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
+import { CloseIcon } from '../../Icons/Icons.js';
 const cx = classNames.bind(styles);
 
 const ImageSlider = ({ images }) => {
     const imgView = useRef();
     const fullImg = useRef();
     const [showSubImg, setShowSubImg] = useState(false);
-    const showImg = () => {
+    const [imgURL, setImgURL] = useState('');
+    const showImg = (url) => {
         setShowSubImg(true);
-        setTimeout(() => {}, 10);
+        setImgURL(url);
+        setTimeout(() => {
+            fullImg.current.style.opacity = 1;
+        }, 10);
     };
 
     return (
@@ -40,21 +44,25 @@ const ImageSlider = ({ images }) => {
                     },
                     1024: {
                         slidesPerView: 4,
-                        spaceBetween: 15,
+                        spaceBetween: 10,
                     },
                 }}
             >
                 {images.map((image, index) => (
                     <SwiperSlide key={index} className={cx('swiper-item')}>
                         <div className={cx('image-wrapper')}>
-                            <img ref={imgView} src={image.url} alt={image.alt} onClick={() => showImg()} />
+                            <img ref={imgView} src={image.url} alt={image.alt} onClick={() => showImg(image.url)} />
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
+
             {showSubImg && (
-                <div className={cx('sub-image-wrapper')} onClick={() => setShowSubImg(false)}>
-                    <img ref={fullImg} className={cx('image')} src={imgView.current.src} alt={imgView.current.alt} />
+                <div className={cx('sub-image-container')}>
+                    <div className={cx('sub-image-wrapper')}>
+                        <CloseIcon className={cx('close-icon')} onClick={() => setShowSubImg(false)} />
+                        <img ref={fullImg} className={cx('image')} src={imgURL} alt={imgView.current.alt} />
+                    </div>
                 </div>
             )}
         </div>

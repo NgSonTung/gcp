@@ -1,8 +1,9 @@
-export const CloseIcon = ({ width = '2.2rem', height = '2.2rem', className }) => (
+export const CloseIcon = ({ width = '2.2rem', height = '2.2rem', className, onClick }) => (
     <svg
         className={className}
         width={width}
         height={height}
+        onClick={onClick}
         stroke="currentColor"
         fill="currentColor"
         viewBox="0 0 1024 1024"
