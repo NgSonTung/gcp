@@ -37,7 +37,7 @@ const ImageSlider = ({ images }) => {
                 }}
             >
                 {images.map((image, index) => (
-                    <SwiperSlide className={cx('swiper-item')}>
+                    <SwiperSlide key={index} className={cx('swiper-item')}>
                         <div className={cx('image-wrapper')}>
                             <img src={image.url} alt={image.alt} />
                         </div>
