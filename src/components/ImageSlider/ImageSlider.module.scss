@@ -35,16 +35,22 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.85);
-    display: None;
     text-align: center;
     z-index: 1;
 
     .image {
-        padding: 30;
+        padding: 30px;
         max-width: 95%;
         max-height: 95%;
-        transition: opacity 0.3s ease-in-out;
-        transform: scale(1);
+        transition: opacity 0.5s ease-in-out;
         opacity: 0;
+    }
+
+    .image-show {
+        padding: 30px;
+        max-width: 95%;
+        max-height: 95%;
+        transition: opacity 0.5s ease-in-out;
+        opacity: 1;
     }
 }
