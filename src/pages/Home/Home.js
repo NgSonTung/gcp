@@ -1,13 +1,17 @@
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
-import CustomerSlider from '../../pages/Home/CustomerSlider/CustomerSlider';
+import CustomerSlider from '../Home/CustomerSlider/CustomerSlider';
+import CustomerNavTitle from './CustomerNavTitle/CustomerNavTitle';
+// import TextTitle from './TextTitle/TextTitle';
 
 const cx = classNames.bind(styles);
 
 function Home() {
     return (
         <div className={cx('wrapper')}>
-            <CustomerSlider />
+            <CustomerNavTitle />
+            {/* <CustomerSlider /> */}
+            {/* <TextTitle /> */}
         </div>
     );
 }
