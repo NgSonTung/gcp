@@ -1,0 +1,77 @@
+.item-best-sale {
+    display: grid;
+    height: 100%;
+    grid-template-rows: 80% 20%;
+    grid-template-columns: 100%;
+    grid-template-areas:
+        'row1'
+        'row2';
+}
+.tag-best-sale {
+    position: absolute;
+    color: #fff;
+    padding: 0 10px;
+    width: auto;
+    background-color: red;
+    font-size: 14px;
+}
+.box-avtar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(213, 213, 213);
+    // padding: 0.3rem;
+    grid-area: row1;
+    img {
+        width: 90%;
+    }
+}
+.avtar-product {
+    width: 100%;
+    object-fit: cover;
+}
+.action-product {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding: 2.5rem 0;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; //tam thoi
+}
+
+.infor-item {
+    grid-area: row2;
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 80% 20%;
+    grid-template-areas:
+        'row3'
+        'row4';
+    span {
+        width: 95%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+}
+.title-product {
+    height: auto;
+    grid-area: row3;
+    margin-top: 0.1rem;
+    margin-bottom: 4rem;
+}
+.price-product {
+    margin-top: 2.5rem;
+    grid-area: row4;
+    color: red;
+    font-weight: bold;
+}
