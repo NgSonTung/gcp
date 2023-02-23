@@ -2,6 +2,8 @@ import classNames from 'classnames/bind';
 import styles from './NavTitle.module.scss';
 import { React, useState, useRef } from 'react';
 
+// prop: [{id:'',title:'',component:<component/>},...]
+
 const cx = classNames.bind(styles);
 const NavTitle = (props) => {
     const [activeIndex, setActiveIndex] = useState(0);
