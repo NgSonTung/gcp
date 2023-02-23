@@ -1,0 +1,46 @@
+.icon-wrapper {
+    background-color: black;
+    width: 27%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+}
+.icon {
+    height: 45%;
+    width: 45%;
+    margin: auto;
+    stroke: white;
+    fill: white;
+}
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+}
+.desc-wrapper {
+    background-color: #1c1b1bdf;
+    padding-left: 1rem;
+    width: 100%;
+}
+.desc-container {
+    display: flex;
+    width: 30%;
+}
+.title {
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 20px;
+    font-weight: 700;
+    margin-top: 18px;
+    margin-bottom: 9px;
+    word-wrap: nowrap;
+}
+.desc {
+    color: white;
+    font-size: 14px;
+    text-transform: capitalize;
+    line-height: 20px;
+    font-style: italic;
+    word-wrap: nowrap;
+}
