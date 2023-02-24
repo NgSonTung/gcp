@@ -1,0 +1,118 @@
+.header-wrapper {
+    width: 100%;
+    .top-container-layout {
+        width: 100%;
+        background-color: #313131;
+    }
+    .top-header {
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: space-between;
+        width: var(--default-width-content);
+        color: #b3b3b3;
+    }
+}
+
+.header-wrapper .top-header .left-top-header {
+    display: flex;
+    align-items: center;
+
+    .hotline {
+        margin-left: 1rem;
+    }
+}
+
+.header-wrapper .top-container-layout .top-header .right-top-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    width: 17%;
+    justify-content: flex-end;
+
+    .fb-icon {
+        display: flex;
+        align-items: center;
+    }
+
+    .login-btn {
+        display: flex;
+        margin-left: 1rem;
+        align-items: center;
+        padding: 1.5rem 1rem;
+
+        .text {
+            margin-left: 0.5rem;
+        }
+
+        &:hover {
+            background: #f7b44b;
+            color: white;
+        }
+    }
+    .menu-login-down {
+        background-color: white;
+        position: absolute;
+        display: block;
+        color: #333;
+        top: 5.4rem;
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        padding: 0.5rem;
+        font-size: 1.4rem;
+
+        ul {
+            li {
+                padding: 0.7rem 0.1rem;
+            }
+        }
+    }
+}
+
+.header-wrapper {
+    .middle-header {
+        display: flex;
+        align-items: center;
+        width: var(--default-width-content);
+        justify-content: space-between;
+        margin-left: auto;
+        margin-right: auto;
+
+        .left-side-logo {
+            width: 18%;
+            .logo {
+                width: 100%;
+                img {
+                    width: 100%;
+                    margin-left: -2rem;
+                }
+            }
+        }
+
+        .cart-btn {
+            display: flex;
+            align-items: center;
+            background-color: #f7b449;
+            padding: 1.5rem;
+            border-radius: 2.5rem;
+            cursor: pointer;
+        }
+
+        .cart-feature {
+            display: flex;
+            justify-content: flex-end;
+            width: 30%;
+            align-items: center;
+            gap: 2rem;
+
+            .cart-detail {
+                .title {
+                    h1 {
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
