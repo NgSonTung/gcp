@@ -38,10 +38,6 @@ const ImageSlider = ({ images }) => {
                         slidesPerView: 2,
                         spaceBetween: 10,
                     },
-                    768: {
-                        slidesPerView: 3,
-                        spaceBetween: 10,
-                    },
                     1024: {
                         slidesPerView: 4,
                         spaceBetween: 10,
