@@ -4,12 +4,19 @@ import { SearchIcon } from '~/Icons';
 import { FetchFn } from '~/functions';
 import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '~/Hooks';
+import HeadlessTippy from '@tippyjs/react/headless';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
+import HomeProductBestSale from '~/pages/Home/BestSale/HomeProductBestSale/HomeProductBestSale';
+import ProductBestSale from '~/pages/Home/BestSale/ProductBestSale/ProductBestSale';
+import ProductItem from '~/pages/Home/BestSale/ProductItem/ProductItem';
+import SearchProducts from '~/components/SearchedProduct/SearchedProduct';
 
 const cx = classNames.bind(styles);
 
 const Search = () => {
     const [searchValue, setSearchValue] = useState('');
     const [outputProducts, setOutputProducts] = useState([]);
+    const [showResult, setShowResult] = useState(true);
     const debouncedValue = useDebounce(searchValue, 1000);
     const inputRef = useRef();
 
@@ -18,15 +25,23 @@ const Search = () => {
             setOutputProducts([]);
             return;
         }
-        (async () => {
-            const products = await FetchFn.getAllProducts('https://api.npoint.io/c682cd1927ef20da8d42');
-            const searchProducts = await products.filter((item) =>
-                item.name.toLowerCase().includes(debouncedValue.toLowerCase()),
-            );
-            console.log(searchProducts);
-            setOutputProducts(searchProducts);
-        })();
+
+        fetchProducts();
     }, [debouncedValue]);
+
+    const fetchProducts = async () => {
+        const products = await FetchFn.getAllProducts('https://api.npoint.io/c682cd1927ef20da8d42');
+        const searchProducts = await products.filter((item) =>
+            item.name.toLowerCase().includes(debouncedValue.toLowerCase()),
+        );
+        setOutputProducts(searchProducts);
+    };
+
+    const HandleClearInput = () => {
+        setSearchValue('');
+        setOutputProducts([]);
+        inputRef.current.focus();
+    };
 
     const handleInputChange = (e) => {
         const searchValue = e.target.value;
@@ -38,22 +53,36 @@ const Search = () => {
     };
 
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('input-container')}>
-                <input
-                    ref={inputRef}
-                    value={searchValue}
-                    type="text"
-                    placeholder="Từ khóa tìm kiếm"
-                    onChange={handleInputChange}
-                />
-                <button className={cx('find-btn')}>
-                    <SearchIcon className={cx('icon')} />
-                </button>
-            </div>
-            {outputProducts?.map((item) => (
-                <h1>{item.name}</h1>
-            ))}
+        <div>
+            <HeadlessTippy
+                interactive={true}
+                visible={showResult}
+                render={(attrs) => (
+                    <div className={cx('popper-wrapper')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            {outputProducts.map((item, index) => (
+                                <SearchProducts key={index} data={item} />
+                            ))}
+                        </PopperWrapper>
+                    </div>
+                )}
+            >
+                <div className={cx('wrapper')}>
+                    <div className={cx('input-container')}>
+                        <input
+                            ref={inputRef}
+                            value={searchValue}
+                            type="text"
+                            placeholder="Từ khóa tìm kiếm"
+                            onChange={handleInputChange}
+                            onFocus={() => setShowResult(true)}
+                        />
+                        <button className={cx('find-btn')}>
+                            <SearchIcon className={cx('icon')} />
+                        </button>
+                    </div>
+                </div>
+            </HeadlessTippy>
         </div>
     );
 };

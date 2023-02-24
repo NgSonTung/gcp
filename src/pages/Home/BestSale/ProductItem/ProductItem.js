@@ -4,7 +4,6 @@ import styles from './ProductItem.module.scss';
 const cx = classNames.bind(styles);
 
 function ProductItem({ data }) {
-    console.log(data);
     return (
         <Link to={`/product/${data.id}`}>
             <div className={cx('item-best-sale')}>
