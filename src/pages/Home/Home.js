@@ -11,7 +11,8 @@ function Home() {
         <div className={cx('wrapper')}>
             <CustomerNavTitle />
             <TextTitle />
-            <HomeProductBestSale />
+            <HomeProductBestSale cate={'phone'} srcImgBanner={require('~/assets/images/anh-sale-tet.png')} />
+            <HomeProductBestSale cate={'laptop'} srcImgBanner={require('~/assets/images/phu-kien-hot.png')} />
         </div>
     );
 }
