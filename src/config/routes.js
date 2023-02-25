@@ -5,6 +5,7 @@ const routes = {
     news: '/news',
     discount: '/discount',
     contact: '/contact',
+    product: '/product/:nameproduct',
 };
 
 export default routes;
