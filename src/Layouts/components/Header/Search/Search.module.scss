@@ -1,0 +1,43 @@
+.wrapper {
+    width: 100%;
+    position: relative;
+    .input-container {
+        display: flex;
+        position: relative;
+        input {
+            padding: 1rem 7rem 1rem 2rem;
+            border: 1px solid #ccc;
+            border-radius: 2rem;
+        }
+
+        .find-btn {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-left: 1px solid #ccc;
+            cursor: pointer;
+            border-top-right-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+
+            &:hover {
+                background-color: #9999a6;
+            }
+
+            .icon {
+                color: #ccc;
+                position: relative;
+            }
+        }
+    }
+}
+
+.popper-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

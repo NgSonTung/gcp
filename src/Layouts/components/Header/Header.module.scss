@@ -1,0 +1,201 @@
+.header-wrapper {
+    width: 100%;
+}
+
+.header-wrapper .header-navigation {
+    position: fixed;
+    z-index: 999999;
+    background: linear-gradient(#000000, #556373);
+    width: 100%;
+
+    .item-list {
+        display: flex;
+        justify-content: flex-start;
+        gap: 3rem;
+        li {
+            color: white;
+        }
+    }
+}
+
+.header-wrapper .right-top-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    width: 17%;
+    justify-content: flex-end;
+
+    .fb-icon {
+        display: flex;
+        align-items: center;
+    }
+
+    .login-btn {
+        display: flex;
+        margin-left: 1rem;
+        align-items: center;
+        padding: 1.5rem 1rem;
+
+        .text {
+            margin-left: 1rem;
+            color: white;
+        }
+
+        &:hover {
+            background: #ccc;
+            color: #333;
+        }
+    }
+    .menu-login-down {
+        background-color: white;
+        position: absolute;
+        display: block;
+        color: #333;
+        top: 5.4rem;
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        padding: 0.5rem;
+        font-size: 1.4rem;
+
+        ul {
+            li {
+                padding: 0.7rem 0.1rem;
+            }
+        }
+    }
+}
+
+// .header-wrapper .header-navigation .menu-container {
+//     display: flex;
+//     justify-content: space-between;
+//     width: var(--default-width-content);
+//     margin-left: auto;
+//     margin-right: auto;
+//     align-items: center;
+
+//     .item-list {
+//         width: 90%;
+
+//         li {
+//             position: relative;
+
+//             .sub-menu-container {
+//                 display: none; /* hide the submenu by default */
+//                 position: absolute; /* position relative to parent li */
+//                 top: 162%; /* position below the parent li */
+//                 left: 0;
+//                 padding: 0;
+//                 margin: 0;
+//                 background-color: #ccc;
+//                 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+//                 z-index: 1; /* ensure the submenu is above everything else */
+//                 .sub-menu-item {
+//                     padding: 0.5rem 1rem;
+//                     white-space: nowrap;
+//                 }
+//             }
+
+//             &:hover .sub-menu-container {
+//                 display: block;
+//             }
+//         }
+//     }
+// }
+
+// .header-wrapper .sub-menu-item:hover {
+//     background-color: #f5f5f5;
+// }
+
+.header-wrapper .header-navigation .menu-container {
+    display: flex;
+    justify-content: space-between;
+    width: var(--default-width-content);
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+
+    .item-list {
+        width: 90%;
+
+        li {
+            position: relative;
+            padding: 1rem 0;
+            .sub-menu-container {
+                display: none;
+                position: absolute;
+                top: 162%;
+                left: 0;
+                padding: 0;
+                margin: 0;
+                background-color: #ccc;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1;
+                .sub-menu-item {
+                    padding: 0.5rem 1rem;
+                    white-space: nowrap;
+                }
+            }
+
+            &:hover .sub-menu-container {
+                display: block;
+            }
+
+            &:hover .sub-menu-container:hover {
+                display: block;
+            }
+        }
+    }
+}
+
+.header-wrapper .sub-menu-item:hover {
+    background-color: #f5f5f5;
+}
+
+.header-wrapper {
+    .middle-header {
+        display: flex;
+        align-items: center;
+        width: var(--default-width-content);
+        justify-content: space-between;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5rem;
+
+        .left-side-logo {
+            width: 18%;
+            .logo {
+                width: 100%;
+                img {
+                    width: 100%;
+                    margin-left: -2rem;
+                }
+            }
+        }
+
+        .cart-btn {
+            display: flex;
+            align-items: center;
+            background-color: #f7b449;
+            padding: 1.5rem;
+            border-radius: 2.5rem;
+            cursor: pointer;
+        }
+
+        .cart-feature {
+            display: flex;
+            justify-content: flex-end;
+            width: 30%;
+            align-items: center;
+            gap: 2rem;
+
+            .cart-detail {
+                .title {
+                    h1 {
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}

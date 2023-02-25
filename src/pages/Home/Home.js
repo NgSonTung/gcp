@@ -3,15 +3,18 @@ import styles from './Home.module.scss';
 import CustomerNavTitle from './CustomerNavTitle/CustomerNavTitle';
 import TextTitle from './HomeTextTitle/HomeTextTitle';
 import HomeProductBestSale from './BestSale/HomeProductBestSale/index';
+import SliderBanner from './SliderBanner/SliderBanner';
 import ProductNavTitle from './ProductNavTitle/ProductNavTitle';
 const cx = classNames.bind(styles);
 
 function Home() {
     return (
         <div className={cx('wrapper')}>
+            <SliderBanner />
             <CustomerNavTitle />
             <TextTitle />
-            <HomeProductBestSale />
+            <HomeProductBestSale cate={'phone'} srcImgBanner={require('~/assets/images/anh-sale-tet.png')} />
+            <HomeProductBestSale cate={'laptop'} srcImgBanner={require('~/assets/images/phu-kien-hot.png')} />
             <ProductNavTitle />
         </div>
     );

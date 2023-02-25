@@ -8,7 +8,7 @@
 
     --font-family: 'ProximaNova', sans-serif;
 
-    --default-width-content: 70%;
+    --default-width-content: 85%;
 }
 
 * {
@@ -28,6 +28,20 @@ body {
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     color: var(--text-color);
+
+    .tippy-box {
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content {
+        padding: 8px 9px;
+    }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
 }
 
 ul {

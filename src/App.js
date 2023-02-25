@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from './routes/routes';
 import MainLayout from './Layouts/MainLayout/MainLayout';
+import ProductDetail from './components/ProductDetail/ProductDetail';
 import { Fragment } from 'react';
 
 function App() {
@@ -13,19 +14,19 @@ function App() {
 
                         let Layout = MainLayout;
 
-                        //   if (route.component === Product) {
-                        //     return (
-                        //         <Route
-                        //             key={index}
-                        //             path="/product/:nameproduct"
-                        //             element={
-                        //                 <Layout>
-                        //                     <ProductDetail />
-                        //                 </Layout>
-                        //             }
-                        //         />
-                        //     );
-                        // }
+                        if (route.component === ProductDetail) {
+                            return (
+                                <Route
+                                    key={index}
+                                    path="/product/:nameproduct"
+                                    element={
+                                        <Layout>
+                                            <ProductDetail />
+                                        </Layout>
+                                    }
+                                />
+                            );
+                        }
 
                         if (route.layout) {
                             Layout = route.layout;
