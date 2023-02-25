@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
-// import CustomerSlider from './CustomerSlider/CustomerSlider';
 import CustomerNavTitle from './CustomerNavTitle/CustomerNavTitle';
 import TextTitle from './HomeTextTitle/HomeTextTitle';
 import HomeProductBestSale from './BestSale/HomeProductBestSale/index';
+import ProductNavTitle from './ProductNavTitle/ProductNavTitle';
 const cx = classNames.bind(styles);
 
 function Home() {
@@ -12,6 +12,7 @@ function Home() {
             <CustomerNavTitle />
             <TextTitle />
             <HomeProductBestSale />
+            <ProductNavTitle />
         </div>
     );
 }
