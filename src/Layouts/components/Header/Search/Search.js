@@ -16,7 +16,8 @@ const cx = classNames.bind(styles);
 const Search = () => {
     const [searchValue, setSearchValue] = useState('');
     const [outputProducts, setOutputProducts] = useState([]);
-    const [showResult, setShowResult] = useState(true);
+    const [showResult, setShowResult] = useState(false);
+    const [limitProducts, setLimitProducts] = useState(6);
     const debouncedValue = useDebounce(searchValue, 1000);
     const inputRef = useRef();
 
@@ -56,11 +57,12 @@ const Search = () => {
         <div>
             <HeadlessTippy
                 interactive={true}
-                visible={showResult}
+                visible={showResult && outputProducts.length > 0}
+                placement="bottom"
                 render={(attrs) => (
                     <div className={cx('popper-wrapper')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
-                            {outputProducts.map((item, index) => (
+                            {outputProducts.slice(1, limitProducts + 1).map((item, index) => (
                                 <SearchProducts key={index} data={item} />
                             ))}
                         </PopperWrapper>

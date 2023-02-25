@@ -1,4 +1,6 @@
 .wrapper {
+    width: 100%;
+    position: relative;
     .input-container {
         display: flex;
         position: relative;
@@ -32,4 +34,10 @@
             }
         }
     }
+}
+
+.popper-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
