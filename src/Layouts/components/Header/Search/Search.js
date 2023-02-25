@@ -68,6 +68,7 @@ const Search = () => {
                         </PopperWrapper>
                     </div>
                 )}
+                onClickOutside={() => setShowResult(false)}
             >
                 <div className={cx('wrapper')}>
                     <div className={cx('input-container')}>
@@ -78,6 +79,7 @@ const Search = () => {
                             placeholder="Từ khóa tìm kiếm"
                             onChange={handleInputChange}
                             onFocus={() => setShowResult(true)}
+                            onM={() => setShowResult(false)}
                         />
                         <button className={cx('find-btn')}>
                             <SearchIcon className={cx('icon')} />

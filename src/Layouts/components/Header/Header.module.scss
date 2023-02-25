@@ -3,6 +3,8 @@
 }
 
 .header-wrapper .header-navigation {
+    position: fixed;
+    z-index: 999999;
     background: linear-gradient(#000000, #556373);
     width: 100%;
 
@@ -81,6 +83,7 @@
         justify-content: space-between;
         margin-left: auto;
         margin-right: auto;
+        padding-top: 5rem;
 
         .left-side-logo {
             width: 18%;
