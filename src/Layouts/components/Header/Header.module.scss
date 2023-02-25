@@ -10,7 +10,7 @@
 
     .item-list {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 3rem;
         li {
             color: white;
@@ -66,6 +66,47 @@
     }
 }
 
+// .header-wrapper .header-navigation .menu-container {
+//     display: flex;
+//     justify-content: space-between;
+//     width: var(--default-width-content);
+//     margin-left: auto;
+//     margin-right: auto;
+//     align-items: center;
+
+//     .item-list {
+//         width: 90%;
+
+//         li {
+//             position: relative;
+
+//             .sub-menu-container {
+//                 display: none; /* hide the submenu by default */
+//                 position: absolute; /* position relative to parent li */
+//                 top: 162%; /* position below the parent li */
+//                 left: 0;
+//                 padding: 0;
+//                 margin: 0;
+//                 background-color: #ccc;
+//                 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+//                 z-index: 1; /* ensure the submenu is above everything else */
+//                 .sub-menu-item {
+//                     padding: 0.5rem 1rem;
+//                     white-space: nowrap;
+//                 }
+//             }
+
+//             &:hover .sub-menu-container {
+//                 display: block;
+//             }
+//         }
+//     }
+// }
+
+// .header-wrapper .sub-menu-item:hover {
+//     background-color: #f5f5f5;
+// }
+
 .header-wrapper .header-navigation .menu-container {
     display: flex;
     justify-content: space-between;
@@ -73,6 +114,42 @@
     margin-left: auto;
     margin-right: auto;
     align-items: center;
+
+    .item-list {
+        width: 90%;
+
+        li {
+            position: relative;
+            padding: 1rem 0;
+            .sub-menu-container {
+                display: none;
+                position: absolute;
+                top: 162%;
+                left: 0;
+                padding: 0;
+                margin: 0;
+                background-color: #ccc;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1;
+                .sub-menu-item {
+                    padding: 0.5rem 1rem;
+                    white-space: nowrap;
+                }
+            }
+
+            &:hover .sub-menu-container {
+                display: block;
+            }
+
+            &:hover .sub-menu-container:hover {
+                display: block;
+            }
+        }
+    }
+}
+
+.header-wrapper .sub-menu-item:hover {
+    background-color: #f5f5f5;
 }
 
 .header-wrapper {

@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faUser, faUserCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import { CartIcon, FacebookIcon } from '~/Icons';
+import { faUser, faUserCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { CartIcon } from '~/Icons';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import config from '~/config';
@@ -16,6 +16,20 @@ const menuTitles = [
     { title: 'Tin tức', to: config.routes.news },
     { title: 'Khuyến mãi', to: config.routes.discount },
     { title: 'Liên hệ', to: config.routes.contact },
+    {
+        title: 'Danh mục',
+        to: '#',
+        subMenu: [
+            { title: 'Tất cả ', to: config.routes.allproducts },
+            { title: 'Điện thoại', to: config.routes.phone },
+            { title: 'Laptop', to: config.routes.laptop },
+            { title: 'Tablet', to: config.routes.tablet },
+            { title: 'Smart watch', to: config.routes.smartclock },
+            { title: 'Thiết bị mạng', to: config.routes.networkdevice },
+            { title: 'Bàn phím', to: config.routes.keyboard },
+            { title: 'Loa', to: config.routes.speaker },
+        ],
+    },
 ];
 
 const Header = () => {
@@ -28,7 +42,18 @@ const Header = () => {
                     <ul className={cx('item-list')}>
                         {menuTitles.map((item, index) => (
                             <Link to={item.to}>
-                                <li>{item.title}</li>
+                                <li>
+                                    {item.title}
+                                    {item.subMenu && (
+                                        <ul className={cx('sub-menu-container')}>
+                                            {item.subMenu.map((item, index) => (
+                                                <Link to={item.to} key={index}>
+                                                    <li className={cx('sub-menu-item')}>{item.title}</li>
+                                                </Link>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </li>
                             </Link>
                         ))}
                     </ul>
