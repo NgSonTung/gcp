@@ -8,6 +8,7 @@ import styles from './ProductItem.module.scss';
 const cx = classNames.bind(styles);
 
 function ProductItem({ data }) {
+    const [activeShow, setActiveShow] = useState(false);
     const icon = require('~/Icons/index');
     console.log(data);
     let formatVnd = new Intl.NumberFormat('vi-VN', {
@@ -15,7 +16,6 @@ function ProductItem({ data }) {
         currency: 'VND',
     });
     const itemPrice = formatVnd.format(data.price);
-    const [activeShow, setActiveShow] = useState(false);
     return (
         <Link to={`/product/${data.id}`} styles={{ height: 'auto' }}>
             <div className={cx('item-best-sale')}>
