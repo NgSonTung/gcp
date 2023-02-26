@@ -29,7 +29,7 @@ function ProductItem({ data }) {
                 >
                     <img src={data.image} alt="avtar-Product" className={cx('avtar-product')} />
                     <div className={activeShow ? cx('action-product', 'active') : cx('action-product')}>
-                        <Link to={`/product/${data.id}`}>
+                        <Link to={`/product/${data.name}`}>
                             <span>{icon.SearchIcon('icon-search')}</span>
                         </Link>
                         <Link to={'/cart'}>

@@ -17,7 +17,7 @@ const tabTitle = [
     { title: 'Khuyến mãi', products: apple },
 ];
 
-function TabProductCate() {
+function TabProductCate(props) {
     const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
