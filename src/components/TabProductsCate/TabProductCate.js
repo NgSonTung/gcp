@@ -35,11 +35,13 @@ function TabProductCate() {
                     </TabList>
                 </Box>
                 <div className={cx('panel-wrapper')}>
-                    <img
-                        className={cx('img-banner')}
-                        src="https://thanhmobile.vn/uploads/plugin/gallery/174/s-n-ph-m-m-i-gia.jpg"
-                        alt="img"
-                    />
+                    <div className={cx('img-banner')}>
+                        <img
+                            className={cx('img')}
+                            src="https://thanhmobile.vn/uploads/plugin/gallery/174/s-n-ph-m-m-i-gia.jpg"
+                            alt="img"
+                        />
+                    </div>
                     {tabTitle.map((data, index) => (
                         <TabPanel value={index} className={cx('product-wrapper')}>
                             <ProductSlider data={data.products} />
