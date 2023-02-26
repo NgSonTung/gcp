@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '~/Hooks';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import HomeProductBestSale from '~/pages/Home/BestSale/HomeProductBestSale/HomeProductBestSale';
-import ProductBestSale from '~/pages/Home/BestSale/ProductBestSale/ProductBestSale';
-import ProductItem from '~/pages/Home/BestSale/ProductItem/ProductItem';
+import HomeProductBestSale from '~/pages/Home/HomeProductBestSale/index';
+import ProductBestSale from '~/components/BestSale/ProductBestSale/index';
+import ProductItem from '~/components/BestSale/ProductItem/ProductItem';
 import SearchProducts from '~/components/SearchedProduct/SearchedProduct';
 
 const cx = classNames.bind(styles);
