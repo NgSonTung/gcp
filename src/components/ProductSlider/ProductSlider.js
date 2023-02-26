@@ -26,6 +26,7 @@ const ProductSlider = (props) => {
                 <ProductDisplay newProduct={item} />
             </div>
         ));
+        console.log(slideComponents);
         const slide = (
             <SwiperSlide key={i}>
                 <div className={cx('slide-item')}>{slideComponents}</div>
@@ -33,7 +34,7 @@ const ProductSlider = (props) => {
         );
         slides.push(slide);
     }
-
+    console.log(slides);
     return (
         <Swiper
             ref={swiperRef}
