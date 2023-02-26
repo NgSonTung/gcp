@@ -1,3 +1,5 @@
+import data from './data/data.json';
+
 export const customerSlidersImg = [
     { url: 'https://thanhmobile.vn/uploads/plugin/gallery/180/nh-khach-hang-11-4.jpg', id: '1', alt: 'KH1' },
     {
@@ -25,3 +27,5 @@ export const sliderBannerImgs = [
     'https://cdn.sforum.vn/sforum/wp-content/uploads/2022/09/MacBook-Pro-2022-7.jpg',
     'https://cdn1.hoanghamobile.com/tin-tuc/wp-content/uploads/2022/06/Blue-Futuristic-Top-Future-Technologies-YouTube-Thumbnail.png',
 ];
+
+export const phone = data.filter((item) => item.category === 'phone');

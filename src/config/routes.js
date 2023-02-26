@@ -1,10 +1,12 @@
 const routes = {
     home: '/',
-    introducePage: '/introduce',
-    buyingInstruction: '/buyinginstruction',
-    news: '/news',
-    discount: '/discount',
-    contact: '/contact',
+    phone: '/phone',
+    tablet: '/tablet',
+    networkDevice: '/networkDevice',
+    keyboard: '/keyboard',
+    watch: '/watch',
+    allProducts: '/allProducts',
+    laptop: '/laptop',
     product: '/product/:nameproduct',
 };
 

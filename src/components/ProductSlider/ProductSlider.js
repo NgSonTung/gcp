@@ -5,6 +5,7 @@ import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import ProductDisplay from '~/components/ProductDisplay/ProductDisplay';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -22,10 +23,13 @@ const ProductSlider = (props) => {
     for (let i = 0; i < props.data.length; i += 3) {
         const slideData = props.data.slice(i, i + 3);
         const slideComponents = slideData.map((item, id) => (
-            <div key={id} className={cx('product', { middle: id % 2 !== 0 })}>
-                <ProductDisplay newProduct={item} />
-            </div>
+            <Link to={`/product/${item.name}`}>
+                <div key={id} className={cx('product', { middle: id % 2 !== 0 })}>
+                    <ProductDisplay newProduct={item} />
+                </div>
+            </Link>
         ));
+        console.log(slideComponents);
         const slide = (
             <SwiperSlide key={i}>
                 <div className={cx('slide-item')}>{slideComponents}</div>
@@ -33,7 +37,7 @@ const ProductSlider = (props) => {
         );
         slides.push(slide);
     }
-
+    console.log(slides);
     return (
         <Swiper
             ref={swiperRef}

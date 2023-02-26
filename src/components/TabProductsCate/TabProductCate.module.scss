@@ -1,0 +1,17 @@
+.panel-wrapper {
+    display: flex;
+
+    .img-banner {
+        width: 20%;
+
+        .img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .product-wrapper {
+        width: 80%;
+    }
+}

@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './SearchedProduct.module.scss';
 import { Link } from 'react-router-dom';
+import { fortmatCurrency } from '~/utils/FormatCurrency';
 
 const cx = classNames.bind(styles);
 function SearchProducts({ data }) {
@@ -10,18 +11,8 @@ function SearchProducts({ data }) {
             <div className={cx('product-info')}>
                 <p className={cx('product-name')}>{data.name}</p>
                 <div className={cx('price-info')}>
-                    <p className={cx('sale-price')}>
-                        {data?.price.toLocaleString('it-IT', {
-                            style: 'currency',
-                            currency: 'VND',
-                        })}
-                    </p>
-                    <p className={cx('old-price')}>
-                        {(data?.price * data?.old_price).toLocaleString('it-IT', {
-                            style: 'currency',
-                            currency: 'VND',
-                        })}
-                    </p>
+                    <p className={cx('sale-price')}>{fortmatCurrency(data?.price)}</p>
+                    <p className={cx('old-price')}>{fortmatCurrency(data?.price * data?.old_price)}</p>
                 </div>
             </div>
         </Link>
