@@ -8,7 +8,7 @@ import data from '~/data/data.json';
 
 const cx = classNames.bind(styles);
 const favData = data.filter((item) => item.favorite === true);
-const unfavData = data.filter((item) => item.favorite === false);
+const unfavData = data.filter((item) => item.brand === 'samsung');
 const apple = data.filter((item) => item.brand === 'apple');
 
 const tabTitle = [
@@ -18,19 +18,40 @@ const tabTitle = [
 ];
 
 function TabProductCate(props) {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState('0');
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
+        setValue(newValue.toString());
     };
 
     return (
         <Box sx={{ width: '100%', typography: 'body1' }}>
-            <TabContext value={value} sx={{ display: 'flex' }}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <TabContext value={value.toString()} sx={{ display: 'flex' }}>
+                <Box>
+                    <TabList
+                        sx={{
+                            marginBottom: '3rem',
+                            '.css-1aquho2-MuiTabs-indicator': { backgroundColor: 'red', height: '3px' },
+                        }}
+                        className={cx('title-wrapper')}
+                        onChange={handleChange}
+                        aria-label="lab API tabs example"
+                    >
                         {tabTitle.map((item, index) => (
-                            <Tab label={item.title} value={index} />
+                            <Tab
+                                key={index}
+                                sx={{
+                                    fontSize: '1.75rem',
+                                    fontWeight: 'bold',
+                                    textTransform: 'uppercase',
+                                    '&.Mui-selected': {
+                                        color: 'black !important',
+                                    },
+                                }}
+                                className={cx('title')}
+                                label={item.title}
+                                value={index.toString()}
+                            />
                         ))}
                     </TabList>
                 </Box>
@@ -43,7 +64,12 @@ function TabProductCate(props) {
                         />
                     </div>
                     {tabTitle.map((data, index) => (
-                        <TabPanel value={index} className={cx('product-wrapper')}>
+                        <TabPanel
+                            key={index}
+                            sx={{ padding: '0' }}
+                            value={index.toString()}
+                            className={cx('product-wrapper')}
+                        >
                             <ProductSlider data={data.products} />
                         </TabPanel>
                     ))}

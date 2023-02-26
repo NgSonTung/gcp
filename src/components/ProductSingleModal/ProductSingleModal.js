@@ -13,7 +13,7 @@ function ProductSingleModal() {
 
     useEffect(() => {
         dispatch({ type: 'PRODUCT', nameproduct });
-        console.log(product);
+        // console.log(product);
     }, [nameproduct]);
 
     return <div>{product?.name}</div>;

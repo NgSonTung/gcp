@@ -18,19 +18,11 @@ const ProductDisplay = (props) => {
                 />
             </div>
             <div className={cx('detail-wrapper')}>
-                <a className={cx('product-title')} href="https://thanhmobile.vn/iphone-13-pro-128gb-likenew-99.html">
-                    {props.newProduct.name}
-                </a>
+                <div className={cx('product-title')}>{props.newProduct.name}</div>
                 <p className={cx('product-price')}>{formatCurrency(props.newProduct.price)}</p>
-                <ul className={cx('feature-wrapper')}>
-                    {props.newProduct.features?.map((feature, id) => {
-                        return (
-                            <li key={id} className={cx('feature')}>
-                                {feature}
-                            </li>
-                        );
-                    })}
-                </ul>
+                <div className={cx('feature-wrapper')}>
+                    <p className={cx('feature')}>{props.newProduct.features?.map((feature, id) => feature + ' ')}</p>
+                </div>
             </div>
         </div>
     );

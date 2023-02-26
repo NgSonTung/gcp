@@ -53,16 +53,15 @@
 .feature-wrapper {
     height: 45%;
     width: 100%;
-    overflow: scroll;
-}
-.feature-wrapper::-webkit-scrollbar {
-    display: none;
 }
 .feature {
     font-size: 1.2rem;
     color: #666;
-    white-space: nowrap;
     overflow: hidden;
+    word-break: keep-all;
     text-overflow: ellipsis;
-    max-width: 23rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
 }

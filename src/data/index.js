@@ -1,4 +1,4 @@
-import data from './data/data.json';
+import data from './data.json';
 
 export const customerSlidersImg = [
     { url: 'https://thanhmobile.vn/uploads/plugin/gallery/180/nh-khach-hang-11-4.jpg', id: '1', alt: 'KH1' },
