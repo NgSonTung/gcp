@@ -9,7 +9,7 @@ function ProductDetail() {
     const { nameproduct } = useParams();
 
     useEffect(() => {
-        console.log(nameproduct);
+        // console.log(nameproduct);
     });
 
     return <div></div>;

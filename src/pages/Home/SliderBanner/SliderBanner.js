@@ -15,7 +15,7 @@ function SliderBanner() {
     const firstIdx = lastIdx - pageSize;
     const slider = sliderData.slice(firstIdx, lastIdx);
 
-    useEffect(() => console.log(sliderData));
+    // useEffect(() => console.log(sliderData));
 
     const paginate = (num) => {
         setCurrentIndex(num);

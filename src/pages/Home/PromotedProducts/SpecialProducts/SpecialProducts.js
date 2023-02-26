@@ -10,7 +10,7 @@ const SpecialProducts = () => {
     return (
         <div className={cx('container')}>
             <div className={cx('banner-container')}>
-                <img className={cx('banner-image')} src={bannerSrc} />
+                <img alt={'sale-banner'} className={cx('banner-image')} src={bannerSrc} />
             </div>
             <SpecialProductSlider className={cx('slider')} />
         </div>

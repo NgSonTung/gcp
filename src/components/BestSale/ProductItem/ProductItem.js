@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 function ProductItem({ data }) {
     const icon = require('~/Icons/index');
-    console.log(data);
+    // console.log(data);
     let formatVnd = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND',
