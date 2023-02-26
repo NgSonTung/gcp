@@ -2,22 +2,24 @@ import config from '~/config';
 
 // Layouts
 import Home from '../pages/Home/Home';
-import Contact from '~/pages/Contact/Contact';
-import Discount from '~/pages/Discount/Discount';
-import News from '~/pages/News/News';
-import IntroducePage from '~/pages/IntroducePage/IntroducePage';
-import BuyingInstruction from '~/pages/BuyingInstruction/BuyingInstruction';
-import ProductDetail from '~/components/ProductDetail/ProductDetail';
+import AllProducts from '~/pages/Products/AllProducts/AllProducts';
+import Phone from '~/pages/Products/Phone/Phone';
+import Laptop from '~/pages/Products/Laptop/Laptop';
+import NetworkDevice from '~/pages/Products/NetworkDevice/NetworkDevice';
+import Watch from '~/pages/Products/Watch/Watch';
+import Keyboard from '~/pages/Products/Keyboard/Keyboard';
+import Tablet from '~/pages/Products/Tablet/Tablet';
 
 // Public Routes
 const publicRoutes = [
     { path: config.routes.home, component: Home },
-    { path: config.routes.contact, component: Contact },
-    { path: config.routes.discount, component: Discount },
-    { path: config.routes.news, component: News },
-    { path: config.routes.introducePage, component: IntroducePage },
-    { path: config.routes.buyingInstruction, component: BuyingInstruction },
-    { path: config.routes.productDetail, component: ProductDetail },
+    { path: config.routes.allProducts, component: AllProducts },
+    { path: config.routes.phone, component: Phone },
+    { path: config.routes.networkDevice, component: NetworkDevice },
+    { path: config.routes.laptop, component: Laptop },
+    { path: config.routes.watch, component: Watch },
+    { path: config.routes.keyboard, component: Keyboard },
+    { path: config.routes.tablet, component: Tablet },
 ];
 
 export { publicRoutes };

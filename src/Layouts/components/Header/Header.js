@@ -11,14 +11,14 @@ import Search from './Search/Search';
 const cx = classNames.bind(styles);
 
 const menuTitles = [
-    { title: 'Tất cả ', to: config.routes.allproducts },
-    { title: 'Điện thoại', to: config.routes.phone },
+    { title: 'Home', to: config.routes.home },
+    { title: 'All Products', to: config.routes.allProducts },
+    { title: 'Phone', to: config.routes.phone },
     { title: 'Laptop', to: config.routes.laptop },
     { title: 'Tablet', to: config.routes.tablet },
-    { title: 'Smart watch', to: config.routes.smartclock },
-    { title: 'Thiết bị mạng', to: config.routes.networkdevice },
-    { title: 'Bàn phím', to: config.routes.keyboard },
-    { title: 'Loa', to: config.routes.speaker },
+    { title: 'Watch', to: config.routes.watch },
+    { title: 'Network Device', to: config.routes.networkDevice },
+    { title: 'Keyboard', to: config.routes.keyboard },
 ];
 const Header = () => {
     return (
