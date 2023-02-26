@@ -17,7 +17,7 @@ function ProductItem({ data }) {
     });
     const itemPrice = formatVnd.format(data.price);
     return (
-        <Link to={`/product/${data.id}`} styles={{ height: 'auto' }}>
+        <Link to={`/product/${data.name}`} styles={{ height: 'auto' }}>
             <div className={cx('item-best-sale')}>
                 <div className={cx('tag-best-sale')}>
                     <span>HOT</span>
