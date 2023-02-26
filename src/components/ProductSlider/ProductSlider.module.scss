@@ -1,0 +1,45 @@
+.swiper-container {
+    height: 42rem;
+    margin-top: -1.5rem;
+    user-select: none;
+}
+.slide-item {
+    height: 13rem;
+}
+.product {
+    flex-basis: 33.33%;
+    height: 100%;
+    padding: 1.5rem 0;
+}
+.middle {
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+}
+.next-text:hover {
+    color: #d90000;
+    cursor: pointer;
+}
+.prev-text:hover {
+    color: #d90000;
+    cursor: pointer;
+}
+.swiper-button-prev {
+    color: #acacacb5;
+    font-weight: 800;
+    font-size: 2rem;
+    position: absolute;
+    bottom: -1rem;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+.swiper-button-next {
+    color: #acacacb5;
+    font-weight: 800;
+    font-size: 2rem;
+    position: absolute;
+    bottom: -1rem;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}

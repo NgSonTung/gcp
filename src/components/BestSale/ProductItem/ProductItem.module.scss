@@ -9,6 +9,7 @@
         'row2';
 }
 .tag-best-sale {
+    z-index: 10;
     position: absolute;
     color: #fff;
     padding: 0 10px;
@@ -28,7 +29,7 @@
     // padding: 0.3rem;
     grid-area: row1;
     img {
-        width: 90%;
+        width: 80%;
     }
 }
 .avtar-product {

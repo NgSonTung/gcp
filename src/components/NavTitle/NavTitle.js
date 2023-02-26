@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './NavTitle.module.scss';
-import { React, useState, useRef } from 'react';
+import { React, useState } from 'react';
 
 // prop: [{id:'',title:'',component:<component/>},...]
 
@@ -21,9 +21,7 @@ const NavTitle = (props) => {
                                 setActiveIndex(index);
                             }}
                         >
-                            <a className={cx('title')} href="#">
-                                {item.title}
-                            </a>
+                            <div className={cx('title')}>{item.title}</div>
                         </li>
                     );
                 })}
