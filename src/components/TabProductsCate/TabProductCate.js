@@ -26,7 +26,7 @@ function TabProductCate() {
 
     return (
         <Box sx={{ width: '100%', typography: 'body1' }}>
-            <TabContext value={value}>
+            <TabContext value={value} sx={{ display: 'flex' }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList onChange={handleChange} aria-label="lab API tabs example">
                         {tabTitle.map((item, index) => (
@@ -34,11 +34,18 @@ function TabProductCate() {
                         ))}
                     </TabList>
                 </Box>
-                {tabTitle.map((data, index) => (
-                    <TabPanel value={index}>
-                        <ProductSlider data={data.products} />
-                    </TabPanel>
-                ))}
+                <div className={cx('panel-wrapper')}>
+                    <img
+                        className={cx('img-banner')}
+                        src="https://thanhmobile.vn/uploads/plugin/gallery/174/s-n-ph-m-m-i-gia.jpg"
+                        alt="img"
+                    />
+                    {tabTitle.map((data, index) => (
+                        <TabPanel value={index} className={cx('product-wrapper')}>
+                            <ProductSlider data={data.products} />
+                        </TabPanel>
+                    ))}
+                </div>
             </TabContext>
         </Box>
     );
