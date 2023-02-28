@@ -16,6 +16,10 @@
     width: auto;
     background-color: red;
     font-size: 14px;
+    opacity: 0;
+}
+.active-hot-tag {
+    opacity: 1;
 }
 .box-avtar {
     position: relative;

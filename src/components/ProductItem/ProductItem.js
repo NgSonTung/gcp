@@ -7,7 +7,8 @@ import styles from './ProductItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-function ProductItem({ data }) {
+function ProductItem(props) {
+    const { data, hotTag = false } = props;
     const [activeShow, setActiveShow] = useState(false);
     const icon = require('~/Icons/index');
     // console.log(data);
@@ -19,7 +20,7 @@ function ProductItem({ data }) {
     return (
         <Link to={`/product/${data.name}`} styles={{ height: 'auto' }}>
             <div className={cx('item-best-sale')}>
-                <div className={cx('tag-best-sale')}>
+                <div className={hotTag ? cx('tag-best-sale', 'active-hot-tag') : cx('tag-best-sale')}>
                     <span>HOT</span>
                 </div>
                 <div

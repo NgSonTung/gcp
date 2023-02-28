@@ -54,7 +54,7 @@ const ProductBestSale = (props) => {
                                 key={index}
                                 className={cx('swiper-item')}
                             >
-                                <ProductItem key={index} data={item} />
+                                <ProductItem key={index} data={item} hotTag={true} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
