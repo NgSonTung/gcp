@@ -1,5 +1,8 @@
 import React from 'react';
 import { Box, Pagination } from '@mui/material';
+import classNames from 'classnames/bind';
+import style from './CusPagination.module.scss';
+const cx = classNames.bind(style);
 function CusPagination(props) {
     const { itemPerPage, totalItem, handlePage } = props;
 
@@ -10,10 +13,17 @@ function CusPagination(props) {
                 alignItems={'center'}
                 justifyContent={'center'}
                 sx={{
-                    margin: '1rem 0',
+                    margin: '2rem 0',
+                    height: 'auto',
                 }}
             >
-                <Pagination count={Math.ceil(totalItem / itemPerPage)} onChange={(event, page) => handlePage(page)} />
+                <Pagination
+                    count={Math.ceil(totalItem / itemPerPage)}
+                    onChange={(event, page) => handlePage(page)}
+                    size="large"
+                    fontSize="16px"
+                    className={cx('pagination')}
+                />
             </Box>
         </div>
     );
