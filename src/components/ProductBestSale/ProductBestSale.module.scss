@@ -23,6 +23,10 @@
 .wrapper-img {
     width: 100%;
     margin: 3rem 0 1.5rem 0;
+    display: none;
+}
+.active-banner {
+    display: block;
 }
 .wrapper-pic {
     object-fit: cover;

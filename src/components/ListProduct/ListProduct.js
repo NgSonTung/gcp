@@ -5,6 +5,7 @@ import ProductItem from '~/components/ProductItem/index';
 import CusPagination from '~/components/CusPagination/index';
 import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import HeaderProduct from './HeaderProduct/index';
 const cx = classNames.bind(style);
 export const ListProduct = (props) => {
     const {
@@ -29,6 +30,7 @@ export const ListProduct = (props) => {
     const handlePage = (page) => setCurrentPage(page);
     return (
         <div className={cx('product-warpper')}>
+            <HeaderProduct count={data.length} />
             <div className={cx('list-product')}>
                 <Row>
                     {currentProduct.map((item, index) => (

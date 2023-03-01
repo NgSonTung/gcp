@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 const ProductBestSale = (props) => {
-    const { data, title, srcImg } = props;
+    const { data, title, srcImg, banner = false } = props;
     return (
         <div className={cx('wrapper')}>
             {/* link den cac san pham la dien thoai */}
@@ -19,7 +19,7 @@ const ProductBestSale = (props) => {
                     <span>{title}</span>
                 </div>
             </Link>
-            <div className={cx('wrapper-img')}>
+            <div className={banner ? cx('wrapper-img', 'active-banner') : cx('wrapper-img')}>
                 <img src={srcImg} className={cx('wrapper-pic')} alt="anh tet" />
             </div>
             <div className={cx('wrapper-item')}>

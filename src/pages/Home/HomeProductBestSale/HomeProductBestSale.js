@@ -9,7 +9,7 @@ function HomeProductBestSale({ cate, srcImgBanner }) {
     const product = dataBestSale.filter((item) => item.category === cate);
     return (
         <div className={cx('wrapper-outer')}>
-            <ProductBestSale data={product} title={cate} srcImg={srcImgBanner} />
+            <ProductBestSale data={product} title={cate} srcImg={srcImgBanner} banner={true} />
         </div>
     );
 }
