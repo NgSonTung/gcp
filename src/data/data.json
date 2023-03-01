@@ -16,13 +16,13 @@
         "pay_online": "",
         "rating": "4.1",
         "sell_off": "-6%",
-        "count_evaluate": 420,
-        "evaluate": {
-            "_5star": "86%",
-            "_4star": "9%",
-            "_3star": "4%",
-            "_2star": "1%",
-            "_1star": "%"
+        "count_rating": 420,
+        "ratings": {
+            "_5star": 0,
+            "_4star": 1,
+            "_3star": 1,
+            "_2star": 0,
+            "_1star": 0
         },
         "features": [
             "Vẻ ngoài trẻ trung đầy cá tính",
@@ -50,13 +50,13 @@
         "pay_online": "",
         "rating": "3.8",
         "sell_off": "-23%",
-        "count_evaluate": 30,
-        "evaluate": {
-            "_5star": "91%",
-            "_4star": "4%",
-            "_3star": "3%",
-            "_2star": "1%",
-            "_1star": "1%"
+        "count_rating": 30,
+        "ratings": {
+            "_5star": 0,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế siêu mỏng nhẹ, dịch chuyển dễ dàng",
@@ -76,13 +76,13 @@
         "price": 12440000,
         "old_price": 1.3,
         "category": "networkdevice",
-        "count_evaluate": 2,
-        "evaluate": {
-            "_5star": "100%",
-            "_4star": "0%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 2,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -104,13 +104,13 @@
         "price": 400000,
         "old_price": 1.3,
         "category": "networkdevice",
-        "count_evaluate": 26,
-        "evaluate": {
-            "_5star": "50%",
-            "_4star": "19%",
-            "_3star": "9%",
-            "_2star": "12%",
-            "_1star": "12%"
+        "count_rating": 26,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -139,13 +139,13 @@
         "pay_online": "",
         "rating": "3.7",
         "sell_off": "-8%",
-        "count_evaluate": 99,
-        "evaluate": {
-            "_5star": "94%",
-            "_4star": "5%",
-            "_3star": "1%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 99,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Trải nghiệm mượt mà trên mọi tác vụ",
@@ -172,13 +172,13 @@
         "pay_online": "",
         "rating": "4.5",
         "sell_off": "-10%",
-        "count_evaluate": 128,
-        "evaluate": {
-            "_5star": "89%",
-            "_4star": "9%",
-            "_3star": "1%",
-            "_2star": "1%",
-            "_1star": "0%"
+        "count_rating": 128,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Chip Apple M1 tốc độ xử lý nhanh gấp 3.5 lần thế hệ trước",
@@ -206,13 +206,13 @@
         "pay_online": "",
         "rating": "4.5",
         "sell_off": "-18%",
-        "count_evaluate": 302,
-        "evaluate": {
-            "_5star": "93%",
-            "_4star": "3%",
-            "_3star": "2%",
-            "_2star": "1%",
-            "_1star": "1%"
+        "count_rating": 302,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": ["Sở hữu hiệu năng khoẻ", "Thiết kế mạnh mẽ"],
         "description": "Laptop AMD Ryzen 5 5500U cùng card rời NVIDIA GeForce GTX 1650 4 GB, mang đến khả năng thiết kế 2D, render video ngắn,... ổn định trên các phần mềm Adobe hay giải trí với các tựa game kịch tính trên thị trường hiện nay một cách mượt m. Chiếc laptop Acer Aspire còn sở hữu RAM 8 GB và SSD 256 GB đáp ứng tốt nhu cầu đa nhiệm, hỗ trợ bạn thao tác mọi việc nhanh chóng và hiệu quả hơn.. Phiên bản laptop này với khối lượng 2.1 kg và dày 22.9 mm, được chế tác từ chất liệu nhựa bền bỉ, dễ dàng để bạn mang đi khắp mọi nơi.. Bản lề mở 180 độ giúp chia sẻ thông tin nhanh chóng, tiện lợi."
@@ -226,13 +226,13 @@
         "price": 2510000,
         "old_price": 1.3,
         "category": "networkdevice",
-        "count_evaluate": 0,
-        "evaluate": {
-            "_5star": "0%",
-            "_4star": "0%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 0,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -253,13 +253,13 @@
         "price": 8500000,
         "old_price": 1.3,
         "category": "networkdevice",
-        "count_evaluate": 0,
-        "evaluate": {
-            "_5star": "0%",
-            "_4star": "0%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 0,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -279,13 +279,13 @@
         "price": 405000,
         "old_price": 1.3,
         "category": "networkdevice",
-        "count_evaluate": 42,
-        "evaluate": {
-            "_5star": "62%",
-            "_4star": "14%",
-            "_3star": "10%",
-            "_2star": "7%",
-            "_1star": "7%"
+        "count_rating": 42,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -314,13 +314,13 @@
         "pay_online": "",
         "rating": "2.9",
         "sell_off": "-30%",
-        "count_evaluate": 303,
-        "evaluate": {
-            "_5star": "85%",
-            "_4star": "5%",
-            "_3star": "4%",
-            "_2star": "4%",
-            "_1star": "2%"
+        "count_rating": 303,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Tai nghe True Wireless sành điệu, màu đen cá tính",
@@ -348,13 +348,13 @@
         "pay_online": "",
         "rating": "3.4",
         "sell_off": "-15%",
-        "count_evaluate": 56,
-        "evaluate": {
-            "_5star": "87%",
-            "_4star": "7%",
-            "_3star": "3%",
-            "_2star": "2%",
-            "_1star": "1%"
+        "count_rating": 56,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế nhỏ gọn, sang trọng",
@@ -383,13 +383,13 @@
         "pay_online": "",
         "rating": "4.4",
         "sell_off": "-22%",
-        "count_evaluate": 80,
-        "evaluate": {
-            "_5star": "82%",
-            "_4star": "12%",
-            "_3star": "4%",
-            "_2star": "1%",
-            "_1star": "1%"
+        "count_rating": 80,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế thời thượng cùng bảng màu cá tính",
@@ -421,13 +421,13 @@
         "pay_online": "",
         "rating": "3.7",
         "sell_off": "-38%",
-        "count_evaluate": 408,
-        "evaluate": {
-            "_5star": "89%",
-            "_4star": "4%",
-            "_3star": "3%",
-            "_2star": "3%",
-            "_1star": "1%"
+        "count_rating": 408,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Kiểu dáng gọn nhẹ, năng động",
@@ -457,13 +457,13 @@
         "pay_online": "",
         "rating": "3.7",
         "sell_off": "-5%",
-        "count_evaluate": 552,
-        "evaluate": {
-            "_5star": "90%",
-            "_4star": "5%",
-            "_3star": "3%",
-            "_2star": "1%",
-            "_1star": "1%"
+        "count_rating": 552,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Diện mạo trẻ trung và năng động",
@@ -490,13 +490,13 @@
         "pay_online": "",
         "rating": "4.1",
         "sell_off": "-23%",
-        "count_evaluate": 338,
-        "evaluate": {
-            "_5star": "92%",
-            "_4star": "7%",
-            "_3star": "1%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 338,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Nâng cấp mạnh mẽ về camera",
@@ -515,13 +515,13 @@
         "price": 890000,
         "old_price": 1.3,
         "category": "keyboard",
-        "count_evaluate": 3,
-        "evaluate": {
-            "_5star": "100%",
-            "_4star": "0%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 3,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -541,13 +541,13 @@
         "price": 1485000,
         "old_price": 1.3,
         "category": "keyboard",
-        "count_evaluate": 5,
-        "evaluate": {
-            "_5star": "100%",
-            "_4star": "0%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 5,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -567,13 +567,13 @@
         "price": 600000,
         "old_price": 1.3,
         "category": "keyboard",
-        "count_evaluate": 7,
-        "evaluate": {
-            "_5star": "57%",
-            "_4star": "14%",
-            "_3star": "14%",
-            "_2star": "14%",
-            "_1star": "0%"
+        "count_rating": 7,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -601,13 +601,13 @@
         "pay_online": "",
         "rating": "3.8",
         "sell_off": "-23%",
-        "count_evaluate": 178,
-        "evaluate": {
-            "_5star": "82%",
-            "_4star": "7%",
-            "_3star": "6%",
-            "_2star": "3%",
-            "_1star": "2%"
+        "count_rating": 178,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế hiện đại, bắt mắt",
@@ -637,13 +637,13 @@
         "pay_online": "",
         "rating": "4.5",
         "sell_off": "-20%",
-        "count_evaluate": 92,
-        "evaluate": {
-            "_5star": "44%",
-            "_4star": "44%",
-            "_3star": "11%",
-            "_2star": "4%",
-            "_1star": "2%"
+        "count_rating": 92,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Diện mạo ấn tượng, mang đậm chất thể thao",
@@ -671,13 +671,13 @@
         "pay_online": "",
         "rating": "4.3",
         "sell_off": "-15%",
-        "count_evaluate": 104,
-        "evaluate": {
-            "_5star": "52%",
-            "_4star": "30%",
-            "_3star": "11%",
-            "_2star": "3%",
-            "_1star": "3%"
+        "count_rating": 104,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Vẻ ngoài thời thượng, đậm tính thời trang",
@@ -705,13 +705,13 @@
         "pay_online": "",
         "rating": "4.5",
         "sell_off": "-14%",
-        "count_evaluate": 36,
-        "evaluate": {
-            "_5star": "68%",
-            "_4star": "16%",
-            "_3star": "15%",
-            "_2star": "2%",
-            "_1star": "0%"
+        "count_rating": 36,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Chạy mượt mà các ứng dụng văn phòng trên Word, Excel, PowerPoint,... ",
@@ -750,13 +750,13 @@
         "pay_online": "",
         "rating": "4.2",
         "sell_off": "-16%",
-        "count_evaluate": 89,
-        "evaluate": {
-            "_5star": "48%",
-            "_4star": "36%",
-            "_3star": "9%",
-            "_2star": "2%",
-            "_1star": "5%"
+        "count_rating": 89,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Kiểu dáng hiện đại, thời thượng",
@@ -794,13 +794,13 @@
         ],
         "installment": "Trả góp 0%",
         "sell_off": "-50%",
-        "count_evaluate": 345,
-        "evaluate": {
-            "_5star": "63%",
-            "_4star": "25%",
-            "_3star": "12%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 345,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Tạo hình cao cấp sang trọng",
@@ -829,13 +829,13 @@
         "pay_online": "",
         "rating": "4.6",
         "sell_off": "-21%",
-        "count_evaluate": 21,
-        "evaluate": {
-            "_5star": "96%",
-            "_4star": "3%",
-            "_3star": "1%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 21,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": ["Thiết kế mỏng nhẹ", "Hiệu năng mạnh mẽ đến từ CPU Intel thế hệ thứ 11"],
         "description": "Laptop có vẻ ngoài hiện đại với sắc xám thanh lịch, lớp vỏ nhựa cứng cáp, ít trầy xước cùng khối lượng 1.65 kg và dày 19.9 mm giúp bạn dễ dàng cất gọn trong balo. Sở hữu CPU Intel Core i5 Tiger Lake 1135G7 chinh phục nhanh chóng các tác vụ văn phòng. Card đồ họa tích hợp Intel Iris Xe Graphics hỗ trợ xử lý ổn định các tác vụ đồ hoạ 2D trên Photoshop, Lightroom,..."
@@ -857,13 +857,13 @@
         "pay_online": "Hàng sắp về",
         "rating": "",
         "sell_off": "",
-        "count_evaluate": 43,
-        "evaluate": {
-            "_5star": "84%",
-            "_4star": "9%",
-            "_3star": "4%",
-            "_2star": "2%",
-            "_1star": "1%"
+        "count_rating": 43,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế tai nghe AirPods Pro 2 gọn nhẹ, kiểu dáng hiện đại",
@@ -896,13 +896,13 @@
         "pay_online": "",
         "rating": "3.6",
         "sell_off": "-35%",
-        "count_evaluate": 119,
-        "evaluate": {
-            "_5star": "82%",
-            "_4star": "6%",
-            "_3star": "10%",
-            "_2star": "1%",
-            "_1star": "1%"
+        "count_rating": 119,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "AVA+ JP208 sạc lại nhiều lần cho các thiết bị di động với dung lượng 10.000 mAh, hiệu suất sạc 64%",
@@ -921,13 +921,13 @@
         "price": 190000,
         "old_price": 1.3,
         "category": "networkdevice",
-        "count_evaluate": 19,
-        "evaluate": {
-            "_5star": "68%",
-            "_4star": "21%",
-            "_3star": "5%",
-            "_2star": "5%",
-            "_1star": "0%"
+        "count_rating": 19,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -948,13 +948,13 @@
         "price": 2390000,
         "old_price": 1.3,
         "category": "keyboard",
-        "count_evaluate": 1,
-        "evaluate": {
-            "_5star": "100%",
-            "_4star": "0%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 1,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -975,13 +975,13 @@
         "price": 990000,
         "old_price": 1.3,
         "category": "keyboard",
-        "count_evaluate": 12,
-        "evaluate": {
-            "_5star": "67%",
-            "_4star": "17%",
-            "_3star": "17%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 12,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -1018,13 +1018,13 @@
         ],
         "installment": "Trả góp 0%",
         "sell_off": "-52%",
-        "count_evaluate": 313,
-        "evaluate": {
-            "_5star": "36%",
-            "_4star": "18%",
-            "_3star": "25%",
-            "_2star": "14%",
-            "_1star": "7%"
+        "count_rating": 313,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Cầm nắm cực kỳ thoải mái",
@@ -1066,13 +1066,13 @@
         ],
         "installment": "Trả góp 0%",
         "sell_off": "-50%",
-        "count_evaluate": 546,
-        "evaluate": {
-            "_5star": "30%",
-            "_4star": "25%",
-            "_3star": "21%",
-            "_2star": "15%",
-            "_1star": "9%"
+        "count_rating": 546,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Màu sắc hiển thị rực rỡ",
@@ -1115,13 +1115,13 @@
         "pay_online": "",
         "rating": "4",
         "sell_off": "-8%",
-        "count_evaluate": 77,
-        "evaluate": {
-            "_5star": "90%",
-            "_4star": "7%",
-            "_3star": "2%",
-            "_2star": "1%",
-            "_1star": "0%"
+        "count_rating": 77,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Nổi bật với ngoại hình đầy ấn tượng",
@@ -1169,13 +1169,13 @@
         "pay_online": "",
         "rating": "4.1",
         "sell_off": "-20%",
-        "count_evaluate": 227,
-        "evaluate": {
-            "_5star": "92%",
-            "_4star": "6%",
-            "_3star": "1%",
-            "_2star": "1%",
-            "_1star": "0%"
+        "count_rating": 227,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Hiệu năng vượt xa mọi giới hạn",
@@ -1204,13 +1204,13 @@
         "pay_online": "",
         "rating": "4.3",
         "sell_off": "",
-        "count_evaluate": 200,
-        "evaluate": {
-            "_5star": "88%",
-            "_4star": "6%",
-            "_3star": "3%",
-            "_2star": "2%",
-            "_1star": "1%"
+        "count_rating": 200,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Ấn tượng với diện mạo thời trang và màn hình chất lượng",
@@ -1248,13 +1248,13 @@
         "installment": "Trả góp 0%",
         "rating": "4",
         "sell_off": "-8%",
-        "count_evaluate": 123,
-        "evaluate": {
-            "_5star": "44%",
-            "_4star": "26%",
-            "_3star": "17%",
-            "_2star": "7%",
-            "_1star": "6%"
+        "count_rating": 123,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Nổi bật với ngoại hình đầy ấn tượng",
@@ -1286,13 +1286,13 @@
         "installment": "Trả góp 0%",
         "rating": "4",
         "sell_off": "-8%",
-        "count_evaluate": 47,
-        "evaluate": {
-            "_5star": "100%",
-            "_4star": "0%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 47,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Hiệu năng vượt trội, chinh phục mọi tác vụ",
@@ -1319,13 +1319,13 @@
         "pay_online": "",
         "rating": "3.5",
         "sell_off": "-14%",
-        "count_evaluate": 108,
-        "evaluate": {
-            "_5star": "88%",
-            "_4star": "6%",
-            "_3star": "3%",
-            "_2star": "2%",
-            "_1star": "1%"
+        "count_rating": 108,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Đa dạng màu sắc trẻ trung",
@@ -1352,13 +1352,13 @@
         "pay_online": "",
         "rating": "3.8",
         "sell_off": "-14%",
-        "count_evaluate": 200,
-        "evaluate": {
-            "_5star": "86%",
-            "_4star": "7%",
-            "_3star": "6%",
-            "_2star": "1%",
-            "_1star": "0%"
+        "count_rating": 200,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Pin khỏe, vui lâu",
@@ -1396,13 +1396,13 @@
         "installment": "Trả góp 0%",
         "rating": "4",
         "sell_off": "-8%",
-        "count_evaluate": 228,
-        "evaluate": {
-            "_5star": "73%",
-            "_4star": "9%",
-            "_3star": "6%",
-            "_2star": "9%",
-            "_1star": "3%"
+        "count_rating": 228,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Hiệu năng ấn tượng đến từ chip M1",
@@ -1437,13 +1437,13 @@
         "installment": "Trả góp 0%",
         "rating": "5",
         "sell_off": "-8%",
-        "count_evaluate": 133,
-        "evaluate": {
-            "_5star": "80%",
-            "_4star": "10%",
-            "_3star": "10%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 133,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Nâng cấp thiết kế, bộ đôi màn hình siêu đẹp",
@@ -1475,13 +1475,13 @@
                 "img": "https://cdn.tgdd.vn/Products/Images/522/222806/lenovo-tab-m8-bac-200x200.jpg"
             }
         ],
-        "count_evaluate": 49,
-        "evaluate": {
-            "_5star": "45%",
-            "_4star": "29%",
-            "_3star": "20%",
-            "_2star": "4%",
-            "_1star": "2%"
+        "count_rating": 49,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/222806/lenovo-tab-a22-xam-600x600.jpg",
         "features": [
@@ -1501,13 +1501,13 @@
         "price": 12990000,
         "old_price": 1.3,
         "category": "tablet",
-        "count_evaluate": 9,
-        "evaluate": {
-            "_5star": "89%",
-            "_4star": "0%",
-            "_3star": "11%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 9,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/256559/Samsung-Galaxy-Tab-S7-FE-Wifi-green-1-660x600.jpg",
         "sub_photo": [
@@ -1540,13 +1540,13 @@
         "price": 3090000,
         "old_price": 1.3,
         "category": "tablet",
-        "count_evaluate": 7,
-        "evaluate": {
-            "_5star": "57%",
-            "_4star": "29%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "14%"
+        "count_rating": 7,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/241051/Huawei-MatePad-T10-1-2-600x600.jpg",
         "sub_photo": [
@@ -1573,13 +1573,13 @@
         "price": 41990000,
         "old_price": 1.3,
         "category": "tablet",
-        "count_evaluate": 37,
-        "evaluate": {
-            "_5star": "72%",
-            "_4star": "22%",
-            "_3star": "6%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 37,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Trải nghiệm khung hình sống động cùng cảm giác chạm vuốt cực mượt",
@@ -1618,13 +1618,13 @@
         "installment": "Trả góp 0%",
         "rating": "4",
         "sell_off": "-12%",
-        "count_evaluate": 120,
-        "evaluate": {
-            "_5star": "38%",
-            "_4star": "24%",
-            "_3star": "17%",
-            "_2star": "11%",
-            "_1star": "9%"
+        "count_rating": 120,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế đậm chất Xiaomi",
@@ -1659,13 +1659,13 @@
         "installment": "Trả góp 0%",
         "rating": "4",
         "sell_off": "-9%",
-        "count_evaluate": 111,
-        "evaluate": {
-            "_5star": "41%",
-            "_4star": "33%",
-            "_3star": "14%",
-            "_2star": "4%",
-            "_1star": "8%"
+        "count_rating": 111,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Nổi bật với diện mạo đầy cuốn hút",
@@ -1708,13 +1708,13 @@
         "installment": "Trả góp 0%",
         "rating": "5",
         "sell_off": "-8%",
-        "count_evaluate": 37,
-        "evaluate": {
-            "_5star": "60%",
-            "_4star": "10%",
-            "_3star": "8%",
-            "_2star": "4%",
-            "_1star": "8%"
+        "count_rating": 37,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Hiệu năng dẫn đầu mọi trận đấu - Chip Snapdragon® 8+ Gen 1 mạnh mẽ cùng RAM 12GB",
@@ -1745,13 +1745,13 @@
         "installment": "Trả góp 0%",
         "rating": "5",
         "sell_off": "-8%",
-        "count_evaluate": 38,
-        "evaluate": {
-            "_5star": "65%",
-            "_4star": "10%",
-            "_3star": "9%",
-            "_2star": "15%",
-            "_1star": "1%"
+        "count_rating": 38,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế độc đáo, nhỏ gọn",
@@ -1787,13 +1787,13 @@
         "installment": "Trả góp 0%",
         "rating": "5",
         "sell_off": "-8%",
-        "count_evaluate": 50,
-        "evaluate": {
-            "_5star": "30%",
-            "_4star": "25%",
-            "_3star": "19%",
-            "_2star": "11%",
-            "_1star": "15%"
+        "count_rating": 50,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế trẻ trung, hiện đại, mang đậm phong cách gaming",
@@ -1830,13 +1830,13 @@
         ],
         "installment": "Trả góp 0%",
         "sell_off": "-40%",
-        "count_evaluate": 4,
-        "evaluate": {
-            "_5star": "100%",
-            "_4star": "0%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 4,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Đột phá thiết kế màn hình gập",
@@ -1879,13 +1879,13 @@
         "installment": "Trả góp 0%",
         "rating": "4",
         "sell_off": "-10%",
-        "count_evaluate": 57,
-        "evaluate": {
-            "_5star": "67%",
-            "_4star": "25%",
-            "_3star": "3%",
-            "_2star": "6%",
-            "_1star": "0%"
+        "count_rating": 57,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Ngoại hình thời trang - cầm nắm cực sang với thiết kế gập vỏ sò độc đáo",
@@ -1926,13 +1926,13 @@
         "pay_online": "",
         "rating": "3.8",
         "sell_off": "-3%",
-        "count_evaluate": 76,
-        "evaluate": {
-            "_5star": "38%",
-            "_4star": "23%",
-            "_3star": "20%",
-            "_2star": "11%",
-            "_1star": "8%"
+        "count_rating": 76,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế bo cong đậm chất Xiaomi",
@@ -1974,13 +1974,13 @@
         "pay_online": "",
         "rating": "3.8",
         "sell_off": "-4%",
-        "count_evaluate": 89,
-        "evaluate": {
-            "_5star": "35%",
-            "_4star": "37%",
-            "_3star": "13%",
-            "_2star": "6%",
-            "_1star": "10%"
+        "count_rating": 89,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế bóng bẩy, các chi tiết được hoàn thiện tốt",
@@ -2018,13 +2018,13 @@
         "pay_online": "",
         "rating": "3.2",
         "sell_off": "",
-        "count_evaluate": 12,
-        "evaluate": {
-            "_5star": "28%",
-            "_4star": "12%",
-            "_3star": "24%",
-            "_2star": "20%",
-            "_1star": "16%"
+        "count_rating": 12,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế nguyên khối chắc chắn",
@@ -2045,13 +2045,13 @@
         "price": 6990000,
         "old_price": 1.3,
         "category": "tablet",
-        "count_evaluate": 30,
-        "evaluate": {
-            "_5star": "57%",
-            "_4star": "7%",
-            "_3star": "6%",
-            "_2star": "3%",
-            "_1star": "2%"
+        "count_rating": 30,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/281821/OPPO-pad-thumb-x%C3%A1m-600x600.jpg",
         "sub_photo": [],
@@ -2066,13 +2066,13 @@
         "price": 4390000,
         "old_price": 1.3,
         "category": "tablet",
-        "count_evaluate": 50,
-        "evaluate": {
-            "_5star": "50%",
-            "_4star": "32%",
-            "_3star": "10%",
-            "_2star": "4%",
-            "_1star": "4%"
+        "count_rating": 50,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/266337/nokia-tab-t20-wifi-thumb-600x600-1-600x600.jpeg",
         "sub_photo": [],
@@ -2092,13 +2092,13 @@
         "price": 16490000,
         "old_price": 1.3,
         "category": "tablet",
-        "count_evaluate": 8,
-        "evaluate": {
-            "_5star": "75%",
-            "_4star": "25%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 8,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-pink-1-600x600.jpg",
         "sub_photo": [
@@ -2161,13 +2161,13 @@
         "pay_online": "",
         "rating": "3.6",
         "sell_off": "-23%",
-        "count_evaluate": 288,
-        "evaluate": {
-            "_5star": "32%",
-            "_4star": "25%",
-            "_3star": "25%",
-            "_2star": "9%",
-            "_1star": "8%"
+        "count_rating": 288,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Thiết kế cao cấp, tinh tế và thời trang",
@@ -2215,13 +2215,13 @@
         ],
         "installment": "",
         "pay_online": "Online giá rẻ",
-        "count_evaluate": 90,
-        "evaluate": {
-            "_5star": "62%",
-            "_4star": "23%",
-            "_3star": "11%",
-            "_2star": "1%",
-            "_1star": "2%"
+        "count_rating": 90,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "features": [
             "Hiệu năng vượt trội nhờ chip Apple A15 Bionic",
@@ -2245,13 +2245,13 @@
         "price": 7690000,
         "old_price": 1.3,
         "category": "watch",
-        "count_evaluate": 12,
-        "evaluate": {
-            "_5star": "60%",
-            "_4star": "10%",
-            "_3star": "30%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 12,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [
             {
@@ -2285,13 +2285,13 @@
         "price": 15743000,
         "old_price": 1.3,
         "category": "watch",
-        "count_evaluate": 2,
-        "evaluate": {
-            "_5star": "50%",
-            "_4star": "50%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 2,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -2312,13 +2312,13 @@
         "price": 490000,
         "old_price": 1.3,
         "category": "watch",
-        "count_evaluate": 6,
-        "evaluate": {
-            "_5star": "67%",
-            "_4star": "33%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 6,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [
             {
@@ -2356,14 +2356,8 @@
         "price": 5490000,
         "old_price": 1.3,
         "category": "watch",
-        "count_evaluate": 8,
-        "evaluate": {
-            "_5star": "25%",
-            "_4star": "50%",
-            "_3star": "25%",
-            "_2star": "0%",
-            "_1star": "0%"
-        },
+        "count_rating": 8,
+        "ratings": { "_5star": 10, "_4star": 4, "_3star": 3, "_2star": 2, "_1star": 1 },
         "sub_photo": [],
         "features": [
             "Diện mạo thời thượng, màn hình AMOLED sắc nét",
@@ -2385,13 +2379,13 @@
         "price": 605000,
         "old_price": 1.3,
         "category": "networkdevice",
-        "count_evaluate": 7,
-        "evaluate": {
-            "_5star": "71%",
-            "_4star": "14%",
-            "_3star": "14%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 7,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -2414,13 +2408,13 @@
         "price": 35990000,
         "old_price": 1.3,
         "category": "tablet",
-        "count_evaluate": 82,
-        "evaluate": {
-            "_5star": "69%",
-            "_4star": "11%",
-            "_3star": "10%",
-            "_2star": "6%",
-            "_1star": "4%"
+        "count_rating": 82,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/295467/ipad-pro-m2-12.5-inch-wifi-5g-xam-thumb-600x600.jpg",
         "sub_photo": [
@@ -2444,13 +2438,13 @@
         "price": 10490000,
         "old_price": 1.3,
         "category": "tablet",
-        "count_evaluate": 112,
-        "evaluate": {
-            "_5star": "74%",
-            "_4star": "23%",
-            "_3star": "3%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 112,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/250934/xiaomi-pad-5-grey-600x600.jpg",
         "sub_photo": [
@@ -2482,13 +2476,13 @@
         "price": 9990000,
         "old_price": 1.3,
         "category": "tablet",
-        "count_evaluate": 32,
-        "evaluate": {
-            "_5star": "48%",
-            "_4star": "15%",
-            "_3star": "11%",
-            "_2star": "22%",
-            "_1star": "4%"
+        "count_rating": 32,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/219912/samsung-galaxy-tab-s6-lite-xam-600x600-1-600x600.jpg",
         "sub_photo": [
@@ -2517,13 +2511,13 @@
         "price": 490000,
         "old_price": 1.3,
         "category": "watch",
-        "count_evaluate": 38,
-        "evaluate": {
-            "_5star": "63%",
-            "_4star": "18%",
-            "_3star": "13%",
-            "_2star": "0%",
-            "_1star": "5%"
+        "count_rating": 38,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/7077/282959/dong-ho-befit-b4-hong-thumbnew-600x600.jpeg",
         "sub_photo": [],
@@ -2547,13 +2541,13 @@
         "price": 5490000,
         "old_price": 1.3,
         "category": "watch",
-        "count_evaluate": 5,
-        "evaluate": {
-            "_5star": "60%",
-            "_4star": "40%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "0%"
+        "count_rating": 5,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [
@@ -2575,13 +2569,13 @@
         "price": 3990000,
         "old_price": 1.3,
         "category": "watch",
-        "count_evaluate": 42,
-        "evaluate": {
-            "_5star": "59%",
-            "_4star": "20%",
-            "_3star": "10%",
-            "_2star": "5%",
-            "_1star": "7%"
+        "count_rating": 42,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [
             {
@@ -2612,13 +2606,13 @@
         "price": 1345000,
         "old_price": 1.3,
         "category": "keyboard",
-        "count_evaluate": 6,
-        "evaluate": {
-            "_5star": "50%",
-            "_4star": "17%",
-            "_3star": "0%",
-            "_2star": "0%",
-            "_1star": "33%"
+        "count_rating": 6,
+        "ratings": {
+            "_5star": 10,
+            "_4star": 4,
+            "_3star": 3,
+            "_2star": 2,
+            "_1star": 1
         },
         "sub_photo": [],
         "features": [

@@ -9,6 +9,7 @@ import NetworkDevice from '~/pages/Products/NetworkDevice/NetworkDevice';
 import Watch from '~/pages/Products/Watch/Watch';
 import Keyboard from '~/pages/Products/Keyboard/Keyboard';
 import Tablet from '~/pages/Products/Tablet/Tablet';
+import ProductDetail from '~/components/ProductDetail/ProductDetail';
 
 // Public Routes
 const publicRoutes = [
@@ -20,6 +21,7 @@ const publicRoutes = [
     { path: config.routes.watch, component: Watch },
     { path: config.routes.keyboard, component: Keyboard },
     { path: config.routes.tablet, component: Tablet },
+    { path: config.routes.product, component: ProductDetail },
 ];
 
 export { publicRoutes };
