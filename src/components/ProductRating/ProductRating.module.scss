@@ -1,0 +1,41 @@
+$starColor: rgb(229, 187, 0);
+$highlightedStarColor: rgb(255, 208, 0);
+$noStarColor: rgba(212, 173, 0, 0.381);
+.rating {
+    display: flex;
+    cursor: pointer;
+    .full-star {
+        color: $starColor;
+    }
+    .half-star-wrapper {
+        position: relative;
+        display: flex;
+        .half-star {
+            color: $starColor;
+        }
+        .half-star-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            color: $noStarColor;
+        }
+    }
+    .no-star {
+        color: $noStarColor;
+    }
+    .total-ratings {
+        color: $starColor;
+        font-weight: 700;
+        margin-top: -3px;
+        margin-left: 5px;
+    }
+}
+
+.highlighted {
+    color: $highlightedStarColor !important;
+}
+.halfhighlighted {
+    z-index: 2 !important;
+    color: $highlightedStarColor !important;
+}
