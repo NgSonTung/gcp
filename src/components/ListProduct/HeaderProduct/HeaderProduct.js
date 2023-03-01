@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import style from './HeaderProduct.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,21 @@ import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(style);
 
 const HeaderProduct = (props) => {
-    const { title = 'Sản Phẩm', count } = props;
+    const { title = 'Sản Phẩm', count, handleSortDesc, handleSortAsc, handleNoSort } = props;
+    const [activeMenuSort, setActiveMenuSort] = useState(false);
+    const ref = useRef(null);
+    const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+            setActiveMenuSort(false);
+        }
+    };
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    });
+
     return (
         <div className={cx('header-product-wrapper')}>
             <div className={cx('header-product-title')}>
@@ -17,11 +31,21 @@ const HeaderProduct = (props) => {
             </div>
             <div className={cx('header-product-sort')}>
                 <nav className={cx('sort-product')}>
-                    <span>Sắp Xếp {<FontAwesomeIcon icon={faSortDown} className={cx('icon-sort-down')} />}</span>
-                    <div className={cx('sort-menu')}>
+                    <div
+                        className={cx('sort-title')}
+                        onClick={() => (activeMenuSort ? setActiveMenuSort(false) : setActiveMenuSort(true))}
+                        ref={ref}
+                    >
                         <ul>
-                            <li>Sắp xếp theo giá tăng dần</li>
-                            <li>Sắp xếp theo giá giảm dần</li>
+                            <li>Sắp Xếp</li>
+                            <li>{<FontAwesomeIcon icon={faSortDown} className={cx('icon-sort-down')} />}</li>
+                        </ul>
+                    </div>
+                    <div className={activeMenuSort ? cx('sort-menu', 'active-menu-sort') : cx('sort-menu')}>
+                        <ul>
+                            <li onClick={() => handleNoSort()}>Tất cả</li>
+                            <li onClick={() => handleSortAsc()}>Sắp xếp theo giá tăng dần</li>
+                            <li onClick={() => handleSortDesc()}>Sắp xếp theo giá giảm dần</li>
                         </ul>
                     </div>
                 </nav>

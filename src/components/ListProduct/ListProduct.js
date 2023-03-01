@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import style from './ListProduct.module.scss';
 import ProductItem from '~/components/ProductItem/index';
@@ -16,21 +16,46 @@ export const ListProduct = (props) => {
         ColOnPerRowLarge = 3,
         ColOnPerRowExtraLarge = 2,
     } = props;
+    const baseData = useRef(data);
+    baseData.current = data;
+    const [productData, setProductDatas] = useState(data);
     const [product, setProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [productPerPgae] = useState(5);
+    const [sorted, setSorted] = useState('');
     useEffect(() => {
-        setProduct(data);
-    }, []);
-
+        setProduct(productData);
+    }, [sorted]);
     const indexOfLastProduct = currentPage * productPerPgae;
     const indexOfFirstProduct = indexOfLastProduct - productPerPgae;
     const currentProduct = product.slice(indexOfFirstProduct, indexOfLastProduct);
     //change page
     const handlePage = (page) => setCurrentPage(page);
+    //sort-data
+    const handleSortDesc = () => {
+        const dataSorted = [...data].sort((a, b) => (a.price < b.price ? 1 : -1));
+        setProductDatas(dataSorted);
+        setSorted('desc');
+    };
+
+    const handleSortAsc = () => {
+        const dataSorted = [...data].sort((a, b) => a.price - b.price);
+        setProductDatas(dataSorted);
+        setSorted('asc');
+    };
+    const handleNoSort = () => {
+        setProductDatas(baseData.current);
+        setSorted('no sort');
+        console.log(baseData.current);
+    };
     return (
         <div className={cx('product-warpper')}>
-            <HeaderProduct count={data.length} />
+            <HeaderProduct
+                count={productData.length}
+                handleSortDesc={handleSortDesc}
+                handleSortAsc={handleSortAsc}
+                handleNoSort={handleNoSort}
+            />
             <div className={cx('list-product')}>
                 <Row>
                     {currentProduct.map((item, index) => (
