@@ -14,7 +14,7 @@ const formatCurrency = (str) => {
     return `${str.toString().replace(regex, '$&,')}₫`;
 };
 
-function ProductDetailDesc(props) {
+function ProductDetailDesc({ product, full = true, className }) {
     const [count, setCount] = useState(0);
 
     const handleDecrement = () => {
@@ -72,41 +72,49 @@ function ProductDetailDesc(props) {
     };
 
     return (
-        <div className={cx('product-detail-container')}>
+        <div className={cx('product-detail-container', className)}>
             <ToastContainer style={{ zIndex: 1000000 }} />
-            <p className={cx('product-detail-title')}> {props.product.name}</p>
-            <div className={cx('product-detail-subtitle')}>
-                <p className={cx('product-detail-id')}>{`Mã sản phẩm: ${props.product.id}`}</p>
-                <p className={cx('product-detail-brand')}>{`Thương hiệu: ${props.product.brand}`}</p>
-            </div>
-            <p className={cx('product-detail-price')}>{formatCurrency(props.product.price)}</p>
-            <ProductRating ratings={props.product.ratings} />
+            <p className={cx('product-detail-title')}> {product.name}</p>
+            {full && (
+                <div className={cx('product-detail-subtitle')}>
+                    <p className={cx('product-detail-id')}>{`Mã sản phẩm: ${product.id}`}</p>
+                    <p className={cx('product-detail-brand')}>{`Thương hiệu: ${product.brand}`}</p>
+                </div>
+            )}
+            <p className={cx('product-detail-price')}>{formatCurrency(product.price)}</p>
+            {full && <ProductRating ratings={product.ratings} />}
             <div className={cx('product-feature-wrapper')}>
-                {props.product.features?.map((feature, id) => (
+                {product.features?.map((feature, id) => (
                     <p className={cx('product-feature')} key={id}>
                         - {feature}
                     </p>
                 ))}
             </div>
-            <div className={cx('counter')}>
-                <button className={cx('decrement')} onClick={handleDecrement}>
-                    -
-                </button>
-                <div className={cx('count-wrapper')}>
-                    <span className={cx('count')}>{count}</span>
+            {full && (
+                <div className={cx('counter')}>
+                    <button className={cx('decrement')} onClick={handleDecrement}>
+                        -
+                    </button>
+                    <div className={cx('count-wrapper')}>
+                        <span className={cx('count')}>{count}</span>
+                    </div>
+                    <button className={cx('increment')} onClick={handleIncrement}>
+                        +
+                    </button>
                 </div>
-                <button className={cx('increment')} onClick={handleIncrement}>
-                    +
-                </button>
-            </div>
-            <button className={cx('cart-add')} onClick={handleBuyNow}>
-                <FontAwesomeIcon className={cx('text-icon')} icon={faDollarSign} />
-                <span className={cx('text')}>Mua ngay</span>
-            </button>
-            <button className={cx('buy-now')} onClick={handleCartAdd}>
-                <FontAwesomeIcon className={cx('text-icon')} icon={faShoppingCart} />
-                <span className={cx('text')}>Thêm vào giỏ hàng</span>
-            </button>
+            )}
+            {full && (
+                <>
+                    <button className={cx('cart-add')} onClick={handleBuyNow}>
+                        <FontAwesomeIcon className={cx('text-icon')} icon={faDollarSign} />
+                        <span className={cx('text')}>Mua ngay</span>
+                    </button>
+                    <button className={cx('buy-now')} onClick={handleCartAdd}>
+                        <FontAwesomeIcon className={cx('text-icon')} icon={faShoppingCart} />
+                        <span className={cx('text')}>Thêm vào giỏ hàng</span>
+                    </button>
+                </>
+            )}
         </div>
     );
 }

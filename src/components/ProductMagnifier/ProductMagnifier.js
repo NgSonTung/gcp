@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './ProductMagnifier.module.scss';
 import ImageMagnify from 'react-image-magnify';
@@ -11,17 +11,17 @@ function ProductMagnifier({ product }) {
     imageList = imageList.concat(product?.sub_image?.map((image) => image));
 
     const [activeImage, setActiveImage] = useState(0);
+    useEffect(() => {
+        setActiveImage(0);
+    }, [product]);
+
     console.log(activeImage);
     return (
         <div>
             <div className={cx('product-image-container')}>
                 <ImageMagnify
                     className={cx('product-image-wrapper')}
-                    imageStyle={{
-                        padding: '1rem',
-                        objectFit: 'contain',
-                    }}
-                    isHintEnabled={false}
+                    imageClassName={cx('product-image')}
                     {...{
                         smallImage: {
                             alt: 'product-image',
@@ -33,10 +33,15 @@ function ProductMagnifier({ product }) {
                             width: 1000,
                             height: 1000,
                         },
-                        overlayStyle: { backgroundColor: 'rgba(0,0,0,.6)' },
                         enlargedImageContainerStyle: {
                             zIndex: 999,
                         },
+                        lensStyle: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                            border: '1px solid #ccc',
+                        },
+                        isHintEnabled: true,
+                        shouldUsePositiveSpaceLens: true,
                     }}
                 />
             </div>

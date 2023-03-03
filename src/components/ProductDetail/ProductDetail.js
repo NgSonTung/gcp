@@ -18,8 +18,7 @@ function ProductDetail() {
     useEffect(() => {
         dispatch({ type: 'PRODUCT', nameproduct });
         setProductLoaded(true);
-        console.log(product);
-    }, [nameproduct, product]);
+    }, [nameproduct]);
 
     const navItems = [
         {
