@@ -40,4 +40,13 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    overflow-y: scroll;
+    max-height: 50rem;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+    border-radius: 1rem;
+}
+.popper-wrapper::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
 }

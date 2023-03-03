@@ -5,4 +5,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: -10px 53px 64px -30px rgba(0, 0, 0, 0.29);
+    -webkit-box-shadow: -10px 53px 64px -30px rgba(0, 0, 0, 0.29);
+    -moz-box-shadow: -10px 53px 64px -30px rgba(0, 0, 0, 0.29);
+}
+.sub-img-container {
+    margin-top: 1rem !important;
 }

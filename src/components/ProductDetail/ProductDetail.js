@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import ProductMagnifier from '../ProductMagnifier';
 import ProductDetailDesc from '../ProductDetailDesc';
-
+import NavTitle from '../NavTitle';
+import ProductBestSale from '../ProductBestSale/';
+import data from '~/data/data.json';
 const cx = classNames.bind(styles);
 
 function ProductDetail() {
@@ -16,19 +18,34 @@ function ProductDetail() {
     useEffect(() => {
         dispatch({ type: 'PRODUCT', nameproduct });
         setProductLoaded(true);
-    }, [nameproduct]);
+        console.log(product);
+    }, [nameproduct, product]);
 
+    const navItems = [
+        {
+            title: 'sản phẩm cùng loại',
+            component: <ProductBestSale data={data} title={product?.category} srcImg={''} banner={false} />,
+        },
+        { title: 'điểm nổi bật', component: <div>{product?.description}</div> },
+    ];
+
+    {
+    }
     return (
         <div>
             {productLoaded && (
-                <div className={cx('main-detail-wrapper')}>
-                    <div className={cx('product-image')}>
-                        <ProductMagnifier product={product} />
+                <>
+                    {' '}
+                    <div className={cx('main-detail-wrapper')}>
+                        <div className={cx('product-image')}>
+                            <ProductMagnifier product={product} />
+                        </div>
+                        <div className={cx('product-detail')}>
+                            <ProductDetailDesc product={product} />
+                        </div>
                     </div>
-                    <div className={cx('product-detail')}>
-                        <ProductDetailDesc product={product} />
-                    </div>
-                </div>
+                    <NavTitle className={cx('product-nav')} navItems={navItems} />
+                </>
             )}
         </div>
     );

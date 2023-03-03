@@ -10,7 +10,14 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/vivo-y01",
         "image": "https://cdn.tgdd.vn/Products/Images/42/268880/vivi-y01-đen-thumb-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "",
         "pay_online": "",
@@ -44,7 +51,14 @@
         "category": "laptop",
         "link_product": "https://www.thegioididong.com/laptop/hp-340s-g7-i3-240q4pa",
         "image": "https://cdn.tgdd.vn/Products/Images/44/237630/hp-340s-g7-i3-240q4pa-13-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label-Intel-Gen10.png",
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -78,13 +92,20 @@
         "category": "networkdevice",
         "count_rating": 2,
         "ratings": {
-            "_5star": 10,
+            "_5star": 0,
             "_4star": 4,
             "_3star": 3,
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Router 3 băng tần với chuẩn Wifi thế hệ thứ 6 802.11ax cho độ tương thích cao, tốc độ đường truyền siêu nhanh, ổn định",
             "Vùng phủ sóng rộng hơn với công nghệ OFDMA cùng 8 ăng-ten 5 dBi",
@@ -112,7 +133,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Router Wifi Chuẩn AC1200 Xiaomi 4A Trắng được thiết kế nhỏ gọn, màu trắng đẹp mắt",
             "Tốc độ WiFi tối đa 1167Mbps trên băng tần kép",
@@ -133,7 +161,14 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/samsung-galaxy-a23-6gb",
         "image": "https://cdn.tgdd.vn/Products/Images/42/274359/samsung-galaxy-a23-xanh-thumb-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -141,7 +176,7 @@
         "sell_off": "-8%",
         "count_rating": 99,
         "ratings": {
-            "_5star": 10,
+            "_5star": 0,
             "_4star": 4,
             "_3star": 3,
             "_2star": 2,
@@ -167,14 +202,21 @@
         "category": "laptop",
         "link_product": "https://www.thegioididong.com/laptop/apple-macbook-air-2020-mgn63saa",
         "image": "https://cdn.tgdd.vn/Products/Images/44/231244/macbook-air-m1-2020-silver-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "installment": "",
         "pay_online": "",
         "rating": "4.5",
         "sell_off": "-10%",
         "count_rating": 128,
         "ratings": {
-            "_5star": 10,
+            "_5star": 0,
             "_4star": 4,
             "_3star": 3,
             "_2star": 2,
@@ -200,7 +242,14 @@
         "category": "laptop",
         "link_product": "https://www.thegioididong.com/laptop/acer-aspire-7-gaming-a715-42g-r4xx-r5-nhqaysv008",
         "image": "https://cdn.tgdd.vn/Products/Images/44/268775/acer-aspire-7-gaming-a715-42g-r4xx-r5-5500u-8gb-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/label-acer-3s1.png",
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -209,10 +258,10 @@
         "count_rating": 302,
         "ratings": {
             "_5star": 10,
-            "_4star": 4,
-            "_3star": 3,
-            "_2star": 2,
-            "_1star": 1
+            "_4star": 0,
+            "_3star": 0,
+            "_2star": 0,
+            "_1star": 0
         },
         "features": ["Sở hữu hiệu năng khoẻ", "Thiết kế mạnh mẽ"],
         "description": "Laptop AMD Ryzen 5 5500U cùng card rời NVIDIA GeForce GTX 1650 4 GB, mang đến khả năng thiết kế 2D, render video ngắn,... ổn định trên các phần mềm Adobe hay giải trí với các tựa game kịch tính trên thị trường hiện nay một cách mượt m. Chiếc laptop Acer Aspire còn sở hữu RAM 8 GB và SSD 256 GB đáp ứng tốt nhu cầu đa nhiệm, hỗ trợ bạn thao tác mọi việc nhanh chóng và hiệu quả hơn.. Phiên bản laptop này với khối lượng 2.1 kg và dày 22.9 mm, được chế tác từ chất liệu nhựa bền bỉ, dễ dàng để bạn mang đi khắp mọi nơi.. Bản lề mở 180 độ giúp chia sẻ thông tin nhanh chóng, tiện lợi."
@@ -228,13 +277,20 @@
         "category": "networkdevice",
         "count_rating": 0,
         "ratings": {
-            "_5star": 10,
+            "_5star": 1,
             "_4star": 4,
             "_3star": 3,
             "_2star": 2,
-            "_1star": 1
+            "_1star": 10
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Linksys E7350AH cung cấp đường truyền tốc độ cao đến 1800 Mbps với băng tần kép chuẩn Wifi 802.11ax",
             "Tạo vùng phủ sóng rộng 140 m2 nhờ 2 ăng ten ngầm, tập trung tín hiệu tốt với công nghệ Beamforming",
@@ -261,7 +317,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Router Wifi Mesh 3 Pack AX3000 TP-Link Deco X60 Trắng được trang bị công nghệ Wi-Fi 6",
             "Wi-Fi Mesh của Deco được thiết kế để mang lại sự gia tăng đáng kể về vùng phủ sóng, tốc độ và tổng dung lượng."
@@ -287,7 +350,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Kiểu dáng nhỏ gọn, hiện đại",
             "Router hỗ trợ 2 băng tần, đường truyền tốc độ cao",
@@ -309,7 +379,14 @@
         "category": "headphone",
         "link_product": "https://www.thegioididong.com/tai-nghe/tai-nghe-bluetooth-true-wireless-mozard-ts13",
         "image": "https://cdn.tgdd.vn/Products/Images/54/230363/tai-nghe-bluetooth-true-wireless-mozard-ts13-thumb-2-600x600.jpeg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "installment": "",
         "pay_online": "",
         "rating": "2.9",
@@ -342,7 +419,14 @@
         "category": "Camera, webcam",
         "link_product": "https://www.thegioididong.com/camera-giam-sat/camera-ip-mi-home-360-do-2k-xiaomi-bhr4457gl",
         "image": "https://cdn.tgdd.vn/Products/Images/4728/236572/camera-ip-mi-home-360-do-2k-xiaomi-bhr4457gl-030822-044810-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/publicpreview.png",
         "installment": "",
         "pay_online": "",
@@ -378,7 +462,14 @@
         "category": "watch",
         "link_product": "https://www.thegioididong.com/dong-ho-thong-minh/se-40mm-vien-nhom-day-cao-su-hong",
         "image": "https://cdn.tgdd.vn/Products/Images/7077/234918/se-40mm-vien-nhom-day-cao-su-xanh-den-thumb-1-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "installment": "Trả góp 0%",
         "pay_online": "",
         "rating": "4.4",
@@ -415,7 +506,14 @@
         "category": "watch",
         "link_product": "https://www.thegioididong.com/dong-ho-thong-minh/mi-band-6",
         "image": "https://cdn.tgdd.vn/Products/Images/7077/236733/mi-band-6-1-2-3-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/image-12.png",
         "installment": "",
         "pay_online": "",
@@ -452,7 +550,14 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/samsung-galaxy-a33",
         "image": "https://cdn.tgdd.vn/Products/Images/42/246199/samsung-galaxy-a33-5g-xanh-thumb-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "installment": "Trả góp 0%",
         "pay_online": "",
         "rating": "3.7",
@@ -485,7 +590,14 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/iphone-11",
         "image": "https://cdn.tgdd.vn/Products/Images/42/153856/iphone-xi-den-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "installment": "Trả góp 0%",
         "pay_online": "",
         "rating": "4.1",
@@ -523,7 +635,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Bàn phím có dây Gaming Asus TUF K1 với thiết kế có phần kê cổ tay tiện dụng",
             "có thể tháo rời để mang lại sự thoải mái dài lâu."
@@ -549,7 +668,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Thiết kế bàn phím cơ kiểu rút gọn - Tenkeyless đậm chất gaming",
             "Bàn phím Rapoo với 104 phím thông dụng, phím bấm nhạy bén, tuổi thọ cao"
@@ -575,7 +701,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Bàn phím Rapoo kiểu Tenkeyless với 87 phím cơ bản độ nhạy cao, bền bỉ",
             "Thiết kế trẻ trung, phong cách ấn tượng chuẩn gaming",
@@ -596,7 +729,14 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/realme-c21-y-4gb",
         "image": "https://cdn.tgdd.vn/Products/Images/42/253402/realme-c21-y-blue-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "installment": "Trả góp 0%",
         "pay_online": "",
         "rating": "3.8",
@@ -632,7 +772,14 @@
         "category": "laptop",
         "link_product": "https://www.thegioididong.com/laptop/hp-gaming-victus-16-e0170ax-r7-4r0u7pa",
         "image": "https://cdn.tgdd.vn/Products/Images/44/268677/hp-gaming-victus-16-e0170ax-r7-4r0u7pa-1-1.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "installment": "Trả góp 0%",
         "pay_online": "",
         "rating": "4.5",
@@ -665,7 +812,14 @@
         "category": "laptop",
         "link_product": "https://www.thegioididong.com/laptop/msi-modern-15-a11mu-i5-680vn",
         "image": "https://cdn.tgdd.vn/Products/Images/44/251675/msi-modern-15-a11mu-i5-680vn-01.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/11th-gen-core-i5-processors-badge-rwd.png.rendition.intel.web.550.550.jpg",
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -699,7 +853,14 @@
         "category": "laptop",
         "link_product": "https://www.thegioididong.com/laptop/asus-tuf-gaming-fx506lhb-i5-hn188w",
         "image": "https://cdn.tgdd.vn/Products/Images/44/279259/asus-tuf-gaming-fx506lhb-i5-hn188w-600x600.jpeg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-01.png",
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -732,19 +893,10 @@
         "category": "watch",
         "link_product": "https://www.thegioididong.com/dong-ho-thong-minh/apple-watch-s7-41mm",
         "image": "https://cdn.tgdd.vn/Products/Images/7077/249906/apple-watch-s7-41mm-den-thumb-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/249906/apple-watch-s7-41mm-1-4.jpg"
-            },
-            {
-                "color": "Đỏ",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/249906/apple-watch-s7-41mm-gps-do-1.jpg"
-            },
-            {
-                "color": "Xanh dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/249906/apple-watch-s7-41mm-gps-xanh-duong-1-1.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/7077/249906/apple-watch-s7-41mm-1-4.jpg",
+            "https://cdn.tgdd.vn/Products/Images/7077/249906/apple-watch-s7-41mm-gps-do-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/7077/249906/apple-watch-s7-41mm-gps-xanh-duong-1-1.jpg"
         ],
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -782,15 +934,9 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn.tgdd.vn/Products/Images/42/279066/xiaomi-12t-pro-thumb-bac-1-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Bạc",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/279066/xiaomi-12t-pro-1.jpg"
-            },
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/279066/xiaomi-12t-pro-den-1.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/279066/xiaomi-12t-pro-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/279066/xiaomi-12t-pro-den-1.jpg"
         ],
         "installment": "Trả góp 0%",
         "sell_off": "-50%",
@@ -823,7 +969,14 @@
         "category": "laptop",
         "link_product": "https://www.thegioididong.com/laptop/lenovo-ideapad-3-15itl6-i5-82h801p9vn",
         "image": "https://cdn.tgdd.vn/Products/Images/44/270831/lenovo-ideapad-3-15itl6-i5-82h801p9vn-thumb-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-01.png",
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -851,7 +1004,14 @@
         "category": "headphone",
         "link_product": "https://www.thegioididong.com/tai-nghe/tai-nghe-bluetooth-airpods-pro-2-magsafe-charge-apple-mqd83-trang",
         "image": "https://cdn.tgdd.vn/Products/Images/54/289781/tai-nghe-bluetooth-airpods-pro-2-magsafe-charge-apple-mqd83-trang-090922-034128-600x600.jpeg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/label-moi-ra-mat-fnal-(1).png",
         "installment": "",
         "pay_online": "Hàng sắp về",
@@ -891,7 +1051,14 @@
         "category": "Sạc dự phòng",
         "link_product": "https://www.thegioididong.com/sac-dtdd/pin-polymer-10000mah-ava-plus-jp208",
         "image": "https://cdn.tgdd.vn/Products/Images/57/244687/pin-polymer-10000mah-ava-plus-jp208-thumb-600x600.jpeg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "installment": "",
         "pay_online": "",
         "rating": "3.6",
@@ -929,7 +1096,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "USB Wifi 300Mbps Tenda U3 đen là thiết bị thu sóng Wifi chuẩn N sử dụng cho máy tính để bàn hoặc laptop dễ dàng kết nối mạng Wifi",
             "Tốc độ Wifi 300Mbps ổn định ",
@@ -956,7 +1130,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Bàn phím Magic Keyboard Apple MK2A3 gọn nhẹ, thiết kế tinh tế",
             "phản hồi nhanh nhạy,...",
@@ -983,7 +1164,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Bàn phím Rapoo với 104 phím thông dụng, phím bấm nhạy bén, tuổi thọ cao",
             "Thiết kế hiện đại, tinh tế, gọn đẹp cho không gian dùng",
@@ -1002,19 +1190,10 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn.tgdd.vn/Products/Images/42/234621/Xiaomi-12-xam-thumb-mau-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/234621/Xiaomi-12-xam-thumb-mau-200x200.jpg"
-            },
-            {
-                "color": "Xanh Dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/234621/Xiaomi-12-xanh-duong-thumb-mau-200x200.jpg"
-            },
-            {
-                "color": "Tím",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/234621/Xiaomi-12-tim-thumb-mau-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/234621/Xiaomi-12-xam-thumb-mau-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/234621/Xiaomi-12-xanh-duong-thumb-mau-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/234621/Xiaomi-12-tim-thumb-mau-200x200.jpg"
         ],
         "installment": "Trả góp 0%",
         "sell_off": "-52%",
@@ -1046,23 +1225,11 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn.tgdd.vn/Products/Images/42/246196/Samsung-Galaxy-A53-xanh-thumb-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xanh Dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/246196/Samsung-Galaxy-A53-xanh-thumb-200x200.jpg"
-            },
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/246196/Samsung-Galaxy-A53-den-thumb-1-200x200.jpg"
-            },
-            {
-                "color": "Cam",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/246196/Samsung-Galaxy-A53-cam-thumb-200x200.jpg"
-            },
-            {
-                "color": "Trắng",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/246196/Samsung-Galaxy-A53-trang-thumb-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/246196/Samsung-Galaxy-A53-xanh-thumb-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/246196/Samsung-Galaxy-A53-den-thumb-1-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/246196/Samsung-Galaxy-A53-cam-thumb-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/246196/Samsung-Galaxy-A53-trang-thumb-200x200.jpg"
         ],
         "installment": "Trả góp 0%",
         "sell_off": "-50%",
@@ -1096,19 +1263,10 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/samsung-galaxy-m53",
         "image": "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-nau-thumb-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Nâu",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-nau-1-2.jpg"
-            },
-            {
-                "color": "Xanh dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-xanhduong-1.jpg"
-            },
-            {
-                "color": "Xanh lá",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-xanhla-1.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-nau-1-2.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-xanhduong-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-xanhla-1.jpg"
         ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
@@ -1143,27 +1301,12 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/iphone-12",
         "image": "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-tim-1-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-den-1-1-org.jpg"
-            },
-            {
-                "color": "Xanh lá",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-la-1-1-org.jpg"
-            },
-            {
-                "color": "Xanh dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-1-1-org.jpg"
-            },
-            {
-                "color": "Đỏ",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-do-1-1-org.jpg"
-            },
-            {
-                "color": "Trắng",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-trang-1-1-org.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-den-1-1-org.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-la-1-1-org.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-duong-1-1-org.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-do-1-1-org.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-trang-1-1-org.jpg"
         ],
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -1198,7 +1341,14 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/oppo-reno8-z-5g",
         "image": "https://cdn.tgdd.vn/Products/Images/42/282901/oppo-reno8-z-5g-vang-thumb-2-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/label-moi-ra-mat-fnal.png",
         "installment": "Trả góp 0.5%",
         "pay_online": "",
@@ -1230,19 +1380,10 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/s/a/samsung_galaxy_z_fold_4-7.jpg",
-        "sub_photo": [
-            {
-                "color": "Nâu",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-nau-thumb-200x200.jpg"
-            },
-            {
-                "color": "Xanh Dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-xanh-thumb-200x200.jpg"
-            },
-            {
-                "color": "Xanh lá",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-xanh-la-thumb-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-nau-thumb-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-xanh-thumb-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/247364/samsung-galaxy-m53-xanh-la-thumb-200x200.jpg"
         ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
@@ -1276,12 +1417,7 @@
         "old_price": 1.3,
         "category": "laptop",
         "image": "https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-10-core-cpu-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-1-1-180x125.jpg"
-            }
-        ],
+        "sub_image": ["https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-1-1-180x125.jpg"],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
         "rating": "4",
@@ -1314,7 +1450,14 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/samsung-galaxy-a53",
         "image": "https://cdn.tgdd.vn/Products/Images/42/246196/Samsung-Galaxy-A53-xanh-thumb-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "installment": "Trả góp 0%",
         "pay_online": "",
         "rating": "3.5",
@@ -1346,7 +1489,14 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/poco-c4",
         "image": "https://cdn.tgdd.vn/Products/Images/42/277057/xiaomi-poco-c40-thumb-vang-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -1378,19 +1528,10 @@
         "old_price": 1.3,
         "category": "laptop",
         "image": "https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-10-core-cpu-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Vàng đồng",
-                "img": "https://cdn.tgdd.vn/Products/Images/44/239552/macbook-air-m1-2020-gold-200x200.jpg"
-            },
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/44/239552/macbook-air-m1-2020-gray-200x200.jpg"
-            },
-            {
-                "color": "Bạc",
-                "img": "https://cdn.tgdd.vn/Products/Images/44/239552/macbook-air-m1-2020-silver-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/44/239552/macbook-air-m1-2020-gold-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/239552/macbook-air-m1-2020-gray-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/44/239552/macbook-air-m1-2020-silver-200x200.jpg"
         ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
@@ -1423,15 +1564,9 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/a/s/asus-rog-phone-5_0002_gsmarena_001_3_1.jpg",
-        "sub_photo": [
-            {
-                "color": "Đen",
-                "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/h/7/h732_1__1_1.png"
-            },
-            {
-                "color": "Bạc",
-                "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/h/7/h732_4__1.png"
-            }
+        "sub_image": [
+            "https://cdn2.cellphones.com.vn/358x/media/catalog/product/h/7/h732_1__1_1.png",
+            "https://cdn2.cellphones.com.vn/358x/media/catalog/product/h/7/h732_4__1.png"
         ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
@@ -1465,15 +1600,9 @@
         "price": 3290000,
         "old_price": 1.3,
         "category": "tablet",
-        "sub_photo": [
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/222806/lenovo-tab-a22-xam-200x200.jpg"
-            },
-            {
-                "color": "Bạc",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/222806/lenovo-tab-m8-bac-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/522/222806/lenovo-tab-a22-xam-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/522/222806/lenovo-tab-m8-bac-200x200.jpg"
         ],
         "count_rating": 49,
         "ratings": {
@@ -1510,15 +1639,9 @@
             "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/256559/Samsung-Galaxy-Tab-S7-FE-Wifi-green-1-660x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xanh lá",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/256559/Samsung-Galaxy-Tab-S7-FE-Wifi-green-1-200x200.jpg"
-            },
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/256559/Samsung-Galaxy-Tab-S7-FE-WiFi-1-2-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/522/256559/Samsung-Galaxy-Tab-S7-FE-Wifi-green-1-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/522/256559/Samsung-Galaxy-Tab-S7-FE-WiFi-1-2-200x200.jpg"
         ],
         "features": [
             "Thiết kế sang trọng",
@@ -1549,12 +1672,7 @@
             "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/241051/Huawei-MatePad-T10-1-2-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xanh Dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/241051/Huawei-MatePad-T10-1-2-200x200.jpg"
-            }
-        ],
+        "sub_image": ["https://cdn.tgdd.vn/Products/Images/522/241051/Huawei-MatePad-T10-1-2-200x200.jpg"],
         "features": [
             "Thiết kế nguyên khối, mức độ hoàn thiện cao",
             "Màn hình giải trí sắc nét, nhiều tính năng bảo vệ người dùng",
@@ -1587,7 +1705,14 @@
             "Thỏa sức sáng tạo cùng cụm camera xịn sò"
         ],
         "image": "https://cdn.tgdd.vn/Products/Images/522/269329/pad-pro-m1-11-inch-wifi-cellular-1tb-2021-xam-thumb-600x600.jpeg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "description_1": "Máy tính bảng iPad Pro M1 11 inch WiFi Cellular 1TB (2021) thiết kế hình hộp vát cạnh vuông vức, hiện đại với thân máy bằng kim loại chắc chắn, hoàn thiện tỉ mỉ và sang trọng, trọng lượng nhẹ, kích cỡ hợp lý thuận tiện sử dụng và mang theo.",
         "description_2": "Màn hình 11 inch sử dụng tấm nền Liquid Retina cho khung hình iPad hiển thị rực rỡ, sống động, chân thực, độ phân giải đạt 1668 x 2388 Pixels hiển thị chi tiết sắc nét, kết hợp cạnh viền mỏng cho không gian trải nghiệm màn hình thật đã mắt."
     },
@@ -1600,19 +1725,10 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/8/0/800x800-640x640-5.png",
-        "sub_photo": [
-            {
-                "color": "Xanh dương đậm",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/269832/Xiaomi-redmi-note-11-blue-200x200.jpeg"
-            },
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/269832/Xiaomi-redmi-note-11-black-200x200.jpeg"
-            },
-            {
-                "color": "Xanh dương nhạt",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/269832/xiaomi-redmi-note-11-xanh-nhat-thumb-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/269832/Xiaomi-redmi-note-11-blue-200x200.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/42/269832/Xiaomi-redmi-note-11-black-200x200.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/42/269832/xiaomi-redmi-note-11-xanh-nhat-thumb-200x200.jpg"
         ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
@@ -1645,15 +1761,9 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/o/p/oppo.jpg",
-        "sub_photo": [
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/274381/oppo-a96-den-thumb-1-200x200.jpg"
-            },
-            {
-                "color": "Hồng",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/274381/oppo-a96-hong-thumb-1-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/274381/oppo-a96-den-thumb-1-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/274381/oppo-a96-hong-thumb-1-200x200.jpg"
         ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
@@ -1694,15 +1804,9 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/f/b/fbhgjj.png",
-        "sub_photo": [
-            {
-                "color": "Trắng",
-                "img": "https://cdn2.cellphones.com.vn/50x/media/catalog/product/b/g/bgf.png"
-            },
-            {
-                "color": "Đen",
-                "img": "https://cdn2.cellphones.com.vn/50x/media/catalog/product/v/f/vfb_1_2.png"
-            }
+        "sub_image": [
+            "https://cdn2.cellphones.com.vn/50x/media/catalog/product/b/g/bgf.png",
+            "https://cdn2.cellphones.com.vn/50x/media/catalog/product/v/f/vfb_1_2.png"
         ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
@@ -1735,12 +1839,7 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/i/xiaomi-black-shark-5s-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Bạc",
-                "img": "https://cdn2.cellphones.com.vn/50x/media/catalog/product/x/i/xiaomi-black-shark-5s-600x600.jpg"
-            }
-        ],
+        "sub_image": ["https://cdn2.cellphones.com.vn/50x/media/catalog/product/x/i/xiaomi-black-shark-5s-600x600.jpg"],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
         "rating": "5",
@@ -1773,15 +1872,9 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/s/c/scsfjk.png",
-        "sub_photo": [
-            {
-                "color": "Xám",
-                "img": "https://cdn2.cellphones.com.vn/50x/media/catalog/product/s/c/scsfjk.png"
-            },
-            {
-                "color": "Trắng",
-                "img": "https://cdn2.cellphones.com.vn/50x/media/catalog/product/u/k/ukil.png"
-            }
+        "sub_image": [
+            "https://cdn2.cellphones.com.vn/50x/media/catalog/product/s/c/scsfjk.png",
+            "https://cdn2.cellphones.com.vn/50x/media/catalog/product/u/k/ukil.png"
         ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
@@ -1814,19 +1907,10 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn.tgdd.vn/Products/Images/42/248284/samsung-galaxy-z-fold-3-green-1-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xanh rêu",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/248284/samsung-galaxy-z-fold-3-green-1-200x200.jpg"
-            },
-            {
-                "color": "Bạc",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/248284/samsung-galaxy-z-fold-3-silver-1-1-200x200.jpg"
-            },
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/248284/samsung-galaxy-z-fold-3-black-1-1-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/248284/samsung-galaxy-z-fold-3-green-1-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/248284/samsung-galaxy-z-fold-3-silver-1-1-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/248284/samsung-galaxy-z-fold-3-black-1-1-200x200.jpg"
         ],
         "installment": "Trả góp 0%",
         "sell_off": "-40%",
@@ -1857,23 +1941,11 @@
         "old_price": 1.3,
         "category": "phone",
         "image": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/s/a/samsung_galaxy_z_flip_m_i_2022-1_1.jpg",
-        "sub_photo": [
-            {
-                "color": "Tím",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/258047/samsung-galaxy-z-flip4-5g-128gb-thumb-tim-200x200.jpg"
-            },
-            {
-                "color": "Xanh Dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/258047/samsung-galaxy-z-flip4-5g-128gb-thumb-xanh-200x200.jpg"
-            },
-            {
-                "color": "Vàng Hồng",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/258047/samsung-galaxy-z-flip4-5g-128gb-thumb-vang-200x200.jpg"
-            },
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/258047/samsung-galaxy-z-flip4-xam-128gb-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/258047/samsung-galaxy-z-flip4-5g-128gb-thumb-tim-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/258047/samsung-galaxy-z-flip4-5g-128gb-thumb-xanh-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/258047/samsung-galaxy-z-flip4-5g-128gb-thumb-vang-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/258047/samsung-galaxy-z-flip4-xam-128gb-200x200.jpg"
         ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
@@ -1907,19 +1979,10 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/xiaomi-redmi-note-11",
         "image": "https://cdn.tgdd.vn/Products/Images/42/245261/Xiaomi-redmi-note-11-blue-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xanh dương đậm",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/245261/xiaomi-redmi-note-11-1-4.jpg"
-            },
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/245261/xiaomi-redmi-note-11-1-3.jpg"
-            },
-            {
-                "color": "Xanh dương nhạt",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/245261/xiaomi-redmi-note-11-xanh-nhat-1.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/245261/xiaomi-redmi-note-11-1-4.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/245261/xiaomi-redmi-note-11-1-3.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/245261/xiaomi-redmi-note-11-xanh-nhat-1.jpg"
         ],
         "monopoly_img": "https://cdn.tgdd.vn/ValueIcons/Label_01-05.png",
         "installment": "Trả góp 0%",
@@ -1956,19 +2019,10 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/vivo-y33s",
         "image": "https://cdn.tgdd.vn/Products/Images/42/249102/Vivo-y33s-yellow-thumb-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Vàng",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/249102/vivo-y33s-1-3.jpg"
-            },
-            {
-                "color": "Xanh hồng",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/249102/vivo-y33s-xh-1.jpg"
-            },
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/249102/vivo-y33s-den-1-1.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/249102/vivo-y33s-1-3.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/249102/vivo-y33s-xh-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/249102/vivo-y33s-den-1-1.jpg"
         ],
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -2004,15 +2058,9 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/realme-c25y",
         "image": "https://cdn.tgdd.vn/Products/Images/42/250615/realme-c25y-blue-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xanh dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/250615/realme-c25y-1-2.jpg"
-            },
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/250615/realme-c25y-1-4.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/250615/realme-c25y-1-2.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/250615/realme-c25y-1-4.jpg"
         ],
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -2054,7 +2102,14 @@
             "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/281821/OPPO-pad-thumb-x%C3%A1m-600x600.jpg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "description_1": "OPPO Pad Air là chiếc máy tính bảng đầu tiên OPPO phát hành chính hãng và kinh doanh tại thị trường Việt Nam. Với thông số khá ấn tượng cùng mức giá bán hấp dẫn giúp cho máy trở thành một đối thủ đáng gờm so với các tablet khác trên thị trường.",
         "description_2": "Cảm nhận đầu tiên khi mình mở hộp OPPO Pad Air là máy có diện mạo vuông vức, các viền được vát phẳng làm cho tạo hình của chiếc máy trở nên hợp xu hướng giúp mình tự tin hơn khi sử dụng."
     },
@@ -2075,7 +2130,14 @@
             "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/266337/nokia-tab-t20-wifi-thumb-600x600-1-600x600.jpeg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Vẻ ngoài thanh lịch, bắt mắt",
             "Thoải mái thưởng thức chương trình yêu thích bất kể ngày đêm",
@@ -2101,23 +2163,11 @@
             "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-pink-1-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Hồng",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-pink-1-200x200.jpg"
-            },
-            {
-                "color": "Tím",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-purple-1-200x200.jpg"
-            },
-            {
-                "color": "Trắng",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-starlight-1-200x200.jpg"
-            },
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-grey-1-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-pink-1-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-purple-1-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-starlight-1-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-grey-1-200x200.jpg"
         ],
         "features": [
             "Chipset A15 Bionic mạnh mẽ hàng đầu",
@@ -2139,23 +2189,11 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/samsung-galaxy-s21-fe",
         "image": "https://cdn.tgdd.vn/Products/Images/42/233090/Samsung-Galaxy-S21-FE-trang-1-2-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Trắng",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/233090/samsung-galaxy-s21-fe-trang-1-1.jpg"
-            },
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/233090/samsung-galaxy-s21-fe-1.jpg"
-            },
-            {
-                "color": "Tím",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/233090/samsung-galaxy-s21-fe-1-3.jpg"
-            },
-            {
-                "color": "Xanh lá",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/233090/samsung-galaxy-s21-fe-xanh-1.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/233090/samsung-galaxy-s21-fe-trang-1-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/233090/samsung-galaxy-s21-fe-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/233090/samsung-galaxy-s21-fe-1-3.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/233090/samsung-galaxy-s21-fe-xanh-1.jpg"
         ],
         "installment": "Trả góp 0%",
         "pay_online": "",
@@ -2191,27 +2229,12 @@
         "category": "phone",
         "link_product": "https://www.thegioididong.com/dtdd/iphone-13",
         "image": "https://cdn.tgdd.vn/Products/Images/42/223602/TimerThumb/iphone-13-(16).jpg",
-        "sub_photo": [
-            {
-                "color": "Trắng",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-1-4.jpg"
-            },
-            {
-                "color": "Xanh dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-xanh-1.jpg"
-            },
-            {
-                "color": "Hồng",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-1-3.jpg"
-            },
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-1-2.jpg"
-            },
-            {
-                "color": "Xanh lá",
-                "img": "https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-2-5.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-1-4.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-xanh-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-1-3.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-1-2.jpg",
+            "https://cdn.tgdd.vn/Products/Images/42/223602/iphone-13-2-5.jpg"
         ],
         "installment": "",
         "pay_online": "Online giá rẻ",
@@ -2253,19 +2276,10 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [
-            {
-                "color": "Kem",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/289984/garmin-venu-sq-2-music-kem-tb-200x200.jpg"
-            },
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/289984/garmin-venu-sq-2-music-den-tb-200x200.jpg"
-            },
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/289984/garmin-venu-sq-2-music-xam-tb-1-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/7077/289984/garmin-venu-sq-2-music-kem-tb-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/7077/289984/garmin-venu-sq-2-music-den-tb-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/7077/289984/garmin-venu-sq-2-music-xam-tb-1-200x200.jpg"
         ],
         "features": [
             "Màn hình lớn hơn cho trải nghiệm đã hơn",
@@ -2293,7 +2307,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Cấu hình mạnh mẽ với con chip Exynos W920",
             "Thiết kế năng động, dây đeo silicone êm nhẹ",
@@ -2320,23 +2341,11 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [
-            {
-                "color": "Trắng Starlight",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/289610/apple-watch-s8-trang-kem-thumb-200x200.jpeg"
-            },
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/289610/apple-watch-s8-den-xanh-thumb-200x200.jpeg"
-            },
-            {
-                "color": "Trắng",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/289610/apple-watch-s8-trang-thumb-200x200.jpeg"
-            },
-            {
-                "color": "Đỏ",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/289610/apple-watch-s8-do-thumb-200x200.jpeg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/7077/289610/apple-watch-s8-trang-kem-thumb-200x200.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/289610/apple-watch-s8-den-xanh-thumb-200x200.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/289610/apple-watch-s8-trang-thumb-200x200.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/289610/apple-watch-s8-do-thumb-200x200.jpeg"
         ],
         "features": [
             "Kiểu dáng thời thượng với thiết kế đặc trưng của Apple",
@@ -2358,7 +2367,14 @@
         "category": "watch",
         "count_rating": 8,
         "ratings": { "_5star": 10, "_4star": 4, "_3star": 3, "_2star": 2, "_1star": 1 },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Diện mạo thời thượng, màn hình AMOLED sắc nét",
             "Cảm biến PPG tân tiến",
@@ -2387,7 +2403,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Hình khối màu trắng đẹp mắt, nhỏ gọn",
             "Phát WiFi hiệu quả trên băng tần kép",
@@ -2417,15 +2440,9 @@
             "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/295467/ipad-pro-m2-12.5-inch-wifi-5g-xam-thumb-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/295467/ipad-pro-m2-5g-gray-1.jpg"
-            },
-            {
-                "color": "Bạc",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/295467/ipad-pro-m2-5g-sliver-1.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/522/295467/ipad-pro-m2-5g-gray-1.jpg",
+            "https://cdn.tgdd.vn/Products/Images/522/295467/ipad-pro-m2-5g-sliver-1.jpg"
         ],
         "description_1": "Apple đang ngày càng bỏ xa nhiều đối thủ về mặt hiệu năng trên các dòng tablet, điều này được minh chứng cụ thể bằng sự xuất hiện của con chip Apple M2 siêu mạnh mẽ trên iPad Pro M2 12.9 inch WiFi Cellular 128GB. Bên cạnh đó thì máy còn có những nâng cấp như hệ điều hành iPadOS 16, viên pin 40.88 Wh.",
         "description_2": "Về ngoại hình của iPad Pro M2 sẽ có nét tương đồng với thế hệ trước khi thừa hưởng gần như toàn bộ vẻ đẹp vốn đã rất tốt và không cần phải nâng cấp gì thêm cả, vẫn là mặt lưng phẳng và các cạnh được vát phẳng tinh tế cùng 4 góc máy bo cong. Đi kèm với đó là bộ khung và cả phần mặt sau đều được làm từ kim loại bền bỉ."
@@ -2447,15 +2464,9 @@
             "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/250934/xiaomi-pad-5-grey-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/250934/xiaomi-pad-5-grey-200x200.jpg"
-            },
-            {
-                "color": "Bạc",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/250934/xiaomi-pad-5-256gb-white-200x200.jpeg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/522/250934/xiaomi-pad-5-grey-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/522/250934/xiaomi-pad-5-256gb-white-200x200.jpeg"
         ],
         "features": [
             "Giải trí cực đã với màn hình siêu nét",
@@ -2485,15 +2496,9 @@
             "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/522/219912/samsung-galaxy-tab-s6-lite-xam-600x600-1-600x600.jpg",
-        "sub_photo": [
-            {
-                "color": "Xám",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/219912/samsung-galaxy-tab-s6-lite-xam-600x600-1-200x200.jpg"
-            },
-            {
-                "color": "Xanh Dương",
-                "img": "https://cdn.tgdd.vn/Products/Images/522/219912/samsung-galaxy-tab-s6-lite-600x600-2-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/522/219912/samsung-galaxy-tab-s6-lite-xam-600x600-1-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/522/219912/samsung-galaxy-tab-s6-lite-600x600-2-200x200.jpg"
         ],
         "features": [
             "Thiết kế thời thượng và cao cấp",
@@ -2520,7 +2525,14 @@
             "_1star": 1
         },
         "image": "https://cdn.tgdd.vn/Products/Images/7077/282959/dong-ho-befit-b4-hong-thumbnew-600x600.jpeg",
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Kết nối dễ dàng, thêm nhiều tiện tích",
             "Thiết kế năng động, dây đeo silicone êm nhẹ",
@@ -2549,7 +2561,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Gây ấn tượng với ngoại hình sang trọng, lịch lãm",
             "Cảm biến sức khoẻ cao cấp",
@@ -2577,15 +2596,9 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [
-            {
-                "color": "Vàng Hồng",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-1-2-200x200.jpg"
-            },
-            {
-                "color": "Đen",
-                "img": "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
-            }
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-1-2-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
         ],
         "features": [
             "Phong cách năng động, thời thượng",
@@ -2614,7 +2627,14 @@
             "_2star": 2,
             "_1star": 1
         },
-        "sub_photo": [],
+        "sub_image": [
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg",
+            "https://cdn.tgdd.vn/Products/Images/4547/234632/khong-day-logitech-k580-thumb-600x600.jpeg",
+            "https://cdn.tgdd.vn/Products/Images/7077/248752/samsung-galaxy-watch-4-40mm-den-thumb-1-2-3-4-5-6-7-200x200.jpg"
+        ],
         "features": [
             "Cấu trúc mỏng gọn, trọng lượng chỉ 558g, mang theo đến bất kỳ nơi nào",
             "Hệ thống 101 phím có lực nảy tốt, nhạy bén",

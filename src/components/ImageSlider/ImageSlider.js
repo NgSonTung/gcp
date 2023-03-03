@@ -8,7 +8,7 @@ import 'swiper/swiper.min.css';
 import { CloseIcon } from '../../Icons/Icons.js';
 const cx = classNames.bind(styles);
 
-const ImageSlider = ({ images }) => {
+const ImageSlider = ({ images, subImg = true, className, autoPlay = true, onImageClick }) => {
     const imgView = useRef();
     const fullImg = useRef();
     const [showSubImg, setShowSubImg] = useState(false);
@@ -22,13 +22,13 @@ const ImageSlider = ({ images }) => {
     };
 
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper', className)}>
             <Swiper
                 grabCursor={true}
                 modules={[FreeMode, Autoplay]}
                 className={cx('swiper')}
                 snap="true"
-                autoplay={{ delay: 2500, disableOnInteraction: false }}
+                autoplay={autoPlay && { delay: 2500, disableOnInteraction: false }}
                 breakpoints={{
                     0: {
                         slidesPerView: 1,
@@ -47,13 +47,21 @@ const ImageSlider = ({ images }) => {
                 {images.map((image, index) => (
                     <SwiperSlide key={index} className={cx('swiper-item')}>
                         <div className={cx('image-wrapper')}>
-                            <img ref={imgView} src={image.url} alt={image.alt} onClick={() => showImg(image.url)} />
+                            <img
+                                ref={imgView}
+                                src={image.url ? image.url : image}
+                                alt={image.alt}
+                                onClick={() => {
+                                    subImg && showImg(image.url);
+                                    onImageClick(index);
+                                }}
+                            />
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
 
-            {showSubImg && (
+            {subImg && showSubImg && (
                 <div className={cx('sub-image-container')}>
                     <div className={cx('sub-image-wrapper')}>
                         <CloseIcon className={cx('close-icon')} onClick={() => setShowSubImg(false)} />

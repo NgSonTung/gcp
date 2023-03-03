@@ -17,7 +17,7 @@ const Search = () => {
     const [searchValue, setSearchValue] = useState('');
     const [outputProducts, setOutputProducts] = useState([]);
     const [showResult, setShowResult] = useState(false);
-    const [limitProducts, setLimitProducts] = useState(6);
+    const [limitProducts, setLimitProducts] = useState(20);
     const debouncedValue = useDebounce(searchValue, 1000);
     const inputRef = useRef();
 

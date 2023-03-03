@@ -84,7 +84,7 @@ function ProductDetailDesc(props) {
             <div className={cx('product-feature-wrapper')}>
                 {props.product.features?.map((feature, id) => (
                     <p className={cx('product-feature')} key={id}>
-                        {feature}
+                        - {feature}
                     </p>
                 ))}
             </div>

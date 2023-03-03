@@ -1,12 +1,29 @@
 .main-detail-wrapper {
     display: flex;
     width: 100%;
-    gap: 1rem;
+    gap: 4rem;
     .product-image {
-        width: 30%;
+        width: 35%;
     }
 
     .product-detail {
-        width: 70%;
+        width: 65%;
+    }
+}
+
+.product-nav {
+    margin-top: 4rem;
+}
+
+@media (max-width: 45rem) {
+    .main-detail-wrapper {
+        display: block;
+        .product-image {
+            width: 100%;
+        }
+
+        .product-detail {
+            width: 100%;
+        }
     }
 }

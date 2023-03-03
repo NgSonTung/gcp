@@ -2,8 +2,6 @@ $buttonWidth: 5rem;
 .product-detail-container {
     user-select: none;
     width: 100%;
-    margin: 0 2rem;
-    aspect-ratio: 1;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -72,11 +70,12 @@ $buttonWidth: 5rem;
         border: solid 1px #dbdbdb;
         height: 6rem;
         background-color: #ed1c24;
-        width: 80%;
+        width: 100%;
         color: white;
         font-size: 1.5rem;
         font-family: Arial, sans-serif;
         font-weight: 600;
+        border-radius: 1rem;
         cursor: pointer;
         .text {
             margin-left: 1rem;
@@ -88,7 +87,11 @@ $buttonWidth: 5rem;
         background-color: #ff3037;
     }
 
-    .cart-add {
-        background-color: 'clear';
+    .buy-now {
+        background-color: black;
+        border: solid 1px #dbdbdb;
+    }
+    .buy-now:hover {
+        background-color: rgb(49, 49, 49);
     }
 }

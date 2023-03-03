@@ -31,7 +31,7 @@ function TabProductCate(props) {
                     <TabList
                         sx={{
                             marginBottom: '3rem',
-                            '.css-1aquho2-MuiTabs-indicator': { backgroundColor: 'red', height: '3px' },
+                            '.MuiTabs-indicator': { backgroundColor: 'red', height: '3px' },
                         }}
                         className={cx('title-wrapper')}
                         onChange={handleChange}

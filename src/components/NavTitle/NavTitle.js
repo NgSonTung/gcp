@@ -9,7 +9,7 @@ const NavTitle = (props) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <>
+        <div className={props.className}>
             <ul className={cx('title-container')}>
                 {props.navItems.map((item, index) => {
                     const isActive = activeIndex === index;
@@ -27,7 +27,7 @@ const NavTitle = (props) => {
                 })}
             </ul>
             <div className={cx('active-component')}>{props.navItems[activeIndex].component}</div>
-        </>
+        </div>
     );
 };
 export default NavTitle;
