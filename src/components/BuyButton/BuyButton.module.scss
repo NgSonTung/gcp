@@ -1,0 +1,73 @@
+.buy-button-warpper {
+    width: 100%;
+}
+.buy-button {
+    margin: 0 4rem;
+    width: 100%;
+}
+.container {
+    // margin: 10% auto;
+    width: 100%;
+    text-align: center;
+    color: #11111182;
+}
+
+.btn-buy:hover {
+    cursor: pointer;
+    border: 2px solid #fff;
+    background-color: rgb(221, 86, 86);
+}
+.btn-buy {
+    width: 40%;
+    background: transparent;
+    outline: none;
+    position: relative;
+    border: 0.2rem solid #11111182;
+    padding: 1rem 2em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*button:before (attr data-hover)*/
+.btn-buy:hover:before {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+.btn-buy:before {
+    color: #fff;
+    content: attr(data-hover);
+    position: absolute;
+    // top: 1.1em;
+    left: 0;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 800;
+    font-size: 0.8em;
+    opacity: 0;
+    transform: translate(-100%, 0);
+    transition: all 0.3s ease-in-out;
+}
+.btn-buy::after {
+    transition: all 0.3s ease-in-out;
+}
+/*button div (button text before hover)*/
+.btn-buy:hover div {
+    opacity: 0;
+    transform: translate(100%, 0);
+}
+.btn-buy div {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 800;
+    font-size: 0.8em;
+    transition: all 0.3s ease-in-out;
+}
+.cart-icon {
+    font-size: 1.6rem;
+    height: 3rem;
+    width: 3rem;
+    color: #272727;
+}

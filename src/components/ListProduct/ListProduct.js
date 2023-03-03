@@ -89,14 +89,16 @@ export const ListProduct = (props) => {
                     <Container>
                         {currentProduct.map((item, index) => (
                             <Row>
-                                <Col xs={6} sm={6} md={6} lg={6} xxl={6} className={cx('col-product-item')}>
+                                <Col xs={12} sm={12} md={12} lg={12} xxl={12} className={cx('col-product-item')}>
                                     <div className={cx('product-item')}>
-                                        <div>
+                                        <Col xs={4} sm={4} md={4} lg={4}>
                                             <ProductItem key={index} data={item} secondLayout={true} />
-                                        </div>
-                                        <div className={cx('buy-button')}>
-                                            <BuyButton />
-                                        </div>
+                                        </Col>
+                                        <Col xs={8} sm={8} md={8} lg={8} className={cx('col-buy-button')}>
+                                            <div className={cx('buy-button')}>
+                                                <BuyButton srcImg={item.image} dataHover={'Mua Ngay'} />
+                                            </div>
+                                        </Col>
                                     </div>
                                 </Col>
                             </Row>
