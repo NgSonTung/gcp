@@ -6,19 +6,23 @@ import { Autoplay, FreeMode } from 'swiper';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import { Link } from 'react-router-dom';
+import NavTitle from '../NavTitle/index';
 
 const cx = classNames.bind(styles);
 
 const ProductBestSale = (props) => {
-    const { data, title, srcImg, banner = false } = props;
+    const { data, title, srcImg, banner = false, activeTitle = false } = props;
     return (
         <div className={cx('wrapper')}>
             {/* link den cac san pham la dien thoai */}
-            <Link to={'/product/phone'}>
-                <div className={cx('wrapper-title')}>
-                    <span>{title}</span>
-                </div>
-            </Link>
+            {activeTitle && (
+                <Link to={'/product/phone'}>
+                    <div className={cx('wrapper-title')}>
+                        {/* <NavTitle props={[{ id: '1', title: title, Component: null }]} /> */}
+                        <span>{title}</span>
+                    </div>
+                </Link>
+            )}
             <div className={banner ? cx('wrapper-img', 'active-banner') : cx('wrapper-img')}>
                 <img src={srcImg} className={cx('wrapper-pic')} alt="anh tet" />
             </div>

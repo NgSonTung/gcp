@@ -8,8 +8,19 @@ import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(style);
 
 const HeaderProduct = (props) => {
-    const { title = 'Sản Phẩm', count, handleSortDesc, handleSortAsc, handleNoSort } = props;
+    const {
+        title = 'Sản Phẩm',
+        activeLayoutType,
+        count,
+        handleSortDesc,
+        handleSortAsc,
+        handleNoSort,
+        handleChangeLayout,
+    } = props;
+    console.log(activeLayoutType);
+
     const [activeMenuSort, setActiveMenuSort] = useState(false);
+
     const ref = useRef(null);
     const handleClickOutside = (event) => {
         if (ref.current && !ref.current.contains(event.target)) {
@@ -51,10 +62,22 @@ const HeaderProduct = (props) => {
                 </nav>
                 <nav className={cx('layout-icon')}>
                     <ul>
-                        <li className={cx('GridViewIcon-icon')}>
+                        <li
+                            onClick={() => handleChangeLayout(1)}
+                            className={
+                                activeLayoutType ? cx('GridViewIcon-icon', 'activeColor') : cx('GridViewIcon-icon')
+                            }
+                        >
                             <GridViewIcon fontSize={'large'} />
                         </li>
-                        <li className={cx('ViewSidebarIcon-icon')}>
+                        <li
+                            onClick={() => handleChangeLayout(0)}
+                            className={
+                                activeLayoutType === false
+                                    ? cx('ViewSidebarIcon-icon', 'activeColor')
+                                    : cx('ViewSidebarIcon-icon')
+                            }
+                        >
                             <ViewSidebarIcon fontSize={'large'} />
                         </li>
                     </ul>

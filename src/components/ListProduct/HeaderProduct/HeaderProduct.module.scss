@@ -9,6 +9,9 @@
 .header-product-title {
     margin-left: 1rem;
 }
+.header-product-title :nth-child(1) {
+    text-transform: uppercase;
+}
 .header-product-sort {
     display: flex;
     align-items: center;
@@ -61,7 +64,7 @@
         }
     }
 }
-.active {
+.activeColor {
     color: rgb(175, 32, 32);
 }
 .active-menu-sort {

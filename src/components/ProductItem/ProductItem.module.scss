@@ -8,6 +8,13 @@
         'row1'
         'row2';
 }
+.active-second-layout {
+    display: flex;
+    width: 50%;
+    .infor-item {
+        display: none;
+    }
+}
 .tag-best-sale {
     z-index: 10;
     position: absolute;
