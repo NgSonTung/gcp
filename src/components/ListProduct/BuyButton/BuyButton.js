@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import style from './BuyButton.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
-import FlyingButton from '../FlyingItem/Fly';
+import FlyingButton from '../../FlyingItem/Fly';
 const cx = classNames.bind(style);
 const BuyButton = (props) => {
     const { srcImg, dataHover } = props;

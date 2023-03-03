@@ -23,6 +23,7 @@
     outline: none;
     position: relative;
     border: 0.2rem solid #11111182;
+    border-radius: 15px;
     padding: 1rem 2em;
     overflow: hidden;
     display: flex;
@@ -30,7 +31,6 @@
     justify-content: center;
 }
 
-/*button:before (attr data-hover)*/
 .btn-buy:hover:before {
     opacity: 1;
     transform: translate(0, 0);
@@ -39,7 +39,6 @@
     color: #fff;
     content: attr(data-hover);
     position: absolute;
-    // top: 1.1em;
     left: 0;
     width: 100%;
     text-transform: uppercase;
@@ -53,7 +52,6 @@
 .btn-buy::after {
     transition: all 0.3s ease-in-out;
 }
-/*button div (button text before hover)*/
 .btn-buy:hover div {
     opacity: 0;
     transform: translate(100%, 0);
@@ -70,4 +68,15 @@
     height: 3rem;
     width: 3rem;
     color: #272727;
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+    .btn-buy {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 575px) {
+    .btn-buy {
+        width: 70%;
+    }
 }

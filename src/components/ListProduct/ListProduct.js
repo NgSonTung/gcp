@@ -6,7 +6,7 @@ import CusPagination from '~/components/CusPagination/index';
 import { Row, Col, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import HeaderProduct from './HeaderProduct/index';
-import BuyButton from '~/components/BuyButton/index';
+import BuyButton from '~/components/ListProduct/BuyButton/index';
 const cx = classNames.bind(style);
 export const ListProduct = (props) => {
     const {
@@ -91,10 +91,10 @@ export const ListProduct = (props) => {
                             <Row>
                                 <Col xs={12} sm={12} md={12} lg={12} xxl={12} className={cx('col-product-item')}>
                                     <div className={cx('product-item')}>
-                                        <Col xs={4} sm={4} md={4} lg={4}>
+                                        <Col xs={5} sm={5} md={4} lg={4}>
                                             <ProductItem key={index} data={item} secondLayout={true} />
                                         </Col>
-                                        <Col xs={8} sm={8} md={8} lg={8} className={cx('col-buy-button')}>
+                                        <Col xs={7} sm={7} md={8} lg={8} className={cx('col-buy-button')}>
                                             <div className={cx('buy-button')}>
                                                 <BuyButton srcImg={item.image} dataHover={'Mua Ngay'} />
                                             </div>
