@@ -20,18 +20,35 @@ function ProductDetail() {
         setProductLoaded(true);
     }, [nameproduct]);
 
+    const similarItems = data.filter((item) => item.category === product?.category);
+    const favItems = data.filter((item) => item.favorite === true);
+
     const navItems = [
         {
             title: 'sản phẩm cùng loại',
-            component: <ProductBestSale data={data} title={product?.category} srcImg={''} banner={false} />,
+            component: <ProductBestSale data={similarItems} title={product?.category} srcImg={''} banner={false} />,
         },
-        { title: 'điểm nổi bật', component: <div>{product?.description}</div> },
+        {
+            title: 'điểm nổi bật',
+            component: (
+                <div className={cx('product-desc-wrapper')}>
+                    <p className={cx('product-desc')}>{product?.description}</p>
+                </div>
+            ),
+        },
+    ];
+
+    const defaultNavItems = [
+        {
+            title: 'yêu thích',
+            component: <ProductBestSale data={favItems} title={product?.category} srcImg={''} banner={false} />,
+        },
     ];
 
     {
     }
     return (
-        <div>
+        <div className={cx('product-detail-container')}>
             {productLoaded && (
                 <>
                     {' '}
@@ -44,6 +61,7 @@ function ProductDetail() {
                         </div>
                     </div>
                     <NavTitle className={cx('product-nav')} navItems={navItems} />
+                    <NavTitle className={cx('product-nav')} navItems={defaultNavItems} />
                 </>
             )}
         </div>

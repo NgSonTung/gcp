@@ -1,9 +1,12 @@
 .product-image-container {
     border: 1px solid #dbdbdb;
     width: 100%;
-    height: 50rem;
+    height: 40rem;
     display: block;
-    -webkit-box-shadow: 0px 33px 64px -30px rgba(0, 0, 0, 0.342);
+    background-color: white;
+    box-shadow: -2px 15px 28px -9px rgba(0, 0, 0, 0.17);
+    -webkit-box-shadow: -2px 15px 28px -9px rgba(0, 0, 0, 0.17);
+    -moz-box-shadow: -2px 15px 28px -9px rgba(0, 0, 0, 0.17);
     .product-image-wrapper {
         width: 100% !important;
         height: 100% !important;
@@ -22,7 +25,7 @@
 
 @media (max-width: 45rem) {
     .product-image-container {
-        height: 30rem;
+        height: 20rem !important;
     }
     .sub-img-container {
         display: none;

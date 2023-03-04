@@ -1,5 +1,9 @@
 .header-wrapper {
     width: 100%;
+    box-shadow: -2px 15px 28px -9px rgba(0, 0, 0, 0.17);
+    -webkit-box-shadow: -2px 15px 28px -9px rgba(0, 0, 0, 0.17);
+    -moz-box-shadow: -2px 15px 28px -9px rgba(0, 0, 0, 0.17);
+    margin-bottom: 2rem;
 }
 
 .header-wrapper .header-navigation {
