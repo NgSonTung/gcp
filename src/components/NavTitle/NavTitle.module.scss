@@ -8,12 +8,13 @@
     font-family: Arial, sans-serif;
     cursor: pointer;
 }
-
+// .title-container {
+// }
 .title-wrapper {
     width: fit-content;
     opacity: 0.4;
     transition: opacity 0.2s ease-in-out;
-    margin-bottom: 3rem;
+    margin-bottom: 3rem !important;
 }
 
 .active {
