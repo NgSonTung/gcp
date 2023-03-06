@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import style from './ListProduct.module.scss';
+import styleCart from '~/Layouts/components/Header/Header.module.scss';
 import ProductItem from '~/components/ProductItem/index';
 import CusPagination from '~/components/CusPagination/index';
 import { Row, Col, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import HeaderProduct from './HeaderProduct/index';
 import BuyButton from '~/components/ListProduct/BuyButton/index';
+import ProductDetailDesc from '../ProductDetailDesc/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(style);
 export const ListProduct = (props) => {
     const {
@@ -19,17 +23,24 @@ export const ListProduct = (props) => {
     } = props;
     const baseData = useRef(data);
     baseData.current = data;
+
     const [productData, setProductDatas] = useState(data);
     const [product, setProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [productPerPgae] = useState(5);
     const [sorted, setSorted] = useState('');
-
     const [activeLayoutType, setActiveLayoutType] = useState(true);
-
+    const [widthWindow, setWidthWindow] = useState(window.innerWidth);
     useEffect(() => {
         setProduct(productData);
     }, [sorted]);
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+    console.log(widthWindow);
     const indexOfLastProduct = currentPage * productPerPgae;
     const indexOfFirstProduct = indexOfLastProduct - productPerPgae;
     const currentProduct = product.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -50,13 +61,17 @@ export const ListProduct = (props) => {
     const handleNoSort = () => {
         setProductDatas(baseData.current);
         setSorted('no sort');
-        console.log(baseData.current);
     };
     //change layout
     const handleChangeLayout = (num) => {
         num === 1 ? setActiveLayoutType(true) : setActiveLayoutType(false);
-        console.log(activeLayoutType);
     };
+    // resize window
+    const handleResize = () => {
+        setWidthWindow(window.innerWidth);
+        console.log(widthWindow);
+    };
+    const iconCart = '\f217';
     return (
         <div className={cx('product-warpper')}>
             <HeaderProduct
@@ -95,8 +110,17 @@ export const ListProduct = (props) => {
                                             <ProductItem key={index} data={item} secondLayout={true} />
                                         </Col>
                                         <Col xs={7} sm={7} md={8} lg={8} className={cx('col-buy-button')}>
-                                            <div className={cx('buy-button')}>
-                                                <BuyButton srcImg={item.image} dataHover={'Mua Ngay'} />
+                                            <div className={cx('product-detail')}>
+                                                <ProductDetailDesc
+                                                    key={index}
+                                                    product={item}
+                                                    full={false}
+                                                    className={cx('infor-product')}
+                                                />
+                                                <BuyButton
+                                                    srcImg={item.image}
+                                                    dataHover={widthWindow < 1060 ? `Thêm` : 'Thêm vào giỏ hàng'}
+                                                />
                                             </div>
                                         </Col>
                                     </div>

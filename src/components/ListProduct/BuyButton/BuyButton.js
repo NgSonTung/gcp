@@ -6,7 +6,10 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import FlyingButton from '../../FlyingItem/Fly';
 const cx = classNames.bind(style);
 const BuyButton = (props) => {
-    const { srcImg, dataHover } = props;
+    const { srcImg, dataHover = '' } = props;
+    // const element = document.getElementsByClassName(`.${cx('cart-feature')}`);
+    // const rect = element.getBoundingClientRect();
+    // console.log(rect);
     return (
         <div className={cx('buy-button-warpper')}>
             <div className={cx('buy-button')}>
