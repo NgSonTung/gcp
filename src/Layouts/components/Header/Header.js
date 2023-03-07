@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import config from '~/config';
 import Search from './Search/Search';
+import Login from '~/components/Login';
+// import { useDispatch, useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
@@ -21,6 +23,17 @@ const menuTitles = [
     { title: 'Keyboard', to: config.routes.keyboard },
 ];
 const Header = () => {
+    // const { loggedIn } = useSelector((state) => state.ProductReducer);
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     dispatch({ type: 'LOGIN', nameproduct });
+    //     setProductLoaded(true);
+    // }, [nameproduct]);
+    const [showLogin, setShowLogin] = useState(false);
+    const ToggleLogin = () => {
+        setShowLogin(showLogin ? false : true);
+    };
+
     return (
         <div className={cx('header-wrapper')}>
             <div className={cx('header-navigation')}>
@@ -32,12 +45,14 @@ const Header = () => {
                             </Link>
                         ))}
                     </ul>
-                    <div className={cx('right-top-header')}>
-                        <div className={cx('login-btn')}>
-                            <FontAwesomeIcon icon={faUser} className={cx('user-icon')} />
-                            <p className={cx('text')}>Đăng nhập</p>
+                    {!showLogin && (
+                        <div className={cx('right-top-header')}>
+                            <div className={cx('login-btn')} onClick={ToggleLogin}>
+                                <FontAwesomeIcon icon={faUser} className={cx('user-icon')} />
+                                <p className={cx('text')}>Đăng nhập</p>
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
             <div className={cx('middle-header')}>
@@ -59,6 +74,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+            {showLogin && <Login ToggleLogin={ToggleLogin} />}
         </div>
     );
 };
