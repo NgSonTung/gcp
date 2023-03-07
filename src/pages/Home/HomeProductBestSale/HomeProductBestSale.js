@@ -10,6 +10,7 @@ function HomeProductBestSale({ cate, srcImgBanner }) {
     const product = dataBestSale.filter((item) => item.category === cate);
     const navItems = [
         {
+            id: 1,
             title: cate,
             component: (
                 <ProductBestSale
