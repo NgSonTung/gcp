@@ -3,11 +3,12 @@ import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { CartIcon } from '~/Icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import config from '~/config';
 import Search from './Search/Search';
 import Login from '~/components/Login';
+import { useDispatch } from 'react-redux';
 // import { useDispatch, useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
@@ -24,7 +25,7 @@ const menuTitles = [
 ];
 const Header = () => {
     // const { loggedIn } = useSelector((state) => state.ProductReducer);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // useEffect(() => {
     //     dispatch({ type: 'LOGIN', nameproduct });
     //     setProductLoaded(true);
@@ -33,7 +34,22 @@ const Header = () => {
     const ToggleLogin = () => {
         setShowLogin(showLogin ? false : true);
     };
-
+    //get location of cartIcon
+    useEffect(() => {
+        const cartIcon = document.querySelector(`.${cx('cart-btn')}`);
+        const locate = cartIcon.getBoundingClientRect();
+        console.log('cartIcon', locate);
+        const location = {
+            type: 'GET_LOCATION',
+            payload: {
+                bottom: locate.bottom,
+                top: locate.top,
+                right: locate.right,
+                left: locate.left,
+            },
+        };
+        dispatch(location);
+    }, []);
     return (
         <div className={cx('header-wrapper')}>
             <div className={cx('header-navigation')}>
@@ -67,7 +83,7 @@ const Header = () => {
                         <CartIcon className={cx('icon')} />
                     </div>
                     <div className={cx('cart-detail')}>
-                        <Link className={cx('title')}>
+                        <Link to={config.routes.checkout} className={cx('title')}>
                             <h1>Giỏ hàng</h1>
                         </Link>
                         <p className={cx('cart-quantity')}>(0) sản phẩm</p>

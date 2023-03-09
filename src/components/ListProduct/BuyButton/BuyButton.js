@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import style from './BuyButton.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import FlyingButton from '../../FlyingItem/Fly';
+import { useSelector } from 'react-redux';
 const cx = classNames.bind(style);
 const BuyButton = (props) => {
     const { srcImg, dataHover = '' } = props;
-    // const element = document.getElementsByClassName(`.${cx('cart-feature')}`);
-    // const rect = element.getBoundingClientRect();
-    // console.log(rect);
+    const location = useSelector((state) => state.LocationReducer);
+    const heightOfWindow = window.innerHeight;
+    const widthOfWindow = window.innerWidth;
     return (
         <div className={cx('buy-button-warpper')}>
             <div className={cx('buy-button')}>
@@ -23,6 +24,8 @@ const BuyButton = (props) => {
                         src={srcImg}
                         dataHover={dataHover}
                         classForBtn={cx('btn-buy')}
+                        targetTop={`${((location.top / heightOfWindow) * 100).toFixed(2)}%`}
+                        targetLeft={`${((location.left / widthOfWindow) * 100).toFixed(2)}%`}
                     />
                 </div>
             </div>
