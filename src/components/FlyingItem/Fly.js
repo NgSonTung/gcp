@@ -1,6 +1,7 @@
 // cre : https://github.com/Ahmed-Elswerky/react-flying-item
 import React, { useRef } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
+import data from '~/data/data.json';
 const DEFAULT_TARGET_TOP = '5%',
     DEFAULT_TARGET_LEFT = '5%',
     DEFAULT_ANIMATION_DURATION = 0.9,
@@ -12,6 +13,7 @@ export default function FlyingButton(props) {
     const {
         src = '',
         children,
+        productId,
         dataHover = DEFAULT_DATA_HOVER,
         classForBtn = DEFAULT_CLASSNAME_FOR_BTN,
         targetTop = DEFAULT_TARGET_TOP,
@@ -20,14 +22,28 @@ export default function FlyingButton(props) {
         animationDuration = DEFAULT_ANIMATION_DURATION,
         flyingItemStyling = DEFAULT_ITEM_STYLING,
     } = props;
-    const flyingImage = useRef(null);
+    const productById = data.find((item) => item.id === productId);
 
+    const flyingImage = useRef(null);
     const initFlight = (e) => {
         flyingImage.current.style.setProperty('--target-position-x', e.clientX + 'px');
         flyingImage.current.style.setProperty('--target-position-y', e.clientY + 'px');
         flyingImage.current.style.setProperty('display', '');
         flyingImage.current.src = src;
         setTimeout(() => flyingImage.current.style.setProperty('display', 'none'), animationDuration * 1000 - 100);
+    };
+    //handler click
+    const dispatch = useDispatch();
+    const cartItem = useSelector((state) => state.CartReducer);
+
+    const handlerClick = (e) => {
+        initFlight(e);
+        const action = {
+            type: 'ADD_TO_CART',
+            payload: productById,
+        };
+        dispatch(action);
+        console.log('cartItem', cartItem);
     };
 
     const baseStyle = `
@@ -60,7 +76,7 @@ export default function FlyingButton(props) {
     return (
         <div>
             <style>{baseStyle}</style>
-            <button onClick={(e) => initFlight(e)} data-hover={dataHover} className={classForBtn}>
+            <button onClick={(e) => handlerClick(e)} data-hover={dataHover} className={classForBtn}>
                 {children}
             </button>
             <img

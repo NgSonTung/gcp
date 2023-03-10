@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import config from '~/config';
 import Search from './Search/Search';
 import Login from '~/components/Login';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { useDispatch, useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
@@ -38,7 +38,6 @@ const Header = () => {
     useEffect(() => {
         const cartIcon = document.querySelector(`.${cx('cart-btn')}`);
         const locate = cartIcon.getBoundingClientRect();
-        console.log('cartIcon', locate);
         const location = {
             type: 'GET_LOCATION',
             payload: {
@@ -50,6 +49,10 @@ const Header = () => {
         };
         dispatch(location);
     }, []);
+    //get the product qty in cart
+    const cartReducer = useSelector((state) => state.CartReducer);
+    const productQty = cartReducer.cartItem.length;
+    console.log(cartReducer);
     return (
         <div className={cx('header-wrapper')}>
             <div className={cx('header-navigation')}>
@@ -79,14 +82,16 @@ const Header = () => {
                 </Link>
                 <Search />
                 <div className={cx('cart-feature')}>
-                    <div className={cx('cart-btn')}>
-                        <CartIcon className={cx('icon')} />
-                    </div>
+                    <Link to={config.routes.checkout}>
+                        <div className={cx('cart-btn')}>
+                            <CartIcon className={cx('icon')} />
+                        </div>
+                    </Link>
                     <div className={cx('cart-detail')}>
                         <Link to={config.routes.checkout} className={cx('title')}>
                             <h1>Giỏ hàng</h1>
                         </Link>
-                        <p className={cx('cart-quantity')}>(0) sản phẩm</p>
+                        <p className={cx('cart-quantity')}>({productQty}) sản phẩm</p>
                     </div>
                 </div>
             </div>

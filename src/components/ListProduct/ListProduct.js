@@ -69,9 +69,7 @@ export const ListProduct = (props) => {
     // resize window
     const handleResize = () => {
         setWidthWindow(window.innerWidth);
-        console.log(widthWindow);
     };
-    const iconCart = '\f217';
     return (
         <div className={cx('product-warpper')}>
             <HeaderProduct
@@ -120,6 +118,7 @@ export const ListProduct = (props) => {
                                                 <BuyButton
                                                     srcImg={item.image}
                                                     dataHover={widthWindow < 1060 ? `Thêm` : 'Thêm vào giỏ hàng'}
+                                                    productId={item.id}
                                                 />
                                             </div>
                                         </Col>

@@ -8,11 +8,12 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: 'ProductReducer',
+    blacklist: ['ProductReducer', 'LocationReducer', 'CartReducer'],
 };
 
 const root = combineReducers({
     ProductReducer,
+    LocationReducer,
     CartReducer,
 });
 
