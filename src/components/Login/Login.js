@@ -1,29 +1,41 @@
 import styles from './Login.module.scss';
 import classNames from 'classnames/bind';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CloseIcon } from '../../Icons/Icons.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import accounts from '~/data/accounts';
+import { useDispatch, useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-const Login = ({ classname, ToggleLogin }) => {
+const Login = ({ classname, ToggleLogin, Login }) => {
     const [mode, setMode] = useState('login');
-
+    const { isLoggedIn, isAdmin } = useSelector((state) => state.UserReducer) || {};
+    const dispatch = useDispatch();
     const toggleMode = () => {
         var newMode = mode === 'login' ? 'signup' : 'login';
         setMode(newMode);
     };
-    const handleLogin = (userName, password) => {
-        let isTrue = false;
-        accounts.forEach((account) => {
-            if (userName === account.userName && password === account.password) {
-                isTrue = true;
+    const isMountedRef = useRef(false);
+    useEffect(() => {
+        console.log(isAdmin);
+        if (isMountedRef.current) {
+            if (isLoggedIn) {
+                ToggleLogin();
+            } else {
+                toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
+                    position: 'top-center',
+                    autoClose: 2001,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'colored',
+                });
             }
-        });
-        return isTrue;
-    };
+        }
+    }, [isLoggedIn]);
     const handleSubmit = (event) => {
         event.preventDefault();
         const signInUsername = event.target.username[0].value;
@@ -48,26 +60,15 @@ const Login = ({ classname, ToggleLogin }) => {
             }
         }
         if (mode === 'login') {
-            if (handleLogin(signInUsername, signInPassword)) {
-                ToggleLogin();
-            } else {
-                toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
-                    position: 'top-center',
-                    autoClose: 2001,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'colored',
-                });
+            if (!isMountedRef.current) {
+                isMountedRef.current = true;
             }
+            dispatch({ type: 'LOGIN', payload: { userName: signInUsername, password: signInPassword } });
         }
     };
     return (
         <div className={cx('container', classname)}>
             <ToastContainer style={{ zIndex: 1000000 }} />
-
             <div className={cx(`form-block-wrapper`, `form-block-wrapper--is-${mode}`)}></div>
             <section className={cx(`form-block`, `form-block--is-${mode}`)}>
                 <CloseIcon className={cx('close-icon')} onClick={() => ToggleLogin()} />

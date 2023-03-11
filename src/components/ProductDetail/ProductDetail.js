@@ -7,7 +7,7 @@ import ProductMagnifier from '../ProductMagnifier';
 import ProductDetailDesc from '../ProductDetailDesc';
 import NavTitle from '../NavTitle';
 import ProductBestSale from '../ProductBestSale/';
-import data from '~/data/data.json';
+import data from '~/data/products.json';
 const cx = classNames.bind(styles);
 
 function ProductDetail() {
@@ -45,8 +45,6 @@ function ProductDetail() {
         },
     ];
 
-    {
-    }
     return (
         <div className={cx('product-detail-container')}>
             {productLoaded && (

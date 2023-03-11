@@ -1,6 +1,6 @@
 import React from 'react';
 import ListProduct from '../../../components/ListProduct/index';
-import DataProduct from '~/data/data';
+import DataProduct from '~/data/products';
 export const AllProducts = () => {
     //tam thoi lay data tu file
     return (

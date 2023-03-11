@@ -3,12 +3,14 @@ import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { CartIcon } from '~/Icons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import config from '~/config';
 import Search from './Search/Search';
 import Login from '~/components/Login';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const cx = classNames.bind(styles);
 
@@ -23,19 +25,41 @@ const menuTitles = [
     { title: 'Keyboard', to: config.routes.keyboard },
 ];
 const Header = () => {
-    // const { loggedIn } = useSelector((state) => state.ProductReducer);
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch({ type: 'LOGIN', nameproduct });
-    //     setProductLoaded(true);
-    // }, [nameproduct]);
     const [showLogin, setShowLogin] = useState(false);
+    const { isLoggedIn } = useSelector((state) => state.UserReducer) || null;
     const ToggleLogin = () => {
         setShowLogin(showLogin ? false : true);
     };
-
+    useEffect(() => {
+        isLoggedIn &&
+            toast.success('Đăng nhập thành công!', {
+                position: 'top-center',
+                autoClose: 2001,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+            });
+    }, [isLoggedIn]);
+    const dispatch = useDispatch();
+    const HandleLogOut = () => {
+        dispatch({ type: 'LOGOUT' });
+        toast.success('Đã đăng xuất!', {
+            position: 'top-center',
+            autoClose: 2001,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+        });
+    };
     return (
         <div className={cx('header-wrapper')}>
+            <ToastContainer style={{ zIndex: 999999999 }} />
             <div className={cx('header-navigation')}>
                 <div className={cx('menu-container')}>
                     <ul className={cx('item-list')}>
@@ -45,11 +69,18 @@ const Header = () => {
                             </Link>
                         ))}
                     </ul>
-                    {!showLogin && (
+                    {!isLoggedIn ? (
                         <div className={cx('right-top-header')}>
                             <div className={cx('login-btn')} onClick={ToggleLogin}>
                                 <FontAwesomeIcon icon={faUser} className={cx('user-icon')} />
                                 <p className={cx('text')}>Đăng nhập</p>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className={cx('right-top-header')}>
+                            <div className={cx('login-btn')} onClick={HandleLogOut}>
+                                <FontAwesomeIcon icon={faUser} className={cx('user-icon')} />
+                                <p className={cx('text')}>Đăng xuất</p>
                             </div>
                         </div>
                     )}

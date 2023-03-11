@@ -1,4 +1,4 @@
-import data from './data.json';
+import products from './products.json';
 
 export const customerSlidersImg = [
     { url: 'https://thanhmobile.vn/uploads/plugin/gallery/180/nh-khach-hang-11-4.jpg', id: '1', alt: 'KH1' },
@@ -28,4 +28,4 @@ export const sliderBannerImgs = [
     'https://cdn1.hoanghamobile.com/tin-tuc/wp-content/uploads/2022/06/Blue-Futuristic-Top-Future-Technologies-YouTube-Thumbnail.png',
 ];
 
-export const phone = data.filter((item) => item.category === 'phone');
+export const phone = products.filter((item) => item.category === 'phone');

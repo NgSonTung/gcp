@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './HomeProductBestSale.module.scss';
 import ProductBestSale from '~/components/ProductBestSale/index';
-import dataBestSale from '~/data/data.json';
+import dataBestSale from '~/data/products.json';
 import NavTitle from '~/components/NavTitle/index';
 
 const cx = classNames.bind(styles);

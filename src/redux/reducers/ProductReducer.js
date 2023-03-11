@@ -1,8 +1,7 @@
-import data from '~/data/data.json';
+import data from '~/data/products.json';
 
 const initialState = {
     product: {},
-    loggedIn: false,
 };
 
 const ProductReducer = (state = initialState, action) => {
@@ -10,23 +9,6 @@ const ProductReducer = (state = initialState, action) => {
         case 'PRODUCT':
             return {
                 product: data.find((item) => item.name === action.nameproduct),
-            };
-        default:
-            return {
-                state,
-            };
-    }
-};
-
-const UserLogging = (state = initialState, action) => {
-    switch (action.type) {
-        case 'LOGIN':
-            return {
-                loggedIn: true,
-            };
-        case 'LOGOUT':
-            return {
-                loggedIn: false,
             };
         default:
             return {

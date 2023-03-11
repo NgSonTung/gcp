@@ -15,7 +15,6 @@ function ProductMagnifier({ product }) {
         setActiveImage(0);
     }, [product]);
 
-    console.log(activeImage);
     return (
         <div>
             <div className={cx('product-image-container')}>

@@ -14,7 +14,7 @@ const ProductDisplay = (props) => {
                 <img
                     className={cx('product-image')}
                     src={props.newProduct.image}
-                    alt={`${props.newProduct.product_name}-img`}
+                    alt={`${props.newProduct.name}-img`}
                 />
             </div>
             <div className={cx('detail-wrapper')}>
