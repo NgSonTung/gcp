@@ -18,7 +18,6 @@ const Login = ({ classname, ToggleLogin, Login }) => {
     };
     const isMountedRef = useRef(false);
     useEffect(() => {
-        console.log(isAdmin);
         if (isMountedRef.current) {
             if (isLoggedIn) {
                 ToggleLogin();
