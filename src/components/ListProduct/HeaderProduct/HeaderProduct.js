@@ -17,7 +17,6 @@ const HeaderProduct = (props) => {
         handleNoSort,
         handleChangeLayout,
     } = props;
-    console.log(activeLayoutType);
 
     const [activeMenuSort, setActiveMenuSort] = useState(false);
 

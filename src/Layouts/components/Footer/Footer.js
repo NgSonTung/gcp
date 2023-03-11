@@ -11,7 +11,7 @@ const Footer = () => {
         <Container className={cx('footer-warpper')}>
             <Row>
                 <Col xs={12} sm={12} md={12} lg={12}>
-                    <div className={cx('footer-abou-us')}>
+                    <div className={cx('footer-about-us')}>
                         <span>About Us</span>
                         <p>
                             Được thành lập từ năm 2010, Thanh Luxury Mobile được ghi nhận là một trong những Apple Store
@@ -47,13 +47,13 @@ const Footer = () => {
                         <span>Copyright by 3thangbanGroup</span>
                         <ul>
                             <li>
-                                <FontAwesomeIcon icon={} />
+                                <img src={require('~/assets/images/visa.png')} alt="visa" />
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={} />
+                                <img src={require('~/assets/images/mc_symbol_opt_73_3x.png')} alt="mastercard" />
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={} />
+                                <img src={require('~/assets/images/paypal-icon.png')} alt="paypal" />
                             </li>
                         </ul>
                     </div>

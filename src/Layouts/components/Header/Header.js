@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { CartIcon } from '~/Icons';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import config from '~/config';
 import Search from './Search/Search';
@@ -56,7 +56,25 @@ const Header = () => {
             progress: undefined,
             theme: 'colored',
         });
-    };
+    }; //get location of cartIcon
+    useEffect(() => {
+        const cartIcon = document.querySelector(`.${cx('cart-btn')}`);
+        const locate = cartIcon.getBoundingClientRect();
+        const location = {
+            type: 'GET_LOCATION',
+            payload: {
+                bottom: locate.bottom,
+                top: locate.top,
+                right: locate.right,
+                left: locate.left,
+            },
+        };
+        dispatch(location);
+    }, []);
+    //get the product qty in cart
+    const cartReducer = useSelector((state) => state.CartReducer);
+    const productQty = cartReducer.cartItem.length;
+    console.log(cartReducer);
     return (
         <div className={cx('header-wrapper')}>
             <ToastContainer style={{ zIndex: 999999999 }} />
@@ -94,14 +112,16 @@ const Header = () => {
                 </Link>
                 <Search />
                 <div className={cx('cart-feature')}>
-                    <div className={cx('cart-btn')}>
-                        <CartIcon className={cx('icon')} />
-                    </div>
+                    <Link to={config.routes.checkout}>
+                        <div className={cx('cart-btn')}>
+                            <CartIcon className={cx('icon')} />
+                        </div>
+                    </Link>
                     <div className={cx('cart-detail')}>
-                        <Link className={cx('title')}>
+                        <Link to={config.routes.checkout} className={cx('title')}>
                             <h1>Giỏ hàng</h1>
                         </Link>
-                        <p className={cx('cart-quantity')}>(0) sản phẩm</p>
+                        <p className={cx('cart-quantity')}>({productQty}) sản phẩm</p>
                     </div>
                 </div>
             </div>
