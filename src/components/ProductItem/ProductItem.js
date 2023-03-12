@@ -18,7 +18,7 @@ function ProductItem(props) {
     });
     const itemPrice = formatVnd.format(data.price);
     return (
-        <Link to={`/product/${data.name}`} styles={{ height: 'auto' }}>
+        <Link to={`/product/${data.name}`} styles={{ height: 'auto' }} onClick={() => window.scrollY(0, 0)}>
             <div className={secondLayout ? cx('item-best-sale', 'active-second-layout') : cx('item-best-sale')}>
                 <div className={hotTag ? cx('tag-best-sale', 'active-hot-tag') : cx('tag-best-sale')}>
                     <span>HOT</span>
