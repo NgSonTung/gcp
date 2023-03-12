@@ -86,7 +86,7 @@ const LinkPaginate = (props) => {
                 <ReactPaginate
                     nextLabel={<FontAwesomeIcon className={cx('next-icon')} icon={faChevronRight} />}
                     onPageChange={handlePageClick}
-                    pageRangeDisplayed={2}
+                    pageRangeDisplayed={3}
                     marginPagesDisplayed={2}
                     pageCount={pageCount}
                     previousLabel={<FontAwesomeIcon className={cx('prev-icon')} icon={faChevronLeft} />}

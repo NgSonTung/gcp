@@ -28,7 +28,7 @@ const Search = ({ resetFilter, setUnFilter }) => {
             <div className={cx('tool-wrapper')}>
                 <FilterTool resetFilter={resetFilter} setUnFilter={setUnFilter} />
                 <div className={cx('find-link-title')}>
-                    <p className={cx('title')}>Tìm kiếm đường link</p>
+                    <p className={cx('title')}>Tìm kiếm sản phẩm</p>
                     <div className={cx('search-input')}>
                         <button className={cx('search-icon')}>
                             <FontAwesomeIcon className={cx('icon')} icon={faSearch} />

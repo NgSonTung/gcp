@@ -45,7 +45,7 @@ $buttonWidth: 5rem;
         .decrement {
             width: $buttonWidth;
             aspect-ratio: 1;
-            background-color: rgb(238, 238, 238);
+            background-color: #ccc;
             cursor: pointer;
             border: solid 1px #dbdbdb;
             border-radius: 3rem 0 0 3rem;
@@ -61,7 +61,7 @@ $buttonWidth: 5rem;
         .increment {
             width: $buttonWidth;
             aspect-ratio: 1;
-            background-color: rgb(238, 238, 238);
+            background-color: #ccc;
             cursor: pointer;
             border: solid 1px #dbdbdb;
             border-radius: 0 3rem 3rem 0;
@@ -96,4 +96,8 @@ $buttonWidth: 5rem;
     .buy-now:hover {
         background-color: rgb(49, 49, 49);
     }
+}
+
+.disable {
+    background-color: #f7f6f6 !important;
 }

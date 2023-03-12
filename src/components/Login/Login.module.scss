@@ -178,7 +178,7 @@ $yellow: #ed6a5e;
     width: 100%;
 }
 
-input[type='checkbox'] {
+input[type='checkbox'].input-toggle {
     display: none;
     + label {
         &:before {

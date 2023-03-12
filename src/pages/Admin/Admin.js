@@ -1,7 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './Admin.module.scss';
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import SideBar from './SideBar/SideBar';
 import Header from './Header/Header';
 import UserAction from './UserAction/UserAction';

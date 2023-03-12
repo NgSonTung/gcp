@@ -15,10 +15,10 @@ const formatCurrency = (str) => {
 };
 
 function ProductDetailDesc({ product, full = true, className }) {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(1);
 
     const handleDecrement = () => {
-        if (count > 0) {
+        if (count > 1) {
             setCount(count - 1);
         }
     };
@@ -92,7 +92,7 @@ function ProductDetailDesc({ product, full = true, className }) {
             </div>
             {full && (
                 <div className={cx('counter')}>
-                    <button className={cx('decrement')} onClick={handleDecrement}>
+                    <button className={cx('decrement', { disable: count == 1 })} onClick={handleDecrement}>
                         -
                     </button>
                     <div className={cx('count-wrapper')}>

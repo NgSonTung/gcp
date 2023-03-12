@@ -76,7 +76,7 @@ const Login = ({ classname, ToggleLogin, Login }) => {
                     <h1>{mode === 'login' ? 'Đăng nhập' : 'Đăng ký'}</h1>
                     <div className={cx('form-block__toggle-block')}>
                         <span>{mode === 'login' ? 'Chưa' : 'Đã'} có tài khoản? Bấm vào đây &#8594;</span>
-                        <input id="form-toggler" type="checkbox" onClick={toggleMode} />
+                        <input id="form-toggler" className="input-toggle" type="checkbox" onClick={toggleMode} />
                         <label className={cx('toggler')} htmlFor="form-toggler"></label>
                     </div>
                 </header>
