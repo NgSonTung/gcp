@@ -1,0 +1,52 @@
+.user-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #bdc2d2;
+    padding-bottom: 2rem;
+    .filter-box-wrapper {
+        display: flex;
+        gap: 2rem;
+
+        .link-filter-box {
+            display: flex;
+            gap: 2rem;
+            color: #959db3;
+            padding-left: 1rem;
+            align-items: center;
+            border: 2px solid #008000;
+            border-radius: 9999999px;
+            font-size: 1.3rem;
+            padding: 1rem;
+        }
+    }
+
+    .handle-link-wrapper {
+        display: flex;
+        gap: 1rem;
+
+        .export-btn,
+        .upload-template {
+            padding: 1rem;
+            background-color: #ffffff;
+            border-radius: 0.4rem;
+            cursor: pointer;
+        }
+
+        .upload-template {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .add-btn {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: #1a6634;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            color: white;
+            gap: 1rem;
+        }
+    }
+}

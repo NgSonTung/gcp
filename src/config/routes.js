@@ -9,6 +9,7 @@ const routes = {
     laptop: '/laptop',
     product: '/product/:nameproduct',
     checkout: '/checkout',
+    admin: '/admin',
 };
 
 export default routes;
