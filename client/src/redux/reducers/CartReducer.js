@@ -53,11 +53,8 @@ const CartReducer = (state = initialState, action) => {
                 total: totalPrice,
             };
         }
-        case 'DECREASE_QTY': {
-            return state;
-        }
         default: {
-            return state;
+            return { ...state };
         }
     }
 };
