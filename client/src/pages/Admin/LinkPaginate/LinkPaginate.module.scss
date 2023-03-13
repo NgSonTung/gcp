@@ -1,0 +1,137 @@
+.wrapper {
+    position: relative;
+}
+
+.paginate-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    justify-content: flex-end;
+}
+
+.container {
+    display: flex;
+    gap: 2rem;
+}
+.page-item {
+    color: #959db3;
+    font-weight: 600;
+    font-size: 1.6rem;
+    cursor: pointer;
+    align-self: center;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.disabled-page {
+    opacity: 40%;
+}
+
+.active {
+    background-color: #959db3;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.break-me {
+}
+
+.next {
+    border-left: solid 1px #808e9b;
+    font-size: 4px;
+    height: 60px;
+    position: absolute;
+    right: 0;
+    width: 150px;
+}
+
+.pagination {
+    align-items: center;
+    background-color: #0fbcf9;
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    justify-content: center;
+    list-style-type: none;
+    position: relative;
+    width: 1000px;
+}
+
+.pagination-page {
+    font-weight: 700;
+    align-self: center;
+}
+
+.page-next-item,
+.page-previous-item {
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+}
+
+.prev-icon,
+.next-icon {
+    color: #959db3;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+.back-to-first,
+.back-to-last {
+    padding: 1.2rem 0.5rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    color: #959db3;
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
+.mapping-feature {
+    display: flex;
+    position: absolute;
+    top: 43%;
+    left: 45%;
+
+    .checked-list-quantity {
+        text-align: center;
+        padding: 1rem;
+        background-color: #008000;
+        color: white;
+        border-bottom-left-radius: 0.5rem;
+        border-top-left-radius: 0.5rem;
+    }
+
+    .cancel-mapping {
+        background-color: #fff;
+        padding: 1rem;
+        text-align: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .cancel-icon {
+        background-color: #fff;
+        position: relative;
+        text-align: center;
+        align-items: center;
+        display: flex;
+        cursor: pointer;
+        border-bottom-right-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        .icon {
+            font-size: 2.4rem;
+            color: #959db3;
+            padding: 1rem 2rem;
+        }
+        &::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 70%;
+            background-color: #bdc2d2;
+            left: 0;
+            bottom: 6px;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.wrapper {
+    position: relative;
+}
+
+.wrapper .body-layout {
+    display: flex;
+    background-color: #edeff3;
+    gap: 1rem;
+
+    .left-side {
+        background-color: #5a6276;
+        flex-basis: 15rem;
+        flex-grow: 1;
+    }
+
+    .right-side {
+        flex-basis: 0;
+        flex-grow: 999;
+        .content-wrapper {
+            padding: 2rem 1rem 0 1rem;
+        }
+    }
+}

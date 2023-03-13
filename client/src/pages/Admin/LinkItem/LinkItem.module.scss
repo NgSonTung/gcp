@@ -1,0 +1,83 @@
+.link-info-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    .link-item {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6rem;
+        background-color: #ffffff;
+        padding: 1rem 0;
+        flex-basis: 0;
+        flex-grow: 999;
+        font-size: 1.4rem;
+    }
+    .description {
+        display: flex;
+        align-items: center;
+        position: relative;
+        gap: 1rem;
+        padding-left: 1rem;
+    }
+
+    .new_link {
+        align-self: center;
+    }
+
+    .link-handle-wrapper {
+        display: flex;
+        position: relative;
+        align-content: center;
+        text-align: center;
+        background-color: #ffffff;
+        flex-basis: 4rem;
+        flex-grow: 1;
+        .handle-link-btn {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            .btn-icon {
+                position: absolute;
+                color: #959db3;
+                top: 40%;
+                left: 1rem;
+                cursor: pointer;
+
+                &.active {
+                    padding: 0.4rem;
+                    background-color: #bdc2d2;
+                    border-top-right-radius: 0.5rem;
+                    border-bottom-right-radius: 0.5rem;
+                    color: white;
+                }
+            }
+            .menu-wrapper {
+                position: absolute;
+                min-width: 16rem;
+                top: 40%;
+                right: 3rem;
+                z-index: 1;
+                .edit-wrapper {
+                    background-color: #959db3;
+                    border-top-left-radius: 0.5rem;
+                }
+
+                .delete-wrapper {
+                    background-color: #bdc2d2;
+                    border-bottom-left-radius: 0.5rem;
+                    border-bottom-right-radius: 0.5rem;
+                }
+
+                .edit-wrapper,
+                .delete-wrapper {
+                    display: flex;
+                    gap: 1rem;
+                    color: white;
+                    font-size: 1.4rem;
+                    padding: 0.75rem 1rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
