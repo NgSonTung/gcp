@@ -24,12 +24,9 @@ const publicRoutes = [
     { path: config.routes.tablet, component: Tablet },
     { path: config.routes.product, component: ProductDetail },
     { path: config.routes.checkout, component: CheckoutPage },
-<<<<<<< HEAD:src/routes/routes.js
-    // { path: config.routes.checkout, component: CheckoutPage },
+    { path: config.routes.checkout, component: CheckoutPage },
 
-=======
     { path: config.routes.admin, component: Admin, layout: null },
->>>>>>> b3a8980908837e530c5dca73f3e13090a95dcb76:client/src/routes/routes.js
 ];
 
 export { publicRoutes };

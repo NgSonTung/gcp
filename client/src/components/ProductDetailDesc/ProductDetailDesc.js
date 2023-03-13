@@ -16,13 +16,9 @@ const formatCurrency = (str) => {
 };
 
 function ProductDetailDesc({ product, full = true, className }) {
-<<<<<<< HEAD:src/components/ProductDetailDesc/ProductDetailDesc.js
-    const [count, setCount] = useState(0);
     const dispatch = useDispatch();
-=======
     const [count, setCount] = useState(1);
 
->>>>>>> b3a8980908837e530c5dca73f3e13090a95dcb76:client/src/components/ProductDetailDesc/ProductDetailDesc.js
     const handleDecrement = () => {
         if (count > 1) {
             setCount(count - 1);
