@@ -34,10 +34,11 @@ export default function FlyingButton(props) {
     };
     //handler click
     const dispatch = useDispatch();
-    // const cartItem = useSelector((state) => state.CartReducer);
-
+    const cartItem = useSelector((state) => state.CartReducer);
+    console.log('cartItem', cartItem);
     const handlerClick = (e) => {
         initFlight(e);
+        console.log('productById', productId);
         const action = {
             type: 'ADD_TO_CART',
             payload: productById,

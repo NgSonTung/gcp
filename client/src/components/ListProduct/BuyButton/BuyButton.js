@@ -11,6 +11,7 @@ const BuyButton = (props) => {
     const location = useSelector((state) => state.LocationReducer);
     const heightOfWindow = window.innerHeight;
     const widthOfWindow = window.innerWidth;
+    console.log('productId', productId);
     return (
         <div className={cx('buy-button-warpper')}>
             <div className={cx('buy-button')}>

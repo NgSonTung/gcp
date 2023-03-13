@@ -9,7 +9,8 @@ const CartReducer = (state = initialState, action) => {
         case 'ADD_TO_CART': {
             const productExists = state.cartItem.some((p) => p.id === product.id);
             if (!productExists) {
-                product.qty = 1;
+                console.log('product', product);
+                // product.qty = 1;
                 return {
                     ...state,
                     cartItem: [...state.cartItem, product],

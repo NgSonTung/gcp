@@ -1,0 +1,98 @@
+:root {
+    --item-box-color: rgb(118, 86, 86);
+}
+.item-warpper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.row {
+    // border: 0.1rem solid var(--item-box-color);
+    margin: 0.5rem 0.2rem 0.5rem 0.5rem;
+    padding: 1rem;
+    border-radius: 15px;
+}
+.col-item-img {
+    height: auto;
+}
+.img-product {
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 90%;
+        object-fit: cover;
+    }
+}
+.col-item-detail {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+}
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+.detail-item :nth-child(1) {
+    font-weight: bold;
+    line-height: 3rem;
+}
+.detail-item :nth-child(2) {
+    font-weight: bold;
+    color: rgb(229, 0, 28);
+    font-style: italic;
+    line-height: 3rem;
+}
+.ctrl-warpper {
+    display: flex;
+    justify-content: flex-start;
+    align-self: flex-end;
+    width: auto;
+    position: relative;
+    span {
+        font-size: 1.6rem;
+        font-weight: bold;
+        margin: 0 0.7rem;
+        cursor: pointer;
+    }
+    div {
+        border-radius: 13px;
+        padding: 0.2rem 0.1rem;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+}
+.controller-qty {
+    position: relative;
+    width: 100%;
+}
+.input-qty {
+    outline: none;
+    line-height: 1rem;
+    font-size: 1.5rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.234);
+    width: 3rem;
+    text-align: center;
+}
+.line {
+    width: 60%;
+    height: 0.2rem;
+    background-color: var(--item-box-color);
+    margin-top: 1rem;
+}
+.delete-item {
+    position: absolute;
+    width: auto;
+    right: 1rem;
+    top: 0.5rem;
+    cursor: pointer;
+}
+.icon-delete {
+    height: 2rem;
+}
