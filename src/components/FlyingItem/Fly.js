@@ -34,7 +34,7 @@ export default function FlyingButton(props) {
     };
     //handler click
     const dispatch = useDispatch();
-    const cartItem = useSelector((state) => state.CartReducer);
+    // const cartItem = useSelector((state) => state.CartReducer);
 
     const handlerClick = (e) => {
         initFlight(e);
@@ -43,7 +43,6 @@ export default function FlyingButton(props) {
             payload: productById,
         };
         dispatch(action);
-        console.log('cartItem', cartItem);
     };
 
     const baseStyle = `

@@ -2,21 +2,19 @@ import { faCompressAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './ProductItem.module.scss';
-
+import { fortmatCurrency } from '~/utils/FormatCurrency';
 const cx = classNames.bind(styles);
 
 function ProductItem(props) {
     const { data, hotTag = false, secondLayout = false } = props;
     const [activeShow, setActiveShow] = useState(false);
     const icon = require('~/Icons/index');
-    // console.log(data);
-    let formatVnd = new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND',
-    });
-    const itemPrice = formatVnd.format(data.price);
+    const dispatch = useDispatch();
+
+    const itemPrice = fortmatCurrency(data.price);
     return (
         <Link to={`/product/${data.name}`} styles={{ height: 'auto' }}>
             <div className={secondLayout ? cx('item-best-sale', 'active-second-layout') : cx('item-best-sale')}>
@@ -33,7 +31,7 @@ function ProductItem(props) {
                         <Link to={`/product/${data.name}`}>
                             <span>{icon.SearchIcon('icon-search')}</span>
                         </Link>
-                        <Link to={'/cart'}>
+                        <Link to={`/product/${data.name}`}>
                             <span>{icon.CartIcon('icon-cart')}</span>
                         </Link>
                         <Link to={'/compare'}>

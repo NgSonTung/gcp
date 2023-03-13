@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +17,7 @@ const formatCurrency = (str) => {
 
 function ProductDetailDesc({ product, full = true, className }) {
     const [count, setCount] = useState(0);
-
+    const dispatch = useDispatch();
     const handleDecrement = () => {
         if (count > 0) {
             setCount(count - 1);
@@ -39,6 +40,12 @@ function ProductDetailDesc({ product, full = true, className }) {
                 progress: undefined,
                 theme: 'colored',
             });
+            //handle buy
+            const action = {
+                type: 'ADD_TO_CART',
+                payload: product,
+            };
+            dispatch(action);
             setCount(0);
             //update cart
         } else {
