@@ -3,13 +3,15 @@ import styles from './ProductDetail.module.scss';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import React from 'react';
 import ProductMagnifier from '../ProductMagnifier';
 import ProductDetailDesc from '../ProductDetailDesc';
 import NavTitle from '../NavTitle';
 import ProductBestSale from '../ProductBestSale/';
 import data from '~/data/products.json';
+<script src="http://localhost:8097"></script>;
 const cx = classNames.bind(styles);
-
+const ProductDetailDSC = React.lazy(() => import('../ProductDetailDesc/ProductDetailDesc'));
 function ProductDetail() {
     const [productLoaded, setProductLoaded] = useState(false);
     const { nameproduct } = useParams();
@@ -55,7 +57,8 @@ function ProductDetail() {
                             <ProductMagnifier product={product} />
                         </div>
                         <div className={cx('product-detail')}>
-                            <ProductDetailDesc product={product} />
+                            {/* <ProductDetailDesc product={product} /> */}
+                            <ProductDetailDSC product={product} />
                         </div>
                     </div>
                     <NavTitle className={cx('product-nav')} navItems={navItems} />
