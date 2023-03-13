@@ -12,7 +12,6 @@ const HandleForm = ({ handleFormModal, data, handleShowAddForm }) => {
     const [typeLinkInput, setTypeLinkInput] = useState(data ? data.type : '');
     const radioCheck = useRef();
     const dispatch = useDispatch();
-    console.log(data);
     const handleSubmit = () => {
         if (!data) {
             if (descriptionValue !== '' && oldLinkValue !== '' && newLinkValue !== '' && typeLinkInput !== '') {

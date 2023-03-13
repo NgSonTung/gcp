@@ -1,7 +1,7 @@
 // cre : https://github.com/Ahmed-Elswerky/react-flying-item
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import data from '~/data/data.json';
+import products from '~/data/products';
 const DEFAULT_TARGET_TOP = '5%',
     DEFAULT_TARGET_LEFT = '5%',
     DEFAULT_ANIMATION_DURATION = 0.9,
@@ -22,7 +22,7 @@ export default function FlyingButton(props) {
         animationDuration = DEFAULT_ANIMATION_DURATION,
         flyingItemStyling = DEFAULT_ITEM_STYLING,
     } = props;
-    const productById = data.find((item) => item.id === productId);
+    const productById = products.find((item) => item.productId === productId);
 
     const flyingImage = useRef(null);
     const initFlight = (e) => {
@@ -35,10 +35,9 @@ export default function FlyingButton(props) {
     //handler click
     const dispatch = useDispatch();
     const cartItem = useSelector((state) => state.CartReducer);
-    console.log('cartItem', cartItem);
+    // console.log('cartItem', cartItem);
     const handlerClick = (e) => {
         initFlight(e);
-        console.log('productById', productId);
         const action = {
             type: 'ADD_TO_CART',
             payload: productById,

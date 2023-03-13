@@ -89,10 +89,18 @@
 .delete-item {
     position: absolute;
     width: auto;
+    height: auto;
     right: 1rem;
     top: 0.5rem;
     cursor: pointer;
+    border-radius: 50%;
+}
+.icon-delete:hover {
+    background-color: #000;
+    color: #fff;
 }
 .icon-delete {
-    height: 2rem;
+    height: 2.2rem;
+    border: 1px solid transparent;
+    border-radius: 50%;
 }

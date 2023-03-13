@@ -9,8 +9,7 @@ const CartReducer = (state = initialState, action) => {
         case 'ADD_TO_CART': {
             const productExists = state.cartItem.some((p) => p.id === product.id);
             if (!productExists) {
-                console.log('product', product);
-                // product.qty = 1;
+                product.qty = 1;
                 return {
                     ...state,
                     cartItem: [...state.cartItem, product],
@@ -19,7 +18,6 @@ const CartReducer = (state = initialState, action) => {
             } else {
                 const newCart = state.cartItem;
                 const Index = newCart.findIndex((p) => p.id === product.id);
-                console.log('newCart', Index);
                 if (newCart[Index].qty === undefined) {
                     newCart[Index].qty = 1;
                 } else {
@@ -33,10 +31,27 @@ const CartReducer = (state = initialState, action) => {
             }
         }
         case 'DELETE_FROM_CART': {
-            return state;
+            const newCart = state.cartItem;
+            const index = newCart.findIndex((p) => p.id === product.id);
+            newCart.splice(index, 1);
+            const totalPrice = newCart.reduce((total, product) => total + product.price * product.qty, 0);
+
+            return {
+                ...state,
+                cartItem: [...newCart],
+                total: totalPrice,
+            };
         }
-        case 'INCREASE_QTY': {
-            return state;
+        case 'CHANGE_QTY': {
+            const newCart = state.cartItem;
+            const index = newCart.findIndex((p) => p.id === product.id);
+            newCart[index].qty = product.qty;
+            const totalPrice = newCart.reduce((total, product) => total + product.price * product.qty, 0);
+            return {
+                ...state,
+                cartItem: [...newCart],
+                total: totalPrice,
+            };
         }
         case 'DECREASE_QTY': {
             return state;

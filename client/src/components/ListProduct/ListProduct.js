@@ -40,7 +40,6 @@ export const ListProduct = (props) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    console.log(widthWindow);
     const indexOfLastProduct = currentPage * productPerPgae;
     const indexOfFirstProduct = indexOfLastProduct - productPerPgae;
     const currentProduct = product.slice(indexOfFirstProduct, indexOfLastProduct);
