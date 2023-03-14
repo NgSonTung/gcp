@@ -7,30 +7,24 @@ const initialState = {
 const UserReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'LOGIN':
-            state.isLoggedIn = null;
+            console.log('LOGOUT');
             const { userName, password } = action.payload;
-            let isCorrect = false;
-            let auth;
-            accounts.forEach((account) => {
-                if (userName === account.userName && password === account.password) {
-                    isCorrect = true;
-                    auth = account.auth;
-                }
+            const isAuthenticated = accounts.some((account) => {
+                return account.userName === userName && account.password === password;
             });
             return {
                 ...state,
-                isLoggedIn: isCorrect,
-                isAdmin: auth === 1 ? true : false,
+                isLoggedIn: isAuthenticated,
+                isAdmin: isAuthenticated ? accounts.find((account) => account.userName === userName).auth === 1 : false,
             };
         case 'LOGOUT':
+            console.log('LOGOUT');
             return {
                 ...state,
                 isLoggedIn: false,
             };
         default:
-            return {
-                ...state,
-            };
+            return state;
     }
 };
 
