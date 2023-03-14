@@ -40,7 +40,6 @@ export const ListProduct = (props) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    console.log(widthWindow);
     const indexOfLastProduct = currentPage * productPerPgae;
     const indexOfFirstProduct = indexOfLastProduct - productPerPgae;
     const currentProduct = product.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -115,10 +114,11 @@ export const ListProduct = (props) => {
                                                     full={false}
                                                     className={cx('infor-product')}
                                                 />
+
                                                 <BuyButton
                                                     srcImg={item.image}
                                                     dataHover={widthWindow < 1060 ? `Thêm` : 'Thêm vào giỏ hàng'}
-                                                    productId={item.id}
+                                                    productId={item.productId}
                                                 />
                                             </div>
                                         </Col>

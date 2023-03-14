@@ -78,7 +78,6 @@ const Header = () => {
     //get the product qty in cart
     const cartReducer = useSelector((state) => state.CartReducer);
     const productQty = cartReducer.cartItem.length;
-    console.log(cartReducer);
     return (
         <div className={cx('header-wrapper')}>
             <ToastContainer style={{ zIndex: 999999999 }} />

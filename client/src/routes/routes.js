@@ -24,7 +24,7 @@ const publicRoutes = [
     { path: config.routes.tablet, component: Tablet },
     { path: config.routes.product, component: ProductDetail },
     { path: config.routes.checkout, component: CheckoutPage },
-    { path: config.routes.checkout, component: CheckoutPage },
+    // { path: config.routes.checkout, component: CheckoutPage },
 
     { path: config.routes.admin, component: Admin, layout: null },
 ];
