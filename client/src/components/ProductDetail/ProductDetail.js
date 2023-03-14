@@ -8,10 +8,10 @@ import ProductMagnifier from '../ProductMagnifier';
 import ProductDetailDesc from '../ProductDetailDesc';
 import NavTitle from '../NavTitle';
 import ProductBestSale from '../ProductBestSale/';
-import data from '~/data/products.json';
-<script src="http://localhost:8097"></script>;
+import data from '~/data/data.json';
+
 const cx = classNames.bind(styles);
-const ProductDetailDSC = React.lazy(() => import('../ProductDetailDesc/ProductDetailDesc'));
+
 function ProductDetail() {
     const [productLoaded, setProductLoaded] = useState(false);
     const { nameproduct } = useParams();
@@ -19,7 +19,7 @@ function ProductDetail() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch({ type: 'PRODUCT', nameproduct });
-        setProductLoaded(true);
+        product && setProductLoaded(true);
     }, [nameproduct]);
 
     const similarItems = data.filter((item) => item.category === product?.category);
@@ -50,20 +50,18 @@ function ProductDetail() {
     return (
         <div className={cx('product-detail-container')}>
             {productLoaded && (
-                <>
-                    {' '}
+                <div>
                     <div className={cx('main-detail-wrapper')}>
                         <div className={cx('product-image')}>
                             <ProductMagnifier product={product} />
                         </div>
                         <div className={cx('product-detail')}>
-                            {/* <ProductDetailDesc product={product} /> */}
-                            <ProductDetailDSC product={product} />
+                            <ProductDetailDesc product={product} />
                         </div>
                     </div>
                     <NavTitle className={cx('product-nav')} navItems={navItems} />
                     <NavTitle className={cx('product-nav')} navItems={defaultNavItems} />
-                </>
+                </div>
             )}
         </div>
     );

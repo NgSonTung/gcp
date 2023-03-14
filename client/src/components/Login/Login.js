@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-const Login = ({ classname, ToggleLogin, Login }) => {
+const Login = ({ classname, ToggleLogin }) => {
     const [mode, setMode] = useState('login');
     const { isLoggedIn, isAdmin } = useSelector((state) => state.UserReducer) || {};
     const dispatch = useDispatch();

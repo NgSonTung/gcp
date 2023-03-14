@@ -1,20 +1,21 @@
-const dotenv = require('dotenv');
-const sql = require('mssql');
+// import * as dotenv from "dotenv"
 
+const dotenv = require("dotenv");
+const sql = require("mssql");
 dotenv.config({
-  path: '../config.env',
+  path: "../config.env",
 });
 
-const dbConfig = require('./dbconfig');
+const dbConfig = require("./dbconfig");
 const appPool = new sql.ConnectionPool(dbConfig.sqlConfig);
 
-const fs = require('fs');
-const TourImageDAO = require('./../DAO/TourImageDAO');
-const TourStartDateDAO = require('./../DAO/TourStartDateDAO');
-const TourDAO = require('./../DAO/TourDAO');
+const fs = require("fs");
+const TourImageDAO = require("./../DAO/TourImageDAO");
+const TourStartDateDAO = require("./../DAO/TourStartDateDAO");
+const TourDAO = require("./../DAO/TourDAO");
 async function importDB() {
   const TOUR_FILE_PATH = `${__dirname}/../dev-data/data/tours-simple.json`;
-  let tours = JSON.parse(fs.readFileSync(TOUR_FILE_PATH, 'utf-8'));
+  let tours = JSON.parse(fs.readFileSync(TOUR_FILE_PATH, "utf-8"));
 
   //import tour
   for (let i = 0; i < tours.length; i++) {
@@ -24,21 +25,24 @@ async function importDB() {
     await TourDAO.addTourIfNotExisted(tour);
     let tourDB = await TourDAO.getTourById(tour.id);
     // console.log(tourDB);
-    if (!tourDB){
-        console.error(`cannot import tour with id ${tour.id}`)
-        continue;
+    if (!tourDB) {
+      console.error(`cannot import tour with id ${tour.id}`);
+      continue;
     }
 
     if (tour.images) {
       for (let j = 0; j < tour.images.length; j++) {
-          await TourImageDAO.addTourImageIfNotExisted(tour.id, tour.images[j]);
+        await TourImageDAO.addTourImageIfNotExisted(tour.id, tour.images[j]);
       }
     }
 
     if (tour.startDates) {
       for (let j = 0; j < tour.startDates.length; j++) {
-          let date = new Date(tour.startDates[j]);
-          await TourStartDateDAO.addTourStartDateIfNotExisted(tour.id, date.toISOString());
+        let date = new Date(tour.startDates[j]);
+        await TourStartDateDAO.addTourStartDateIfNotExisted(
+          tour.id,
+          date.toISOString()
+        );
       }
     }
   }
@@ -62,21 +66,21 @@ appPool
   .connect()
   .then(async function (pool) {
     dbConfig.db.pool = pool;
-    console.log('SQL Connected!');
+    console.log("SQL Connected!");
 
-    if (process.argv[2] === '--clean') {
-      console.log('cleaning db ...');
+    if (process.argv[2] === "--clean") {
+      console.log("cleaning db ...");
       await dbClean();
-    } else if (process.argv[2] === '--import') {
-      console.log('should import');
+    } else if (process.argv[2] === "--import") {
+      console.log("should import");
       await importDB();
-    } else if (process.argv[2] === '--test') {
+    } else if (process.argv[2] === "--test") {
       await test();
     }
-    console.log('done!!!');
+    console.log("done!!!");
   })
   .catch(function (err) {
-    console.error('Error creating db connection pool', err);
+    console.error("Error creating db connection pool", err);
   });
 
 // console.log(process.argv);

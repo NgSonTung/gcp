@@ -1,4 +1,4 @@
-import data from '~/data/products.json';
+import data from '~/data/data.json';
 
 const initialState = {
     product: {},
@@ -11,9 +11,7 @@ const ProductReducer = (state = initialState, action) => {
                 product: data.find((item) => item.name === action.nameproduct),
             };
         default:
-            return {
-                state,
-            };
+            return state;
     }
 };
 

@@ -26,12 +26,14 @@ const menuTitles = [
 ];
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false);
-    const { isLoggedIn } = useSelector((state) => state.UserReducer) || null;
+    const { isLoggedIn } = useSelector((state) => state.UserReducer);
+    const [loginState, setLoginState] = useState(isLoggedIn);
     const ToggleLogin = () => {
         setShowLogin(showLogin ? false : true);
     };
     useEffect(() => {
-        isLoggedIn &&
+        if (isLoggedIn && !loginState) {
+            setLoginState(true);
             toast.success('Đăng nhập thành công!', {
                 position: 'top-center',
                 autoClose: 2001,
@@ -42,10 +44,12 @@ const Header = () => {
                 progress: undefined,
                 theme: 'colored',
             });
+        }
     }, [isLoggedIn]);
     const dispatch = useDispatch();
     const HandleLogOut = () => {
         dispatch({ type: 'LOGOUT' });
+        setLoginState(false);
         toast.success('Đã đăng xuất!', {
             position: 'top-center',
             autoClose: 2001,
@@ -74,7 +78,6 @@ const Header = () => {
     //get the product qty in cart
     const cartReducer = useSelector((state) => state.CartReducer);
     const productQty = cartReducer.cartItem.length;
-    console.log(cartReducer);
     return (
         <div className={cx('header-wrapper')}>
             <ToastContainer style={{ zIndex: 999999999 }} />

@@ -1,16 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './ItemInCart.module.scss';
 import classNames from 'classnames/bind';
 import { Container, Row, Col } from 'react-bootstrap';
 import { fortmatCurrency } from '~/utils/FormatCurrency';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
 const cx = classNames.bind(style);
 
 const ItemInCart = (props) => {
     const { product } = props;
     const [number, setNumber] = useState(product.qty);
-
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (number < 1) {
+            setNumber(1);
+        } else if (number > 99) {
+            setNumber(99);
+        }
+        product.qty = number;
+        const action = {
+            type: 'CHANGE_QTY',
+            payload: product,
+        };
+        dispatch(action);
+    }, [number]);
+    //handler
     const handleIncrease = () => {
         number < 99 && setNumber(number + 1);
     };
@@ -26,6 +41,13 @@ const ItemInCart = (props) => {
             setNumber(e.target.value);
         }
     };
+    const handleClick = () => {
+        const action = {
+            type: 'DELETE_FROM_CART',
+            payload: product,
+        };
+        dispatch(action);
+    };
     return (
         <div className={cx('item-warpper')}>
             <Container>
@@ -36,7 +58,7 @@ const ItemInCart = (props) => {
                         </div>
                     </Col>
                     <Col xs={8} sm={8} md={8} lg={8} className={cx('col-item-detail')}>
-                        <div className={cx('delete-item')}>
+                        <div onClick={() => handleClick()} className={cx('delete-item')}>
                             <FontAwesomeIcon icon={faCircleXmark} className={cx('icon-delete')} />
                         </div>
                         <div className={cx('detail-item')}>

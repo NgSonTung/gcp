@@ -82,17 +82,17 @@ function ProductDetailDesc({ product, full = true, className }) {
     return (
         <div className={cx('product-detail-container', className)}>
             <ToastContainer style={{ zIndex: 1000000 }} />
-            <p className={cx('product-detail-title')}> {product.name}</p>
+            <p className={cx('product-detail-title')}> {product?.name}</p>
             {full && (
                 <div className={cx('product-detail-subtitle')}>
-                    <p className={cx('product-detail-id')}>{`Mã sản phẩm: ${product.id}`}</p>
-                    <p className={cx('product-detail-brand')}>{`Thương hiệu: ${product.brand}`}</p>
+                    <p className={cx('product-detail-id')}>{`Mã sản phẩm: ${product?.id}`}</p>
+                    <p className={cx('product-detail-brand')}>{`Thương hiệu: ${product?.brand}`}</p>
                 </div>
             )}
-            <p className={cx('product-detail-price')}>{formatCurrency(product.price)}</p>
-            {full && <ProductRating ratings={product.ratings} />}
+            <p className={cx('product-detail-price')}>{formatCurrency(product?.price)}</p>
+            {full && <ProductRating ratings={product?.ratings} />}
             <div className={cx('product-feature-wrapper')}>
-                {product.features?.map((feature, id) => (
+                {product?.features?.map((feature, id) => (
                     <p className={cx('product-feature')} key={id}>
                         - {feature}
                     </p>
@@ -100,7 +100,7 @@ function ProductDetailDesc({ product, full = true, className }) {
             </div>
             {full && (
                 <div className={cx('counter')}>
-                    <button className={cx('decrement', { disable: count == 1 })} onClick={handleDecrement}>
+                    <button className={cx('decrement', { disable: count <= 1 })} onClick={handleDecrement}>
                         -
                     </button>
                     <div className={cx('count-wrapper')}>
