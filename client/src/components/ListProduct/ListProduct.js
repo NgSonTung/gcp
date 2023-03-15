@@ -23,7 +23,6 @@ export const ListProduct = (props) => {
     } = props;
     const baseData = useRef(data);
     baseData.current = data;
-
     const [productData, setProductDatas] = useState(data);
     const [product, setProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -31,6 +30,10 @@ export const ListProduct = (props) => {
     const [sorted, setSorted] = useState('');
     const [activeLayoutType, setActiveLayoutType] = useState(true);
     const [widthWindow, setWidthWindow] = useState(window.innerWidth);
+    const indexOfLastProduct = currentPage * productPerPgae;
+    const indexOfFirstProduct = indexOfLastProduct - productPerPgae;
+    const currentProduct = product.slice(indexOfFirstProduct, indexOfLastProduct);
+
     useEffect(() => {
         setProduct(productData);
     }, [sorted]);
@@ -40,9 +43,6 @@ export const ListProduct = (props) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    const indexOfLastProduct = currentPage * productPerPgae;
-    const indexOfFirstProduct = indexOfLastProduct - productPerPgae;
-    const currentProduct = product.slice(indexOfFirstProduct, indexOfLastProduct);
     //change page
     const handlePage = (page) => setCurrentPage(page);
     //sort-data
@@ -69,6 +69,7 @@ export const ListProduct = (props) => {
     const handleResize = () => {
         setWidthWindow(window.innerWidth);
     };
+
     return (
         <div className={cx('product-warpper')}>
             <HeaderProduct
