@@ -1,5 +1,4 @@
 // import * as dotenv from "dotenv"
-
 const dotenv = require("dotenv");
 const sql = require("mssql");
 dotenv.config({
@@ -10,41 +9,44 @@ const dbConfig = require("./dbconfig");
 const appPool = new sql.ConnectionPool(dbConfig.sqlConfig);
 
 const fs = require("fs");
-const TourImageDAO = require("./../DAO/TourImageDAO");
-const TourStartDateDAO = require("./../DAO/TourStartDateDAO");
-const TourDAO = require("./../DAO/TourDAO");
+const ProductDAO = require("../DAO/ProductDAO");
+// const TourStartDateDAO = require("./../DAO/TourStartDateDAO");
+// const TourDAO = require("./../DAO/TourDAO");
 async function importDB() {
-  const TOUR_FILE_PATH = `${__dirname}/../dev-data/data/tours-simple.json`;
-  let tours = JSON.parse(fs.readFileSync(TOUR_FILE_PATH, "utf-8"));
+  const TOUR_FILE_PATH = '../data/products.json'
+  let products = JSON.parse(fs.readFileSync(TOUR_FILE_PATH, "utf-8"));
 
   //import tour
-  for (let i = 0; i < tours.length; i++) {
-    let tour = tours[i];
-    // console.log(tour);
-
-    await TourDAO.addTourIfNotExisted(tour);
-    let tourDB = await TourDAO.getTourById(tour.id);
+  for (let i = 0; i < products.length; i++) {
+    let product = products[i];
+    // console.log(product);
+try {
+  await ProductDAO.addProductIfNotExisted(product);
+} catch (error) {
+  console.log(product.productId);
+}
+    // let tourDB = await TourDAO.getTourById(product.id);
     // console.log(tourDB);
-    if (!tourDB) {
-      console.error(`cannot import tour with id ${tour.id}`);
-      continue;
-    }
+    // if (!tourDB) {
+    //   console.error(`cannot import tour with id ${product.id}`);
+    //   continue;
+    // }
 
-    if (tour.images) {
-      for (let j = 0; j < tour.images.length; j++) {
-        await TourImageDAO.addTourImageIfNotExisted(tour.id, tour.images[j]);
-      }
-    }
+    // if (tour.images) {
+    //   for (let j = 0; j < tour.images.length; j++) {
+    //     await TourImageDAO.addTourImageIfNotExisted(tour.id, tour.images[j]);
+    //   }
+    // }
 
-    if (tour.startDates) {
-      for (let j = 0; j < tour.startDates.length; j++) {
-        let date = new Date(tour.startDates[j]);
-        await TourStartDateDAO.addTourStartDateIfNotExisted(
-          tour.id,
-          date.toISOString()
-        );
-      }
-    }
+    // if (tour.startDates) {
+    //   for (let j = 0; j < tour.startDates.length; j++) {
+    //     let date = new Date(tour.startDates[j]);
+    //     await TourStartDateDAO.addTourStartDateIfNotExisted(
+    //       tour.id,
+    //       date.toISOString()
+    //     );
+    //   }
+    // }
   }
 }
 
