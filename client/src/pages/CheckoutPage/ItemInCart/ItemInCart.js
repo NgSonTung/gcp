@@ -35,13 +35,13 @@ const ItemInCart = (props) => {
         }
     };
     const handleBlur = (e) => {
-        console.log(typeof e.target.value);
-        if (e.target.value < 1) {
+        const newValue = parseInt(e.target.value)
+        if (newValue < 1) {
             setNumber(1);
-        } else if (e.target.value > 99) {
+        } else if (newValue > 99) {
             setNumber(99);
         } else {
-            setNumber(e.target.value);
+            setNumber(newValue);
         }
     };
     const handleClick = () => {

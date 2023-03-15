@@ -105,8 +105,11 @@
     border: 1px solid transparent;
     border-radius: 50%;
 }
-.input-qty::-webkit-outer-spin-button,
-.input-qty::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
+input[type=number] {
+    -moz-appearance: textfield;
+  }
