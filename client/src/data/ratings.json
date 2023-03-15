@@ -1,16 +1,16 @@
 [
     {
         "ratingID": 1,
-        "_5star": 0,
+        "_5star": 1,
         "_4star": 1,
         "_3star": 1,
-        "_2star": 0,
-        "_1star": 0,
+        "_2star": 3,
+        "_1star": 5,
         "productID": 1
     },
     {
         "ratingID": 2,
-        "_5star": 0,
+        "_5star": 2,
         "_4star": 1,
         "_3star": 1,
         "_2star": 0,
@@ -20,8 +20,8 @@
     {
         "ratingID": 3,
         "_5star": 0,
-        "_4star": 1,
-        "_3star": 1,
+        "_4star": 0,
+        "_3star": 0,
         "_2star": 0,
         "_1star": 0,
         "productID": 3

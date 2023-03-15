@@ -9,13 +9,16 @@
 
     .left-side {
         background-color: #5a6276;
-        flex-basis: 15rem;
-        flex-grow: 1;
+        width: 13%;
+        height: 100vh;
+        position: fixed;
     }
 
     .right-side {
-        flex-basis: 0;
-        flex-grow: 999;
+        height: 100vh;
+        overflow-y: scroll;
+        padding-left: 13%;
+        width: 100%;
         .content-wrapper {
             padding: 2rem 1rem 0 1rem;
         }
