@@ -80,7 +80,6 @@ const ItemInCart = (props) => {
                                         onChange={(e) => handleBlur(e)}
                                         className={cx('input-qty')}
                                         readOnly={false}
-                                        className={cx('input-qty')}
                                     />
                                     <span onClick={() => handleIncrease()} className={cx('btn-increase')}>
                                         +
