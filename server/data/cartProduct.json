@@ -1,0 +1,12 @@
+[
+    {
+        "cartID": 2,
+        "productID": 1,
+        "amount": 3
+    },
+    {
+        "cartID": 2,
+        "productID": 2,
+        "amount": 1
+    }
+]
