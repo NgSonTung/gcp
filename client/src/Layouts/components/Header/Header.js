@@ -61,6 +61,7 @@ const Header = () => {
             theme: 'colored',
         });
     }; //get location of cartIcon
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     useEffect(() => {
         const cartIcon = document.querySelector(`.${cx('cart-btn')}`);
         const locate = cartIcon.getBoundingClientRect();
@@ -74,6 +75,10 @@ const Header = () => {
             },
         };
         dispatch(location);
+    }, [windowWidth]);
+    useEffect(() => {
+        window.addEventListener('resize', setWindowWidth);
+        return () => window.removeEventListener('resize', setWindowWidth);
     }, []);
     //get the product qty in cart
     const cartReducer = useSelector((state) => state.CartReducer);

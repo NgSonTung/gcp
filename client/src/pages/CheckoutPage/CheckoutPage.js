@@ -63,14 +63,22 @@ const CheckoutPage = () => {
                                 </div>
                             </Col>
                             <Col xs={12} sm={12} md={7} lg={7} className={cx('col-box')}>
-                                <div className={cx('check-out-address')}></div>
+                                <div className={cx('check-out-address-warpper')}>
+                                    <div className={cx('check-out-address')}>
+                                        <div className={cx('shipping-details')}>
+                                            <div className={cx('name-details')}></div>
+                                            <div className={cx('adress-details')}></div>
+                                            <div className={cx('city-details')}></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </Col>
                         </>
                     )}
                 </Row>
-                <Row>
+                {/* <Row>
                     <Col></Col>
-                </Row>
+                </Row> */}
             </Container>
         </div>
     );

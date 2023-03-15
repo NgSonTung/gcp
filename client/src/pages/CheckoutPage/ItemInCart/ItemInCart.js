@@ -13,11 +13,11 @@ const ItemInCart = (props) => {
     const [number, setNumber] = useState(product.qty);
     const dispatch = useDispatch();
     useEffect(() => {
-        if (number < 1) {
-            setNumber(1);
-        } else if (number > 99) {
-            setNumber(99);
-        }
+        // if (number < 1) {
+        //     setNumber(1);
+        // } else if (number > 99) {
+        //     setNumber(99);
+        // }
         product.qty = number;
         const action = {
             type: 'CHANGE_QTY',
@@ -30,15 +30,18 @@ const ItemInCart = (props) => {
         number < 99 && setNumber(number + 1);
     };
     const handleDecrease = () => {
-        number > 0 && setNumber(number - 1);
+        if (number > 1) {
+            setNumber(number - 1);
+        }
     };
     const handleBlur = (e) => {
-        if (number < 1) {
+        const newValue = parseInt(e.target.value)
+        if (newValue < 1) {
             setNumber(1);
-        } else if (number > 99) {
+        } else if (newValue > 99) {
             setNumber(99);
         } else {
-            setNumber(e.target.value);
+            setNumber(newValue);
         }
     };
     const handleClick = () => {
@@ -72,7 +75,7 @@ const ItemInCart = (props) => {
                                         -
                                     </span>
                                     <input
-                                        type="text"
+                                        type="number"
                                         value={number}
                                         onChange={(e) => handleBlur(e)}
                                         className={cx('input-qty')}
