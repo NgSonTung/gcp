@@ -9,15 +9,16 @@ import { useState, useEffect } from 'react';
 const cx = classNames.bind(styles);
 
 function Home() {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState();
     useEffect(() => {
         fectchingProducts();
-    });
+        console.log(products);
+    }, []);
 
     const fectchingProducts = async () => {
         const fectchedData = await fetch('http://localhost:3000/');
         const result = await fectchedData.json();
-        console.log(result);
+        setProducts(result.data.products);
     };
 
     return (
