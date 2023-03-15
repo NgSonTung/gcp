@@ -18,15 +18,21 @@ const formatCurrency = (str) => {
 function ProductDetailDesc({ product, full = true, className }) {
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
-
+    // console.log(product);
     const handleDecrement = () => {
         if (count > 1) {
             setCount(count - 1);
+            product.qty -= 1;
         }
     };
 
     const handleIncrement = () => {
         setCount(count + 1);
+        if (product.qty === undefined) {
+            product.qty = 1;
+        } else {
+            product.qty += 1;
+        }
     };
 
     const handleCartAdd = () => {
@@ -42,6 +48,9 @@ function ProductDetailDesc({ product, full = true, className }) {
                 theme: 'colored',
             });
             //handle buy
+            if (product.qty === undefined) {
+                product.qty = 1;
+            }
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
@@ -77,6 +86,16 @@ function ProductDetailDesc({ product, full = true, className }) {
                 theme: 'colored',
             });
         }
+
+        if (product.qty === undefined) {
+            product.qty = 1;
+        }
+        const action = {
+            type: 'ADD_TO_CART',
+            payload: product,
+        };
+        dispatch(action);
+        //move to checkout page
     };
 
     return (

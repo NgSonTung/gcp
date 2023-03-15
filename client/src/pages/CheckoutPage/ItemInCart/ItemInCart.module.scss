@@ -43,6 +43,7 @@
 .detail-item :nth-child(1) {
     font-weight: bold;
     line-height: 3rem;
+    width: 90%;
 }
 .detail-item :nth-child(2) {
     font-weight: bold;
@@ -103,4 +104,9 @@
     height: 2.2rem;
     border: 1px solid transparent;
     border-radius: 50%;
+}
+.input-qty::-webkit-outer-spin-button,
+.input-qty::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
