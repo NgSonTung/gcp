@@ -1,8 +1,8 @@
-import { Express } from "express";
-import * as productController from "../controllers/Product";
+const express = require("express");
+const productController = require("../controllers/Product");
+const router = express.Router();
 
-const Router = Express.Router();
+router.route("/").get(productController.getProducts).post();
 
-Router.Router("/").get().post();
-
-Router.Router("/:id").get().delete().patch;
+router.route("/:id").get().delete().patch;
+module.exports = router;
