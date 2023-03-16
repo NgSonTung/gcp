@@ -10,50 +10,72 @@ const appPool = new sql.ConnectionPool(dbConfig.sqlConfig);
 
 const fs = require("fs");
 const ProductDAO = require("../DAO/ProductDAO");
-// const TourStartDateDAO = require("./../DAO/TourStartDateDAO");
-// const TourDAO = require("./../DAO/TourDAO");
+const UserDAO = require("../DAO/UserAccount");
+const FeatureDAO = require("../DAO/FeatureDAO");
+const RatingDAO = require("../DAO/RatingDAO");
+const CartDAO = require("../DAO/CartDAO");
 async function importDB() {
-  const TOUR_FILE_PATH = '../data/products.json'
-  let products = JSON.parse(fs.readFileSync(TOUR_FILE_PATH, "utf-8"));
+  const PRODUCT_FILE_PATH = "../data/products.json";
+  const USER_FILE_PATH = "../data/users.json";
+  const FEATURE_FILE_PATH = "../data/feature.json";
+  const RATING_FILE_PATH = "../data/rating.json";
+  const CART_FILE_PATH = "../data/cart.json";
+  const CARTPRODUCT_FILE_PATH = "../data/cartProduct.json";
+  const SUBIMAGE_FILE_PATH = "../data/subImage.json";
 
-  //import tour
+  let products = JSON.parse(fs.readFileSync(PRODUCT_FILE_PATH, "utf-8"));
+  let users = JSON.parse(fs.readFileSync(USER_FILE_PATH, "utf-8"));
+  let features = JSON.parse(fs.readFileSync(FEATURE_FILE_PATH, "utf-8"));
+  let ratings = JSON.parse(fs.readFileSync(RATING_FILE_PATH, "utf-8"));
+
+  //import product
   for (let i = 0; i < products.length; i++) {
     let product = products[i];
-    // console.log(product);
-try {
-  await ProductDAO.addProductIfNotExisted(product);
-} catch (error) {
-  console.log(product.productId);
-}
-    // let tourDB = await TourDAO.getTourById(product.id);
-    // console.log(tourDB);
-    // if (!tourDB) {
-    //   console.error(`cannot import tour with id ${product.id}`);
-    //   continue;
-    // }
+    try {
+      await ProductDAO.addProductIfNotExisted(product);
+      console.log("import product --- done!");
+    } catch (error) {
+      console.log(product);
+    }
+  }
+  //import users
+  for (let i = 0; i < users.length; i++) {
+    let user = users[i];
+    try {
+      await UserDAO.addUserIfNotExisted(user);
+      console.log("import user --- done!");
+    } catch (error) {
+      console.log(user);
+    }
+  }
+  // import feature
+  for (let i = 0; i < features.length; i++) {
+    let feature = features[i];
+    try {
+      await FeatureDAO.addFeatureIfNotExisted(feature);
+      console.log("import feature --- done!");
+    } catch (Error) {
+      console.log(feature);
+    }
+  }
 
-    // if (tour.images) {
-    //   for (let j = 0; j < tour.images.length; j++) {
-    //     await TourImageDAO.addTourImageIfNotExisted(tour.id, tour.images[j]);
-    //   }
-    // }
+  // import rating
 
-    // if (tour.startDates) {
-    //   for (let j = 0; j < tour.startDates.length; j++) {
-    //     let date = new Date(tour.startDates[j]);
-    //     await TourStartDateDAO.addTourStartDateIfNotExisted(
-    //       tour.id,
-    //       date.toISOString()
-    //     );
-    //   }
-    // }
+  for (let i = 0; i < ratings.length; i++) {
+    console.log(i);
+    let rating = ratings[i];
+    try {
+      await RatingDAO.addRatingIfNotExisted(rating);
+      console.log("import rating --- done!");
+    } catch (Error) {
+      console.log(rating);
+    }
   }
 }
 
 async function dbClean() {
-  await TourImageDAO.clearAll();
-  await TourStartDateDAO.clearAll();
-  await TourDAO.clearAll();
+  await FeatureDAO.clearAll();
+  await ProductDAO.clearAll();
 }
 
 async function test() {
