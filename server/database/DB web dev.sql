@@ -2,7 +2,6 @@
 
 use PhoneShop
 go
-alter database DoAnCSDL set TRUSTWORTHY ON
 
 	create table Product(
 	productID int identity(1,1) primary key,

@@ -1,133 +1,145 @@
 import classNames from 'classnames/bind';
 import styles from './HandleForm.module.scss';
-import { useRef, useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-const HandleForm = ({ handleFormModal, data, handleShowAddForm }) => {
-    const [descriptionValue, setDescriptionValue] = useState(data ? data.description : '');
-    const [oldLinkValue, setOldLinkValue] = useState(data ? data.old_link : '');
-    const [newLinkValue, setNewLinkValue] = useState(data ? data.new_link : '');
-    const [typeLinkInput, setTypeLinkInput] = useState(data ? data.type : '');
-    const radioCheck = useRef();
-    const dispatch = useDispatch();
-    const handleSubmit = () => {
-        if (!data) {
-            if (descriptionValue !== '' && oldLinkValue !== '' && newLinkValue !== '' && typeLinkInput !== '') {
-                dispatch({
-                    type: 'ADD_LINK',
-                    payload: {
-                        description: descriptionValue,
-                        old_link: oldLinkValue,
-                        new_link: newLinkValue,
-                        type: typeLinkInput,
-                    },
-                });
-                setDescriptionValue('');
-                setOldLinkValue('');
-                setNewLinkValue('');
-                setTypeLinkInput('');
-                window.alert('Them thanh cong');
-            } else {
-                window.alert('Vui long nhap du thong tin');
-            }
-        } else {
-            dispatch({
-                type: 'EDIT_LINK',
-                payload: {
-                    idLink: data.id,
-                    updateDescription: descriptionValue,
-                    updateOldLink: oldLinkValue,
-                    updateNewLink: newLinkValue,
-                    updateType: typeLinkInput,
-                },
-            });
-
-            window.alert('Sua thanh cong');
-        }
-    };
-
-    const handleCloseForm = () => {
-        if (data) {
-            handleFormModal();
-        } else {
-            handleShowAddForm();
-        }
-    };
-
+const HandleForm = ({ data, setShowEditForm }) => {
     return (
         <div className={cx('form-wrapper')}>
-            <div className={cx('form-header')}>
-                <p className={cx('text')}>DEAD LINK</p>
-            </div>
-            <div className={cx('form-cate')}>
-                <p className={cx('cate-title')}>Phân Loại</p>
-                <div className={cx('radio-wrapper')}>
-                    <input
-                        id="product"
-                        name="link_category"
-                        type="radio"
-                        value="product"
-                        ref={radioCheck}
-                        onClick={() => setTypeLinkInput('product')}
-                    />
-                    <label htmlFor="product" className={cx('title')}>
-                        Dead link sản phẩm
+            <div onClick={() => setShowEditForm(false)} className={cx('form-background')} />
+            <form className={cx('form')}>
+                <label className={cx('label')} htmlFor="productId">
+                    Product ID:
+                </label>
+                <input
+                    className={cx('input', 'id-input')}
+                    defaultValue={data.productId}
+                    type="number"
+                    id="productId"
+                    name="productId"
+                    placeholder="vd:101"
+                    required
+                    readOnly
+                />
+                <div>
+                    <label className={cx('label', 'check-box-label')} htmlFor="favorite">
+                        Favorite:
                     </label>
                     <input
-                        id="post"
-                        name="link_category"
-                        type="radio"
-                        value="post"
-                        ref={radioCheck}
-                        onClick={() => setTypeLinkInput('post')}
-                    />
-                    <label htmlFor="post" className={cx('title')}>
-                        Dead link bài viết & khác
-                    </label>
+                        className={cx('check-box-input')}
+                        defaultChecked={data.favorite === 1}
+                        type="checkbox"
+                        id="favorite"
+                        name="favorite"
+                    ></input>
                 </div>
-                <div className={cx('form-inputs')}>
-                    <div className={cx('description-input')}>
-                        <p className={cx('title')}>Mô tả link</p>
-                        <input
-                            type="text"
-                            name="description_input"
-                            placeholder="Nhap thong tin"
-                            value={descriptionValue}
-                            onChange={(e) => setDescriptionValue(e.target.value)}
-                        />
-                    </div>
-                    <div className={cx('old_link-input')}>
-                        <p className={cx('title')}>Link site cũ</p>
-                        <input
-                            type="text"
-                            name="old_link"
-                            placeholder="Nhap thong tin"
-                            value={oldLinkValue}
-                            onChange={(e) => setOldLinkValue(e.target.value)}
-                        />
-                    </div>
-                    <div className={cx('new_link-input')}>
-                        <p className={cx('title')}>Link site mới</p>
-                        <input
-                            type="text"
-                            name="new_link"
-                            placeholder="Nhap thong tin"
-                            value={newLinkValue}
-                            onChange={(e) => setNewLinkValue(e.target.value)}
-                        />
-                    </div>
-                    <div className={cx('form-submit')}>
-                        <button className={cx('close-btn')} onClick={handleCloseForm}>
-                            Đóng
-                        </button>
-                        <button className={cx('update-btn')} onClick={handleSubmit}>
-                            Cập nhật
-                        </button>
-                    </div>
+                <label className={cx('label')} htmlFor="stock">
+                    Stock:
+                </label>
+                <input
+                    className={cx('input')}
+                    defaultValue={data.stock}
+                    type="number"
+                    id="stock"
+                    name="stock"
+                    required
+                    placeholder="vd:100"
+                />
+                <label className={cx('label')} htmlFor="name">
+                    Name:
+                </label>
+                <input
+                    className={cx('input')}
+                    defaultValue={data.name}
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="vd:latop XYZ100"
+                />
+                <label className={cx('label')} htmlFor="sale">
+                    Sale:
+                </label>
+                <input
+                    className={cx('input')}
+                    defaultValue={data.sale}
+                    type="text"
+                    id="sale"
+                    name="sale"
+                    placeholder="vd:10%"
+                />
+                <label className={cx('label')} htmlFor="image">
+                    Image Link:
+                </label>
+                <input
+                    className={cx('input')}
+                    defaultValue={data.image}
+                    type="text"
+                    id="image"
+                    name="image"
+                    required
+                    placeholder="vd:abc.com"
+                />
+                <label className={cx('label')} htmlFor="brand">
+                    Brand:
+                </label>
+                <input
+                    className={cx('input')}
+                    defaultValue={data.brand}
+                    type="text"
+                    id="brand"
+                    name="brand"
+                    required
+                    placeholder="vd:apple"
+                />
+                <label className={cx('label')} htmlFor="price">
+                    Price:
+                </label>
+                <input
+                    className={cx('input')}
+                    defaultValue={data.price}
+                    type="number"
+                    id="price"
+                    name="price"
+                    required
+                    placeholder="vd:1000"
+                />
+                <label className={cx('label')} htmlFor="category">
+                    Category:
+                </label>
+                <input
+                    className={cx('input')}
+                    defaultValue={data.category}
+                    type="text"
+                    id="category"
+                    name="category"
+                    required
+                    placeholder="vd:laptop"
+                />
+                <label className={cx('label')} htmlFor="description">
+                    Description:
+                </label>
+                <input
+                    className={cx('input')}
+                    defaultValue={data.description}
+                    type="text"
+                    id="description"
+                    name="description"
+                    required
+                    placeholder="vd:laptop nay cuc manh "
+                />
+                <div className={cx('button-wrapper')}>
+                    <button className={cx('add-button', 'button')} type="submit">
+                        THÊM
+                    </button>
+                    <button className={cx('update-button', 'button')} type="submit">
+                        SỬA
+                    </button>
+                    <button className={cx('delete-button', 'button')} type="submit">
+                        XÓA
+                    </button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };
