@@ -6,6 +6,7 @@ class ModelSchemaValidator {
         this.sqlType = config.sqlType;
         switch (config.sqlType) {
             case sql.VarChar:
+            case sql.NVarChar:
             case sql.DateTime:
                 this.type = 'string';
                 break;

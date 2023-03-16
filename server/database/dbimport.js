@@ -1,5 +1,4 @@
 // import * as dotenv from "dotenv"
-
 const dotenv = require("dotenv");
 const sql = require("mssql");
 dotenv.config({
@@ -10,57 +9,123 @@ const dbConfig = require("./dbconfig");
 const appPool = new sql.ConnectionPool(dbConfig.sqlConfig);
 
 const fs = require("fs");
-const TourImageDAO = require("./../DAO/TourImageDAO");
-const TourStartDateDAO = require("./../DAO/TourStartDateDAO");
-const TourDAO = require("./../DAO/TourDAO");
+const ProductDAO = require("../DAO/ProductDAO");
+const UserDAO = require("../DAO/UserAccount");
+const FeatureDAO = require("../DAO/FeatureDAO");
+const RatingDAO = require("../DAO/RatingDAO");
+const CartDAO = require("../DAO/CartDAO");
+const SubImageDAO = require("../DAO/SubImageDAO");
 async function importDB() {
-  const TOUR_FILE_PATH = `${__dirname}/../dev-data/data/tours-simple.json`;
-  let tours = JSON.parse(fs.readFileSync(TOUR_FILE_PATH, "utf-8"));
+  const PRODUCT_FILE_PATH = "../data/products.json";
+  const USER_FILE_PATH = "../data/users.json";
+  const FEATURE_FILE_PATH = "../data/feature.json";
+  const RATING_FILE_PATH = "../data/ratings.json";
+  const CART_FILE_PATH = "../data/cart.json";
+  const CARTPRODUCT_FILE_PATH = "../data/cartProduct.json";
+  const SUBIMAGE_FILE_PATH = "../data/subImage.json";
 
-  //import tour
-  for (let i = 0; i < tours.length; i++) {
-    let tour = tours[i];
-    // console.log(tour);
-
-    await TourDAO.addTourIfNotExisted(tour);
-    let tourDB = await TourDAO.getTourById(tour.id);
-    // console.log(tourDB);
-    if (!tourDB) {
-      console.error(`cannot import tour with id ${tour.id}`);
-      continue;
+  let products = JSON.parse(fs.readFileSync(PRODUCT_FILE_PATH, "utf-8"));
+  let users = JSON.parse(fs.readFileSync(USER_FILE_PATH, "utf-8"));
+  let features = JSON.parse(fs.readFileSync(FEATURE_FILE_PATH, "utf-8"));
+  let ratings = JSON.parse(fs.readFileSync(RATING_FILE_PATH, "utf-8"));
+  let carts = JSON.parse(fs.readFileSync(CART_FILE_PATH, "utf-8"));
+  let carts_Product = JSON.parse(
+    fs.readFileSync(CARTPRODUCT_FILE_PATH, "utf-8")
+  );
+  let imgs = JSON.parse(fs.readFileSync(SUBIMAGE_FILE_PATH, "utf-8"));
+  //import product
+  for (let i = 0; i < products.length; i++) {
+    let product = products[i];
+    try {
+      await ProductDAO.addProductIfNotExisted(product);
+      console.log("import product --- done!");
+    } catch (error) {
+      console.log("errr", product);
     }
-
-    if (tour.images) {
-      for (let j = 0; j < tour.images.length; j++) {
-        await TourImageDAO.addTourImageIfNotExisted(tour.id, tour.images[j]);
-      }
+  }
+  //import users
+  for (let i = 0; i < users.length; i++) {
+    let user = users[i];
+    try {
+      await UserDAO.addUserIfNotExisted(user);
+      console.log("import user --- done!");
+    } catch (error) {
+      console.log("errr", user);
     }
-
-    if (tour.startDates) {
-      for (let j = 0; j < tour.startDates.length; j++) {
-        let date = new Date(tour.startDates[j]);
-        await TourStartDateDAO.addTourStartDateIfNotExisted(
-          tour.id,
-          date.toISOString()
-        );
-      }
+  }
+  // import feature
+  for (let i = 0; i < features.length; i++) {
+    let feature = features[i];
+    try {
+      await FeatureDAO.addFeatureIfNotExisted(feature);
+      console.log("import feature --- done!");
+    } catch (Error) {
+      console.log("errr", feature);
     }
+  }
+
+  // import rating
+
+  for (let i = 0; i < ratings.length; i++) {
+    let rating = ratings[i];
+
+    try {
+      await RatingDAO.addRatingIfNotExisted(rating);
+      console.log("import rating --- done!");
+    } catch (Error) {
+      console.log("errr", rating);
+    }
+  }
+  //import cart
+
+  for (let i = 0; i < carts.length; i++) {
+    let cart = carts[i];
+    try {
+      await CartDAO.addCartIfNotExisted(cart);
+      console.log("import cart --- done!");
+    } catch (Error) {
+      console.log("errr", cart);
+    }
+  }
+
+  for (let i = 0; i < carts_Product.length; i++) {
+    let item = carts_Product[i];
+    try {
+      await CartDAO.addCart_ProductIfNotExisted(item);
+      console.log("import carts_Product --- done!");
+    } catch (Error) {
+      console.log("errr", item);
+    }
+  }
+
+  for (let i = 0; i < imgs.length; i++) {
+    let img = imgs[i];
+    await SubImageDAO.addSubImageIfNotExisted(img);
+    // try {
+    //   console.log("import carts_Product --- done!");
+    // } catch (Error) {
+    //   console.log("errr", item);
+    // }
   }
 }
 
 async function dbClean() {
-  await TourImageDAO.clearAll();
-  await TourStartDateDAO.clearAll();
-  await TourDAO.clearAll();
+  await FeatureDAO.clearAll();
+  await RatingDAO.clearAll();
+  await SubImageDAO.clearAll();
+  await CartDAO.clearAllCart_Product();
+  await CartDAO.clearAllCart();
+  await UserDAO.clearAll();
+  await ProductDAO.clearAll();
 }
 
-async function test() {
-  let tourStarDates = await TourStartDateDAO.getByTourId(1);
-  let tourImages = await TourImageDAO.getByTourId(1);
+// async function test() {
+//   let tourStarDates = await TourStartDateDAO.getByTourId(1);
+//   let tourImages = await TourImageDAO.getByTourId(1);
 
-  console.log(tourStarDates);
-  console.log(tourImages);
-}
+//   console.log(tourStarDates);
+//   console.log(tourImages);
+// }
 
 appPool
   .connect()
@@ -74,10 +139,11 @@ appPool
     } else if (process.argv[2] === "--import") {
       console.log("should import");
       await importDB();
-    } else if (process.argv[2] === "--test") {
-      await test();
     }
-    console.log("done!!!");
+    // else if (process.argv[2] === "--test") {
+    //   await test();
+    // }
+    console.log("ALL DONE !!!");
   })
   .catch(function (err) {
     console.error("Error creating db connection pool", err);

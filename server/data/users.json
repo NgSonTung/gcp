@@ -1,0 +1,16 @@
+[
+  {
+    "userID": 1,
+    "userName": "admin",
+    "password": "123",
+    "auth": 1,
+    "email": "admin@example.com"
+  },
+  {
+    "userID": 2,
+    "userName": "user",
+    "password": "123",
+    "auth": 0,
+    "email": "user@example.com"
+  }
+]

@@ -18,3 +18,49 @@
     height: 100%;
     padding: 1rem;
 }
+.content-wrapper {
+    display: flex;
+
+    .filter-features {
+        width: 60%;
+
+        .keyword-search {
+            input {
+                margin-top: 10px;
+                width: 100%;
+                border: 1px solid #ddd;
+                font-size: 1.3rem;
+                padding: 5px 5px 5px 3px;
+                &:focus {
+                    border: 1px solid #ccc;
+                }
+            }
+        }
+
+        .price-range {
+            input {
+                width: 100%;
+            }
+        }
+
+        .filter-wrapper {
+            margin-top: 2rem;
+            overflow-y: scroll;
+            max-height: 200px;
+        }
+
+        .reset-btn {
+            display: flex;
+            gap: 1rem;
+            margin-top: 20px;
+        }
+    }
+
+    .list-product {
+    }
+}
+
+.checkbox {
+    display: flex;
+    gap: 1rem;
+}

@@ -1,7 +1,8 @@
 const ProductDAO = require("../DAO/ProductDAO");
 
 exports.getProducts = async (req, res) => {
-  const products = await ProductDAO.getAllProducts();
+  console.log(req.query);
+  const products = await ProductDAO.getAllProducts(req.query);
   console.log(products);
   res.status(200).json({
     code: 200,

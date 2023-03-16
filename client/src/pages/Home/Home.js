@@ -16,11 +16,11 @@ function Home() {
     }, []);
 
     const fectchingProducts = async () => {
-        const fectchedData = await fetch('http://localhost:3000/');
+        const fectchedData = await fetch('http://localhost:3001/');
         const result = await fectchedData.json();
         setProducts(result.data.products);
+        console.log(result);
     };
-
     return (
         <div className={cx('wrapper')}>
             <SliderBanner />
@@ -29,6 +29,9 @@ function Home() {
             <TabProductCate />
             <HomeProductBestSale cate={'phone'} srcImgBanner={require('~/assets/images/anh-sale-tet.png')} />
             <HomeProductBestSale cate={'laptop'} srcImgBanner={require('~/assets/images/phu-kien-hot.png')} />
+            {products?.map((item, index) => (
+                <p>{item.name}</p>
+            ))}
         </div>
     );
 }

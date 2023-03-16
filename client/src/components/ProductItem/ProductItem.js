@@ -13,10 +13,9 @@ function ProductItem(props) {
     const [activeShow, setActiveShow] = useState(false);
     const icon = require('~/Icons/index');
     const dispatch = useDispatch();
-
-    const itemPrice = fortmatCurrency(data.price);
+    const itemPrice = fortmatCurrency(data?.price);
     return (
-        <Link to={`/product/${data.name}`} styles={{ height: 'auto' }} onClick={() => window.scrollY(0, 0)}>
+        <Link to={`/product/${data?.name}`} styles={{ height: 'auto' }} onClick={() => window.scrollY(0, 0)}>
             <div className={secondLayout ? cx('item-best-sale', 'active-second-layout') : cx('item-best-sale')}>
                 <div className={hotTag ? cx('tag-best-sale', 'active-hot-tag') : cx('tag-best-sale')}>
                     <span>HOT</span>
@@ -26,12 +25,16 @@ function ProductItem(props) {
                     onMouseOver={() => setActiveShow(true)}
                     onMouseOut={() => setActiveShow(false)}
                 >
-                    <img src={data.image} alt="avtar-Product" className={cx('avtar-product')} />
+                    <img
+                        src="https://chamsocdidong.com/thay-cam-ung-iphone-13-pro-ds11300"
+                        alt="avtar-Product"
+                        className={cx('avtar-product')}
+                    />
                     <div className={activeShow ? cx('action-product', 'active') : cx('action-product')}>
-                        <Link to={`/product/${data.name}`}>
+                        <Link to={`/product/${data?.name}`}>
                             <span>{icon.SearchIcon('icon-search')}</span>
                         </Link>
-                        <Link to={`/product/${data.name}`}>
+                        <Link to={`/product/${data?.name}`}>
                             <span>{icon.CartIcon('icon-cart')}</span>
                         </Link>
                         <Link to={'/compare'}>
@@ -40,7 +43,7 @@ function ProductItem(props) {
                     </div>
                 </div>
                 <div className={cx('infor-item')}>
-                    <span className={cx('title-product')}>{data.name}</span>
+                    <span className={cx('title-product')}>{data?.name}</span>
                     <span className={cx('price-product')}>{itemPrice}</span>
                 </div>
             </div>
