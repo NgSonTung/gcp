@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import style from './ListProduct.module.scss';
-import styleCart from '~/Layouts/components/Header/Header.module.scss';
 import ProductItem from '~/components/ProductItem/index';
 import CusPagination from '~/components/CusPagination/index';
 import { Row, Col, Container } from 'react-bootstrap';
@@ -9,41 +8,79 @@ import 'bootstrap/dist/css/bootstrap.css';
 import HeaderProduct from './HeaderProduct/index';
 import BuyButton from '~/components/ListProduct/BuyButton/index';
 import ProductDetailDesc from '../ProductDetailDesc/index';
-import { useNavigate, useLocation } from 'react-router-dom';
 import FilterTitle from '../FilterTitle/FilterTitle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
+import Slider from '@mui/material/Slider';
+import { getAllProducts } from '~/functions/Fetch';
 
 const brands = ['Iphone', 'Xiaomi', 'Samsung', 'Vivo', 'Hp', 'Asus', 'Oppo', 'Acer', 'Linksys', 'Mesh'];
 
 const cx = classNames.bind(style);
 export const ListProduct = (props) => {
     const {
-        data,
         ColOnPerRowSmallest = 6,
         ColOnPerRowSmall = 6,
         ColOnPerRowMiddle = 3,
         ColOnPerRowLarge = 3,
         ColOnPerRowExtraLarge = 2,
     } = props;
-    const baseData = useRef(data);
-    baseData.current = data;
-    const [productData, setProductDatas] = useState(data);
-    const [product, setProduct] = useState([]);
+    // const baseData = useRef(data);
+    // baseData.current = data;
+    // const [sorted, setSorted] = useState('');
+    const [productData, setProductDatas] = useState([]);
+    // const [product, setProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [productPerPgae] = useState(5);
-    const [sorted, setSorted] = useState('');
+    const [productPerPage, setProductPerPage] = useState(5);
     const [activeLayoutType, setActiveLayoutType] = useState(true);
     const [widthWindow, setWidthWindow] = useState(window.innerWidth);
-    const [priceRange, setPriceRange] = useState(40000000);
-    const indexOfLastProduct = currentPage * productPerPgae;
-    const indexOfFirstProduct = indexOfLastProduct - productPerPgae;
-    const currentProduct = product.slice(indexOfFirstProduct, indexOfLastProduct);
+    const indexOfLastProduct = currentPage * productPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productPerPage;
+    const currentProduct = productData?.slice(indexOfFirstProduct, indexOfLastProduct);
     const handlePage = (page) => setCurrentPage(page);
+    const [priceRange, setPriceRange] = useState([0, 30000000]);
+    const [brandFilter, setBrandFilter] = useState([]);
+    const [urlAPI, setUrlAPI] = useState('');
+    const handleFilterProduct = () => {
+        let filteredURL = 'http://localhost:3001/?';
+        let first = 0;
+        if (brandFilter.length > 0) {
+            let i = 0;
+            for (i; i < brandFilter.length; i++) {
+                if (i <= 0) {
+                    filteredURL += 'brand=' + `${brandFilter[i]}`;
+                    console.log(filteredURL);
+                } else {
+                    filteredURL += '&brand=' + `${brandFilter[i]}`;
+                    console.log(filteredURL);
+                }
+            }
+        }
+        if (priceRange.length > 0) {
+            if (priceRange[0] !== priceRange[1]) {
+                filteredURL += `&price[eq]=${priceRange[0] * 1}&price[lt]=${priceRange[1] * 1}`;
+            } else {
+                filteredURL += `&price[gte]=${priceRange[0] * 1}`;
+            }
+        }
+        setUrlAPI(filteredURL);
+        console.log(urlAPI);
+    };
 
+    const handleGetData = async () => {
+        const fetchedData = await getAllProducts(urlAPI);
+        const result = fetchedData?.data?.products;
+        setProductDatas(result);
+    };
     useEffect(() => {
-        setProduct(productData);
-    }, [sorted]);
+        console.log(urlAPI);
+        handleGetData();
+    }, [urlAPI]);
+
+    // useEffect(() => {
+    //     setProduct(productData);
+    //     console.log(productData);
+    // }, [sorted]);
     useEffect(() => {
         window.addEventListener('resize', handleResize);
         return () => {
@@ -52,21 +89,21 @@ export const ListProduct = (props) => {
     }, []);
     //change page
     //sort-data
-    const handleSortDesc = () => {
-        const dataSorted = [...data].sort((a, b) => (a.price < b.price ? 1 : -1));
-        setProductDatas(dataSorted);
-        setSorted('desc');
-    };
+    // const handleSortDesc = () => {
+    //     const dataSorted = [...data].sort((a, b) => (a.price < b.price ? 1 : -1));
+    //     setProductDatas(dataSorted);
+    //     setSorted('desc');
+    // };
 
-    const handleSortAsc = () => {
-        const dataSorted = [...data].sort((a, b) => a.price - b.price);
-        setProductDatas(dataSorted);
-        setSorted('asc');
-    };
-    const handleNoSort = () => {
-        setProductDatas(baseData.current);
-        setSorted('no sort');
-    };
+    // const handleSortAsc = () => {
+    //     const dataSorted = [...data].sort((a, b) => a.price - b.price);
+    //     setProductDatas(dataSorted);
+    //     setSorted('asc');
+    // };
+    // const handleNoSort = () => {
+    //     setProductDatas(baseData.current);
+    //     setSorted('no sort');
+    // };
     //change layout
     const handleChangeLayout = (num) => {
         num === 1 ? setActiveLayoutType(true) : setActiveLayoutType(false);
@@ -76,54 +113,35 @@ export const ListProduct = (props) => {
         setWidthWindow(window.innerWidth);
     };
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const pathName = location.pathname;
-    const [filter, setFilter] = useState({
-        category: '',
-        price: '',
-        brand: '',
-    });
+    function handleChanges(event, newValue) {
+        const newRangeValue = event.target.value;
+        setPriceRange(newRangeValue);
+        console.log(priceRange);
+    }
 
-    useEffect(() => {
-        const queryParams = new URLSearchParams(location.search);
-        const category = queryParams.get('category') || '';
-        const price = queryParams.get('price') || '';
-        const date = queryParams.get('date') || '';
-
-        setFilter({ category, price, date });
-
-        // axios.get(`/api/data?category=${category}&price=${price}&date=${date}`)
-        //   .then(response => {
-        //     // handle the response data
-        //   })
-        //   .catch(error => {
-        //     // handle the error
-        //   });
-    }, [location.search]);
-
-    useEffect(() => {
-        console.log('history', navigate);
-        console.log('location', location);
-    });
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     navigate(`${pathName}?category=${filter.category}&price=${filter.price}&date=${filter.brand}`);
-    // };
-
-    const handlePriceRange = (e) => {
-        setPriceRange(e.target.value);
+    const addBrandFilter = (e) => {
+        let filterValue = e.target.value;
+        let filterArray = [...brandFilter];
+        if (!filterArray.includes(filterValue)) {
+            filterArray = [...filterArray, filterValue];
+        } else {
+            filterArray = filterArray.filter((item) => item !== filterValue);
+        }
+        setBrandFilter(filterArray);
     };
+
+    useEffect(() => {
+        console.log(brandFilter);
+        console.log(priceRange);
+    }, [brandFilter, handleChanges]);
 
     return (
         <div className={cx('product-warpper')}>
             <HeaderProduct
-                count={productData.length}
-                handleSortDesc={handleSortDesc}
-                handleSortAsc={handleSortAsc}
-                handleNoSort={handleNoSort}
+                count={productData?.length}
+                // handleSortDesc={handleSortDesc}
+                // handleSortAsc={handleSortAsc}
+                // handleNoSort={handleNoSort}
                 handleChangeLayout={handleChangeLayout}
                 activeLayoutType={activeLayoutType}
             />
@@ -136,8 +154,14 @@ export const ListProduct = (props) => {
 
                     <div className={cx('price-range')}>
                         <FilterTitle title="GIÁ SẢN PHẨM" />
-                        <p className={cx('price')}>{priceRange}</p>
-                        <input type="range" value={priceRange} onInput={handlePriceRange} />
+                        <Slider
+                            value={priceRange}
+                            min={0}
+                            max={3000000}
+                            onChange={handleChanges}
+                            valueLabelDisplay="auto"
+                        />
+                        The selected range is {priceRange[0]} - {priceRange[1]}
                     </div>
 
                     <div className={cx('brand-filter')}>
@@ -148,7 +172,7 @@ export const ListProduct = (props) => {
                                     <input
                                         type="checkbox"
                                         value={item.toLocaleLowerCase()}
-                                        onChange={(e) => setFilter({ ...filter, category: e.target.value })}
+                                        onChange={addBrandFilter}
                                         id={item.toLocaleLowerCase()}
                                     />
                                     <label for={item.toLocaleLowerCase()}>{item}</label>
@@ -156,7 +180,10 @@ export const ListProduct = (props) => {
                             ))}
                         </div>
                     </div>
-
+                    <div className={cx('filter-btn')} onClick={handleFilterProduct}>
+                        <FontAwesomeIcon icon={faArrowsRotate} />
+                        <p>LỌC SẢN PHẨM</p>
+                    </div>
                     <div className={cx('reset-btn')}>
                         <FontAwesomeIcon icon={faArrowsRotate} />
                         <p>CHỌN LẠI</p>
@@ -166,7 +193,7 @@ export const ListProduct = (props) => {
                 <div className={cx('list-product')}>
                     {activeLayoutType ? (
                         <Row>
-                            {currentProduct.map((item, index) => (
+                            {currentProduct?.map((item, index) => (
                                 <Col
                                     xs={ColOnPerRowSmallest}
                                     sm={ColOnPerRowSmall}
@@ -175,15 +202,15 @@ export const ListProduct = (props) => {
                                     xxl={ColOnPerRowExtraLarge}
                                     className={cx('col-product-item')}
                                 >
-                                    <div className={cx('product-item')}>
-                                        <ProductItem key={index} data={item} />
+                                    <div className={cx('product-item')} key={index}>
+                                        <ProductItem data={item} />
                                     </div>
                                 </Col>
                             ))}
                         </Row>
                     ) : (
                         <Container>
-                            {currentProduct.map((item, index) => (
+                            {currentProduct?.map((item, index) => (
                                 <Row>
                                     <Col xs={12} sm={12} md={12} lg={12} xxl={12} className={cx('col-product-item')}>
                                         <div className={cx('product-item')}>
@@ -200,9 +227,9 @@ export const ListProduct = (props) => {
                                                     />
 
                                                     <BuyButton
-                                                        srcImg={item.image}
+                                                        srcImg={item?.image}
                                                         dataHover={widthWindow < 1060 ? `Thêm` : 'Thêm vào giỏ hàng'}
-                                                        productId={item.productId}
+                                                        productId={item?.productId}
                                                     />
                                                 </div>
                                             </Col>
@@ -214,7 +241,7 @@ export const ListProduct = (props) => {
                     )}
                 </div>
             </div>
-            <CusPagination itemPerPage={productPerPgae} totalItem={data.length} handlePage={handlePage} />
+            <CusPagination itemPerPage={productPerPage} totalItem={productData?.length} handlePage={handlePage} />
         </div>
     );
 };

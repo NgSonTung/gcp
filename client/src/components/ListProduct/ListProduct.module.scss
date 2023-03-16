@@ -47,11 +47,6 @@
             margin-top: 2rem;
             overflow-y: scroll;
             max-height: 200px;
-
-            .checkbox {
-                display: flex;
-                gap: 1rem;
-            }
         }
 
         .reset-btn {
@@ -63,4 +58,9 @@
 
     .list-product {
     }
+}
+
+.checkbox {
+    display: flex;
+    gap: 1rem;
 }
