@@ -19,9 +19,9 @@ app.use((req, res, next) => {
 });
 
 //method 3: mouting the router on a route
-const tourRouter = require("./routes/tour");
+// const tourRouter = require("./routes/tour");
 const productRouter = require("./routes/product");
 
-app.use("/api", tourRouter);
+// app.use("/api", tourRouter);
 app.use("/", productRouter);
 module.exports = app;
