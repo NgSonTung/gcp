@@ -3,7 +3,6 @@ const sql = require("mssql");
 const ProductSchema = require("../model/Product");
 const dbConfig = require("../database/dbconfig");
 const dbUtils = require("../utils/dbUtils");
-const { config } = require("dotenv");
 
 exports.getAllProducts = async () => {
   const result = await fetch("https://api.npoint.io/b53d5a76cc3848425069");
@@ -43,7 +42,7 @@ exports.addProductIfNotExisted = async (product) => {
 };
 
 exports.clearAll = async () => {
-  query = `delete product  DBCC CHECKIDENT ('[Product]', RESEED, 1);`;
+  query = `delete ${ProductSchema.schemaName}  DBCC CHECKIDENT ('[${ProductSchema.schemaName} ]', RESEED, 1);`;
   let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
 };

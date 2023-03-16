@@ -14,11 +14,12 @@ const UserDAO = require("../DAO/UserAccount");
 const FeatureDAO = require("../DAO/FeatureDAO");
 const RatingDAO = require("../DAO/RatingDAO");
 const CartDAO = require("../DAO/CartDAO");
+const SubImageDAO = require("../DAO/SubImageDAO");
 async function importDB() {
   const PRODUCT_FILE_PATH = "../data/products.json";
   const USER_FILE_PATH = "../data/users.json";
   const FEATURE_FILE_PATH = "../data/feature.json";
-  const RATING_FILE_PATH = "../data/rating.json";
+  const RATING_FILE_PATH = "../data/ratings.json";
   const CART_FILE_PATH = "../data/cart.json";
   const CARTPRODUCT_FILE_PATH = "../data/cartProduct.json";
   const SUBIMAGE_FILE_PATH = "../data/subImage.json";
@@ -27,7 +28,11 @@ async function importDB() {
   let users = JSON.parse(fs.readFileSync(USER_FILE_PATH, "utf-8"));
   let features = JSON.parse(fs.readFileSync(FEATURE_FILE_PATH, "utf-8"));
   let ratings = JSON.parse(fs.readFileSync(RATING_FILE_PATH, "utf-8"));
-
+  let carts = JSON.parse(fs.readFileSync(CART_FILE_PATH, "utf-8"));
+  let carts_Product = JSON.parse(
+    fs.readFileSync(CARTPRODUCT_FILE_PATH, "utf-8")
+  );
+  let imgs = JSON.parse(fs.readFileSync(SUBIMAGE_FILE_PATH, "utf-8"));
   //import product
   for (let i = 0; i < products.length; i++) {
     let product = products[i];
@@ -35,7 +40,7 @@ async function importDB() {
       await ProductDAO.addProductIfNotExisted(product);
       console.log("import product --- done!");
     } catch (error) {
-      console.log(product);
+      console.log("errr", product);
     }
   }
   //import users
@@ -45,7 +50,7 @@ async function importDB() {
       await UserDAO.addUserIfNotExisted(user);
       console.log("import user --- done!");
     } catch (error) {
-      console.log(user);
+      console.log("errr", user);
     }
   }
   // import feature
@@ -55,36 +60,72 @@ async function importDB() {
       await FeatureDAO.addFeatureIfNotExisted(feature);
       console.log("import feature --- done!");
     } catch (Error) {
-      console.log(feature);
+      console.log("errr", feature);
     }
   }
 
   // import rating
 
   for (let i = 0; i < ratings.length; i++) {
-    console.log(i);
     let rating = ratings[i];
+
     try {
       await RatingDAO.addRatingIfNotExisted(rating);
       console.log("import rating --- done!");
     } catch (Error) {
-      console.log(rating);
+      console.log("errr", rating);
     }
+  }
+  //import cart
+
+  for (let i = 0; i < carts.length; i++) {
+    let cart = carts[i];
+    try {
+      await CartDAO.addCartIfNotExisted(cart);
+      console.log("import cart --- done!");
+    } catch (Error) {
+      console.log("errr", cart);
+    }
+  }
+
+  for (let i = 0; i < carts_Product.length; i++) {
+    let item = carts_Product[i];
+    try {
+      await CartDAO.addCart_ProductIfNotExisted(item);
+      console.log("import carts_Product --- done!");
+    } catch (Error) {
+      console.log("errr", item);
+    }
+  }
+
+  for (let i = 0; i < imgs.length; i++) {
+    let img = imgs[i];
+    await SubImageDAO.addSubImageIfNotExisted(img);
+    // try {
+    //   console.log("import carts_Product --- done!");
+    // } catch (Error) {
+    //   console.log("errr", item);
+    // }
   }
 }
 
 async function dbClean() {
   await FeatureDAO.clearAll();
+  await RatingDAO.clearAll();
+  await SubImageDAO.clearAll();
+  await CartDAO.clearAllCart_Product();
+  await CartDAO.clearAllCart();
+  await UserDAO.clearAll();
   await ProductDAO.clearAll();
 }
 
-async function test() {
-  let tourStarDates = await TourStartDateDAO.getByTourId(1);
-  let tourImages = await TourImageDAO.getByTourId(1);
+// async function test() {
+//   let tourStarDates = await TourStartDateDAO.getByTourId(1);
+//   let tourImages = await TourImageDAO.getByTourId(1);
 
-  console.log(tourStarDates);
-  console.log(tourImages);
-}
+//   console.log(tourStarDates);
+//   console.log(tourImages);
+// }
 
 appPool
   .connect()
@@ -98,10 +139,11 @@ appPool
     } else if (process.argv[2] === "--import") {
       console.log("should import");
       await importDB();
-    } else if (process.argv[2] === "--test") {
-      await test();
     }
-    console.log("done!!!");
+    // else if (process.argv[2] === "--test") {
+    //   await test();
+    // }
+    console.log("ALL DONE !!!");
   })
   .catch(function (err) {
     console.error("Error creating db connection pool", err);

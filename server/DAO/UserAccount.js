@@ -28,3 +28,8 @@ exports.addUserIfNotExisted = async (user) => {
   let result = await request.query(query);
   return result.recordsets;
 };
+exports.clearAll = async () => {
+  query = `delete ${UserSchema.schemaName}  DBCC CHECKIDENT ('[${UserSchema.schemaName} ]', RESEED, 1);`;
+  let result = await dbConfig.db.pool.request().query(query);
+  return result.recordsets;
+};

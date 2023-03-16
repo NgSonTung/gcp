@@ -25,7 +25,7 @@ exports.addFeatureIfNotExisted = async (feature) => {
   return result.recordsets;
 };
 exports.clearAll = async () => {
-  query = `delete feature  DBCC CHECKIDENT ('[feature]', RESEED, 1);`;
+  query = `delete ${FeatureSchema.schemaName}  DBCC CHECKIDENT ('[${FeatureSchema.schemaName} ]', RESEED, 1);`;
   let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
 };
