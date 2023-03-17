@@ -41,6 +41,12 @@ exports.addProductIfNotExisted = async (product) => {
   return result.recordsets;
 };
 
+exports.clearAll = async () => {
+  query = `delete ${ProductSchema.schemaName}  DBCC CHECKIDENT ('[${ProductSchema.schemaName} ]', RESEED, 1);`;
+  let result = await dbconfig.db.pool.request().query(query);
+  return result.recordsets;
+};
+
 exports.getAllProducts = async (filter) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
