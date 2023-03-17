@@ -22,7 +22,7 @@ function Admin() {
                     <div className={cx('content-wrapper')}>
                         <UserAction />
                         <Search />
-                        <LinkPaginate itemsPerPage={4} data={data} />
+                        <LinkPaginate itemsPerPage={8} data={data} />
                     </div>
                 </div>
             </div>

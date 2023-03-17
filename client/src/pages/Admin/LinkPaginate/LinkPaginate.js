@@ -4,10 +4,8 @@ import ReactPaginate from 'react-paginate';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { faClose, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import CateTitle from '../CateTitle/CateTitle';
 import LinkItem from '../LinkItem/LinkItem';
-import { useDispatch, useSelector } from 'react-redux';
 import data from '~/data/products.json';
 
 const cx = classNames.bind(styles);
@@ -17,12 +15,9 @@ const LinkPaginate = (props) => {
     const [currentItems, setCurrentItems] = useState(null);
     const [itemOffset, setItemOffset] = useState(0);
     const [pageCount, setPageCount] = useState(0);
-    const [activeButton, setActiveButton] = useState(null);
     const [filteredArray, setFilteredArray] = useState(data);
 
     const { itemsPerPage } = props;
-
-    const dispatch = useDispatch();
 
     const updateItems = () => {
         const endOffset = itemOffset + itemsPerPage;
@@ -58,24 +53,16 @@ const LinkPaginate = (props) => {
     };
 
     // -------------
-    const handleButtonClick = (id) => {
-        setActiveButton(activeButton === id ? null : id);
-    };
 
     return (
         <div className={cx('wrapper')}>
             <CateTitle />
             <div className={cx('link-item-wrapper')}>
-                {currentItems?.map((item) => {
+                {currentItems?.map((item, index) => {
                     return (
-                        <LinkItem
-                            key={item.id}
-                            data={item}
-                            id={item.id}
-                            isActive={activeButton === item.id}
-                            onButtonClick={handleButtonClick}
-                            setActiveKey={setActiveButton}
-                        />
+                        <div key={index}>
+                            <LinkItem data={item} />
+                        </div>
                     );
                 })}
             </div>

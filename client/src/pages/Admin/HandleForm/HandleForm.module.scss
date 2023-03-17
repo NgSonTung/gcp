@@ -1,108 +1,76 @@
 .form-wrapper {
-    background-color: #fff;
+    z-index: 99999;
     position: fixed;
-    z-index: 999999;
-    width: 35%;
+    width: 100%;
     height: 100%;
     top: 0;
     right: 0;
     bottom: 0;
-    z-index: 2;
-    cursor: pointer;
-
-    .form-header {
-        padding: 1rem 2rem;
-        border-bottom: 1px solid #000000;
-        .text {
-            color: #1a6634;
-        }
+    display: flex;
+    ::-webkit-scrollbar {
+        display: none;
     }
-
-    .form-cate {
-        padding: 1rem 2rem;
-        .cate-title {
-            color: #343a40;
-            font-weight: 700;
-            font-size: 1.6rem;
+    .form-background {
+        width: 50%;
+        height: 100%;
+    }
+    .form {
+        background-color: #0e0e0ea9;
+        height: 100%;
+        width: 50%;
+        padding: 5rem 5rem;
+        // display: flex;
+        // flex-direction: column;
+        overflow-y: scroll;
+        .label {
+            color: white;
+            padding: 1rem 0;
         }
 
-        .radio-wrapper {
-            display: flex;
-            gap: 1rem;
+        .check-box-label {
+            padding: 1rem 1rem 0.5rem 0;
         }
 
-        .form-inputs {
+        .id-input {
+            background-color: #aeaeae !important;
+        }
+        .input {
+            background-color: #f0f0f0;
+            margin: 1px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            width: 100%;
+            height: 5rem;
+            border-radius: 10rem;
+        }
+        .button-wrapper {
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            padding-top: 1rem;
-
-            .description-input {
-                .title {
-                    color: #343a40;
-                    font-weight: 700;
-                    font-size: 1.6rem;
-                }
-
-                input {
-                    border: 1px solid #dbdee7;
-                    width: 100%;
-                    padding: 1rem;
-                }
+            gap: 3rem;
+            margin-top: 2rem;
+            .button:hover {
+                opacity: 0.8;
             }
-
-            .old_link-input {
-                .title {
-                    color: #343a40;
-                    font-weight: 700;
-                    font-size: 1.6rem;
-                }
-
-                input {
-                    border: 1px solid #dbdee7;
-                    width: 100%;
-                    padding: 3rem 1rem;
-                }
+            .add-button {
+                width: 100%;
+                height: 5rem;
+                background-color: #ed6a5e;
+                color: white;
+                font-weight: 500;
+                border-radius: 10rem;
             }
-
-            .new_link-input {
-                .title {
-                    color: #343a40;
-                    font-weight: 700;
-                    font-size: 1.6rem;
-                }
-
-                input {
-                    border: 1px solid #dbdee7;
-                    width: 100%;
-                    padding: 3rem 1rem;
-                }
+            .update-button {
+                width: 100%;
+                height: 5rem;
+                background-color: black;
+                color: white;
+                border-radius: 10rem;
             }
-
-            .form-submit {
-                display: flex;
-                gap: 1rem;
-
-                .close-btn {
-                    background-color: #ffffff;
-                    color: #1a6634;
-                }
-
-                .update-btn {
-                    background-color: #1a6634;
-                    color: white;
-                }
-
-                .close-btn,
-                .update-btn {
-                    padding: 1rem 1.5rem;
-                    width: 10rem;
-                    border-radius: 0.2rem;
-                    font-weight: 600;
-                    font-size: 1.3rem;
-                    box-shadow: 5px 10px 18px #f0e9e9;
-                    cursor: pointer;
-                }
+            .delete-button {
+                width: 100%;
+                height: 5rem;
+                background-color: black;
+                color: white;
+                border-radius: 10rem;
             }
         }
     }

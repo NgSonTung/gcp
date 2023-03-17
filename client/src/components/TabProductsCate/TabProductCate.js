@@ -4,16 +4,16 @@ import { useState } from 'react';
 import { Box, Tab } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import ProductSlider from '../ProductSlider/ProductSlider';
-import data from '~/data/products.json';
+import data from '~/data/data.json';
 
 const cx = classNames.bind(styles);
-const favData = data.filter((item) => item.favorite === true);
-const unfavData = data.filter((item) => item.brand === 'samsung');
+const laptop = data.filter((item) => item.category === 'laptop');
+const samsung = data.filter((item) => item.brand === 'samsung');
 const apple = data.filter((item) => item.brand === 'apple');
 
 const tabTitle = [
-    { title: 'Sản phẩm mới', products: favData },
-    { title: 'Sản phẩm nổi bật', products: unfavData },
+    { title: 'Sản phẩm nổi bật', products: laptop },
+    { title: 'Sản phẩm mới', products: samsung },
     { title: 'Khuyến mãi', products: apple },
 ];
 
