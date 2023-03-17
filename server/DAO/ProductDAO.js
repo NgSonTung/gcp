@@ -52,7 +52,7 @@ exports.getAllProducts = async (filter) => {
     selectQuery += filterStr;
   }
   let request = dbConfig.db.pool.request();
-  console.log(selectQuery);
+  // console.log(selectQuery);
   const result = await request.query(selectQuery);
   // let countResult = await dbConfig.db.pool.request().query(countQuery);
   return result.recordsets[0];

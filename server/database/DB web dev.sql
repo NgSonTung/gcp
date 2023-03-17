@@ -1,4 +1,4 @@
---create database PhoneShop
+drop database PhoneShop
 
 use PhoneShop
 go
@@ -12,6 +12,7 @@ create table Product
 	brand varchar(100) not null,
 	price float not null,
 	category varchar(100) not null,
+	image nvarchar(max),
 	sale nvarchar(100) ,
 	description nvarchar(max)
 )
@@ -72,4 +73,11 @@ create table Feature
 	productID int constraint FK_Feature_Product  references Product(productID)
 )
 go 
--- select * from Product
+
+select * from Product
+select * from feature
+select * from rating
+select * from Subimg
+select * from Cart
+select * from Cart_Product
+select * from Users

@@ -51,6 +51,21 @@ exports.addCart_ProductIfNotExisted = async (cart_Product) => {
   let result = await request.query(query);
   return result.recordsets;
 };
+
+exports.getProductInCart = async () => {
+  const dbPool = dbConfig.db.pool;
+  if (!dbPool) {
+    throw new Error("Not connected to db");
+  }
+
+  const query = `select p.*,cp.amount from product p inner join cart_product cp on cp.productID = p.productID
+  `;
+  // console.log(query);
+  let result = await dbPool.request().query(query);
+  // console.log(result.recordsets);
+  return result.recordsets[0];
+};
+
 exports.clearAllCart_Product = async () => {
   query = `delete ${Cart_ProductSchema.schemaName} ;`;
   let result = await dbConfig.db.pool.request().query(query);

@@ -40,6 +40,11 @@ const ProductSchema = new ModelSchema(
       sqlType: sql.VarChar,
       require: true,
     }),
+    image: new ModelSchemaValidator({
+      name: "image",
+      sqlType: sql.NVarChar,
+      require: true,
+    }),
     sale: new ModelSchemaValidator({
       name: "sale",
       sqlType: sql.NVarChar,

@@ -10,7 +10,7 @@ const cx = classNames.bind(style);
 
 const ItemInCart = (props) => {
     const { product } = props;
-    const [number, setNumber] = useState(product.qty);
+    const [number, setNumber] = useState(product.amount);
     const dispatch = useDispatch();
     useEffect(() => {
         // if (number < 1) {
@@ -35,7 +35,7 @@ const ItemInCart = (props) => {
         }
     };
     const handleBlur = (e) => {
-        const newValue = parseInt(e.target.value)
+        const newValue = parseInt(e.target.value);
         if (newValue < 1) {
             setNumber(1);
         } else if (newValue > 99) {
