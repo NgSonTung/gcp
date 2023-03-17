@@ -43,7 +43,7 @@ exports.addProductIfNotExisted = async (product) => {
 
 exports.clearAll = async () => {
   query = `delete ${ProductSchema.schemaName}  DBCC CHECKIDENT ('[${ProductSchema.schemaName} ]', RESEED, 1);`;
-  let result = await dbconfig.db.pool.request().query(query);
+  let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
 };
 
