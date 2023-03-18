@@ -7,8 +7,10 @@ const initialState = {
 const CartReducer = (state = initialState, action) => {
     const product = action.payload;
     const updateInCart = async (url, productUpdated) => {
-        let result = await FetchFn.updateProductInCart(url, productUpdated);
-        return result;
+        await FetchFn.updateProductInCart(url, productUpdated);
+    };
+    const deleteInCart = async (url) => {
+        await FetchFn.deleteProductInCart(url);
     };
     switch (action.type) {
         case 'ADD_TO_CART': {
@@ -37,9 +39,12 @@ const CartReducer = (state = initialState, action) => {
         }
         case 'DELETE_FROM_CART': {
             const newCart = state.cartItem;
-            const index = newCart.findIndex((p) => p.id === product.id);
+            const index = newCart.findIndex((p) => p.productID === product.productID);
+            let url = action.url;
+            url += `/${newCart[index].productID}`;
             newCart.splice(index, 1);
             const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
+            deleteInCart(url);
 
             return {
                 ...state,
@@ -56,7 +61,6 @@ const CartReducer = (state = initialState, action) => {
             });
             const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
             const productChange = newCart.find((p) => p.productID === product.productID);
-            console.log(productChange);
             updateInCart(action.url, productChange);
             return {
                 ...state,

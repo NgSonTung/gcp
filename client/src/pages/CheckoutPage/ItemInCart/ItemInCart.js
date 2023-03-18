@@ -10,31 +10,34 @@ const cx = classNames.bind(style);
 
 const ItemInCart = (props) => {
     const { product } = props;
-    const [number, setNumber] = useState(product.amount);
-    const [load, setLoad] = useState(false);
+    const [number, setNumber] = useState();
     const dispatch = useDispatch();
-
+    // console.log('product', product);
+    console.log('product.amount.number1', number);
     useEffect(() => {
-        if (load) {
-            product.amount = number;
-            const action = {
-                type: 'CHANGE_AMOUNT',
-                payload: product,
-                url: 'http://localhost:3001/checkout',
-            };
-            dispatch(action);
-        } else {
-            setLoad(true);
-        }
-    }, [number]);
+        setNumber(product.amount);
+        console.log('product.amount.number2', number);
+    }, [product]);
+
+    const updateCart = (n) => {
+        product.amount = n;
+        const action = {
+            type: 'CHANGE_AMOUNT',
+            payload: product,
+            url: 'http://localhost:3001/checkout',
+        };
+        dispatch(action);
+    };
+
     //handler
     const handleIncrease = () => {
         number < 99 && setNumber(number + 1);
+        updateCart(number + 1);
     };
     const handleDecrease = () => {
-        if (number > 1) {
-            setNumber(number - 1);
-        }
+        number > 1 && setNumber(number - 1);
+
+        updateCart(number - 1);
     };
     const handleBlur = (e) => {
         const newValue = parseInt(e.target.value);
@@ -44,12 +47,14 @@ const ItemInCart = (props) => {
             setNumber(99);
         } else {
             setNumber(newValue);
+            updateCart(newValue);
         }
     };
     const handleClick = () => {
         const action = {
             type: 'DELETE_FROM_CART',
             payload: product,
+            url: 'http://localhost:3001/checkout',
         };
         dispatch(action);
     };

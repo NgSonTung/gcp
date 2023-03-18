@@ -31,7 +31,15 @@ export const updateProductInCart = (url, cart_product) => {
     if (url === '') {
         url = 'http://localhost:3001/';
     }
-    return axios.post(url, cart_product).then((res) => {
+    return axios.patch(url, cart_product).then((res) => {
+        console.log(res);
+    });
+};
+export const deleteProductInCart = (url) => {
+    if (url === '') {
+        url = 'http://localhost:3001/';
+    }
+    return axios.delete(url).then((res) => {
         console.log(res);
     });
 };
