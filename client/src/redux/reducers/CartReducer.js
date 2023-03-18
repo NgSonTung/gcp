@@ -1,3 +1,4 @@
+import * as FetchFn from '~/functions/Fetch';
 const initialState = {
     cartItem: [],
     total: 0,
@@ -5,6 +6,10 @@ const initialState = {
 
 const CartReducer = (state = initialState, action) => {
     const product = action.payload;
+    const updateInCart = async (url, productUpdated) => {
+        let result = await FetchFn.updateProductInCart(url, productUpdated);
+        return result;
+    };
     switch (action.type) {
         case 'ADD_TO_CART': {
             const productExists = state.cartItem.some((p) => p.id === product.id);
@@ -43,10 +48,16 @@ const CartReducer = (state = initialState, action) => {
             };
         }
         case 'CHANGE_AMOUNT': {
-            const newCart = state.cartItem;
-            const index = newCart.findIndex((p) => p.id === product.id);
-            newCart[index].amount = product.amount;
+            const newCart = state.cartItem.map((p) => {
+                if (p.productID === product.productID) {
+                    return { ...p, amount: product.amount };
+                }
+                return p;
+            });
             const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
+            const productChange = newCart.find((p) => p.productID === product.productID);
+            console.log(productChange);
+            updateInCart(action.url, productChange);
             return {
                 ...state,
                 cartItem: [...newCart],
@@ -55,7 +66,6 @@ const CartReducer = (state = initialState, action) => {
         }
         case 'LOAD_DEFAULT_CART_FROM_DB': {
             const newCart = [...product];
-            console.log('newCart', newCart);
             const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
             return {
                 ...state,
@@ -64,7 +74,7 @@ const CartReducer = (state = initialState, action) => {
             };
         }
         default: {
-            return { ...state };
+            return state;
         }
     }
 };
