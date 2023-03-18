@@ -1,22 +1,69 @@
 import classNames from 'classnames/bind';
 import styles from './HandleForm.module.scss';
+import { useState, useRef } from 'react';
+import { deleteProductById, addProduct, updateProductById } from '~/functions/Fetch';
 
 const cx = classNames.bind(styles);
 
 const HandleForm = ({ data, setShowEditForm }) => {
+    const formRef = useRef();
+
+    const HandleAddProduct = () => {
+        const currentForm = formRef.current;
+        const product = {
+            stock: Number(currentForm.stock.value),
+            name: currentForm.name.value,
+            image: currentForm.image.value,
+            favorite: currentForm.favorite.value === 'on' ? 1 : 0,
+            brand: currentForm.brand.value,
+            price: Number(currentForm.price.value),
+            category: currentForm.category.value,
+            description: currentForm.description.value,
+            sale: currentForm.sale.value,
+        };
+        const msgPromise = addProduct(product);
+        msgPromise.then((msg) => {
+            alert(msg);
+        });
+    };
+    const HandleUpdateProduct = () => {
+        const currentForm = formRef.current;
+        const product = {
+            stock: Number(currentForm.stock.value),
+            name: currentForm.name.value,
+            image: currentForm.image.value,
+            favorite: currentForm.favorite.value === 'on' ? 1 : 0,
+            brand: currentForm.brand.value,
+            price: Number(currentForm.price.value),
+            category: currentForm.category.value,
+            description: currentForm.description.value,
+            sale: currentForm.sale.value,
+        };
+        const msgPromise = updateProductById(Number(currentForm.productID.value), product);
+        msgPromise.then((msg) => {
+            alert(msg);
+        });
+    };
+    const HandleDeleteProduct = (id) => {
+        const msgPromise = deleteProductById(id);
+        msgPromise.then((msg) => {
+            alert(msg);
+        });
+    };
+
     return (
         <div className={cx('form-wrapper')}>
             <div onClick={() => setShowEditForm(false)} className={cx('form-background')} />
-            <form className={cx('form')}>
-                <label className={cx('label')} htmlFor="productId">
+            <form ref={formRef} className={cx('form')}>
+                <label className={cx('label')} htmlFor="productID">
                     Product ID:
                 </label>
                 <input
                     className={cx('input', 'id-input')}
-                    defaultValue={data.productId}
+                    defaultValue={data.productID}
                     type="number"
-                    id="productId"
-                    name="productId"
+                    id="productID"
+                    name="productID"
                     placeholder="vd:101"
                     required
                     readOnly
@@ -129,13 +176,21 @@ const HandleForm = ({ data, setShowEditForm }) => {
                     placeholder="vd:laptop nay cuc manh "
                 />
                 <div className={cx('button-wrapper')}>
-                    <button className={cx('add-button', 'button')} type="submit">
+                    <button className={cx('add-button', 'button')} onClick={() => HandleAddProduct()} type="button">
                         THÊM
                     </button>
-                    <button className={cx('update-button', 'button')} type="submit">
+                    <button
+                        className={cx('update-button', 'button')}
+                        type="button"
+                        onClick={() => HandleUpdateProduct()}
+                    >
                         SỬA
                     </button>
-                    <button className={cx('delete-button', 'button')} type="submit">
+                    <button
+                        className={cx('delete-button', 'button')}
+                        onClick={() => HandleDeleteProduct(data.productID)}
+                        type="button"
+                    >
                         XÓA
                     </button>
                 </div>
