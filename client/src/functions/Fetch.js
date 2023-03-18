@@ -13,6 +13,7 @@ export const getAllProducts = (url) => {
         })
         .catch((err) => console.log(err));
 };
+
 export const getProductInCart = (url) => {
     if (url === '') {
         url = 'http://localhost:3001/';
@@ -25,4 +26,40 @@ export const getProductInCart = (url) => {
             return res.data.data;
         })
         .catch((err) => console.log(err));
+};
+
+export const deleteProductById = (id) => {
+    return axios
+        .delete(id)
+        .then((res) => {
+            return res.data.msg;
+        })
+        .catch((err) => {
+            return err.response.data.msg;
+        });
+};
+
+export const addProduct = (product) => {
+    return axios
+        .post('/', product)
+        .then((res) => {
+            return res.data.msg;
+        })
+        .catch((err) => {
+            return err.response.data.msg;
+        });
+};
+
+export const updateProductById = (id, product) => {
+    console.log(product);
+    return axios
+        .patch(id, product)
+        .then((res) => {
+            // console.log(res.status);
+            return res.data.msg;
+        })
+        .catch((err) => {
+            // console.log(err.response.status);
+            return err.response.data.msg;
+        });
 };

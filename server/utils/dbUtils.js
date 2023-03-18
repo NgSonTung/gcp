@@ -156,7 +156,6 @@ exports.getUpdateQuery = (schema, request, update) => {
   }
 
   let updateStr = "";
-
   for (let fieldName in update) {
     const schemaProp = schema[fieldName];
     if (schemaProp) {
@@ -168,7 +167,13 @@ exports.getUpdateQuery = (schema, request, update) => {
           updateStr += fieldName + " = @" + fieldName + ",";
         }
       } else {
-        throw new Error("Invalid data at field: " + fieldName + ". " + err);
+        throw new Error(
+          "Invalid data at field: " +
+            fieldName +
+            ". " +
+            err +
+            schema["productID"].validate(1).err
+        );
       }
     }
   }

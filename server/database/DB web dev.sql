@@ -79,13 +79,14 @@ go
 
 CREATE TRIGGER tr_product_delete
 ON product
-AFTER DELETE
+INSTEAD OF DELETE
 AS
 BEGIN
-    DELETE FROM rating WHERE productID IN (SELECT deleted.productID FROM deleted);
-    DELETE FROM feature WHERE productID IN (SELECT deleted.productID FROM deleted);
-    DELETE FROM cart_product WHERE productID IN (SELECT deleted.productID FROM deleted);
-    DELETE FROM subImg WHERE productID IN (SELECT deleted.productID FROM deleted);
+    DELETE FROM rating WHERE productID = (SELECT deleted.productID FROM deleted);
+    DELETE FROM feature WHERE productID = (SELECT deleted.productID FROM deleted);
+    DELETE FROM cart_product WHERE productID = (SELECT deleted.productID FROM deleted);
+    DELETE FROM subImg WHERE productID = (SELECT deleted.productID FROM deleted);
+    DELETE FROM product WHERE productID = (SELECT deleted.productID FROM deleted);
 END;
 go
 
