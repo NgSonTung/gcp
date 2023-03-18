@@ -6,21 +6,39 @@ import HomeProductBestSale from './HomeProductBestSale/index';
 import SliderBanner from './SliderBanner/index';
 import TabProductCate from '~/components/TabProductsCate/TabProductCate';
 import { useState, useEffect } from 'react';
+import { getProductInCart } from '~/functions/Fetch';
+import { useDispatch, useSelector } from 'react-redux';
+
 const cx = classNames.bind(styles);
 
 function Home() {
     const [products, setProducts] = useState();
+    const dispatch = useDispatch();
+
     useEffect(() => {
         fectchingProducts();
-        console.log(products);
+        getDataOfCart();
+        // console.log(products);
     }, []);
 
     const fectchingProducts = async () => {
         const fectchedData = await fetch('http://localhost:3001/');
         const result = await fectchedData.json();
         setProducts(result.data.products);
-        console.log(result);
+        // console.log(result);
     };
+    const getDataOfCart = async () => {
+        const url = 'http://localhost:3001/checkout';
+        let result = await getProductInCart(url);
+        if (result) {
+            const action = {
+                type: 'LOAD_DEFAULT_CART_FROM_DB',
+                payload: result.result,
+            };
+            dispatch(action);
+        }
+    };
+
     return (
         <div className={cx('wrapper')}>
             <SliderBanner />
@@ -30,7 +48,7 @@ function Home() {
             <HomeProductBestSale cate={'phone'} srcImgBanner={require('~/assets/images/anh-sale-tet.png')} />
             <HomeProductBestSale cate={'laptop'} srcImgBanner={require('~/assets/images/phu-kien-hot.png')} />
             {products?.map((item, index) => (
-                <p>{item.name}</p>
+                <p key={index}>{item.name}</p>
             ))}
         </div>
     );

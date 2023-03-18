@@ -11,19 +11,21 @@ const cx = classNames.bind(style);
 const ItemInCart = (props) => {
     const { product } = props;
     const [number, setNumber] = useState(product.amount);
+    const [load, setLoad] = useState(false);
     const dispatch = useDispatch();
+
     useEffect(() => {
-        // if (number < 1) {
-        //     setNumber(1);
-        // } else if (number > 99) {
-        //     setNumber(99);
-        // }
-        product.qty = number;
-        const action = {
-            type: 'CHANGE_QTY',
-            payload: product,
-        };
-        dispatch(action);
+        if (load) {
+            product.amount = number;
+            const action = {
+                type: 'CHANGE_AMOUNT',
+                payload: product,
+                url: 'http://localhost:3001/checkout',
+            };
+            dispatch(action);
+        } else {
+            setLoad(true);
+        }
     }, [number]);
     //handler
     const handleIncrease = () => {

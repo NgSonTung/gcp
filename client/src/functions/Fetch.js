@@ -7,8 +7,8 @@ export const getAllProducts = (url) => {
     return axios
         .get(url)
         .then((res) => {
-            console.log(url);
-            console.log(res.data);
+            // console.log(url);
+            // console.log(res.data);
             return res.data;
         })
         .catch((err) => console.log(err));
@@ -62,4 +62,13 @@ export const updateProductById = (id, product) => {
             // console.log(err.response.status);
             return err.response.data.msg;
         });
+};
+
+export const updateProductInCart = (url, cart_product) => {
+    if (url === '') {
+        url = 'http://localhost:3001/';
+    }
+    return axios.post(url, cart_product).then((res) => {
+        console.log(res);
+    });
 };
