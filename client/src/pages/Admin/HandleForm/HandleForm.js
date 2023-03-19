@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './HandleForm.module.scss';
 import { useState, useRef } from 'react';
-import { deleteProductById, addProduct, updateProductById } from '~/functions/Fetch';
+import { deleteProductById, addProduct, updateProductById } from '~/functions/ProductFetch';
 
 const cx = classNames.bind(styles);
 

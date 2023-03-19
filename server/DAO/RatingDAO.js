@@ -32,18 +32,35 @@ exports.clearAll = async () => {
   return result.recordsets;
 };
 
-exports.createNewProduct = async (product) => {
+exports.getRatingByProductId = async (id) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
-  if (!product) {
+  let request = dbConfig.db.pool.request();
+  let result = await request
+    .input(
+      `${RatingSchema.schema.productID.name}`,
+      RatingSchema.schema.productID.sqlType,
+      id
+    )
+    .query(
+      `select * from ${RatingSchema.schemaName} where ${RatingSchema.schema.productID.name} = @${RatingSchema.schema.productID.name}`
+    );
+  return result.recordsets[0][0];
+};
+
+exports.createNewRating = async (rating) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  if (!rating) {
     throw new Error("Invalid input param");
   }
-  let insertData = ProductSchema.validateData(product);
-  let query = `insert into ${ProductSchema.schemaName}`;
+  let insertData = RatingSchema.validateData(rating);
+  let query = `insert into ${RatingSchema.schemaName}`;
   const { request, insertFieldNamesStr, insertValuesStr } =
     dbUtils.getInsertQuery(
-      ProductSchema.schema,
+      RatingSchema.schema,
       dbConfig.db.pool.request(),
       insertData
     );

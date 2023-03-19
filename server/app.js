@@ -22,7 +22,9 @@ app.use((req, res, next) => {
 // const tourRouter = require("./routes/tour");
 const productRouter = require("./routes/product");
 const cartRouter = require("./routes/cart");
+const ratingRouter = require("./routes/rating");
 // app.use("/api", tourRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/checkout", cartRouter);
+app.use("/api/v1/rating", ratingRouter);
 module.exports = app;

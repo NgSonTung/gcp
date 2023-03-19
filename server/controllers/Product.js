@@ -28,7 +28,7 @@ exports.getProductById = async (req, res) => {
     }
     return res.status(200).json({
       code: 200,
-      msg: `Get product with id ${id} successfully!`,
+      msg: `Got product with id ${id} successfully!`,
       data: {
         product,
       },
