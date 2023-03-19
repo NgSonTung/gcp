@@ -5,7 +5,7 @@ const router = express.Router();
 router
   .route("/")
   .get(cartController.getProductInCart)
-  .patch(cartController.updateProductInCart);
-
+  .patch(cartController.updateProductInCart)
+  .post(cartController.insertProductToCart);
 router.route("/:productID").delete(cartController.deleteProductInCart);
 module.exports = router;
