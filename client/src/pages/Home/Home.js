@@ -28,7 +28,7 @@ function Home() {
         // console.log(result);
     };
     const getDataOfCart = async () => {
-        const url = 'http://localhost:3001/checkout';
+        const url = 'http://localhost:3001/api/v1/checkout';
         let result = await getProductInCart(url);
         if (result) {
             const action = {

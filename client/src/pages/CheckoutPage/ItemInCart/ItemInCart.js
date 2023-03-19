@@ -13,10 +13,8 @@ const ItemInCart = (props) => {
     const [number, setNumber] = useState();
     const dispatch = useDispatch();
     // console.log('product', product);
-    console.log('product.amount.number1', number);
     useEffect(() => {
         setNumber(product.amount);
-        console.log('product.amount.number2', number);
     }, [product]);
 
     const updateCart = (n) => {
@@ -54,7 +52,7 @@ const ItemInCart = (props) => {
         const action = {
             type: 'DELETE_FROM_CART',
             payload: product,
-            url: 'http://localhost:3001/checkout',
+            url: 'http://localhost:3001/api/v1/checkout',
         };
         dispatch(action);
     };

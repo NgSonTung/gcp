@@ -229,7 +229,7 @@ export const ListProduct = (props) => {
                                                     <BuyButton
                                                         srcImg={item?.image}
                                                         dataHover={widthWindow < 1060 ? `Thêm` : 'Thêm vào giỏ hàng'}
-                                                        productId={item?.productId}
+                                                        productID={item?.productID}
                                                     />
                                                 </div>
                                             </Col>
