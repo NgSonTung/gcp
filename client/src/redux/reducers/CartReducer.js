@@ -1,4 +1,4 @@
-import * as FetchFn from '~/functions/Fetch';
+import * as CartFetch from '~/functions/CartFetch';
 const initialState = {
     cartItem: [],
     total: 0,
@@ -7,13 +7,13 @@ const initialState = {
 const CartReducer = (state = initialState, action) => {
     const product = action.payload;
     const updateInCart = async (url, productUpdated) => {
-        await FetchFn.updateProductInCart(url, productUpdated);
+        await CartFetch.updateProductInCart(url, productUpdated);
     };
     const deleteInCart = async (url) => {
-        await FetchFn.deleteProductInCart(url);
+        await CartFetch.deleteProductInCart(url);
     };
     const insertInCart = async (url, productInserted) => {
-        await FetchFn.insertProductToCart(url, productInserted);
+        await CartFetch.insertProductToCart(url, productInserted);
     };
     switch (action.type) {
         case 'ADD_TO_CART': {
@@ -21,13 +21,19 @@ const CartReducer = (state = initialState, action) => {
             console.log(' ADD_TO_CART', product);
             if (!productExists) {
                 console.log('not productExists');
+
                 product.amount = 1;
                 const newCart = [...state.cartItem, product];
                 const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
-                console.log('not productExists newCart', newCart);
-                console.log('not productExists totalPrice', totalPrice);
-
-                insertInCart(action.url, product);
+                if (!product.cartID) {
+                    product.cartID = 2;
+                    //tam thoi tai chua co phan quyen
+                    //--> neu dung la neu user khong login thi k gui data cart len db
+                    console.log(product);
+                    insertInCart(action.url, product);
+                } else {
+                    insertInCart(action.url, product);
+                }
                 return {
                     ...state,
                     cartItem: [...newCart],

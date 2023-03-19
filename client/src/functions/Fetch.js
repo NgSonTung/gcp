@@ -79,11 +79,3 @@ export const deleteProductInCart = (url) => {
         console.log(res);
     });
 };
-export const insertProductToCart = (url = '', cart_product) => {
-    if (url === '') {
-        url = 'http://localhost:3001/api/v1/checkout/';
-    }
-    return axios.post(url, cart_product).then((res) => {
-        console.log(res);
-    });
-};
