@@ -12,11 +12,15 @@ const CartReducer = (state = initialState, action) => {
     const deleteInCart = async (url) => {
         await FetchFn.deleteProductInCart(url);
     };
+    const insertInCart = async (url, productInserted) => {
+        await FetchFn.insertProductToCart(url, productInserted);
+    };
     switch (action.type) {
         case 'ADD_TO_CART': {
-            const productExists = state.cartItem.some((p) => p.id === product.id);
+            const productExists = state.cartItem.some((p) => p.productID === product.productID);
             if (!productExists) {
                 product.amount = 1;
+                insertInCart(action.url, product);
                 return {
                     ...state,
                     cartItem: [...state.cartItem, product],
@@ -24,12 +28,14 @@ const CartReducer = (state = initialState, action) => {
                 };
             } else {
                 const newCart = state.cartItem;
-                const Index = newCart.findIndex((p) => p.id === product.id);
+                const Index = newCart.findIndex((p) => p.productID === product.productID);
                 if (newCart[Index].amount === undefined) {
                     newCart[Index].amount = 1;
                 } else {
                     newCart[Index].amount += 1;
                 }
+                const productChange = newCart[Index];
+                updateInCart(action.url, productChange);
                 const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
                 return {
                     cartItem: [...newCart],
