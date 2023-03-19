@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getAllProducts = (url) => {
     if (url === '') {
-        url = 'http://localhost:3001/?';
+        url = 'http://localhost:3001/api/v1/product/?';
     }
     return axios
         .get(url)
@@ -16,7 +16,7 @@ export const getAllProducts = (url) => {
 
 export const getProductInCart = (url) => {
     if (url === '') {
-        url = 'http://localhost:3001/';
+        url = 'http://localhost:3001/api/v1/checkout/';
     }
     return axios
         .get(url)
@@ -30,7 +30,7 @@ export const getProductInCart = (url) => {
 
 export const deleteProductById = (id) => {
     return axios
-        .delete(id)
+        .delete(`product/${id}`)
         .then((res) => {
             return res.data.msg;
         })
@@ -41,7 +41,7 @@ export const deleteProductById = (id) => {
 
 export const addProduct = (product) => {
     return axios
-        .post('/', product)
+        .post(`product/`, product)
         .then((res) => {
             return res.data.msg;
         })
@@ -51,9 +51,8 @@ export const addProduct = (product) => {
 };
 
 export const updateProductById = (id, product) => {
-    console.log(product);
     return axios
-        .patch(id, product)
+        .patch(`product/${id}`, product)
         .then((res) => {
             // console.log(res.status);
             return res.data.msg;

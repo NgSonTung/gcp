@@ -1,6 +1,7 @@
 const RatingSchema = require("../model/Rating");
 const dbconfig = require("../database/dbconfig");
 const dbUtils = require("../utils/dbUtils");
+
 exports.addRatingIfNotExisted = async (rating) => {
   const dbPool = dbconfig.db.pool;
   if (!dbPool) {
@@ -24,8 +25,30 @@ exports.addRatingIfNotExisted = async (rating) => {
   let result = await request.query(query);
   return result.recordsets;
 };
+
 exports.clearAll = async () => {
   query = `delete ${RatingSchema.schemaName}  DBCC CHECKIDENT ('[${RatingSchema.schemaName} ]', RESEED, 1);`;
   let result = await dbconfig.db.pool.request().query(query);
+  return result.recordsets;
+};
+
+exports.createNewProduct = async (product) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  if (!product) {
+    throw new Error("Invalid input param");
+  }
+  let insertData = ProductSchema.validateData(product);
+  let query = `insert into ${ProductSchema.schemaName}`;
+  const { request, insertFieldNamesStr, insertValuesStr } =
+    dbUtils.getInsertQuery(
+      ProductSchema.schema,
+      dbConfig.db.pool.request(),
+      insertData
+    );
+  query += " (" + insertFieldNamesStr + ") values (" + insertValuesStr + ")";
+  // console.log(query);
+  let result = await request.query(query);
   return result.recordsets;
 };
