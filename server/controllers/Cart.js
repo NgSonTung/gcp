@@ -1,15 +1,75 @@
 const CartDAO = require("../DAO/CartDAO");
 
 exports.getProductInCart = async (req, res) => {
-  console.log(req.query);
+  try {
+    let result = await CartDAO.getProductInCart();
+    res.status(200).json({
+      code: 200,
+      msg: "OK",
+      data: {
+        result,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      code: 404,
+      msg: "FAIL",
+    });
+  }
+};
+exports.insertProductToCart = async (req, res) => {
+  // console.log(req.body);
+  let result = await CartDAO.addCart_ProductIfNotExisted(req.body);
+  try {
+    res.status(200).json({
+      code: 200,
+      msg: "OK",
+      data: {
+        result,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      code: 404,
+      msg: "FAIL",
+    });
+  }
+};
 
-  let result = await CartDAO.getProductInCart();
-  console.log(result);
-  res.status(200).json({
-    code: 200,
-    msg: "OK",
-    data: {
-      result,
-    },
-  });
+exports.updateProductInCart = async (req, res) => {
+  // console.log(req.body);
+  try {
+    let result = await CartDAO.updateCart(req.body);
+    res.status(200).json({
+      code: 200,
+      msg: "OK",
+      data: {
+        result,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      code: 404,
+      msg: "FAIL",
+    });
+  }
+};
+
+exports.deleteProductInCart = async (req, res) => {
+  const productID = req.params.productID;
+  try {
+    let result = await CartDAO.deleteItemInCart(productID);
+    res.status(200).json({
+      code: 200,
+      msg: "OK",
+      data: {
+        result,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      code: 404,
+      msg: "FAIL",
+    });
+  }
 };

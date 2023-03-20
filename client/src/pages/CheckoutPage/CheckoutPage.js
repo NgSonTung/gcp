@@ -1,40 +1,17 @@
-import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import style from './CheckoutPage.module.scss';
 import { Col, Container, Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ItemInCart from './ItemInCart/index';
 import { fortmatCurrency } from '~/utils/FormatCurrency.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFaceSmile, faFaceSmileWink } from '@fortawesome/free-solid-svg-icons';
-import { getProductInCart } from '~/functions/Fetch';
+import { faFaceSmileWink } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(style);
 const CheckoutPage = () => {
     const cartItem = useSelector((state) => state.CartReducer);
-    const dispatch = useDispatch();
-    const [data, setData] = useState([]);
     // useEffect(() => {}, [cartItem]);
     // console.log('cartItem.total', cartItem.total);
-    // console.log('cartItem', cartItem);
-    const getData = async () => {
-        const url = 'http://localhost:3001/checkout';
-        let result = await getProductInCart(url);
-        console.log('result.result', result.result);
-        setData(result.result);
-    };
-    useEffect(() => {
-        getData();
-    }, []);
-    useEffect(() => {
-        console.log('cartitem', [...data]);
-        const action = {
-            type: 'LOAD_DEFAULT_CART_FROM_DB',
-            payload: data,
-        };
-        dispatch(action);
-    }, [data]);
-
     return (
         <div className={cx('check-out-warpper')}>
             <Container className={cx('container-check-out')}>

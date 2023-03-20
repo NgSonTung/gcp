@@ -1,13 +1,16 @@
 import classNames from 'classnames/bind';
 import styles from './HomeProductBestSale.module.scss';
 import ProductBestSale from '~/components/ProductBestSale/index';
-import dataBestSale from '~/data/products.json';
 import NavTitle from '~/components/NavTitle/index';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-function HomeProductBestSale({ cate, srcImgBanner }) {
-    const product = dataBestSale.filter((item) => item.category === cate);
+function HomeProductBestSale(props) {
+    const { cate, srcImgBanner } = props;
+    const data = useSelector((state) => state.ProductReducer);
+    console.log(data);
+    const product = data.product.filter((item) => item.category === cate);
     const navItems = [
         {
             id: 1,

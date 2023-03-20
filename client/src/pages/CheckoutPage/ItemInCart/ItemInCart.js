@@ -10,29 +10,32 @@ const cx = classNames.bind(style);
 
 const ItemInCart = (props) => {
     const { product } = props;
-    const [number, setNumber] = useState(product.amount);
+    const [number, setNumber] = useState();
     const dispatch = useDispatch();
+    // console.log('product', product);
     useEffect(() => {
-        // if (number < 1) {
-        //     setNumber(1);
-        // } else if (number > 99) {
-        //     setNumber(99);
-        // }
-        product.qty = number;
+        setNumber(product.amount);
+    }, [product]);
+
+    const updateCart = (n) => {
+        product.amount = n;
         const action = {
-            type: 'CHANGE_QTY',
+            type: 'CHANGE_AMOUNT',
             payload: product,
+            url: 'http://localhost:3001/api/v1/checkout',
         };
         dispatch(action);
-    }, [number]);
+    };
+
     //handler
     const handleIncrease = () => {
         number < 99 && setNumber(number + 1);
+        updateCart(number + 1);
     };
     const handleDecrease = () => {
-        if (number > 1) {
-            setNumber(number - 1);
-        }
+        number > 1 && setNumber(number - 1);
+
+        updateCart(number - 1);
     };
     const handleBlur = (e) => {
         const newValue = parseInt(e.target.value);
@@ -42,12 +45,14 @@ const ItemInCart = (props) => {
             setNumber(99);
         } else {
             setNumber(newValue);
+            updateCart(newValue);
         }
     };
     const handleClick = () => {
         const action = {
             type: 'DELETE_FROM_CART',
             payload: product,
+            url: 'http://localhost:3001/api/v1/checkout',
         };
         dispatch(action);
     };

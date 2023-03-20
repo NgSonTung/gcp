@@ -2,7 +2,6 @@ import { faCompressAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './ProductItem.module.scss';
 import { fortmatCurrency } from '~/utils/FormatCurrency';
@@ -12,7 +11,6 @@ function ProductItem(props) {
     const { data, hotTag = false, secondLayout = false } = props;
     const [activeShow, setActiveShow] = useState(false);
     const icon = require('~/Icons/index');
-    const dispatch = useDispatch();
     const itemPrice = fortmatCurrency(data?.price);
     return (
         <Link to={`/product/${data?.name}`} styles={{ height: 'auto' }} onClick={() => window.scrollY(0, 0)}>
@@ -25,11 +23,7 @@ function ProductItem(props) {
                     onMouseOver={() => setActiveShow(true)}
                     onMouseOut={() => setActiveShow(false)}
                 >
-                    <img
-                        src="https://chamsocdidong.com/thay-cam-ung-iphone-13-pro-ds11300"
-                        alt="avtar-Product"
-                        className={cx('avtar-product')}
-                    />
+                    <img src={data.image} alt="avtar-Product" className={cx('avtar-product')} />
                     <div className={activeShow ? cx('action-product', 'active') : cx('action-product')}>
                         <Link to={`/product/${data?.name}`}>
                             <span>{icon.SearchIcon('icon-search')}</span>

@@ -58,12 +58,40 @@ exports.getProductInCart = async () => {
     throw new Error("Not connected to db");
   }
 
-  const query = `select p.*,cp.amount from product p inner join cart_product cp on cp.productID = p.productID
+  const query = `select p.*,cp.amount,cp.cartID from product p inner join cart_product cp on cp.productID = p.productID
   `;
   // console.log(query);
   let result = await dbPool.request().query(query);
   // console.log(result.recordsets);
   return result.recordsets[0];
+};
+
+exports.updateCart = async (cart_Product) => {
+  const dbPool = dbConfig.db.pool;
+  if (!dbPool) {
+    throw new Error("Not connected to db");
+  }
+  let updateData = Cart_ProductSchema.validateData(cart_Product);
+  let q = `update ${Cart_ProductSchema.schemaName} set `;
+
+  const { request, updateStr } = dbUtils.getUpdateQuery(
+    Cart_ProductSchema.schema,
+    dbPool.request(),
+    updateData
+  );
+
+  q += updateStr + ` where productID =@productID`;
+  let result = await request.query(q);
+  return result.recordsets;
+};
+
+exports.deleteItemInCart = async (productID) => {
+  const dbPool = dbConfig.db.pool;
+  if (!dbPool) {
+    throw new Error("Not connected to db");
+  }
+  let q = `delete cart_product where productID = ${productID} `;
+  let result = await dbPool.request().query(q);
 };
 
 exports.clearAllCart_Product = async () => {

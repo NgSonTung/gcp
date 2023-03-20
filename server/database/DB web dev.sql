@@ -1,4 +1,7 @@
-drop database PhoneShop
+create database PhoneShop
+
+create database PhoneShop
+go
 
 use PhoneShop
 go
@@ -73,6 +76,19 @@ create table Feature
 	productID int constraint FK_Feature_Product  references Product(productID)
 )
 go 
+
+CREATE TRIGGER tr_product_delete
+ON product
+INSTEAD OF DELETE
+AS
+BEGIN
+    DELETE FROM rating WHERE productID = (SELECT deleted.productID FROM deleted);
+    DELETE FROM feature WHERE productID = (SELECT deleted.productID FROM deleted);
+    DELETE FROM cart_product WHERE productID = (SELECT deleted.productID FROM deleted);
+    DELETE FROM subImg WHERE productID = (SELECT deleted.productID FROM deleted);
+    DELETE FROM product WHERE productID = (SELECT deleted.productID FROM deleted);
+END;
+go
 
 select * from Product
 select * from feature
