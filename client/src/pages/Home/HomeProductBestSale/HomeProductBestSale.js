@@ -3,29 +3,41 @@ import styles from './HomeProductBestSale.module.scss';
 import ProductBestSale from '~/components/ProductBestSale/index';
 import NavTitle from '~/components/NavTitle/index';
 import { useSelector } from 'react-redux';
-
+import { useState, useEffect } from 'react';
+import * as ProductFetch from '~/functions/ProductFetch';
 const cx = classNames.bind(styles);
 
 function HomeProductBestSale(props) {
+    const [products, setProducts] = useState([]);
     const { cate, srcImgBanner } = props;
-    const data = useSelector((state) => state.ProductReducer);
-    console.log(data);
-    const product = data.product.filter((item) => item.category === cate);
+
+    useEffect(() => {
+        getData();
+        console.log(products);
+    }, []);
+
     const navItems = [
         {
             id: 1,
             title: cate,
             component: (
                 <ProductBestSale
-                    data={product}
+                    data={products}
                     activeTitle={true}
-                    title={product?.category}
+                    title={products?.category}
                     srcImg={srcImgBanner}
                     banner={true}
                 />
             ),
         },
     ];
+    const getData = async () => {
+        const data = await ProductFetch.getAllProducts('');
+        const result = data?.data?.products;
+
+        setProducts(result);
+    };
+
     return (
         <div className={cx('wrapper-outer')}>
             <NavTitle navItems={navItems} />

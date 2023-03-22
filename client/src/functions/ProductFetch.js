@@ -8,7 +8,7 @@ export const getAllProducts = (url) => {
         .get(url)
         .then((res) => {
             // console.log(url);
-            // console.log(res.data);
+            console.log(res.data);
             return res.data;
         })
         .catch((err) => console.log(err));

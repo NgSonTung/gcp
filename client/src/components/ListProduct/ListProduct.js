@@ -25,11 +25,8 @@ export const ListProduct = (props) => {
         ColOnPerRowLarge = 3,
         ColOnPerRowExtraLarge = 2,
     } = props;
-    // const baseData = useRef(data);
-    // baseData.current = data;
-    // const [sorted, setSorted] = useState('');
+
     const [productData, setProductDatas] = useState([]);
-    // const [product, setProduct] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [productPerPage, setProductPerPage] = useState(5);
     const [activeLayoutType, setActiveLayoutType] = useState(true);
@@ -38,11 +35,12 @@ export const ListProduct = (props) => {
     const indexOfFirstProduct = indexOfLastProduct - productPerPage;
     const currentProduct = productData?.slice(indexOfFirstProduct, indexOfLastProduct);
     const handlePage = (page) => setCurrentPage(page);
-    const [priceRange, setPriceRange] = useState([0, 30000000]);
+    const [priceRange, setPriceRange] = useState([0, 3000000000]);
     const [brandFilter, setBrandFilter] = useState([]);
+    const [productKeyword, setProductKeyword] = useState('');
     const [urlAPI, setUrlAPI] = useState('');
     const handleFilterProduct = () => {
-        let filteredURL = 'http://localhost:3001/?';
+        let filteredURL = 'http://localhost:3001/api/v1/product/?';
         let first = 0;
         if (brandFilter.length > 0) {
             let i = 0;
@@ -58,10 +56,13 @@ export const ListProduct = (props) => {
         }
         if (priceRange.length > 0) {
             if (priceRange[0] !== priceRange[1]) {
-                filteredURL += `&price[eq]=${priceRange[0] * 1}&price[lt]=${priceRange[1] * 1}`;
+                filteredURL += `&price[gt]=${priceRange[0] * 1}&price[lt]=${priceRange[1] * 1}`;
             } else {
                 filteredURL += `&price[gte]=${priceRange[0] * 1}`;
             }
+        }
+        if (productKeyword.length > 0) {
+            filteredURL += `&name=${productKeyword}`;
         }
         setUrlAPI(filteredURL);
         console.log(urlAPI);
@@ -77,10 +78,6 @@ export const ListProduct = (props) => {
         handleGetData();
     }, [urlAPI]);
 
-    // useEffect(() => {
-    //     setProduct(productData);
-    //     console.log(productData);
-    // }, [sorted]);
     useEffect(() => {
         window.addEventListener('resize', handleResize);
         return () => {
@@ -130,6 +127,10 @@ export const ListProduct = (props) => {
         setBrandFilter(filterArray);
     };
 
+    const handleSearchValue = (e) => {
+        setProductKeyword(e.target.value);
+    };
+
     useEffect(() => {
         console.log(brandFilter);
         console.log(priceRange);
@@ -149,7 +150,12 @@ export const ListProduct = (props) => {
                 <div className={cx('filter-features')}>
                     <div className={cx('keyword-search')}>
                         <FilterTitle title="TỪ KHÓA" />
-                        <input type="text" placeholder="Từ khóa tìm kiếm" />
+                        <input
+                            type="text"
+                            placeholder="Từ khóa tìm kiếm"
+                            value={productKeyword}
+                            onChange={handleSearchValue}
+                        />
                     </div>
 
                     <div className={cx('price-range')}>
@@ -157,7 +163,7 @@ export const ListProduct = (props) => {
                         <Slider
                             value={priceRange}
                             min={0}
-                            max={3000000}
+                            max={300000000}
                             onChange={handleChanges}
                             valueLabelDisplay="auto"
                         />

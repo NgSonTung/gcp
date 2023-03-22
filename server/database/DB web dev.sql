@@ -1,5 +1,4 @@
 create database PhoneShop
-
 create database PhoneShop
 go
 
