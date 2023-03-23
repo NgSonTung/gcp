@@ -31,6 +31,11 @@ const UserSchema = new ModelSchema(
       require: true,
       sqlType: sql.VarChar,
     }),
+    createdAt: new ModelSchemaValidator({
+      name: "createdAt",
+      sqlType: sql.DateTime,
+      require: true,
+    }),
   },
   "Users",
   "auth"

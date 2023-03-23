@@ -1,4 +1,4 @@
-create database PhoneShop
+-- drop database PhoneShop
 
 create database PhoneShop
 go
@@ -17,7 +17,8 @@ create table Product
 	category varchar(100) not null,
 	image nvarchar(max),
 	sale nvarchar(100) ,
-	description nvarchar(max)
+	description nvarchar(max),
+	createdAt   datetime default CURRENT_TIMESTAMP not null,
 )
 
 go
@@ -39,7 +40,9 @@ create table Users
 	password varchar(max) not null,
 	auth int not null check (auth in (1,0)),
 	--	1 - admin   0 -	user
-	email varchar(max) not null
+	email varchar(max) not null,
+		createdAt   datetime default CURRENT_TIMESTAMP not null,
+
 )
 go
 
@@ -77,19 +80,20 @@ create table Feature
 )
 go 
 
-CREATE TRIGGER tr_product_delete
-ON product
-INSTEAD OF DELETE
-AS
-BEGIN
-    DELETE FROM rating WHERE productID = (SELECT deleted.productID FROM deleted);
-    DELETE FROM feature WHERE productID = (SELECT deleted.productID FROM deleted);
-    DELETE FROM cart_product WHERE productID = (SELECT deleted.productID FROM deleted);
-    DELETE FROM subImg WHERE productID = (SELECT deleted.productID FROM deleted);
-    DELETE FROM product WHERE productID = (SELECT deleted.productID FROM deleted);
-END;
-go
+drop TRIGGER tr_product_delete
 
+-- CREATE TRIGGER tr_product_delete
+-- ON product
+-- INSTEAD OF DELETE
+-- AS
+-- BEGIN
+--     DELETE FROM rating WHERE productID = (SELECT deleted.productID FROM deleted);
+--     DELETE FROM feature WHERE productID = (SELECT deleted.productID FROM deleted);
+--     DELETE FROM cart_product WHERE productID = (SELECT deleted.productID FROM deleted);
+--     DELETE FROM subImg WHERE productID = (SELECT deleted.productID FROM deleted);
+--     DELETE FROM product WHERE productID = (SELECT deleted.productID FROM deleted);
+-- END;
+go
 select * from Product
 select * from feature
 select * from rating

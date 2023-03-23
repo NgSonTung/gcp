@@ -6,6 +6,8 @@ exports.addUserIfNotExisted = async (user) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
+  user.createdAt = new Date().toISOString();
+
   let insertData = UserSchema.validateData(user);
   let query = `SET IDENTITY_INSERT ${UserSchema.schemaName} ON insert into ${UserSchema.schemaName}`;
   // schema, request, insert
