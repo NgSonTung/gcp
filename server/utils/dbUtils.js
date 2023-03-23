@@ -233,26 +233,25 @@ exports.getFilterProductsQuery = (filter) => {
             }
             i++;
           }
-        } else {
-          filterStr += criteria + " = " + filter[criteria];
-          i++;
-          console.log(filterStr);
         }
-        // }
-        //
         if (filter[filterType].constructor === Array) {
           let index = 0;
+          filterStr += "(";
           for (let brand in filter[criteria]) {
             filterStr += criteria + " = '" + filter[criteria][brand] + "'";
 
             if (index === filter[criteria].length - 1) {
-              filterStr += "";
+              filterStr += ") ";
             } else {
               filterStr += " or ";
             }
             index++;
           }
         }
+        if (filterType == "name" && filter[filterType].length > 0) {
+          filterStr += criteria + " like '%" + filter[filterType] + "%' ";
+        }
+        console.log(filterStr);
       }
     }
   }

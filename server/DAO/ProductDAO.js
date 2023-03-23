@@ -4,11 +4,6 @@ const ProductSchema = require("../model/Product");
 const dbConfig = require("../database/dbconfig");
 const dbUtils = require("../utils/dbUtils");
 
-// exports.getAllProducts = async () => {
-//   const result = await fetch("https://api.npoint.io/b53d5a76cc3848425069");
-//   const products = await result.json();
-//   return products;
-// };
 exports.addProductIfNotExisted = async (product) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
