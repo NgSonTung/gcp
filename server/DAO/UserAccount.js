@@ -1,6 +1,7 @@
 const UserSchema = require("../model/User");
 const dbConfig = require("../database/dbconfig");
 const dbUtils = require("../utils/dbUtils");
+const bcrypt = require("bcryptjs");
 
 exports.addUserIfNotExisted = async (user) => {
   if (!dbConfig.db.pool) {
@@ -9,6 +10,7 @@ exports.addUserIfNotExisted = async (user) => {
   user.createdAt = new Date().toISOString();
 
   let insertData = UserSchema.validateData(user);
+  insertData.password = await bcrypt.hash(insertData.password, 10);
   let query = `SET IDENTITY_INSERT ${UserSchema.schemaName} ON insert into ${UserSchema.schemaName}`;
   // schema, request, insert
   const { request, insertFieldNamesStr, insertValuesStr } =

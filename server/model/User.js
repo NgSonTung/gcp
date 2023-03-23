@@ -22,6 +22,7 @@ const UserSchema = new ModelSchema(
       name: "auth",
       sqlType: sql.Int,
       require: true,
+      default: 0,
       validator: function (val) {
         return 0 || 1;
       },

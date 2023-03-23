@@ -80,7 +80,7 @@ create table Feature
 )
 go 
 
-drop TRIGGER tr_product_delete
+-- drop TRIGGER tr_product_delete
 
 -- CREATE TRIGGER tr_product_delete
 -- ON product
