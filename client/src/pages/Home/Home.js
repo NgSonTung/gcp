@@ -8,6 +8,7 @@ import HomeProductBestSale from './HomeProductBestSale/index';
 import SliderBanner from './SliderBanner/index';
 import TabProductCate from '~/components/TabProductsCate/TabProductCate';
 import * as CartFetch from '~/functions/CartFetch';
+import * as ProductFetch from '~/functions/Fetch';
 const cx = classNames.bind(styles);
 
 function Home() {

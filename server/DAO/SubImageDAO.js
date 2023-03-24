@@ -35,3 +35,20 @@ exports.clearAll = async () => {
   let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
 };
+
+exports.getProductSubImgById = async (id) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request
+    .input(
+      `${SubImageSchema.schema.productID.name}`,
+      SubImageSchema.schema.productID.sqlType,
+      id
+    )
+    .query(
+      `select * from ${SubImageSchema.schemaName} where ${SubImageSchema.schema.productID.name} = @${SubImageSchema.schema.productID.name}`
+    );
+  return result.recordsets[0][0];
+};

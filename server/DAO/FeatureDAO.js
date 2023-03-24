@@ -29,3 +29,37 @@ exports.clearAll = async () => {
   let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
 };
+
+exports.getFeatureById = async (id) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request
+    .input(
+      `${FeatureSchema.schema.productID.name}`,
+      FeatureSchema.schema.productID.sqlType,
+      id
+    )
+    .query(
+      `select * from ${FeatureSchema.schemaName} where ${FeatureSchema.schema.productID.name} = @${FeatureSchema.schema.productID.name}`
+    );
+  return result.recordsets[0][0];
+};
+
+exports.deleteFeatureById = async (id) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request
+    .input(
+      `${FeatureSchema.schema.productID.name}`,
+      FeatureSchema.schema.productID.sqlType,
+      id
+    )
+    .query(
+      `delete from ${FeatureSchema.schemaName} where ${FeatureSchema.schema.productID.name} = @${FeatureSchema.schema.productID.name}`
+    );
+  return result.recordsets;
+};

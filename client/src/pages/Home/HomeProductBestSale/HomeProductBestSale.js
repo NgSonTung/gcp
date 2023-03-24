@@ -2,41 +2,41 @@ import classNames from 'classnames/bind';
 import styles from './HomeProductBestSale.module.scss';
 import ProductBestSale from '~/components/ProductBestSale/index';
 import NavTitle from '~/components/NavTitle/index';
-import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import * as ProductFetch from '~/functions/ProductFetch';
+import * as ProductFetch from '~/functions/Fetch';
 const cx = classNames.bind(styles);
 
 function HomeProductBestSale(props) {
-    const [products, setProducts] = useState([]);
     const { cate, srcImgBanner } = props;
+    const [cateProduct, setCateProducts] = useState([]);
 
     useEffect(() => {
-        getData();
-        console.log(products);
+        getProducts();
     }, []);
 
+    const getProducts = async () => {
+        const fetchedResult = await ProductFetch.getAllProducts('');
+        console.log(fetchedResult);
+        const data = await fetchedResult?.data?.products?.dataProducts;
+        const filterProducts = await data?.filter((item) => item.category == cate);
+        await setCateProducts(filterProducts);
+        console.log(filterProducts);
+    };
     const navItems = [
         {
             id: 1,
             title: cate,
             component: (
                 <ProductBestSale
-                    data={products}
+                    data={cateProduct}
                     activeTitle={true}
-                    title={products?.category}
+                    title={cate}
                     srcImg={srcImgBanner}
                     banner={true}
                 />
             ),
         },
     ];
-    const getData = async () => {
-        const data = await ProductFetch.getAllProducts('');
-        const result = data?.data?.products;
-
-        setProducts(result);
-    };
 
     return (
         <div className={cx('wrapper-outer')}>
