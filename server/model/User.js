@@ -22,6 +22,7 @@ const UserSchema = new ModelSchema(
       name: "auth",
       sqlType: sql.Int,
       require: true,
+      default: 0,
       validator: function (val) {
         return 0 || 1;
       },
@@ -30,6 +31,11 @@ const UserSchema = new ModelSchema(
       name: "email",
       require: true,
       sqlType: sql.VarChar,
+    }),
+    createdAt: new ModelSchemaValidator({
+      name: "createdAt",
+      sqlType: sql.DateTime,
+      require: true,
     }),
   },
   "Users",

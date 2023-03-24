@@ -58,6 +58,11 @@ const ProductSchema = new ModelSchema(
         return val.length > 0;
       },
     }),
+    createdAt: new ModelSchemaValidator({
+      name: "createdAt",
+      sqlType: sql.DateTime,
+      require: true,
+    }),
   },
   "Product",
   "price"

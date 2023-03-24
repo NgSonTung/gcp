@@ -9,6 +9,8 @@ exports.addProductIfNotExisted = async (product) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
+  product.createdAt = new Date().toISOString();
+
   let insertData = ProductSchema.validateData(product);
 
   let query = `SET IDENTITY_INSERT ${ProductSchema.schemaName} ON insert into ${ProductSchema.schemaName}`;
