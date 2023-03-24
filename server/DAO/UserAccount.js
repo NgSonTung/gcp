@@ -32,6 +32,30 @@ exports.addUserIfNotExisted = async (user) => {
   let result = await request.query(query);
   return result.recordsets;
 };
+
+exports.addUser = async (user) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  user.createdAt = new Date().toISOString();
+
+  let insertData = UserSchema.validateData(user);
+  insertData.password = await bcrypt.hash(insertData.password, 10);
+  let query = `insert into ${UserSchema.schemaName} `;
+  const { request, insertFieldNamesStr, insertValuesStr } =
+    dbUtils.getInsertQuery(
+      UserSchema.schema,
+      dbConfig.db.pool.request(),
+      insertData
+    );
+  if (!insertFieldNamesStr || !insertValuesStr) {
+    throw new Error("Invalid insert param");
+  }
+  query += " (" + insertFieldNamesStr + ") select  " + insertValuesStr;
+  let result = await request.query(query);
+  return result.recordsets;
+};
+
 exports.clearAll = async () => {
   query = `delete ${UserSchema.schemaName}  DBCC CHECKIDENT ('[${UserSchema.schemaName} ]', RESEED, 1);`;
   let result = await dbConfig.db.pool.request().query(query);
