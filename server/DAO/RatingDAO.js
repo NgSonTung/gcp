@@ -1,9 +1,9 @@
 const RatingSchema = require("../model/Rating");
-const dbconfig = require("../database/dbconfig");
+const dbConfig = require("../database/dbconfig");
 const dbUtils = require("../utils/dbUtils");
 
 exports.addRatingIfNotExisted = async (rating) => {
-  const dbPool = dbconfig.db.pool;
+  const dbPool = dbConfig.db.pool;
   if (!dbPool) {
     throw new Error("Not connected to db");
   }
@@ -28,7 +28,7 @@ exports.addRatingIfNotExisted = async (rating) => {
 
 exports.clearAll = async () => {
   query = `delete ${RatingSchema.schemaName}  DBCC CHECKIDENT ('[${RatingSchema.schemaName} ]', RESEED, 1);`;
-  let result = await dbconfig.db.pool.request().query(query);
+  let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
 };
 
@@ -46,6 +46,9 @@ exports.getRatingByProductId = async (id) => {
     .query(
       `select * from ${RatingSchema.schemaName} where ${RatingSchema.schema.productID.name} = @${RatingSchema.schema.productID.name}`
     );
+  console.log(
+    `select * from ${RatingSchema.schemaName} where ${RatingSchema.schema.productID.name} = @${RatingSchema.schema.productID.name}`
+  );
   return result.recordsets[0][0];
 };
 
