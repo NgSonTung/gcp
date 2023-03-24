@@ -73,8 +73,10 @@ exports.getUserByUserName = async (req, res) => {
   }
 };
 exports.addUser = async (req, res) => {
+  const newUser = req.body;
+  const result = await UserDAO.addUser(newUser);
+  console.log(result);
   try {
-    let result = await UserDAO.addUser(req.body);
     res.status(200).json({
       code: 200,
       msg: "OK",

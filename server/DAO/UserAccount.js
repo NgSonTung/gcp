@@ -37,14 +37,20 @@ exports.addUser = async (user) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
-  if (!user.userName || !user.email || !user.password) {
-    return false;
+  console.log("user auth", user.auth);
+  if (!user.auth) {
+    console.log(!user.auth);
+    return "invalid data";
   }
+
   user.createdAt = new Date().toISOString();
 
   let insertData = UserSchema.validateData(user);
+  console.log(insertData);
   insertData.password = await bcrypt.hash(insertData.password, 10);
+
   let query = `insert into ${UserSchema.schemaName} `;
+
   const { request, insertFieldNamesStr, insertValuesStr } =
     dbUtils.getInsertQuery(
       UserSchema.schema,
@@ -55,6 +61,7 @@ exports.addUser = async (user) => {
     throw new Error("Invalid insert param");
   }
   query += " (" + insertFieldNamesStr + ") select  " + insertValuesStr;
+  console.log(query);
   let result = await request.query(query);
   return result.recordsets;
 };

@@ -1,11 +1,18 @@
 const express = require("express");
 const productController = require("../controllers/Product");
+const authController = require("./../controllers/auth");
+const StaticData = require("../utils/StaticData");
+
 const router = express.Router();
 
 router
   .route("/")
   .get(productController.getProducts)
-  .post(productController.createNewProduct);
+  .post(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    productController.createNewProduct
+  );
 
 router
   .route("/productnonpagination")
