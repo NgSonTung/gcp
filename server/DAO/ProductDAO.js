@@ -45,6 +45,23 @@ exports.clearAll = async () => {
   return result.recordsets;
 };
 
+exports.byProductByName = async (name) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request
+    .input(
+      `${ProductSchema.schema.name.name}`,
+      ProductSchema.schema.name.sqlType,
+      name
+    )
+    .query(
+      `select * from ${ProductSchema.schemaName} where ${ProductSchema.schema.name.name} = @${ProductSchema.schema.name.name}`
+    );
+  return result.recordsets[0][0];
+};
+
 exports.getProductByName = async (name) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
