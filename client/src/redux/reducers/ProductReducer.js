@@ -10,6 +10,13 @@ const ProductReducer = (state = initialState, action) => {
             return {
                 product: data.find((item) => item.name === action.nameproduct),
             };
+        case 'GET_PRODUCT_FROM_DB': {
+            const products = action.payload;
+            return {
+                ...state,
+                product: [...products],
+            };
+        }
         default:
             return state;
     }

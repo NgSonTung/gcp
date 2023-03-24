@@ -98,26 +98,3 @@ exports.deleteById = async (req, res) => {
     });
   }
 };
-
-exports.updateProductById = async (req, res) => {
-  // console.log("Id update", req.params.id);
-  const id = req.params.id * 1;
-  try {
-    const updateInfo = req.body;
-    await ProductDAO.updateProductById(id, updateInfo);
-    const product = await ProductDAO.getProductById(id);
-    return res.status(200).json({
-      code: 200,
-      msg: `Updated product with id: ${id} successfully!`,
-      data: {
-        product,
-      },
-    });
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({
-      code: 500,
-      msg: e,
-    });
-  }
-};

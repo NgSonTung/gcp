@@ -6,6 +6,11 @@ const cx = classNames.bind(style);
 function CusPagination(props) {
     const { itemPerPage, totalItem, handlePage } = props;
 
+    const pageChange = (page) => {
+        handlePage(page);
+        console.log(page);
+    };
+
     return (
         <div>
             <Box
@@ -19,7 +24,7 @@ function CusPagination(props) {
             >
                 <Pagination
                     count={Math.ceil(totalItem / itemPerPage)}
-                    onChange={(event, page) => handlePage(page)}
+                    onChange={(event, page) => pageChange(page)}
                     size="large"
                     fontSize="16px"
                     className={cx('pagination')}

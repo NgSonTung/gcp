@@ -2,8 +2,6 @@ exports.getFilterQuery = (schema, filter, page, pageSize, defaultSort) => {
   let filterStr;
   let paginationStr;
 
-  // console.log(filter);
-
   const skip = (page - 1) * pageSize;
   paginationStr = "ORDER BY";
   let defaultSortStr = `${defaultSort} asc`;
@@ -188,73 +186,116 @@ exports.getUpdateQuery = (schema, request, update) => {
   };
 };
 
-exports.getFilterProductsQuery = (filter) => {
+exports.getFilterProductsQuery = (
+  schema,
+  filter,
+  page,
+  pageSize,
+  defaultSort
+) => {
   let filterStr;
+  let paginationStr;
+
+  console.log(filter);
+  const skip = (page - 1) * pageSize;
+  paginationStr = "order by";
+  let sort = "";
+  if (filter.sort) {
+    sort = filter.sort;
+  }
+
+  delete filter.page;
+  delete filter.pageSize;
+  delete filter.sort;
+
   if (filter) {
     filterStr = "";
     let i = 0;
-    console.log(filter);
     for (let criteria in filter) {
-      console.log("criteria", criteria);
-      if (criteria) {
-        const filterType = criteria;
-        console.log(filterType);
+      const schemaProp = schema[criteria];
+      if (schema[criteria]) {
         if (i > 0) {
           filterStr += " AND ";
         } else {
           filterStr += " WHERE ";
         }
-        console.log("filterType", filter[filterType]);
 
-        // if (filter[filterType].type === "number") {
-        if (typeof filter[criteria] === "object") {
-          let j = 0;
-          for (let criteriaOperator in filter[criteria]) {
-            let operator;
-            let criterialVal;
+        if (schemaProp.type === "number") {
+          if (typeof filter[criteria] === "object") {
+            let j = 0;
+            for (let criteriaOperator in filter[criteria]) {
+              let operator;
+              let criterialVal;
 
-            if (criteriaOperator === "gte") {
-              operator = ">=";
-              criterialVal = filter[criteria]["gte"];
-            } else if (criteriaOperator === "lt") {
-              operator = "<";
-              criterialVal = filter[criteria]["lt"];
-            } else if (criteriaOperator === "eq") {
-              operator = "=";
-              criterialVal = filter[criteria]["eq"];
-            }
-
-            if (operator && criterialVal) {
-              if (j > 0) {
-                filterStr += " AND ";
+              if (criteriaOperator === "gte") {
+                operator = ">=";
+                criterialVal = filter[criteria]["gte"];
+              } else if (criteriaOperator === "lt") {
+                operator = "<";
+                criterialVal = filter[criteria]["lt"];
+              } else if (criteriaOperator === "eq") {
+                operator = "=";
+                criterialVal = filter[criteria]["eq"];
               }
-              filterStr += criteria + " " + operator + " " + criterialVal;
-              j++;
+
+              if (operator && criterialVal) {
+                if (j > 0) {
+                  filterStr += " AND ";
+                }
+                filterStr += criteria + " " + operator + " " + criterialVal;
+                j++;
+                console.log(filterStr);
+              }
+              i++;
+              console.log(filterStr);
+            }
+          }
+        }
+        if (criteria == "brand") {
+          filterStr += "(";
+          if (filter[criteria].constructor === Array) {
+            if (schemaProp.type === "string") {
+              for (let valueIdx in filter[criteria]) {
+                filterStr +=
+                  criteria + " = '" + filter[criteria][valueIdx] + "'";
+                if (valueIdx * 1 === filter[criteria].length - 1) {
+                  filterStr += ")";
+                } else if (valueIdx * 1 !== filter[criteria].length - 1) {
+                  filterStr += " or ";
+                }
+              }
             }
             i++;
           }
-        } else {
-          filterStr += criteria + " = " + filter[criteria];
-          i++;
-          console.log(filterStr);
-        }
-        // }
-        //
-        if (filter[filterType].constructor === Array) {
-          let index = 0;
-          for (let brand in filter[criteria]) {
-            filterStr += criteria + " = '" + filter[criteria][brand] + "'";
 
-            if (index === filter[criteria].length - 1) {
-              filterStr += "";
-            } else {
-              filterStr += " or ";
-            }
-            index++;
+          if (
+            filter[criteria].constructor !== Array &&
+            schemaProp.type === "string"
+          ) {
+            filterStr += criteria + "='" + filter[criteria] + "')";
+            console.log(filterStr);
+            i++;
           }
+        }
+        if (criteria == "name" && filter[criteria].length > 0) {
+          filterStr += criteria + " like '%" + filter[criteria] + "%' ";
+          i++;
         }
       }
     }
+    if (sort.length == 0) {
+      paginationStr +=
+        "(SELECT NULL) OFFSET " +
+        skip +
+        " ROWS FETCH NEXT " +
+        pageSize +
+        " ROWS ONLY";
+    } else if (sort.length > 0) {
+      paginationStr += ` price ${sort}`;
+      paginationStr +=
+        " OFFSET " + skip + " ROWS FETCH NEXT " + pageSize + " ROWS ONLY";
+    }
   }
-  return { filterStr };
+  console.log("filter string", filterStr);
+  return { filterStr, paginationStr };
 };

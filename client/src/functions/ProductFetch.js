@@ -2,13 +2,13 @@ import axios from 'axios';
 
 export const getAllProducts = (url) => {
     if (url === '') {
-        url = 'http://localhost:3001/api/v1/product/?';
+        url = 'product/?page=1&pageSize=10';
     }
     return axios
         .get(url)
         .then((res) => {
             // console.log(url);
-            // console.log(res.data);
+            console.log(res.data);
             return res.data;
         })
         .catch((err) => console.log(err));
