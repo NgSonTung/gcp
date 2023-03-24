@@ -8,6 +8,10 @@ router
   .post(productController.createNewProduct);
 
 router
+  .route("/productnonpagination")
+  .get(productController.getProductNonPaginate);
+
+router
   .route("/:id")
   .get(productController.getProductById)
   .delete(productController.deleteById);

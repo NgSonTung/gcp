@@ -98,3 +98,28 @@ exports.deleteById = async (req, res) => {
     });
   }
 };
+
+exports.getProductNonPaginate = async (req, res) => {
+  try {
+    const products = await ProductDAO.getProductsNotPagination(req.query);
+    if (!products) {
+      return res
+        .status(404) //NOT FOUND
+        .json({
+          code: 404,
+          msg: `Products list not found!`,
+        });
+    }
+    return res.status(200).json({
+      code: 200,
+      msg: `Find products list successfully!`,
+      data: products,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      code: 500,
+      msg: e,
+    });
+  }
+};

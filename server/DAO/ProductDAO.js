@@ -216,3 +216,12 @@ exports.updateProductById = async (id, updateInfo) => {
   let result = await request.query(query);
   return result.recordsets;
 };
+
+exports.getProductsNotPagination = async () => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request.query(`select * from product`);
+  return result.recordsets[0];
+};

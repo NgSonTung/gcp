@@ -15,12 +15,10 @@ function HomeProductBestSale(props) {
     }, []);
 
     const getProducts = async () => {
-        const fetchedResult = await ProductFetch.getAllProducts('');
-        console.log(fetchedResult);
-        const data = await fetchedResult?.data?.products?.dataProducts;
+        const fetchedResult = await ProductFetch.getAllProductsNonPage('');
+        const data = await fetchedResult?.data;
         const filterProducts = await data?.filter((item) => item.category == cate);
         await setCateProducts(filterProducts);
-        console.log(filterProducts);
     };
     const navItems = [
         {
