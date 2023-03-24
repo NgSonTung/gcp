@@ -37,6 +37,9 @@ exports.addUser = async (user) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
+  if (!user.userName || !user.email || !user.password) {
+    return false;
+  }
   user.createdAt = new Date().toISOString();
 
   let insertData = UserSchema.validateData(user);

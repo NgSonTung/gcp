@@ -19,8 +19,8 @@ exports.getProductInCart = async (req, res) => {
 };
 exports.insertProductToCart = async (req, res) => {
   // console.log(req.body);
-  let result = await CartDAO.addCart_ProductIfNotExisted(req.body);
   try {
+    let result = await CartDAO.addCart_ProductIfNotExisted(req.body);
     res.status(200).json({
       code: 200,
       msg: "OK",
