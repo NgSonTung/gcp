@@ -31,16 +31,16 @@ export const ListProduct = (props) => {
     const [productPerPage, setProductPerPage] = useState(5);
     const [activeLayoutType, setActiveLayoutType] = useState(true);
     const [widthWindow, setWidthWindow] = useState(window.innerWidth);
-    const indexOfLastProduct = currentPage * productPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productPerPage;
-    const currentProduct = productData?.slice(indexOfFirstProduct, indexOfLastProduct);
     const handlePage = (page) => setCurrentPage(page);
     const [priceRange, setPriceRange] = useState([0, 3000000000]);
     const [brandFilter, setBrandFilter] = useState([]);
     const [productKeyword, setProductKeyword] = useState('');
     const [urlAPI, setUrlAPI] = useState('');
+    const [sortKey, setSortKey] = useState('');
+    const [totalProduct, setTotalProduct] = useState(0);
+    const brandInputRef = useRef();
     const handleFilterProduct = () => {
-        let filteredURL = 'http://localhost:3001/api/v1/product/?';
+        let filteredURL = `http://localhost:3001/api/v1/product/?page=${currentPage}&pageSize=${productPerPage}&`;
         let first = 0;
         if (brandFilter.length > 0) {
             let i = 0;
@@ -55,26 +55,39 @@ export const ListProduct = (props) => {
             }
         }
         if (priceRange.length > 0) {
-            if (priceRange[0] !== priceRange[1]) {
+            if (priceRange[0] !== priceRange[1] && priceRange[1] !== 3000000000 && priceRange[0] !== 0) {
                 filteredURL += `&price[gt]=${priceRange[0] * 1}&price[lt]=${priceRange[1] * 1}`;
-            } else {
+            } else if (priceRange[0] !== priceRange[1] && priceRange[1] !== 3000000000 && priceRange[0] === 0) {
+                filteredURL += `&price[lt]=${priceRange[1] * 1}`;
+            } else if (priceRange[0] === priceRange[1]) {
                 filteredURL += `&price[gte]=${priceRange[0] * 1}`;
             }
         }
         if (productKeyword.length > 0) {
             filteredURL += `&name=${productKeyword}`;
         }
+
+        if (sortKey.length > 0) {
+            filteredURL += `&sort=${sortKey}`;
+        }
+
         setUrlAPI(filteredURL);
-        console.log(urlAPI);
     };
 
     const handleGetData = async () => {
         const fetchedData = await getAllProducts(urlAPI);
-        const result = fetchedData?.data?.products;
-        setProductDatas(result);
+        const result = fetchedData?.data?.products?.dataProducts;
+        await setProductDatas(result);
+        await setTotalProduct(fetchedData?.data?.products?.totalProduct);
     };
+
     useEffect(() => {
-        console.log(urlAPI);
+        handleFilterProduct();
+        handleGetData();
+    }, [currentPage, sortKey]);
+
+    useEffect(() => {
+        console.log(currentPage);
         handleGetData();
     }, [urlAPI]);
 
@@ -84,24 +97,7 @@ export const ListProduct = (props) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    //change page
-    //sort-data
-    // const handleSortDesc = () => {
-    //     const dataSorted = [...data].sort((a, b) => (a.price < b.price ? 1 : -1));
-    //     setProductDatas(dataSorted);
-    //     setSorted('desc');
-    // };
 
-    // const handleSortAsc = () => {
-    //     const dataSorted = [...data].sort((a, b) => a.price - b.price);
-    //     setProductDatas(dataSorted);
-    //     setSorted('asc');
-    // };
-    // const handleNoSort = () => {
-    //     setProductDatas(baseData.current);
-    //     setSorted('no sort');
-    // };
-    //change layout
     const handleChangeLayout = (num) => {
         num === 1 ? setActiveLayoutType(true) : setActiveLayoutType(false);
     };
@@ -131,18 +127,33 @@ export const ListProduct = (props) => {
         setProductKeyword(e.target.value);
     };
 
-    useEffect(() => {
-        console.log(brandFilter);
-        console.log(priceRange);
-    }, [brandFilter, handleChanges]);
+    const handleResetFilter = () => {
+        setBrandFilter([]);
+        setProductKeyword('');
+        setPriceRange([0, 3000000000]);
+        brandInputRef.current.checked = false;
+        setUrlAPI('');
+    };
+
+    const handleSortDesc = () => {
+        setSortKey('desc');
+    };
+
+    const handleSortAsc = () => {
+        setSortKey('asc');
+    };
+
+    const handleNoSort = () => {
+        setSortKey('');
+    };
 
     return (
         <div className={cx('product-warpper')}>
             <HeaderProduct
-                count={productData?.length}
-                // handleSortDesc={handleSortDesc}
-                // handleSortAsc={handleSortAsc}
-                // handleNoSort={handleNoSort}
+                count={totalProduct}
+                handleSortDesc={handleSortDesc}
+                handleSortAsc={handleSortAsc}
+                handleNoSort={handleNoSort}
                 handleChangeLayout={handleChangeLayout}
                 activeLayoutType={activeLayoutType}
             />
@@ -180,6 +191,7 @@ export const ListProduct = (props) => {
                                         value={item.toLocaleLowerCase()}
                                         onChange={addBrandFilter}
                                         id={item.toLocaleLowerCase()}
+                                        ref={brandInputRef}
                                     />
                                     <label for={item.toLocaleLowerCase()}>{item}</label>
                                 </div>
@@ -190,7 +202,7 @@ export const ListProduct = (props) => {
                         <FontAwesomeIcon icon={faArrowsRotate} />
                         <p>LỌC SẢN PHẨM</p>
                     </div>
-                    <div className={cx('reset-btn')}>
+                    <div className={cx('reset-btn')} onClick={handleResetFilter}>
                         <FontAwesomeIcon icon={faArrowsRotate} />
                         <p>CHỌN LẠI</p>
                     </div>
@@ -199,7 +211,7 @@ export const ListProduct = (props) => {
                 <div className={cx('list-product')}>
                     {activeLayoutType ? (
                         <Row>
-                            {currentProduct?.map((item, index) => (
+                            {productData?.map((item, index) => (
                                 <Col
                                     xs={ColOnPerRowSmallest}
                                     sm={ColOnPerRowSmall}
@@ -216,7 +228,7 @@ export const ListProduct = (props) => {
                         </Row>
                     ) : (
                         <Container>
-                            {currentProduct?.map((item, index) => (
+                            {productData?.map((item, index) => (
                                 <Row>
                                     <Col xs={12} sm={12} md={12} lg={12} xxl={12} className={cx('col-product-item')}>
                                         <div className={cx('product-item')}>
@@ -247,7 +259,7 @@ export const ListProduct = (props) => {
                     )}
                 </div>
             </div>
-            <CusPagination itemPerPage={productPerPage} totalItem={productData?.length} handlePage={handlePage} />
+            <CusPagination itemPerPage={productPerPage} totalItem={totalProduct} handlePage={handlePage} />
         </div>
     );
 };
