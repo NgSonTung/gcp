@@ -5,7 +5,7 @@ import { deleteProductById, addProduct, updateProductById } from '~/functions/Pr
 
 const cx = classNames.bind(styles);
 
-const HandleForm = ({ data, setShowEditForm }) => {
+const HandleForm = ({ data, setShowEditForm, formType = '' }) => {
     const formRef = useRef();
 
     const HandleAddProduct = () => {
@@ -51,10 +51,27 @@ const HandleForm = ({ data, setShowEditForm }) => {
         });
     };
 
+    const HandleSubmit = (e) => {
+        e.preventDefault();
+        switch (e.nativeEvent.submitter.id) {
+            case 'updateBTN':
+                HandleUpdateProduct();
+                break;
+            case 'removeBTN':
+                HandleDeleteProduct();
+                break;
+            case 'addBTN':
+                HandleAddProduct();
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <div className={cx('form-wrapper')}>
             <div onClick={() => setShowEditForm(false)} className={cx('form-background')} />
-            <form ref={formRef} className={cx('form')}>
+            <form onSubmit={(e) => HandleSubmit(e)} ref={formRef} className={cx('form')}>
                 <label className={cx('label')} htmlFor="productID">
                     Product ID:
                 </label>
@@ -175,25 +192,22 @@ const HandleForm = ({ data, setShowEditForm }) => {
                     required
                     placeholder="vd:laptop nay cuc manh "
                 />
-                <div className={cx('button-wrapper')}>
-                    <button className={cx('add-button', 'button')} onClick={() => HandleAddProduct()} type="button">
-                        THÊM
-                    </button>
-                    <button
-                        className={cx('update-button', 'button')}
-                        type="button"
-                        onClick={() => HandleUpdateProduct()}
-                    >
-                        SỬA
-                    </button>
-                    <button
-                        className={cx('delete-button', 'button')}
-                        onClick={() => HandleDeleteProduct(data.productID)}
-                        type="button"
-                    >
-                        XÓA
-                    </button>
-                </div>
+                {formType === 'UpdateRemove' ? (
+                    <div className={cx('button-wrapper')}>
+                        <button id="updateBTN" className={cx('update-button', 'button')}>
+                            SỬA
+                        </button>
+                        <button id="removeBTN" className={cx('delete-button', 'button')}>
+                            XÓA
+                        </button>
+                    </div>
+                ) : (
+                    <div className={cx('button-wrapper')}>
+                        <button id="addBTN" className={cx('add-button', 'button')}>
+                            THÊM
+                        </button>
+                    </div>
+                )}
             </form>
         </div>
     );

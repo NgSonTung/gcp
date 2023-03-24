@@ -44,7 +44,7 @@ export const updateProductById = (id, product) => {
             return res.data.msg;
         })
         .catch((err) => {
-            // console.log(err.response.status);
+            console.log(err.response);
             return err.response.data.msg;
         });
 };

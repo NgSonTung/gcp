@@ -68,7 +68,7 @@ exports.createNewProduct = async (req, res) => {
     console.log(e);
     res.status(500).json({
       code: 500,
-      msg: e,
+      msg: `Product create failed`,
     });
   }
 };
@@ -120,6 +120,36 @@ exports.getProductNonPaginate = async (req, res) => {
     return res.status(500).json({
       code: 500,
       msg: e,
+    });
+  }
+};
+
+exports.updateProductById = async (req, res) => {
+  // console.log("Id update", req.params.id);
+  const id = req.params.id * 1;
+  try {
+    const updateInfo = req.body;
+    const product = await ProductDAO.getProductById(id);
+    if (!product) {
+      return res.status(404).json({
+        code: 404,
+        msg: `Not found product with Id ${id}!`,
+      });
+    }
+    await ProductDAO.updateProductById(id, updateInfo);
+    product = await ProductDAO.getProductById(id);
+    return res.status(200).json({
+      code: 200,
+      msg: `Updated product with id: ${id} successfully!`,
+      data: {
+        product,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      code: 500,
+      msg: `Updated product with id: ${id} failed!`,
     });
   }
 };

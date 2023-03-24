@@ -151,6 +151,7 @@ exports.createNewProduct = async (product) => {
   if (!product) {
     throw new Error("Invalid input param");
   }
+  product.createdAt = new Date().toISOString();
   let insertData = ProductSchema.validateData(product);
   let query = `insert into ${ProductSchema.schemaName}`;
   const { request, insertFieldNamesStr, insertValuesStr } =

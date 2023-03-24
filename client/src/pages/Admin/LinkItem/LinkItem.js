@@ -31,7 +31,7 @@ const LinkItem = ({ data }) => {
                     <FontAwesomeIcon ref={iconRef} className={cx('btn-icon')} icon={faEllipsis} />
                 </button>
             </div>
-            {showEditForm && <HandleForm setShowEditForm={setShowEditForm} data={data} />}
+            {showEditForm && <HandleForm setShowEditForm={setShowEditForm} data={data} formType={'UpdateRemove'} />}
         </div>
     );
 };
