@@ -61,3 +61,23 @@ exports.clearAll = async () => {
   let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
 };
+
+exports.getUser = async () => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let result = await dbConfig.db.pool
+    .request()
+    .input(UserSchema.schema.id.name, UserSchema.schema.id.sqlType, id)
+    .query(
+      `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.id.name} = @${UserSchema.schema.id.name}`
+    );
+
+  // console.log(result);
+
+  if (result.recordsets[0].length > 0) {
+    return result.recordsets[0][0];
+  }
+
+  return null;
+};
