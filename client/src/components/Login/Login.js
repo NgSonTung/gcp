@@ -42,6 +42,9 @@ const Login = ({ classname, ToggleLogin }) => {
         const signUpUsername = event.target.username[1].value;
         const signUpPassword = event.target.password[1].value;
         const repeatPassword = event.target.repeatPassword.value;
+        console.log('signUpusn', signUpUsername);
+        console.log('signUpPassword', signUpPassword);
+        console.log('repeatPassword', repeatPassword);
         if (mode === 'signup') {
             if (signUpPassword !== repeatPassword) {
                 toast.error('Nhập lại mật khẩu chưa chính xác!', {

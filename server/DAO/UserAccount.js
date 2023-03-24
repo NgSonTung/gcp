@@ -62,18 +62,62 @@ exports.clearAll = async () => {
   return result.recordsets;
 };
 
-exports.getUser = async () => {
+exports.getUserById = async (id) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
   let result = await dbConfig.db.pool
     .request()
-    .input(UserSchema.schema.id.name, UserSchema.schema.id.sqlType, id)
+    .input(UserSchema.schema.userID.name, UserSchema.schema.userID.sqlType, id)
     .query(
-      `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.id.name} = @${UserSchema.schema.id.name}`
+      `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.userID.name} = @${UserSchema.schema.userID.name}`
     );
 
   // console.log(result);
+
+  if (result.recordsets[0].length > 0) {
+    return result.recordsets[0][0];
+  }
+
+  return null;
+};
+
+exports.getUserByUserName = async (username) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let result = await dbConfig.db.pool
+    .request()
+    .input(
+      UserSchema.schema.userName.name,
+      UserSchema.schema.userName.sqlType,
+      username
+    )
+    .query(
+      `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.userName.name} = @${UserSchema.schema.userName.name}`
+    );
+
+  if (result.recordsets[0].length > 0) {
+    return result.recordsets[0][0];
+  }
+
+  return null;
+};
+
+exports.getUserByUserName = async (username) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let result = await dbConfig.db.pool
+    .request()
+    .input(
+      UserSchema.schema.userName.name,
+      UserSchema.schema.userName.sqlType,
+      username
+    )
+    .query(
+      `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.userName.name} = @${UserSchema.schema.userName.name}`
+    );
 
   if (result.recordsets[0].length > 0) {
     return result.recordsets[0][0];
