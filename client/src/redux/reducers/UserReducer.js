@@ -1,5 +1,5 @@
 import accounts from '~/data/users';
-import * as UserFetch from '~/functions/UserFetch';
+import jwt from 'jwt-decode';
 const initialState = {
     isLoggedIn: false,
     isAdmin: false,
@@ -10,8 +10,9 @@ const UserReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'LOGIN':
             // console.log('LOGOUT');
-            const { userName, password, userID } = action.payload;
-
+            const { userName, password, token } = action.payload;
+            const user = jwt(token.token);
+            state.jwt = token.token;
             const isAuthenticated = accounts.some((account) => {
                 return account.userName === userName && account.password === password;
             });
@@ -19,7 +20,7 @@ const UserReducer = (state = initialState, action) => {
                 ...state,
                 isLoggedIn: isAuthenticated,
                 isAdmin: isAuthenticated ? accounts.find((account) => account.userName === userName).auth === 1 : false,
-                userID: userID,
+                userID: user.userID,
             };
         case 'LOGOUT':
             console.log('LOGOUT');

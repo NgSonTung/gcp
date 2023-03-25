@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const getUserIDByName = async (url = '', username) => {
+export const getJWTOfLogin = (url = '', login) => {
     if (url === '') {
-        url = 'http://localhost:3001/api/v1/user/username';
+        url = 'http://localhost:3001/api/v1/user/login';
     }
-    console.log(username);
-    return axios.get(`${url}/${username}`).then((res) => {
-        return res.data.data.user.userID;
+    return axios.post(url, login).then((res) => {
+        console.log(res);
+        return res.data.data;
     });
 };

@@ -4,7 +4,7 @@ const UserDAO = require("../DAO/UserAccount");
 const signToken = (id, username) => {
   return jwt.sign(
     {
-      id: id,
+      userID: id,
       username: username,
     },
     process.env.JWT_SECRET,
@@ -14,6 +14,7 @@ const signToken = (id, username) => {
 exports.login = async (req, res) => {
   try {
     const form = req.body;
+    console.log(form);
     //1. check if form is valid
     if (!form.password || !form.userName) {
       return res
@@ -22,6 +23,7 @@ exports.login = async (req, res) => {
     }
     //2. check if user existed
     const user = await UserDAO.getUserByUserName(form.userName);
+
     if (!user) {
       return res
         .status(401) // 401 - Unauthorized
@@ -35,7 +37,7 @@ exports.login = async (req, res) => {
         .json({ code: 401, msg: "Invalid authentication" });
     }
     //4. get JWT & response to use  //https://jwt.io/
-    const token = signToken(user.id, user.userName);
+    const token = signToken(user.userID, user.userName);
     console.log(token);
     res.status(200).json({
       code: 200,

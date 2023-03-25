@@ -50,7 +50,12 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
         const signUpPassword = event.target.password[1].value;
         const repeatPassword = event.target.repeatPassword.value;
         // userFetch(signInUsername);
-        const userID = await UserFetch.getUserIDByName('', signInUsername);
+        const login = {
+            userName: signInUsername,
+            password: signInPassword,
+        };
+        const token = await UserFetch.getJWTOfLogin('', login);
+
         // console.log('signUpusn', signUpUsername);
         // console.log('signUpPassword', signUpPassword);
         // console.log('repeatPassword', repeatPassword);
@@ -81,7 +86,7 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
                 payload: {
                     userName: signInUsername,
                     password: signInPassword,
-                    userID,
+                    token,
                 },
             });
         }
