@@ -5,9 +5,9 @@ import Checkbox from '@mui/material/Checkbox';
 const cx = classNames.bind(styles);
 
 const cateTitles = [
-    { title: 'Mô tả link', checkbox: true },
-    { title: 'Link site cũ', checkbox: false },
-    { title: 'Link site mới', checkbox: false },
+    { title: 'Tên sản phẩm', checkbox: true },
+    { title: 'Brand', checkbox: false },
+    { title: 'Giá', checkbox: false },
 ];
 
 const CateTitle = () => {

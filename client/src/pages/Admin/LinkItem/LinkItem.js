@@ -7,11 +7,14 @@ import { useRef, useState } from 'react';
 import HandleForm from '../HandleForm/HandleForm';
 const cx = classNames.bind(styles);
 
-const LinkItem = ({ data }) => {
+const LinkItem = ({ data, setProductChange }) => {
     const [showEditForm, setShowEditForm] = useState(false);
     const iconRef = useRef();
     const inputRef = useRef();
-
+    const formatCurrency = (str) => {
+        const regex = /\d{1,3}(?=(\d{3})+(?!\d))/g;
+        return `${str.toString().replace(regex, '$&,')}₫`;
+    };
     const handleShowEditForm = () => {
         setShowEditForm(true);
     };
@@ -24,14 +27,21 @@ const LinkItem = ({ data }) => {
                     <p className={cx('text')}>{data?.name}</p>
                 </div>
                 <p className={cx('old_link')}>{data?.brand}</p>
-                <p className={cx('new_link')}>{data?.price}</p>
+                <p className={cx('new_link')}>{formatCurrency(data?.price)}</p>
             </div>
             <div className={cx('link-handle-wrapper')}>
                 <button className={cx('handle-link-btn')} onClick={handleShowEditForm}>
                     <FontAwesomeIcon ref={iconRef} className={cx('btn-icon')} icon={faEllipsis} />
                 </button>
             </div>
-            {showEditForm && <HandleForm setShowEditForm={setShowEditForm} data={data} formType={'UpdateRemove'} />}
+            {showEditForm && (
+                <HandleForm
+                    setProductChange={setProductChange}
+                    setShowEditForm={setShowEditForm}
+                    data={data}
+                    formType={'UpdateRemove'}
+                />
+            )}
         </div>
     );
 };

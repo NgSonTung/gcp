@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-const Login = ({ classname, ToggleLogin }) => {
+const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
     const [mode, setMode] = useState('login');
     const { isLoggedIn, isAdmin } = useSelector((state) => state.UserReducer) || {};
     const dispatch = useDispatch();
@@ -77,11 +77,13 @@ const Login = ({ classname, ToggleLogin }) => {
 
                 <header className={cx('form-block__header')}>
                     <h1>{mode === 'login' ? 'Đăng nhập' : 'Đăng ký'}</h1>
-                    <div className={cx('form-block__toggle-block')}>
-                        <span>{mode === 'login' ? 'Chưa' : 'Đã'} có tài khoản? Bấm vào đây &#8594;</span>
-                        <input id="form-toggler" className="input-toggle" type="checkbox" onClick={toggleMode} />
-                        <label className={cx('toggler')} htmlFor="form-toggler"></label>
-                    </div>
+                    {loginType === 'default' && (
+                        <div className={cx('form-block__toggle-block')}>
+                            <span>{mode === 'login' ? 'Chưa' : 'Đã'} có tài khoản? Bấm vào đây &#8594;</span>
+                            <input id="form-toggler" className="input-toggle" type="checkbox" onClick={toggleMode} />
+                            <label className={cx('toggler')} htmlFor="form-toggler"></label>
+                        </div>
+                    )}
                 </header>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className={cx('form-block__input-wrapper')}>
