@@ -1,9 +1,15 @@
 .title-wrapper {
-    margin-top: 6rem;
-    background-color: #1a2334;
-    padding: 1.5rem;
-
+    width: 100%;
     .title {
+        text-align: center;
+        margin: auto;
         color: #fff;
+        margin-bottom: 1rem;
+        background-color: #1a2334;
+        width: 100%;
+        height: 100%;
+        font-size: 9rem;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
     }
 }

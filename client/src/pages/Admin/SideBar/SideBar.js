@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 const SideBar = () => {
     return (
         <div className={cx('title-wrapper')}>
-            <p className={cx('title')}>SẢN PHẨM</p>
+            <p className={cx('title')}>ADMIN</p>
         </div>
     );
 };

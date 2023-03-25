@@ -75,6 +75,7 @@ exports.createNewProduct = async (req, res) => {
 
 exports.deleteById = async (req, res) => {
   const id = req.params.id * 1;
+  console.log("id", id);
   try {
     const product = await ProductDAO.getProductById(id);
     if (!product) {
@@ -129,7 +130,7 @@ exports.updateProductById = async (req, res) => {
   const id = req.params.id * 1;
   try {
     const updateInfo = req.body;
-    const product = await ProductDAO.getProductById(id);
+    let product = await ProductDAO.getProductById(id);
     if (!product) {
       return res.status(404).json({
         code: 404,
@@ -149,7 +150,7 @@ exports.updateProductById = async (req, res) => {
     console.log(e);
     res.status(500).json({
       code: 500,
-      msg: `Updated product with id: ${id} failed!`,
+      msg: `Update product with id: ${id} failed!`,
     });
   }
 };

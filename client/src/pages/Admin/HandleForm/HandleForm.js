@@ -5,7 +5,7 @@ import { deleteProductById, addProduct, updateProductById } from '~/functions/Pr
 
 const cx = classNames.bind(styles);
 
-const HandleForm = ({ data, setShowEditForm, formType = '' }) => {
+const HandleForm = ({ data, setProductChange, setShowEditForm, formType = '' }) => {
     const formRef = useRef();
 
     const HandleAddProduct = () => {
@@ -24,6 +24,7 @@ const HandleForm = ({ data, setShowEditForm, formType = '' }) => {
         const msgPromise = addProduct(product);
         msgPromise.then((msg) => {
             alert(msg);
+            setProductChange(true);
         });
     };
     const HandleUpdateProduct = () => {
@@ -42,12 +43,14 @@ const HandleForm = ({ data, setShowEditForm, formType = '' }) => {
         const msgPromise = updateProductById(Number(currentForm.productID.value), product);
         msgPromise.then((msg) => {
             alert(msg);
+            setProductChange(true);
         });
     };
-    const HandleDeleteProduct = (id) => {
-        const msgPromise = deleteProductById(id);
+    const HandleDeleteProduct = () => {
+        const msgPromise = deleteProductById(Number(formRef.current.productID.value));
         msgPromise.then((msg) => {
             alert(msg);
+            setProductChange(true);
         });
     };
 
