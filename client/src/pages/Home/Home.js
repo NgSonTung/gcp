@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomerNavTitle from './CustomerNavTitle/CustomerNavTitle';
 import TextTitle from './HomeTextTitle/HomeTextTitle';
 import HomeProductBestSale from './HomeProductBestSale/index';
@@ -13,18 +13,24 @@ const cx = classNames.bind(styles);
 
 function Home() {
     const dispatch = useDispatch();
-
+    const { isLoggedIn, userID } = useSelector((state) => state.UserReducer);
     useEffect(() => {
         getDataOfCart();
-    }, []);
+    }, [isLoggedIn]);
 
     const getDataOfCart = async () => {
-        const url = 'http://localhost:3001/api/v1/checkout';
-        let result = await CartFetch.getProductInCart(url);
-        if (result) {
+        const url = `http://localhost:3001/api/v1/checkout/${userID}`;
+        let result = await CartFetch.getProductInCartByUSerID(url);
+        if (result && isLoggedIn) {
             const action = {
                 type: 'LOAD_DEFAULT_CART_FROM_DB',
                 payload: result.result,
+            };
+            dispatch(action);
+        } else {
+            const action = {
+                type: 'LOAD_DEFAULT_CART_FROM_DB',
+                payload: 'logout',
             };
             dispatch(action);
         }

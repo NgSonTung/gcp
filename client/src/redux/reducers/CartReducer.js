@@ -18,7 +18,7 @@ const CartReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_TO_CART': {
             const productExists = state.cartItem.some((p) => p.productID === product.productID);
-            console.log(' ADD_TO_CART', product);
+            // console.log(' ADD_TO_CART', product);
             if (!productExists) {
                 console.log('not productExists');
 
@@ -92,6 +92,12 @@ const CartReducer = (state = initialState, action) => {
         case 'LOAD_DEFAULT_CART_FROM_DB': {
             const newCart = [...product];
             const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
+            if (product === 'logout') {
+                return {
+                    ...state,
+                    cartItem: [],
+                };
+            }
             return {
                 ...state,
                 cartItem: [...product],

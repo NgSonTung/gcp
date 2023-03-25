@@ -5,12 +5,12 @@ import { CloseIcon } from '../../Icons/Icons.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
-
+import * as UserFetch from '~/functions/UserFetch';
 const cx = classNames.bind(styles);
 
 const Login = ({ classname, ToggleLogin }) => {
     const [mode, setMode] = useState('login');
-    const { isLoggedIn, isAdmin } = useSelector((state) => state.UserReducer) || {};
+    const { isLoggedIn, isAdmin, userID } = useSelector((state) => state.UserReducer) || {};
     const dispatch = useDispatch();
     const toggleMode = () => {
         var newMode = mode === 'login' ? 'signup' : 'login';
@@ -35,16 +35,25 @@ const Login = ({ classname, ToggleLogin }) => {
             }
         }
     }, [isLoggedIn]);
-    const handleSubmit = (event) => {
+    // const userFetch = async (username) => {
+    //     const user = await UserFetch.getUserIDByName(username);
+    //     dispatch({
+    //         type: 'CHECK_EXISTS',
+    //         payload: user,
+    //     });
+    // };
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const signInUsername = event.target.username[0].value;
         const signInPassword = event.target.password[0].value;
         const signUpUsername = event.target.username[1].value;
         const signUpPassword = event.target.password[1].value;
         const repeatPassword = event.target.repeatPassword.value;
-        console.log('signUpusn', signUpUsername);
-        console.log('signUpPassword', signUpPassword);
-        console.log('repeatPassword', repeatPassword);
+        // userFetch(signInUsername);
+        const userID = await UserFetch.getUserIDByName('', signInUsername);
+        // console.log('signUpusn', signUpUsername);
+        // console.log('signUpPassword', signUpPassword);
+        // console.log('repeatPassword', repeatPassword);
         if (mode === 'signup') {
             if (signUpPassword !== repeatPassword) {
                 toast.error('Nhập lại mật khẩu chưa chính xác!', {
@@ -61,11 +70,20 @@ const Login = ({ classname, ToggleLogin }) => {
                 ToggleLogin();
             }
         }
+
         if (mode === 'login') {
             if (!isMountedRef.current) {
                 isMountedRef.current = true;
             }
-            dispatch({ type: 'LOGIN', payload: { userName: signInUsername, password: signInPassword } });
+
+            dispatch({
+                type: 'LOGIN',
+                payload: {
+                    userName: signInUsername,
+                    password: signInPassword,
+                    userID,
+                },
+            });
         }
     };
     return (

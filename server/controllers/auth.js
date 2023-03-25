@@ -36,6 +36,7 @@ exports.login = async (req, res) => {
     }
     //4. get JWT & response to use  //https://jwt.io/
     const token = signToken(user.id, user.userName);
+    console.log(token);
     res.status(200).json({
       code: 200,
       msg: "OK",

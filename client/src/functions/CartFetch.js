@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getProductInCart = (url) => {
+export const getProductInCartByUSerID = (url) => {
     if (url === '') {
         url = 'http://localhost:3001/api/v1/checkout/';
     }

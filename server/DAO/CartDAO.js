@@ -47,21 +47,28 @@ exports.addCart_ProductIfNotExisted = async (cart_Product) => {
     insertFieldNamesStr +
     ") SELECT  " +
     insertValuesStr +
-    ` WHERE NOT EXISTS(SELECT * FROM ${Cart_ProductSchema.schemaName} WHERE productID = @productID)`; //tam thoi;
+    ` WHERE NOT EXISTS(SELECT * FROM ${Cart_ProductSchema.schemaName} WHERE cartID = @cartID and productID = @productID)`; //tam thoi;
   let result = await request.query(query);
   return result.recordsets;
 };
 
-exports.getProductInCart = async () => {
+exports.getProductInCartByUSerID = async (userID) => {
   const dbPool = dbConfig.db.pool;
   if (!dbPool) {
     throw new Error("Not connected to db");
   }
 
-  const query = `select p.*,cp.amount,cp.cartID from product p inner join cart_product cp on cp.productID = p.productID
-  `;
   // console.log(query);
-  let result = await dbPool.request().query(query);
+  let result = await dbPool
+    .request()
+    .input(
+      CartSchema.schema.userID.name,
+      CartSchema.schema.userID.sqlType,
+      userID
+    ).query(`select p.*,cp.amount,cp.cartID from product p
+  inner join cart_product cp on cp.productID = p.productID
+  inner join cart c on cp.cartID = c.cartID
+  where c.userID =@userID`);
   // console.log(result.recordsets);
   return result.recordsets[0];
 };
