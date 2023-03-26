@@ -1,7 +1,7 @@
 import accounts from '~/data/users';
 import jwt from 'jwt-decode';
 const initialState = {
-    isLoggedIn: false,
+    isLoggedIn: null,
     isAdmin: false,
     userID: -1,
 };
@@ -11,15 +11,22 @@ const UserReducer = (state = initialState, action) => {
         case 'LOGIN':
             // console.log('LOGOUT');
             const { userName, password, token } = action.payload;
+            if (token === false) {
+                console.log('token is false', token);
+                return {
+                    ...state,
+                    isLoggedIn: false,
+                    isAdmin: false,
+                    userID: -2,
+                };
+            }
             const user = jwt(token.token);
             state.jwt = token.token;
-            const isAuthenticated = accounts.some((account) => {
-                return account.userName === userName && account.password === password;
-            });
+
             return {
                 ...state,
-                isLoggedIn: isAuthenticated,
-                isAdmin: isAuthenticated ? accounts.find((account) => account.userName === userName).auth === 1 : false,
+                isLoggedIn: true,
+                isAdmin: token.auth === 1 ? true : false,
                 userID: user.userID,
             };
         case 'LOGOUT':

@@ -1,11 +1,12 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const UserDAO = require("../DAO/UserAccount");
-const signToken = (id, username) => {
+const signToken = (id, username, auth) => {
   return jwt.sign(
     {
       userID: id,
       username: username,
+      auth: auth,
     },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRED_IN }
@@ -14,7 +15,6 @@ const signToken = (id, username) => {
 exports.login = async (req, res) => {
   try {
     const form = req.body;
-    console.log(form);
     //1. check if form is valid
     if (!form.password || !form.userName) {
       return res
@@ -37,7 +37,7 @@ exports.login = async (req, res) => {
         .json({ code: 401, msg: "Invalid authentication" });
     }
     //4. get JWT & response to use  //https://jwt.io/
-    const token = signToken(user.userID, user.userName);
+    const token = signToken(user.userID, user.userName, user.auth);
     console.log(token);
     res.status(200).json({
       code: 200,

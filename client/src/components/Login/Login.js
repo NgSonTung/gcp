@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
     const [mode, setMode] = useState('login');
-    const { isLoggedIn, isAdmin, userID } = useSelector((state) => state.UserReducer) || {};
+    let { isLoggedIn, isAdmin, userID } = useSelector((state) => state.UserReducer) || {};
     const dispatch = useDispatch();
     const toggleMode = () => {
         var newMode = mode === 'login' ? 'signup' : 'login';
@@ -21,18 +21,21 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
         if (isMountedRef.current) {
             if (isLoggedIn) {
                 ToggleLogin();
-            } else {
-                toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
-                    position: 'top-center',
-                    autoClose: 2001,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'colored',
-                });
             }
+            // else {
+            //     console.log('is false ');
+
+            //     toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
+            //         position: 'top-center',
+            //         autoClose: 2001,
+            //         hideProgressBar: true,
+            //         closeOnClick: true,
+            //         pauseOnHover: true,
+            //         draggable: true,
+            //         progress: undefined,
+            //         theme: 'colored',
+            //     });
+            // }
         }
     }, [isLoggedIn]);
     // const userFetch = async (username) => {
@@ -55,7 +58,20 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
             password: signInPassword,
         };
         const token = await UserFetch.getJWTOfLogin('', login);
+        if (token === false) {
+            console.log('is false ');
 
+            toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
+                position: 'top-center',
+                autoClose: 2001,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+            });
+        }
         // console.log('signUpusn', signUpUsername);
         // console.log('signUpPassword', signUpPassword);
         // console.log('repeatPassword', repeatPassword);
@@ -84,8 +100,8 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
             dispatch({
                 type: 'LOGIN',
                 payload: {
-                    userName: signInUsername,
-                    password: signInPassword,
+                    // userName: signInUsername,
+                    // password: signInPassword,
                     token,
                 },
             });
