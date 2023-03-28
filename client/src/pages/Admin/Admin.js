@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Admin.module.scss';
-import SideBar from './SideBar/SideBar';
+// import SideBar from './SideBar/SideBar';
 import Header from './Header/Header';
 import UserAction from './UserAction/UserAction';
 import Search from './FilterData/Search/Search';
@@ -8,7 +8,7 @@ import { getAllProducts } from '~/functions/Fetch';
 import LinkPaginate from './LinkPaginate/LinkPaginate';
 import { useEffect, useState } from 'react';
 import Login from '~/components/Login';
-import { useSelector } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import CusPagination from '~/components/CusPagination/index';
 
@@ -18,14 +18,13 @@ const cx = classNames.bind(styles);
 
 function Admin() {
     const [showLogin, setShowLogin] = useState(false);
-    const { isLoggedIn } = useSelector((state) => state.UserReducer);
+    const { isLoggedIn, jwt, isAdmin } = useSelector((state) => state.UserReducer);
     const [loginState, setLoginState] = useState(isLoggedIn);
     const [productData, setProductDatas] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [productPerPage, setProductPerPage] = useState(10);
     const [totalProduct, setTotalProduct] = useState(0);
     const [productChange, setProductChange] = useState(false);
-
     const handlePage = (page) => setCurrentPage(page);
 
     const ToggleLogin = () => {
@@ -38,7 +37,6 @@ function Admin() {
     }, []);
     useEffect(() => {
         productChange && handleGetData();
-        console.log(productChange);
     }, [productChange]);
     useEffect(() => {
         if (isLoggedIn && !loginState) {
@@ -77,14 +75,20 @@ function Admin() {
                 <div className={cx('left-side')}>{/* <SideBar /> */}</div>
                 <div className={cx('right-side')}>
                     <Header />
-                    <div className={cx('content-wrapper')}>
-                        <UserAction />
-                        <Search />
-                        <LinkPaginate data={productData} setProductChange={setProductChange} />
-                    </div>
+                    {isAdmin && (
+                        <div className={cx('content-wrapper')}>
+                            <UserAction jwt={jwt} setProductChange={setProductChange} />
+                            <Search />
+                            {jwt && <LinkPaginate data={productData} jwt={jwt} setProductChange={setProductChange} />}
+                            <CusPagination
+                                itemPerPage={productPerPage}
+                                totalItem={totalProduct}
+                                handlePage={handlePage}
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
-            <CusPagination itemPerPage={productPerPage} totalItem={totalProduct} handlePage={handlePage} />
             {showLogin && <Login loginType="admin" ToggleLogin={ToggleLogin} />}
         </div>
     );

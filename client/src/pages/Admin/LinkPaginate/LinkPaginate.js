@@ -5,17 +5,15 @@ import LinkItem from '../LinkItem/LinkItem';
 
 const cx = classNames.bind(styles);
 
-const LinkPaginate = ({ data, setProductChange }) => {
-    // -------------
-
+const LinkPaginate = ({ jwt, data, setProductChange }) => {
     return (
         <div className={cx('wrapper')}>
-            {console.log('rendered')} <CateTitle />
+            <CateTitle />
             <div className={cx('link-item-wrapper')}>
                 {data?.map((item, index) => {
                     return (
                         <div key={index}>
-                            <LinkItem data={item} setProductChange={setProductChange} />
+                            <LinkItem jwt={jwt} data={item} setProductChange={setProductChange} />
                         </div>
                     );
                 })}

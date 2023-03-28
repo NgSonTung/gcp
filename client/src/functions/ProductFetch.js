@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+
+// const dispatch = useDispatch();
 
 export const getAllProducts = (url) => {
     if (url === '') {
@@ -14,9 +17,36 @@ export const getAllProducts = (url) => {
         .catch((err) => console.log(err));
 };
 
-export const deleteProductById = (id) => {
+export const deleteProductById = (id, jwt) => {
+    const headers = {
+        Authorization: `Bearer ${jwt}`,
+    };
     return axios
-        .delete(`product/${id}`)
+        .delete(`product/${id}`, {
+            headers: headers,
+        })
+        .then((res) => {
+            return res.data.msg;
+        })
+        .catch((err) => {
+            return err.response.data.msg;
+        });
+    // const product = {
+    //     type: 'GET_PRODUCT_FROM_DB',
+    //     payload:
+    // };
+    // dispatch(location);
+};
+
+export const addProduct = (product, jwt) => {
+    // console.log(jwt);
+    const headers = {
+        Authorization: `Bearer ${jwt}`,
+    };
+    return axios
+        .post(`product/`, product, {
+            headers: headers,
+        })
         .then((res) => {
             return res.data.msg;
         })
@@ -25,20 +55,14 @@ export const deleteProductById = (id) => {
         });
 };
 
-export const addProduct = (product) => {
+export const updateProductById = (id, product, jwt) => {
+    const headers = {
+        Authorization: `Bearer ${jwt}`,
+    };
     return axios
-        .post(`product/`, product)
-        .then((res) => {
-            return res.data.msg;
+        .patch(`product/${id}`, product, {
+            headers: headers,
         })
-        .catch((err) => {
-            return err.response.data.msg;
-        });
-};
-
-export const updateProductById = (id, product) => {
-    return axios
-        .patch(`product/${id}`, product)
         .then((res) => {
             // console.log(res.status);
             return res.data.msg;

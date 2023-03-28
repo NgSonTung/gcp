@@ -7,7 +7,7 @@ import { useRef, useState } from 'react';
 import HandleForm from '../HandleForm/HandleForm';
 const cx = classNames.bind(styles);
 
-const LinkItem = ({ data, setProductChange }) => {
+const LinkItem = ({ jwt, data, setProductChange }) => {
     const [showEditForm, setShowEditForm] = useState(false);
     const iconRef = useRef();
     const inputRef = useRef();
@@ -36,6 +36,7 @@ const LinkItem = ({ data, setProductChange }) => {
             </div>
             {showEditForm && (
                 <HandleForm
+                    jwt={jwt}
                     setProductChange={setProductChange}
                     setShowEditForm={setShowEditForm}
                     data={data}
