@@ -160,7 +160,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            {showLogin && <Login ToggleLogin={ToggleLogin} />}
+            {showLogin && <Login loginType="user" ToggleLogin={ToggleLogin} />}
         </div>
     );
 };

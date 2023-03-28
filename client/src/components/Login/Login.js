@@ -87,12 +87,14 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
             if (!isMountedRef.current) {
                 isMountedRef.current = true;
             }
-            dispatch({
-                type: 'LOGIN',
-                payload: {
-                    token,
-                },
-            });
+            if (loginType === 'user') {
+                dispatch({
+                    type: 'LOGIN',
+                    payload: {
+                        token,
+                    },
+                });
+            }
             if (loginType === 'admin' && jwt(token.token).auth !== 1) {
                 toast.error('Vui lòng đăng nhập bằng tài khoản có quyền admin', {
                     position: 'top-center',
