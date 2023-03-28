@@ -4,7 +4,7 @@ import styles from './Admin.module.scss';
 import Header from './Header/Header';
 import UserAction from './UserAction/UserAction';
 import Search from './FilterData/Search/Search';
-import { getAllProducts } from '~/functions/Fetch';
+import { getAllProducts } from '~/functions/ProductFetch';
 import LinkPaginate from './LinkPaginate/LinkPaginate';
 import { useEffect, useState } from 'react';
 import Login from '~/components/Login';

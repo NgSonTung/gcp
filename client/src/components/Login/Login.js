@@ -13,6 +13,7 @@ import { useDebounce } from '~/Hooks';
 const cx = classNames.bind(styles);
 
 const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
+    console.log(loginType);
     const [mode, setMode] = useState('login');
     const [signUpValue, setSignUpValue] = useState('');
     const [userExists, setUserExists] = useState(false);
@@ -46,6 +47,7 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
             password: signInPassword,
         };
         const token = await UserFetch.getJWTOfLogin('', login);
+        console.log(token);
         if (token === false) {
             toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
                 position: 'top-center',
@@ -143,7 +145,7 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
 
                 <header className={cx('form-block__header')}>
                     <h1>{mode === 'login' ? 'Đăng nhập' : 'Đăng ký'}</h1>
-                    {loginType === 'default' && (
+                    {loginType === 'user' && (
                         <div className={cx('form-block__toggle-block')}>
                             <span>{mode === 'login' ? 'Chưa' : 'Đã'} có tài khoản? Bấm vào đây &#8594;</span>
                             <input id="form-toggler" className="input-toggle" type="checkbox" onClick={toggleMode} />

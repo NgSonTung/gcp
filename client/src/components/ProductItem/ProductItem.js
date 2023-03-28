@@ -13,7 +13,7 @@ function ProductItem(props) {
     const icon = require('~/Icons/index');
     const itemPrice = fortmatCurrency(data?.price);
     return (
-        <Link to={`/product/${data?.name}`} styles={{ height: 'auto' }} onClick={() => window.scrollY(0, 0)}>
+        <Link to={`/product/${data?.name}`} styles={{ height: 'auto' }}>
             <div className={secondLayout ? cx('item-best-sale', 'active-second-layout') : cx('item-best-sale')}>
                 <div className={hotTag ? cx('tag-best-sale', 'active-hot-tag') : cx('tag-best-sale')}>
                     <span>HOT</span>

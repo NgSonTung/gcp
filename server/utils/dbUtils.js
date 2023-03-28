@@ -251,6 +251,8 @@ exports.getFilterProductsQuery = (
             }
           }
         }
+
+        //filter brand
         if (criteria == "brand") {
           filterStr += "(";
           if (filter[criteria].constructor === Array) {
@@ -267,7 +269,6 @@ exports.getFilterProductsQuery = (
             }
             i++;
           }
-
           if (
             filter[criteria].constructor !== Array &&
             schemaProp.type === "string"
@@ -277,6 +278,33 @@ exports.getFilterProductsQuery = (
             i++;
           }
         }
+        //filter category
+        if (criteria == "category") {
+          filterStr += "(";
+          if (filter[criteria].constructor === Array) {
+            if (schemaProp.type === "string") {
+              for (let valueIdx in filter[criteria]) {
+                filterStr +=
+                  criteria + " = '" + filter[criteria][valueIdx] + "'";
+                if (valueIdx * 1 === filter[criteria].length - 1) {
+                  filterStr += ")";
+                } else if (valueIdx * 1 !== filter[criteria].length - 1) {
+                  filterStr += " or ";
+                }
+              }
+            }
+            i++;
+          }
+          if (
+            filter[criteria].constructor !== Array &&
+            schemaProp.type === "string"
+          ) {
+            filterStr += criteria + "='" + filter[criteria] + "')";
+            console.log(filterStr);
+            i++;
+          }
+        }
+        //filter name
         if (criteria == "name" && filter[criteria].length > 0) {
           filterStr += criteria + " like '%" + filter[criteria] + "%' ";
           i++;

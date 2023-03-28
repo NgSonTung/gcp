@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 
 export const getJWTOfLogin = (url = '', login) => {
+    console.log(login);
     if (url === '') {
         url = 'http://localhost:3001/api/v1/user/login';
     }
