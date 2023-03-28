@@ -47,20 +47,7 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
             password: signInPassword,
         };
         const token = await UserFetch.getJWTOfLogin('', login);
-        console.log(token);
-        if (token === false) {
-            console.log('login is false');
-            toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
-                position: 'top-center',
-                autoClose: 2001,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'colored',
-            });
-        }
+
         if (mode === 'signup') {
             if (signUpPassword !== repeatPassword) {
                 toast.error('Nhập lại mật khẩu chưa chính xác!', {
@@ -118,6 +105,19 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
                     },
                 });
             }
+            if (token === false) {
+                console.log('login is false');
+                toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
+                    position: 'top-center',
+                    autoClose: 2001,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'colored',
+                });
+            }
         }
     };
 
@@ -146,6 +146,7 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
 
                 <header className={cx('form-block__header')}>
                     <h1>{mode === 'login' ? 'Đăng nhập' : 'Đăng ký'}</h1>
+                    {loginType === 'user' && (
                     {loginType === 'user' && (
                         <div className={cx('form-block__toggle-block')}>
                             <span>{mode === 'login' ? 'Chưa' : 'Đã'} có tài khoản? Bấm vào đây &#8594;</span>
