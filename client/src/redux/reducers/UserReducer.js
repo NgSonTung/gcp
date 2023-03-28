@@ -3,7 +3,6 @@ import jwt from 'jwt-decode';
 const initialState = {
     isLoggedIn: null,
     isAdmin: null,
-    isAdmin: null,
     userID: -1,
     jwt: null,
 };
@@ -47,11 +46,9 @@ const UserReducer = (state = initialState, action) => {
             return {
                 ...state,
                 jwt: null,
-                isLoggedIn: false,
                 isAdmin: false,
                 userID: -1,
                 isLoggedIn: action.payload.isLoggedIn,
-
                 cartID: -1,
             };
 

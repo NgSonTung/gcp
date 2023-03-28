@@ -47,8 +47,6 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
         };
         const token = await UserFetch.getJWTOfLogin('', login);
         if (token === false) {
-            console.log('is false');
-
             toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
                 position: 'top-center',
                 autoClose: 2001,
@@ -60,10 +58,6 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
                 theme: 'colored',
             });
         }
-
-        // console.log('signUpusn', signUpUsername);
-        // console.log('signUpPassword', signUpPassword);
-        // console.log('repeatPassword', repeatPassword);
         if (mode === 'signup') {
             if (signUpPassword !== repeatPassword) {
                 toast.error('Nhập lại mật khẩu chưa chính xác!', {
@@ -115,13 +109,12 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
             }
         }
 
-            dispatch({
-                type: 'LOGIN',
-                payload: {
-                    token,
-                },
-            });
-        }
+        dispatch({
+            type: 'LOGIN',
+            payload: {
+                token,
+            },
+        });
     };
 
     const checkOnChange = async (username) => {
