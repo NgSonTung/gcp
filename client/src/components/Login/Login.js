@@ -47,6 +47,7 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
         };
         const token = await UserFetch.getJWTOfLogin('', login);
         if (token === false) {
+            console.log('login is false');
             toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
                 position: 'top-center',
                 autoClose: 2001,

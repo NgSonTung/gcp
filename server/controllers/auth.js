@@ -26,6 +26,12 @@ exports.login = async (req, res) => {
     //2. check if user existed
     const user = await UserDAO.getUserByUserName(form.userName);
     const cartUser = await CartDAO.getCartIDByUserName(form.userName);
+    let cartID;
+    if (!cartUser) {
+      cartID = -1;
+    } else {
+      cartID = cartUser.cartID;
+    }
     if (!user) {
       return res
         .status(401) // 401 - Unauthorized
@@ -39,12 +45,7 @@ exports.login = async (req, res) => {
         .json({ code: 401, msg: "Invalid authentication" });
     }
     //4. get JWT & response to use  //https://jwt.io/
-    const token = signToken(
-      user.userID,
-      user.userName,
-      user.auth,
-      cartUser.cartID
-    );
+    const token = signToken(user.userID, user.userName, user.auth, cartID);
     res.status(200).json({
       code: 200,
       msg: "OK",
