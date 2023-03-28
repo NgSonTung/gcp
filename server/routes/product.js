@@ -21,6 +21,14 @@ router
 router
   .route("/:id")
   .get(productController.getProductById)
-  .delete(productController.deleteById)
-  .patch(productController.updateProductById);
+  .delete(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    productController.deleteById
+  )
+  .patch(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    productController.updateProductById
+  );
 module.exports = router;

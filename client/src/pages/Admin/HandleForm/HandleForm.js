@@ -1,11 +1,11 @@
 import classNames from 'classnames/bind';
 import styles from './HandleForm.module.scss';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { deleteProductById, addProduct, updateProductById } from '~/functions/ProductFetch';
 
 const cx = classNames.bind(styles);
 
-const HandleForm = ({ data, setProductChange, setShowEditForm, formType = '' }) => {
+const HandleForm = ({ jwt, data, setProductChange, setShowEditForm, formType = '' }) => {
     const formRef = useRef();
 
     const HandleAddProduct = () => {
@@ -21,9 +21,11 @@ const HandleForm = ({ data, setProductChange, setShowEditForm, formType = '' }) 
             description: currentForm.description.value,
             sale: currentForm.sale.value,
         };
-        const msgPromise = addProduct(product);
+        const msgPromise = addProduct(product, jwt);
         msgPromise.then((msg) => {
             alert(msg);
+            // console.log(jwt);
+            // console.log(setProductChange);
             setProductChange(true);
         });
     };
@@ -40,14 +42,14 @@ const HandleForm = ({ data, setProductChange, setShowEditForm, formType = '' }) 
             description: currentForm.description.value,
             sale: currentForm.sale.value,
         };
-        const msgPromise = updateProductById(Number(currentForm.productID.value), product);
+        const msgPromise = updateProductById(Number(currentForm.productID.value), product, jwt);
         msgPromise.then((msg) => {
             alert(msg);
             setProductChange(true);
         });
     };
     const HandleDeleteProduct = () => {
-        const msgPromise = deleteProductById(Number(formRef.current.productID.value));
+        const msgPromise = deleteProductById(Number(formRef.current.productID.value), jwt);
         msgPromise.then((msg) => {
             alert(msg);
             setProductChange(true);

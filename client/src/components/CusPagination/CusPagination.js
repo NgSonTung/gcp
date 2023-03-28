@@ -8,7 +8,7 @@ function CusPagination(props) {
 
     const pageChange = (page) => {
         handlePage(page);
-        console.log(page);
+        // console.log(page);
     };
 
     return (

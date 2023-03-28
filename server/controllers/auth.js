@@ -117,7 +117,7 @@ exports.protect = async (req, res, next) => {
     // 2) Verification token
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     // 3) Check if user still exists
-    const currentUser = await UserDAO.getUser(payload.id);
+    const currentUser = await UserDAO.getUserById(payload.userID);
     if (!currentUser) {
       return res
         .status(401) // 401 - Unauthorized
@@ -140,7 +140,7 @@ exports.protect = async (req, res, next) => {
 //roles [StaticData.AUTH.Role.admin]
 exports.restrictTo = (...roles) => {
   return async (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
+    if (!roles.includes(req.user.auth)) {
       return res
         .status(403) // 403 - Forbidden
         .json({

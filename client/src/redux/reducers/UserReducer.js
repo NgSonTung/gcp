@@ -3,7 +3,9 @@ import jwt from 'jwt-decode';
 const initialState = {
     isLoggedIn: null,
     isAdmin: null,
+    isAdmin: null,
     userID: -1,
+    jwt: null,
 };
 
 const UserReducer = (state = initialState, action) => {
@@ -20,7 +22,6 @@ const UserReducer = (state = initialState, action) => {
         case 'LOGIN':
             // console.log('LOGOUT');
             const { token } = action.payload;
-            console.log(token.token);
             if (token === false) {
                 return {
                     ...state,
@@ -31,12 +32,12 @@ const UserReducer = (state = initialState, action) => {
                 };
             }
             const user = jwt(token.token);
-            console.log(user);
             state.jwt = token.token;
             return {
                 ...state,
                 isLoggedIn: true,
-                isAdmin: token.auth === 1 ? true : false,
+                jwt: token.token,
+                isAdmin: user.auth === 1,
                 userID: user.userID,
                 cartID: user.cartID,
             };
@@ -45,8 +46,12 @@ const UserReducer = (state = initialState, action) => {
             console.log(state);
             return {
                 ...state,
+                jwt: null,
+                isLoggedIn: false,
+                isAdmin: false,
+                userID: -1,
                 isLoggedIn: action.payload.isLoggedIn,
-                userID: -2,
+
                 cartID: -1,
             };
 

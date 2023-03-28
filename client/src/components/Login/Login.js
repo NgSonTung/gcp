@@ -6,6 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import * as UserFetch from '~/functions/UserFetch';
+import jwt from 'jwt-decode';
+
 import { CircularProgress } from '@mui/material';
 import { useDebounce } from '~/Hooks';
 const cx = classNames.bind(styles);
@@ -45,6 +47,8 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
         };
         const token = await UserFetch.getJWTOfLogin('', login);
         if (token === false) {
+            console.log('is false');
+
             toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
                 position: 'top-center',
                 autoClose: 2001,
@@ -56,6 +60,10 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
                 theme: 'colored',
             });
         }
+
+        // console.log('signUpusn', signUpUsername);
+        // console.log('signUpPassword', signUpPassword);
+        // console.log('repeatPassword', repeatPassword);
         if (mode === 'signup') {
             if (signUpPassword !== repeatPassword) {
                 toast.error('Nhập lại mật khẩu chưa chính xác!', {
@@ -85,6 +93,27 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
             if (!isMountedRef.current) {
                 isMountedRef.current = true;
             }
+            if (loginType === 'admin' && jwt(token.token).auth !== 1) {
+                toast.error('Vui lòng đăng nhập bằng tài khoản có quyền admin', {
+                    position: 'top-center',
+                    autoClose: 2001,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'colored',
+                });
+            } else {
+                dispatch({
+                    type: 'LOGIN',
+                    payload: {
+                        loginType: loginType,
+                        token,
+                    },
+                });
+            }
+        }
 
             dispatch({
                 type: 'LOGIN',

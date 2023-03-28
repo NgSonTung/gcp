@@ -7,7 +7,7 @@ import HandleForm from '../HandleForm/HandleForm';
 
 const cx = classNames.bind(styles);
 
-const UserAction = () => {
+const UserAction = ({ jwt, setProductChange }) => {
     const [showEditForm, setShowEditForm] = useState(false);
 
     const handleShowEditForm = () => {
@@ -39,7 +39,17 @@ const UserAction = () => {
                     <p className={cx('text')}>THÊM MỚI</p>
                 </button>
             </div>
-            <div>{showEditForm && <HandleForm setShowEditForm={setShowEditForm} data={{}} formType={'Add'} />}</div>
+            <div>
+                {showEditForm && (
+                    <HandleForm
+                        jwt={jwt}
+                        setProductChange={setProductChange}
+                        setShowEditForm={setShowEditForm}
+                        data={{}}
+                        formType={'Add'}
+                    />
+                )}
+            </div>
             {/* <HandleForm /> */}
         </div>
     );
