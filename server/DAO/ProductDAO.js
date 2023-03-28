@@ -144,6 +144,54 @@ exports.getAllProducts = async (filter) => {
   };
 };
 
+exports.getAllProductsByCategory = async (filter) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  const page = filter.page * 1 || 1;
+  let pageSize = filter.pageSize * 1 || StaticData.config.MAX_PAGE_SIZE;
+  if (pageSize > StaticData.config.MAX_PAGE_SIZE) {
+    pageSize = StaticData.config.MAX_PAGE_SIZE;
+  }
+  let selectQuery = `SELECT * FROM ${ProductSchema.schemaName}`;
+  let countQuery = `SELECT COUNT(DISTINCT ${ProductSchema.schema.productID.name}) as totalItem from ${ProductSchema.schemaName}`;
+
+  const { filterStr, paginationStr } = dbUtils.getFilterProductsQuery(
+    ProductSchema.schema,
+    filter,
+    page,
+    pageSize,
+    ProductSchema.defaultSort
+  );
+
+  if (filterStr) {
+    selectQuery += filterStr;
+    countQuery += " " + filterStr;
+  }
+
+  if (paginationStr) {
+    selectQuery += " " + paginationStr;
+  }
+
+  const result = await dbConfig.db.pool.request().query(selectQuery);
+  let countResult = await dbConfig.db.pool.request().query(countQuery);
+
+  let totalProduct = 0;
+  if (countResult.recordsets[0].length > 0) {
+    totalProduct = countResult.recordsets[0][0].totalItem;
+  }
+  let totalPage = Math.ceil(totalProduct / pageSize); //round up
+  const products = result.recordsets[0];
+  console.log("finish log", selectQuery);
+  return {
+    page,
+    pageSize,
+    totalPage,
+    totalProduct,
+    dataProducts: products,
+  };
+};
+
 exports.createNewProduct = async (product) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");

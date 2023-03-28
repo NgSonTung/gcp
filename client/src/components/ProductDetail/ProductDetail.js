@@ -9,10 +9,25 @@ import ProductDetailDesc from '../ProductDetailDesc';
 import NavTitle from '../NavTitle';
 import ProductBestSale from '../ProductBestSale/';
 import data from '~/data/data.json';
+import { getAllProducts } from '~/functions/ProductFetch';
 
 const cx = classNames.bind(styles);
 
 function ProductDetail() {
+    const [productData, setProductDatas] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productPerPage, setProductPerPage] = useState(10);
+    const [totalProduct, setTotalProduct] = useState(0);
+
+    const handleGetData = async () => {
+        const fetchedData = await getAllProducts(
+            `http://localhost:3001/api/v1/product/?page=${currentPage}&pageSize=${productPerPage}`,
+        );
+        const result = fetchedData?.data?.products?.dataProducts;
+        setProductDatas(result);
+        setTotalProduct(fetchedData?.data?.products?.totalProduct);
+        setProductChange(false);
+    };
     const [productLoaded, setProductLoaded] = useState(false);
     const { nameproduct } = useParams();
     const { product } = useSelector((state) => state.ProductReducer);
