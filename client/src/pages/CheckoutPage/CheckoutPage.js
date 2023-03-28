@@ -11,7 +11,7 @@ const cx = classNames.bind(style);
 const CheckoutPage = () => {
     const cartItem = useSelector((state) => state.CartReducer);
     // useEffect(() => {}, [cartItem]);
-    // console.log('cartItem.total', cartItem.total);
+    // console.log('cartItem.total', cartItem);
     return (
         <div className={cx('check-out-warpper')}>
             <Container className={cx('container-check-out')}>

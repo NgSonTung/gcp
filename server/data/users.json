@@ -12,5 +12,12 @@
     "password": "123",
     "auth": 0,
     "email": "user@example.com"
+  },
+  {
+    "userID": 3,
+    "userName": "user2",
+    "password": "123",
+    "auth": 0,
+    "email": "user@example.com"
   }
 ]

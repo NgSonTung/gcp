@@ -47,7 +47,6 @@ exports.getUser = async (req, res) => {
 exports.getUserByUserName = async (req, res) => {
   try {
     const username = req.params.username;
-    console.log(username);
     const user = await UserDAO.getUserByUserName(username);
     if (!user) {
       return res
@@ -74,8 +73,7 @@ exports.getUserByUserName = async (req, res) => {
 };
 exports.addUser = async (req, res) => {
   const newUser = req.body;
-  const result = await UserDAO.addUser(newUser);
-  console.log(result);
+  const result = await UserDAO.insertUser(newUser);
   try {
     res.status(200).json({
       code: 200,

@@ -1,12 +1,14 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const UserDAO = require("../DAO/UserAccount");
-const signToken = (id, username, auth) => {
+const CartDAO = require("../DAO/CartDAO");
+const signToken = (id, username, auth, cartUser) => {
   return jwt.sign(
     {
       userID: id,
       username: username,
       auth: auth,
+      cartID: cartUser,
     },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRED_IN }
@@ -23,7 +25,7 @@ exports.login = async (req, res) => {
     }
     //2. check if user existed
     const user = await UserDAO.getUserByUserName(form.userName);
-
+    const cartUser = await CartDAO.getCartIDByUserName(form.userName);
     if (!user) {
       return res
         .status(401) // 401 - Unauthorized
@@ -37,8 +39,12 @@ exports.login = async (req, res) => {
         .json({ code: 401, msg: "Invalid authentication" });
     }
     //4. get JWT & response to use  //https://jwt.io/
-    const token = signToken(user.userID, user.userName, user.auth);
-    console.log(token);
+    const token = signToken(
+      user.userID,
+      user.userName,
+      user.auth,
+      cartUser.cartID
+    );
     res.status(200).json({
       code: 200,
       msg: "OK",
@@ -58,20 +64,21 @@ exports.login = async (req, res) => {
 exports.signup = async (req, res) => {
   try {
     const form = req.body;
-    if (!form.signUpPassword || !form.repeatPassword) {
+    if (!form.password || !form.userName || !form.email) {
       return res.status(403).json({
         code: 403,
         mgs: `Invalid Password`,
       });
     }
 
-    await UserDAO.addUser({
+    await UserDAO.insertUser({
       userName: form.userName,
       email: form.email,
-      auth: form.auth,
       password: form.password,
     });
+
     const user = await UserDAO.getUserByUserName(form.userName);
+    await CartDAO.createNewCart(user.userID);
     delete user.password;
     res.status(200).json({
       code: 200,
@@ -109,7 +116,6 @@ exports.protect = async (req, res, next) => {
     }
     // 2) Verification token
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("payload:", payload);
     // 3) Check if user still exists
     const currentUser = await UserDAO.getUser(payload.id);
     if (!currentUser) {

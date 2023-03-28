@@ -33,20 +33,14 @@ exports.addUserIfNotExisted = async (user) => {
   return result.recordsets;
 };
 
-exports.addUser = async (user) => {
+exports.insertUser = async (user) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
   // console.log("user auth", user.auth);
-
   user.createdAt = new Date().toISOString();
-
   let insertData = UserSchema.validateData(user);
-  if (!user.auth) {
-    console.log(!user.auth);
-    return "invalid data";
-  }
-  console.log(insertData);
+  // console.log(insertData);
   insertData.password = await bcrypt.hash(insertData.password, 10);
 
   let query = `insert into ${UserSchema.schemaName} `;
@@ -61,7 +55,6 @@ exports.addUser = async (user) => {
     throw new Error("Invalid insert param");
   }
   query += " (" + insertFieldNamesStr + ") select  " + insertValuesStr;
-  console.log(query);
   let result = await request.query(query);
   return result.recordsets;
 };
@@ -106,6 +99,10 @@ exports.getUserByUserName = async (username) => {
     .query(
       `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.userName.name} = @${UserSchema.schema.userName.name}`
     );
+  console.log(
+    `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.userName.name} = @${UserSchema.schema.userName.name}`
+  );
+  console.log("result", result);
   if (result.recordsets[0].length > 0) {
     return result.recordsets[0][0];
   }

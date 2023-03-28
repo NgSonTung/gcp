@@ -6,11 +6,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import * as UserFetch from '~/functions/UserFetch';
+import { CircularProgress } from '@mui/material';
+import { useDebounce } from '~/Hooks';
 const cx = classNames.bind(styles);
 
 const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
     const [mode, setMode] = useState('login');
-    let { isLoggedIn, isAdmin, userID } = useSelector((state) => state.UserReducer) || {};
+    const [signUpValue, setSignUpValue] = useState('');
+    const [userExists, setUserExists] = useState(false);
+    const debounceValue = useDebounce(signUpValue, 800);
+    const isLoggedIn = useSelector((state) => state.UserReducer.isLoggedIn);
+
     const dispatch = useDispatch();
     const toggleMode = () => {
         var newMode = mode === 'login' ? 'signup' : 'login';
@@ -22,29 +28,9 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
             if (isLoggedIn) {
                 ToggleLogin();
             }
-            // else {
-            //     console.log('is false ');
-
-            //     toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
-            //         position: 'top-center',
-            //         autoClose: 2001,
-            //         hideProgressBar: true,
-            //         closeOnClick: true,
-            //         pauseOnHover: true,
-            //         draggable: true,
-            //         progress: undefined,
-            //         theme: 'colored',
-            //     });
-            // }
         }
     }, [isLoggedIn]);
-    // const userFetch = async (username) => {
-    //     const user = await UserFetch.getUserIDByName(username);
-    //     dispatch({
-    //         type: 'CHECK_EXISTS',
-    //         payload: user,
-    //     });
-    // };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const signInUsername = event.target.username[0].value;
@@ -52,15 +38,13 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
         const signUpUsername = event.target.username[1].value;
         const signUpPassword = event.target.password[1].value;
         const repeatPassword = event.target.repeatPassword.value;
-        // userFetch(signInUsername);
+        const signUpEmail = event.target.email.value;
         const login = {
             userName: signInUsername,
             password: signInPassword,
         };
         const token = await UserFetch.getJWTOfLogin('', login);
         if (token === false) {
-            console.log('is false ');
-
             toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
                 position: 'top-center',
                 autoClose: 2001,
@@ -72,9 +56,6 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
                 theme: 'colored',
             });
         }
-        // console.log('signUpusn', signUpUsername);
-        // console.log('signUpPassword', signUpPassword);
-        // console.log('repeatPassword', repeatPassword);
         if (mode === 'signup') {
             if (signUpPassword !== repeatPassword) {
                 toast.error('Nhập lại mật khẩu chưa chính xác!', {
@@ -87,8 +68,16 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
                     progress: undefined,
                     theme: 'colored',
                 });
-            } else {
+            } else if (!userExists) {
                 ToggleLogin();
+                dispatch({
+                    type: 'SIGNUP',
+                    payload: {
+                        userName: signUpUsername,
+                        password: signUpPassword,
+                        email: signUpEmail,
+                    },
+                });
             }
         }
 
@@ -100,13 +89,28 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
             dispatch({
                 type: 'LOGIN',
                 payload: {
-                    // userName: signInUsername,
-                    // password: signInPassword,
                     token,
                 },
             });
         }
     };
+
+    const checkOnChange = async (username) => {
+        const user = await UserFetch.getUserByUserName('', username);
+        if (user) {
+            // console.log(user);
+            setUserExists(true);
+        } else {
+            setUserExists(false);
+        }
+    };
+
+    useEffect(() => {
+        if (mode === 'signup') {
+            checkOnChange(debounceValue);
+        }
+    }, [debounceValue]);
+
     return (
         <div className={cx('container', classname)}>
             <ToastContainer style={{ zIndex: 1000000 }} />
@@ -155,7 +159,9 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
                                 name="username"
                                 autoComplete="username"
                                 required
+                                onChange={(e) => setSignUpValue(e.target.value)}
                             />
+                            {/* <CircularProgress className={cx('loadding')} /> */}
                             <input
                                 className={cx('form-group__input')}
                                 type="email"

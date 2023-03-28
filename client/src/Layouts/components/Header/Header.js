@@ -11,6 +11,7 @@ import Login from '~/components/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import * as CartFetch from '~/functions/CartFetch';
 
 const cx = classNames.bind(styles);
 
@@ -26,7 +27,8 @@ const menuTitles = [
 ];
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false);
-    const { isLoggedIn } = useSelector((state) => state.UserReducer);
+    const { isLoggedIn, userID, cartID } = useSelector((state) => state.UserReducer);
+    // console.log(isLoggedIn);
     const [loginState, setLoginState] = useState(isLoggedIn);
     const ToggleLogin = () => {
         setShowLogin(showLogin ? false : true);
@@ -45,11 +47,36 @@ const Header = () => {
                 theme: 'colored',
             });
         }
+        getDataOfCartByUserID();
     }, [isLoggedIn]);
+    useEffect(() => {
+        if (!loginState && isLoggedIn) {
+            HandleLogOut();
+        }
+    }, [loginState]);
     const dispatch = useDispatch();
+
+    const getDataOfCartByUserID = async () => {
+        const url = `http://localhost:3001/api/v1/checkout/${userID}`;
+        let result = await CartFetch.getProductInCartByUSerID(url);
+        // console.log('result && isLoggedIn', result && isLoggedIn);
+        if (result && isLoggedIn) {
+            const action = {
+                type: 'LOAD_DEFAULT_CART_FROM_DB',
+                payload: { product: result.result, userID: userID, cartID: cartID },
+            };
+            // console.log(action);
+            dispatch(action);
+        } else {
+            const action = {
+                type: 'LOAD_DEFAULT_CART_FROM_DB',
+                payload: { product: [] },
+            };
+            dispatch(action);
+        }
+    };
     const HandleLogOut = () => {
-        dispatch({ type: 'LOGOUT' });
-        setLoginState(false);
+        dispatch({ type: 'LOGOUT', payload: { isLoggedIn: false } });
         toast.success('Đã đăng xuất!', {
             position: 'top-center',
             autoClose: 2001,
@@ -104,7 +131,7 @@ const Header = () => {
                         </div>
                     ) : (
                         <div className={cx('right-top-header')}>
-                            <div className={cx('login-btn')} onClick={HandleLogOut}>
+                            <div className={cx('login-btn')} onClick={() => setLoginState(false)}>
                                 <FontAwesomeIcon icon={faUser} className={cx('user-icon')} />
                                 <p className={cx('text')}>Đăng xuất</p>
                             </div>

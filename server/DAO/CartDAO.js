@@ -1,6 +1,7 @@
 const { CartSchema, Cart_ProductSchema } = require("../model/Cart");
 const dbConfig = require("../database/dbconfig");
 const dbUtils = require("../utils/dbUtils");
+const UserSchema = require("../model/User");
 exports.addCartIfNotExisted = async (cart) => {
   const dbPool = dbConfig.db.pool;
   if (!dbPool) {
@@ -23,6 +24,25 @@ exports.addCartIfNotExisted = async (cart) => {
     ` SET IDENTITY_INSERT ${CartSchema.schemaName} OFF`;
   let result = await request.query(query);
   return result.recordsets;
+};
+
+exports.createNewCart = async (userID) => {
+  const dbPool = dbConfig.db.pool;
+  if (!dbPool) {
+    throw new Error("Not connected to db");
+  }
+  let result = await dbPool
+    .request()
+    .input(
+      CartSchema.schema.userID.name,
+      CartSchema.schema.userID.sqlType,
+      userID
+    )
+    .query(
+      `insert into ${CartSchema.schemaName} values (@${CartSchema.schema.userID.name})`
+    );
+  console.log(result);
+  return result;
 };
 
 exports.addCart_ProductIfNotExisted = async (cart_Product) => {
@@ -71,6 +91,25 @@ exports.getProductInCartByUSerID = async (userID) => {
   where c.userID =@userID`);
   // console.log(result.recordsets);
   return result.recordsets[0];
+};
+
+exports.getCartIDByUserName = async (username) => {
+  const dbPool = dbConfig.db.pool;
+  if (!dbPool) {
+    throw new Error("Not connected to db");
+  }
+
+  let result = await dbPool
+    .request()
+    .input(
+      UserSchema.schema.userName.name,
+      UserSchema.schema.userName.sqlType,
+      username
+    )
+    .query(
+      `select cartID from ${CartSchema.schemaName} where userID in (select userID from ${UserSchema.schemaName} where userName = @${UserSchema.schema.userName.name}) `
+    );
+  return result.recordsets[0][0];
 };
 
 exports.updateCart = async (cart_Product) => {

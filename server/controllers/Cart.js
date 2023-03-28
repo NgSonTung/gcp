@@ -17,6 +17,25 @@ exports.getProductInCartByUSerID = async (req, res) => {
     });
   }
 };
+
+// exports.createNewCart = async(req,res)=>{
+//   try {
+//     let result = await CartDAO.createNewCart(req.params.userID);
+//     res.status(200).json({
+//       code: 200,
+//       msg: "OK",
+//       data: {
+//         result,
+//       },
+//     });
+//   } catch (error) {
+//     res.status(404).json({
+//       code: 404,
+//       msg: "FAIL",
+//     });
+//   }
+// }
+
 exports.insertProductToCart = async (req, res) => {
   // console.log(req.body);
   try {

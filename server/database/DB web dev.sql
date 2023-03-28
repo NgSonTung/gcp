@@ -105,5 +105,5 @@ select * from feature
 select * from rating
 select * from Subimg
 select * from Cart
-select * from Cart_Product
 select * from Users
+select * from Cart_Product

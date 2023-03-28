@@ -2,10 +2,12 @@ import * as CartFetch from '~/functions/CartFetch';
 const initialState = {
     cartItem: [],
     total: 0,
+    cartID: -1,
+    CartID: -1,
 };
 
 const CartReducer = (state = initialState, action) => {
-    const product = action.payload;
+    const data = action.payload;
     const updateInCart = async (url, productUpdated) => {
         await CartFetch.updateProductInCart(url, productUpdated);
     };
@@ -17,23 +19,15 @@ const CartReducer = (state = initialState, action) => {
     };
     switch (action.type) {
         case 'ADD_TO_CART': {
-            const productExists = state.cartItem.some((p) => p.productID === product.productID);
+            const productExists = state.cartItem.some((p) => p.productID === data.productID);
             // console.log(' ADD_TO_CART', product);
             if (!productExists) {
                 console.log('not productExists');
-
-                product.amount = 1;
-                const newCart = [...state.cartItem, product];
+                data.amount = 1;
+                const newCart = [...state.cartItem, data];
                 const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
-                if (!product.cartID) {
-                    product.cartID = 2;
-                    //tam thoi tai chua co phan quyen
-                    //--> neu dung la neu user khong login thi k gui data cart len db
-                    console.log(product);
-                    insertInCart(action.url, product);
-                } else {
-                    insertInCart(action.url, product);
-                }
+                data.cartID = state.cartID;
+                insertInCart(action.url, data);
                 return {
                     ...state,
                     cartItem: [...newCart],
@@ -42,7 +36,7 @@ const CartReducer = (state = initialState, action) => {
             } else {
                 console.log('productExists');
                 const newCart = state.cartItem;
-                const Index = newCart.findIndex((p) => p.productID === product.productID);
+                const Index = newCart.findIndex((p) => p.productID === data.productID);
                 if (newCart[Index].amount === undefined) {
                     newCart[Index].amount = 1;
                 } else {
@@ -60,7 +54,7 @@ const CartReducer = (state = initialState, action) => {
         }
         case 'DELETE_FROM_CART': {
             const newCart = state.cartItem;
-            const index = newCart.findIndex((p) => p.productID === product.productID);
+            const index = newCart.findIndex((p) => p.productID === data.productID);
             let url = action.url;
             url += `/${newCart[index].productID}`;
             newCart.splice(index, 1);
@@ -75,13 +69,13 @@ const CartReducer = (state = initialState, action) => {
         }
         case 'CHANGE_AMOUNT': {
             const newCart = state.cartItem.map((p) => {
-                if (p.productID === product.productID) {
-                    return { ...p, amount: product.amount };
+                if (p.productID === data.productID) {
+                    return { ...p, amount: data.amount };
                 }
                 return p;
             });
             const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
-            const productChange = newCart.find((p) => p.productID === product.productID);
+            const productChange = newCart.find((p) => p.productID === data.productID);
             updateInCart(action.url, productChange);
             return {
                 ...state,
@@ -90,19 +84,22 @@ const CartReducer = (state = initialState, action) => {
             };
         }
         case 'LOAD_DEFAULT_CART_FROM_DB': {
-            const newCart = [...product];
-            const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
-            if (product === 'logout') {
+            if (data.userID < 0) {
                 return {
                     ...state,
                     cartItem: [],
                 };
+            } else {
+                console.log(data);
+                const newCart = [...data.product];
+                const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
+                return {
+                    ...state,
+                    cartItem: [...data.product],
+                    cartID: data.cartID,
+                    total: totalPrice,
+                };
             }
-            return {
-                ...state,
-                cartItem: [...product],
-                total: totalPrice,
-            };
         }
         default: {
             return state;
