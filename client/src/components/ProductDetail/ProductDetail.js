@@ -9,73 +9,63 @@ import ProductDetailDesc from '../ProductDetailDesc';
 import NavTitle from '../NavTitle';
 import ProductBestSale from '../ProductBestSale/';
 import data from '~/data/data.json';
-import { getAllProducts } from '~/functions/ProductFetch';
+import { getProductByName } from '~/functions/ProductFetch';
 
 const cx = classNames.bind(styles);
 
 function ProductDetail() {
-    const [productData, setProductDatas] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [productPerPage, setProductPerPage] = useState(10);
+    const [productData, setProductData] = useState([]);
     const [totalProduct, setTotalProduct] = useState(0);
+    const { nameproduct } = useParams();
 
     const handleGetData = async () => {
-        const fetchedData = await getAllProducts(
-            `http://localhost:3001/api/v1/product/?page=${currentPage}&pageSize=${productPerPage}`,
-        );
-        const result = fetchedData?.data?.products?.dataProducts;
-        setProductDatas(result);
-        setTotalProduct(fetchedData?.data?.products?.totalProduct);
-        setProductChange(false);
+        const fetchProduct = await getProductByName(nameproduct);
+        setProductData(fetchProduct);
+        // setTotalProduct(fetchedData?.data?.products?.totalProduct);
     };
-    const [productLoaded, setProductLoaded] = useState(false);
-    const { nameproduct } = useParams();
-    const { product } = useSelector((state) => state.ProductReducer);
-    const dispatch = useDispatch();
     useEffect(() => {
-        dispatch({ type: 'PRODUCT', nameproduct });
-        product && setProductLoaded(true);
-    }, [nameproduct]);
+        handleGetData();
+    }, []);
 
-    const similarItems = data.filter((item) => item.category === product?.category);
-    const favItems = data.filter((item) => item.favorite === true);
+    // const similarItems = data.filter((item) => item.category === product?.category);
+    // const favItems = data.filter((item) => item.favorite === true);
 
-    const navItems = [
-        {
-            title: 'sản phẩm cùng loại',
-            component: <ProductBestSale data={similarItems} title={product?.category} srcImg={''} banner={false} />,
-        },
-        {
-            title: 'điểm nổi bật',
-            component: (
-                <div className={cx('product-desc-wrapper')}>
-                    <p className={cx('product-desc')}>{product?.description}</p>
-                </div>
-            ),
-        },
-    ];
+    // const navItems = [
+    //     {
+    //         title: 'sản phẩm cùng loại',
+    //         component: <ProductBestSale data={similarItems} title={product?.category} srcImg={''} banner={false} />,
+    //     },
+    //     {
+    //         title: 'điểm nổi bật',
+    //         component: (
+    //             <div className={cx('product-desc-wrapper')}>
+    //                 <p className={cx('product-desc')}>{product?.description}</p>
+    //             </div>
+    //         ),
+    //     },
+    // ];
 
-    const defaultNavItems = [
-        {
-            title: 'yêu thích',
-            component: <ProductBestSale data={favItems} title={product?.category} srcImg={''} banner={false} />,
-        },
-    ];
+    // const defaultNavItems = [
+    //     {
+    //         title: 'yêu thích',
+    //         component: <ProductBestSale data={favItems} title={product?.category} srcImg={''} banner={false} />,
+    //     },
+    // ];
 
     return (
         <div className={cx('product-detail-container')}>
-            {productLoaded && (
+            {productData && (
                 <div>
                     <div className={cx('main-detail-wrapper')}>
                         <div className={cx('product-image')}>
-                            <ProductMagnifier product={product} />
+                            <ProductMagnifier product={productData} />
                         </div>
                         <div className={cx('product-detail')}>
-                            <ProductDetailDesc product={product} />
+                            <ProductDetailDesc product={productData} />
                         </div>
                     </div>
-                    <NavTitle className={cx('product-nav')} navItems={navItems} />
-                    <NavTitle className={cx('product-nav')} navItems={defaultNavItems} />
+                    {/* <NavTitle className={cx('product-nav')} navItems={navItems} />
+                <NavTitle className={cx('product-nav')} navItems={defaultNavItems} /> */}
                 </div>
             )}
         </div>

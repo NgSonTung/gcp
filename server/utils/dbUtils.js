@@ -165,13 +165,7 @@ exports.getUpdateQuery = (schema, request, update) => {
           updateStr += fieldName + " = @" + fieldName + ",";
         }
       } else {
-        throw new Error(
-          "Invalid data at field: " +
-            fieldName +
-            ". " +
-            err +
-            schema["productID"].validate(1).err
-        );
+        throw new Error("Invalid data at field: " + fieldName + ". " + err);
       }
     }
   }
@@ -325,5 +319,6 @@ exports.getFilterProductsQuery = (
     }
   }
   console.log("filter string", filterStr);
+  filterStr = filterStr.replace(/[\n\r]/g, "");
   return { filterStr, paginationStr };
 };

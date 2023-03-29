@@ -27,7 +27,50 @@ exports.getFeatureById = async (req, res) => {
     });
   }
 };
-
+exports.getFeatureByProductId = async (req, res) => {
+  const id = req.params.id * 1;
+  try {
+    const features = await FeatureDAO.getFeatureByProductId(id);
+    if (!features) {
+      return res
+        .status(404) //NOT FOUND
+        .json({
+          code: 404,
+          msg: `Not found features with Id ${id}!`,
+        });
+    }
+    return res.status(200).json({
+      code: 200,
+      msg: `Got features with id ${id} successfully!`,
+      data: {
+        features,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      code: 500,
+      msg: e,
+    });
+  }
+};
+exports.createNewFeature = async (req, res) => {
+  const newFeature = req.body;
+  try {
+    await FeatureDAO.createNewFeature(newFeature);
+    // console.log(`Created new product successfully!`);
+    return res.status(200).json({
+      code: 200,
+      msg: `Created new feature successfully!`,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      code: 500,
+      msg: `Feature create failed`,
+    });
+  }
+};
 exports.deleteFeatureById = async (req, res) => {
   const id = req.params.id * 1;
   try {
@@ -37,7 +80,7 @@ exports.deleteFeatureById = async (req, res) => {
         .status(404) //NOT FOUND
         .json({
           code: 404,
-          msg: `feature with Id ${id} not found!`,
+          msg: `Feature with Id ${id} not found!`,
         });
     }
     await FeatureDAO.deleteFeatureById(id);
@@ -50,6 +93,34 @@ exports.deleteFeatureById = async (req, res) => {
     return res.status(500).json({
       code: 500,
       msg: e,
+    });
+  }
+};
+exports.updateFeatureById = async (req, res) => {
+  const id = req.params.id * 1;
+  try {
+    const updateInfo = req.body;
+    let feature = await FeatureDAO.getFeatureById(id);
+    if (!feature) {
+      return res.status(404).json({
+        code: 404,
+        msg: `Not found feature with Id ${id}!`,
+      });
+    }
+    await FeatureDAO.updateFeatureById(id, updateInfo);
+    feature = await FeatureDAO.getFeatureById(id);
+    return res.status(200).json({
+      code: 200,
+      msg: `Updated feature with id: ${id} successfully!`,
+      data: {
+        feature,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      code: 500,
+      msg: `Update feature with id: ${id} failed!`,
     });
   }
 };

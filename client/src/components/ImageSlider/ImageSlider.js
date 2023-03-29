@@ -52,7 +52,7 @@ const ImageSlider = ({ images, subImg = true, className, autoPlay = true, onImag
                                 src={image.url ? image.url : image}
                                 alt={image.alt}
                                 onClick={() => {
-                                    subImg && showImg(image.url);
+                                    subImg && showImg(image.url ? image.url : image);
                                     onImageClick(index);
                                 }}
                             />

@@ -2,6 +2,23 @@ const RatingSchema = require("../model/Rating");
 const dbConfig = require("../database/dbconfig");
 const dbUtils = require("../utils/dbUtils");
 
+exports.getRatingById = async (id) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request
+    .input(
+      `${RatingSchema.schema.ratingID.name}`,
+      RatingSchema.schema.ratingID.sqlType,
+      id
+    )
+    .query(
+      `select * from ${RatingSchema.schemaName} where ${RatingSchema.schema.ratingID.name} = @${RatingSchema.schema.ratingID.name}`
+    );
+  return result.recordsets[0][0];
+};
+
 exports.addRatingIfNotExisted = async (rating) => {
   const dbPool = dbConfig.db.pool;
   if (!dbPool) {
@@ -69,6 +86,53 @@ exports.createNewRating = async (rating) => {
     );
   query += " (" + insertFieldNamesStr + ") values (" + insertValuesStr + ")";
   // console.log(query);
+  let result = await request.query(query);
+  return result.recordsets;
+};
+
+exports.deleteRatingById = async (id) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request
+    .input(
+      `${RatingSchema.schema.ratingID.name}`,
+      RatingSchema.schema.ratingID.sqlType,
+      id
+    )
+    .query(
+      `delete ${RatingSchema.schemaName} where ${RatingSchema.schema.ratingID.name} = @${RatingSchema.schema.ratingID.name}`
+    );
+  return result.recordsets;
+};
+
+exports.updateRatingById = async (id, updateInfo) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  if (!updateInfo) {
+    throw new Error("Invalid input param");
+  }
+
+  let query = `update ${RatingSchema.schemaName} set`;
+  const { request, updateStr } = dbUtils.getUpdateQuery(
+    RatingSchema.schema,
+    dbConfig.db.pool.request(),
+    updateInfo
+  );
+  if (!updateStr) {
+    throw new Error("Invalid update param");
+  }
+  request.input(
+    `${RatingSchema.schema.ratingID.name}`,
+    RatingSchema.schema.ratingID.sqlType,
+    id
+  );
+  query +=
+    " " +
+    updateStr +
+    ` where ${RatingSchema.schema.ratingID.name} = @${RatingSchema.schema.produratingIDctID.name}`;
   let result = await request.query(query);
   return result.recordsets;
 };

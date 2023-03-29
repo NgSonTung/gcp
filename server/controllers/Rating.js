@@ -1,5 +1,34 @@
 const RatingDAO = require("../DAO/RatingDAO");
 
+exports.getRatingById = async (req, res) => {
+  console.log(req.params);
+  const id = req.params.id * 1;
+  try {
+    const rating = await RatingDAO.getRatingById(id);
+    if (!rating) {
+      return res
+        .status(404) //NOT FOUND
+        .json({
+          code: 404,
+          msg: `Not found rating with Id ${id}!`,
+        });
+    }
+    return res.status(200).json({
+      code: 200,
+      msg: `Got rating with id ${id} successfully!`,
+      data: {
+        rating,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      code: 500,
+      msg: e,
+    });
+  }
+};
+
 exports.getRatingByProductId = async (req, res) => {
   const id = req.params.id * 1;
   try {
@@ -31,7 +60,7 @@ exports.getRatingByProductId = async (req, res) => {
 exports.createNewRating = async (req, res) => {
   const newRating = req.body;
   try {
-    await RatingDAO.create(newRating);
+    await RatingDAO.createNewRating(newRating);
     return res.status(200).json({
       code: 200,
       msg: `Created new rating successfully!`,
@@ -40,7 +69,63 @@ exports.createNewRating = async (req, res) => {
     console.log(e);
     res.status(500).json({
       code: 500,
-      msg: e,
+      msg: `Create new rating failed!`,
+    });
+  }
+};
+
+exports.deleteRatingById = async (req, res) => {
+  const id = req.params.id * 1;
+  try {
+    const rating = await RatingDAO.getRatingById(id);
+    if (!rating) {
+      return res
+        .status(404) //NOT FOUND
+        .json({
+          code: 404,
+          msg: `Rating with Id ${id} not found!`,
+        });
+    }
+    await RatingDAO.deleteRatingById(id);
+    return res.status(200).json({
+      code: 200,
+      msg: `Deleted rating with id ${id} successfully!`,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      code: 500,
+      msg: `Delete rating with id ${id} failed!`,
+    });
+  }
+};
+
+exports.updateRatingById = async (req, res) => {
+  // console.log("Id update", req.params.id);
+  const id = req.params.id * 1;
+  try {
+    const updateInfo = req.body;
+    let rating = await RatingDAO.getRatingById(id);
+    if (!rating) {
+      return res.status(404).json({
+        code: 404,
+        msg: `Not found rating with Id ${id}!`,
+      });
+    }
+    await RatingDAO.updateRatingById(id, updateInfo);
+    rating = await RatingDAO.getRatingById(id);
+    return res.status(200).json({
+      code: 200,
+      msg: `Updated rating with id: ${id} successfully!`,
+      data: {
+        rating,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      code: 500,
+      msg: `Update rating with id: ${id} failed!`,
     });
   }
 };

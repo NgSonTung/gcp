@@ -1,10 +1,30 @@
 const express = require("express");
 const FeatureController = require("../controllers/Feature");
 const router = express.Router();
+const authController = require("./../controllers/auth");
+const StaticData = require("../utils/StaticData");
 
 router
-  .route("/featureById/:id")
+  .route("/:id")
   .get(FeatureController.getFeatureById)
-  .delete(FeatureController.deleteFeatureById);
+  .delete(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    FeatureController.deleteFeatureById
+  )
+  .patch(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    FeatureController.updateFeatureById
+  );
+
+router
+  .route("/")
+  .post(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    FeatureController.createNewFeature
+  );
+router.route("/byProduct/:id").get(FeatureController.getFeatureByProductId);
 
 module.exports = router;

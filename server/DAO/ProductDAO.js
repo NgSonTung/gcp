@@ -45,23 +45,6 @@ exports.clearAll = async () => {
   return result.recordsets;
 };
 
-exports.byProductByName = async (name) => {
-  if (!dbConfig.db.pool) {
-    throw new Error("Not connected to db");
-  }
-  let request = dbConfig.db.pool.request();
-  let result = await request
-    .input(
-      `${ProductSchema.schema.name.name}`,
-      ProductSchema.schema.name.sqlType,
-      name
-    )
-    .query(
-      `select * from ${ProductSchema.schemaName} where ${ProductSchema.schema.name.name} = @${ProductSchema.schema.name.name}`
-    );
-  return result.recordsets[0][0];
-};
-
 exports.getProductByName = async (name) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
@@ -97,54 +80,6 @@ exports.getProductById = async (id) => {
 };
 
 exports.getAllProducts = async (filter) => {
-  if (!dbConfig.db.pool) {
-    throw new Error("Not connected to db");
-  }
-  const page = filter.page * 1 || 1;
-  let pageSize = filter.pageSize * 1 || StaticData.config.MAX_PAGE_SIZE;
-  if (pageSize > StaticData.config.MAX_PAGE_SIZE) {
-    pageSize = StaticData.config.MAX_PAGE_SIZE;
-  }
-  let selectQuery = `SELECT * FROM ${ProductSchema.schemaName}`;
-  let countQuery = `SELECT COUNT(DISTINCT ${ProductSchema.schema.productID.name}) as totalItem from ${ProductSchema.schemaName}`;
-
-  const { filterStr, paginationStr } = dbUtils.getFilterProductsQuery(
-    ProductSchema.schema,
-    filter,
-    page,
-    pageSize,
-    ProductSchema.defaultSort
-  );
-
-  if (filterStr) {
-    selectQuery += filterStr;
-    countQuery += " " + filterStr;
-  }
-
-  if (paginationStr) {
-    selectQuery += " " + paginationStr;
-  }
-
-  const result = await dbConfig.db.pool.request().query(selectQuery);
-  let countResult = await dbConfig.db.pool.request().query(countQuery);
-
-  let totalProduct = 0;
-  if (countResult.recordsets[0].length > 0) {
-    totalProduct = countResult.recordsets[0][0].totalItem;
-  }
-  let totalPage = Math.ceil(totalProduct / pageSize); //round up
-  const products = result.recordsets[0];
-  console.log("finish log", selectQuery);
-  return {
-    page,
-    pageSize,
-    totalPage,
-    totalProduct,
-    dataProducts: products,
-  };
-};
-
-exports.getAllProductsByCategory = async (filter) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }

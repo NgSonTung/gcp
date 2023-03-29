@@ -31,4 +31,5 @@ router
     authController.restrictTo(StaticData.AUTH.Role.admin),
     productController.updateProductById
   );
+
 module.exports = router;

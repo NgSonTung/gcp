@@ -12,7 +12,7 @@ import { CircularProgress } from '@mui/material';
 import { useDebounce } from '~/Hooks';
 const cx = classNames.bind(styles);
 
-const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
+const Login = ({ classname, ToggleLogin, loginType = 'user' }) => {
     console.log(loginType);
     const [mode, setMode] = useState('login');
     const [signUpValue, setSignUpValue] = useState('');
@@ -146,7 +146,6 @@ const Login = ({ classname, ToggleLogin, loginType = 'default' }) => {
 
                 <header className={cx('form-block__header')}>
                     <h1>{mode === 'login' ? 'Đăng nhập' : 'Đăng ký'}</h1>
-                    {loginType === 'user' && (
                     {loginType === 'user' && (
                         <div className={cx('form-block__toggle-block')}>
                             <span>{mode === 'login' ? 'Chưa' : 'Đã'} có tài khoản? Bấm vào đây &#8594;</span>

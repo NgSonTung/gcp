@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 function ProductMagnifier({ product }) {
     let imageList = [product?.image];
-    imageList = imageList.concat(product?.sub_image?.map((image) => image));
+    // imageList = imageList.concat(product?.sub_image?.map((image) => image));
 
     const [activeImage, setActiveImage] = useState(0);
     useEffect(() => {

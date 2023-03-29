@@ -17,12 +17,22 @@ export const getAllProducts = (url) => {
         .catch((err) => console.log(err));
 };
 
+export const getProductByName = (name) => {
+    console.log(name);
+    return axios
+        .get(`/product/?page=1&pageSize=1`, { params: { name: name } })
+        .then((res) => {
+            return res.data.data.products.dataProducts;
+        })
+        .catch((err) => console.log(err));
+};
+
 export const deleteProductById = (id, jwt) => {
     const headers = {
         Authorization: `Bearer ${jwt}`,
     };
     return axios
-        .delete(`product/${id}`, {
+        .delete(`/product/${id}`, {
             headers: headers,
         })
         .then((res) => {
