@@ -9,8 +9,8 @@ export const AllProducts = () => {
     return (
         <div className={cx('wrapper')}>
             <ListProduct
-                ColOnPerRowSmallest={6}
-                ColOnPerRowSmall={6}
+                ColOnPerRowSmallest={12}
+                ColOnPerRowSmall={12}
                 ColOnPerRowMiddle={4}
                 ColOnPerRowLarge={3}
                 ColOnPerRowExtraLarge={2}
