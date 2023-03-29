@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import Slider from '@mui/material/Slider';
 import { getAllProducts } from '~/functions/Fetch';
-
+import { fortmatCurrency } from '~/utils/FormatCurrency';
 const brands = ['Iphone', 'Xiaomi', 'Samsung', 'Vivo', 'Hp', 'Asus', 'Oppo', 'Acer', 'Linksys', 'Mesh'];
 
 const cx = classNames.bind(style);
@@ -158,106 +158,121 @@ export const ListProduct = (props) => {
                 activeLayoutType={activeLayoutType}
             />
             <div className={cx('content-wrapper')}>
-                <div className={cx('filter-features')}>
-                    <div className={cx('keyword-search')}>
-                        <FilterTitle title="TỪ KHÓA" />
-                        <input
-                            type="text"
-                            placeholder="Từ khóa tìm kiếm"
-                            value={productKeyword}
-                            onChange={handleSearchValue}
-                        />
-                    </div>
+                <Row>
+                    <Col xs={4} sm={3} md={3} lg={3}>
+                        <div className={cx('filter-features')}>
+                            <div className={cx('keyword-search')}>
+                                <FilterTitle title="TỪ KHÓA" />
+                                <input
+                                    type="text"
+                                    placeholder="Từ khóa tìm kiếm"
+                                    value={productKeyword}
+                                    onChange={handleSearchValue}
+                                />
+                            </div>
 
-                    <div className={cx('price-range')}>
-                        <FilterTitle title="GIÁ SẢN PHẨM" />
-                        <Slider
-                            value={priceRange}
-                            min={0}
-                            max={300000000}
-                            onChange={handleChanges}
-                            valueLabelDisplay="auto"
-                        />
-                        The selected range is {priceRange[0]} - {priceRange[1]}
-                    </div>
+                            <div className={cx('price-range')}>
+                                <FilterTitle title="GIÁ SẢN PHẨM" />
+                                <Slider
+                                    value={priceRange}
+                                    min={0}
+                                    max={300000000}
+                                    onChange={handleChanges}
+                                    valueLabelDisplay="auto"
+                                    size="small"
+                                />
+                                Giá tiền {fortmatCurrency(priceRange[0])} - {fortmatCurrency(priceRange[0])}
+                            </div>
 
-                    <div className={cx('brand-filter')}>
-                        <FilterTitle title="THƯƠNG HIỆU" />
-                        <div className={cx('filter-wrapper')}>
-                            {brands.map((item, index) => (
-                                <div className={cx('checkbox')} key={index}>
-                                    <input
-                                        type="checkbox"
-                                        value={item.toLocaleLowerCase()}
-                                        onChange={addBrandFilter}
-                                        id={item.toLocaleLowerCase()}
-                                        ref={brandInputRef}
-                                    />
-                                    <label for={item.toLocaleLowerCase()}>{item}</label>
+                            <div className={cx('brand-filter')}>
+                                <FilterTitle title="THƯƠNG HIỆU" />
+                                <div className={cx('filter-wrapper')}>
+                                    {brands.map((item, index) => (
+                                        <div className={cx('checkbox')} key={index}>
+                                            <input
+                                                type="checkbox"
+                                                value={item.toLocaleLowerCase()}
+                                                onChange={addBrandFilter}
+                                                id={item.toLocaleLowerCase()}
+                                                ref={brandInputRef}
+                                            />
+                                            <label for={item.toLocaleLowerCase()}>{item}</label>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
+                            </div>
+                            <div className={cx('filter-btn')} onClick={handleFilterProduct}>
+                                <FontAwesomeIcon icon={faArrowsRotate} />
+                                <p>LỌC SẢN PHẨM</p>
+                            </div>
+                            <div className={cx('reset-btn')} onClick={handleResetFilter}>
+                                <FontAwesomeIcon icon={faArrowsRotate} />
+                                <p>CHỌN LẠI</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className={cx('filter-btn')} onClick={handleFilterProduct}>
-                        <FontAwesomeIcon icon={faArrowsRotate} />
-                        <p>LỌC SẢN PHẨM</p>
-                    </div>
-                    <div className={cx('reset-btn')} onClick={handleResetFilter}>
-                        <FontAwesomeIcon icon={faArrowsRotate} />
-                        <p>CHỌN LẠI</p>
-                    </div>
-                </div>
+                    </Col>
+                    <Col xs={8} sm={9} md={9} lg={9}>
+                        <div className={cx('list-product')}>
+                            {activeLayoutType ? (
+                                <Row className={cx('row-container')}>
+                                    {productData?.map((item, index) => (
+                                        <Col
+                                            xs={ColOnPerRowSmallest}
+                                            sm={ColOnPerRowSmall}
+                                            md={ColOnPerRowMiddle}
+                                            lg={ColOnPerRowLarge}
+                                            xxl={ColOnPerRowExtraLarge}
+                                            className={cx('col-product-item')}
+                                        >
+                                            <div className={cx('product-item')} key={index}>
+                                                <ProductItem data={item} />
+                                            </div>
+                                        </Col>
+                                    ))}
+                                </Row>
+                            ) : (
+                                <Container>
+                                    {productData?.map((item, index) => (
+                                        <Row>
+                                            <Col
+                                                xs={12}
+                                                sm={12}
+                                                md={12}
+                                                lg={12}
+                                                xxl={12}
+                                                className={cx('col-product-item')}
+                                            >
+                                                <div className={cx('product-item')}>
+                                                    <Col xs={5} sm={5} md={4} lg={4}>
+                                                        <ProductItem key={index} data={item} secondLayout={true} />
+                                                    </Col>
+                                                    <Col xs={7} sm={7} md={8} lg={8} className={cx('col-buy-button')}>
+                                                        <div className={cx('product-detail')}>
+                                                            <ProductDetailDesc
+                                                                key={index}
+                                                                product={item}
+                                                                full={false}
+                                                                className={cx('infor-product')}
+                                                            />
 
-                <div className={cx('list-product')}>
-                    {activeLayoutType ? (
-                        <Row>
-                            {productData?.map((item, index) => (
-                                <Col
-                                    xs={ColOnPerRowSmallest}
-                                    sm={ColOnPerRowSmall}
-                                    md={ColOnPerRowMiddle}
-                                    lg={ColOnPerRowLarge}
-                                    xxl={ColOnPerRowExtraLarge}
-                                    className={cx('col-product-item')}
-                                >
-                                    <div className={cx('product-item')} key={index}>
-                                        <ProductItem data={item} />
-                                    </div>
-                                </Col>
-                            ))}
-                        </Row>
-                    ) : (
-                        <Container>
-                            {productData?.map((item, index) => (
-                                <Row>
-                                    <Col xs={12} sm={12} md={12} lg={12} xxl={12} className={cx('col-product-item')}>
-                                        <div className={cx('product-item')}>
-                                            <Col xs={5} sm={5} md={4} lg={4}>
-                                                <ProductItem key={index} data={item} secondLayout={true} />
-                                            </Col>
-                                            <Col xs={7} sm={7} md={8} lg={8} className={cx('col-buy-button')}>
-                                                <div className={cx('product-detail')}>
-                                                    <ProductDetailDesc
-                                                        key={index}
-                                                        product={item}
-                                                        full={false}
-                                                        className={cx('infor-product')}
-                                                    />
-
-                                                    <BuyButton
-                                                        srcImg={item?.image}
-                                                        dataHover={widthWindow < 1060 ? `Thêm` : 'Thêm vào giỏ hàng'}
-                                                        productID={item?.productID}
-                                                    />
+                                                            <BuyButton
+                                                                srcImg={item?.image}
+                                                                dataHover={
+                                                                    widthWindow < 1060 ? `Thêm` : 'Thêm vào giỏ hàng'
+                                                                }
+                                                                productID={item?.productID}
+                                                            />
+                                                        </div>
+                                                    </Col>
                                                 </div>
                                             </Col>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            ))}
-                        </Container>
-                    )}
-                </div>
+                                        </Row>
+                                    ))}
+                                </Container>
+                            )}
+                        </div>
+                    </Col>
+                </Row>
             </div>
             <CusPagination itemPerPage={productPerPage} totalItem={totalProduct} handlePage={handlePage} />
         </div>
