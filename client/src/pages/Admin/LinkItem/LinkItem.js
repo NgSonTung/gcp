@@ -3,27 +3,46 @@ import styles from './LinkItem.module.scss';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import HandleForm from '../HandleForm/HandleForm';
+
 const cx = classNames.bind(styles);
 
-const LinkItem = ({ jwt, data, setProductChange }) => {
+const formatCurrency = (str) => {
+    const regex = /\d{1,3}(?=(\d{3})+(?!\d))/g;
+    return `${str.toString().replace(regex, '$&,')}₫`;
+};
+
+const LinkItem = ({ HandleAddDelete, checked, jwt, data, setProductChange }) => {
     const [showEditForm, setShowEditForm] = useState(false);
-    const iconRef = useRef();
+    const [isChecked, setIsChecked] = useState(checked);
     const inputRef = useRef();
-    const formatCurrency = (str) => {
-        const regex = /\d{1,3}(?=(\d{3})+(?!\d))/g;
-        return `${str.toString().replace(regex, '$&,')}₫`;
-    };
+
     const handleShowEditForm = () => {
         setShowEditForm(true);
     };
+    const HandleCheck = () => {
+        setIsChecked(!isChecked);
+    };
+    useEffect(() => {
+        setIsChecked(checked);
+    }, [checked]);
+    useEffect(() => {
+        HandleAddDelete(data.productID, isChecked);
+    }, [isChecked]);
 
     return (
         <div className={cx('link-info-wrapper')}>
             <div className={cx('link-item')}>
                 <div className={cx('description')}>
-                    <input className={cx('input-checked')} ref={inputRef} value={data.id} type="checkbox" />
+                    <input
+                        className={cx('input-checked')}
+                        checked={isChecked}
+                        ref={inputRef}
+                        onClick={HandleCheck}
+                        type="checkbox"
+                        readOnly
+                    />
                     <p className={cx('text')}>{data?.name}</p>
                 </div>
                 <p className={cx('old_link')}>{data?.brand}</p>
@@ -31,7 +50,7 @@ const LinkItem = ({ jwt, data, setProductChange }) => {
             </div>
             <div className={cx('link-handle-wrapper')}>
                 <button className={cx('handle-link-btn')} onClick={handleShowEditForm}>
-                    <FontAwesomeIcon ref={iconRef} className={cx('btn-icon')} icon={faEllipsis} />
+                    <FontAwesomeIcon className={cx('btn-icon')} icon={faEllipsis} />
                 </button>
             </div>
             {showEditForm && (

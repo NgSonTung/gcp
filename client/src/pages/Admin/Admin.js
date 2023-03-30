@@ -8,7 +8,7 @@ import { getAllProducts } from '~/functions/ProductFetch';
 import LinkPaginate from './LinkPaginate/LinkPaginate';
 import { useEffect, useState } from 'react';
 import Login from '~/components/Login';
-import { useSelector, shallowEqual } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import CusPagination from '~/components/CusPagination/index';
 
@@ -26,10 +26,21 @@ function Admin() {
     const [totalProduct, setTotalProduct] = useState(0);
     const [productChange, setProductChange] = useState(false);
     const handlePage = (page) => setCurrentPage(page);
+    const [allChecked, setAllChecked] = useState(false);
+    const [deleteIds, setDeleteIds] = useState([]);
 
+    const handleCheckAll = () => {
+        setAllChecked(!allChecked);
+    };
     const ToggleLogin = () => {
         setShowLogin(showLogin ? false : true);
     };
+    const HandleAddDelete = (id, isChecked) => {
+        isChecked
+            ? setDeleteIds((prevIds) => [...prevIds, id])
+            : setDeleteIds((prevIds) => prevIds.filter((item) => item !== id));
+    };
+
     useEffect(() => {
         if (!isLoggedIn) {
             setShowLogin(true);
@@ -77,9 +88,24 @@ function Admin() {
                     <Header />
                     {isAdmin && (
                         <div className={cx('content-wrapper')}>
-                            <UserAction jwt={jwt} setProductChange={setProductChange} />
+                            <UserAction
+                                setAllChecked={setAllChecked}
+                                setDeleteIds={setDeleteIds}
+                                deleteIds={deleteIds}
+                                jwt={jwt}
+                                setProductChange={setProductChange}
+                            />
                             <Search />
-                            {jwt && <LinkPaginate data={productData} jwt={jwt} setProductChange={setProductChange} />}
+                            {jwt && (
+                                <LinkPaginate
+                                    HandleAddDelete={HandleAddDelete}
+                                    handleCheckAll={handleCheckAll}
+                                    allChecked={allChecked}
+                                    data={productData}
+                                    jwt={jwt}
+                                    setProductChange={setProductChange}
+                                />
+                            )}
                             <CusPagination
                                 itemPerPage={productPerPage}
                                 totalItem={totalProduct}
