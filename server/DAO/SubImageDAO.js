@@ -21,7 +21,7 @@ exports.addSubImageIfNotExisted = async (img) => {
     insertFieldNamesStr +
     ") select  " +
     insertValuesStr +
-    ` WHERE NOT EXISTS(SELECT * FROM ${SubImageSchema.schemaName} WHERE url = @url)` +
+    // ` WHERE NOT EXISTS(SELECT * FROM ${SubImageSchema.schemaName} WHERE url = @url)` +
     ` SET IDENTITY_INSERT ${SubImageSchema.schemaName} OFF`;
   // console.log(query);
 
@@ -136,5 +136,5 @@ exports.getProductSubImgById = async (id) => {
     .query(
       `select * from ${SubImageSchema.schemaName} where ${SubImageSchema.schema.productID.name} = @${SubImageSchema.schema.productID.name}`
     );
-  return result.recordsets[0][0];
+  return result.recordsets[0];
 };

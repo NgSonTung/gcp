@@ -14,7 +14,7 @@ exports.getProducts = async (req, res) => {
 };
 
 exports.getProductById = async (req, res) => {
-  console.log(req.params);
+  console.log("req.params", req.params);
   const id = req.params.id * 1;
   try {
     const product = await ProductDAO.getProductById(id);

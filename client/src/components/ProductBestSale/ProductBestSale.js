@@ -16,9 +16,9 @@ const ProductBestSale = (props) => {
             {/* link den cac san pham la dien thoai */}
             {activeTitle && (
                 <Link to={'/product/phone'}>
-                    <div className={cx('wrapper-title')}>
+                    {/* <div className={cx('wrapper-title')}>
                         <span>{title}</span>
-                    </div>
+                    </div> */}
                 </Link>
             )}
             <div className={banner ? cx('wrapper-img', 'active-banner') : cx('wrapper-img')}>
