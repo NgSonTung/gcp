@@ -75,7 +75,6 @@ exports.createNewProduct = async (req, res) => {
 
 exports.deleteById = async (req, res) => {
   const id = req.params.id * 1;
-  console.log("id", id);
   try {
     const product = await ProductDAO.getProductById(id);
     if (!product) {
@@ -96,6 +95,24 @@ exports.deleteById = async (req, res) => {
     return res.status(500).json({
       code: 500,
       msg: e,
+    });
+  }
+};
+
+exports.deleteMultipleProductById = async (req, res) => {
+  const idList = req.query.id;
+  console.log("idList", idList);
+  try {
+    await ProductDAO.deleteMultipleProductById(idList);
+    return res.status(200).json({
+      code: 200,
+      msg: `Deleted products with id ${idList} successfully!`,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      code: 500,
+      msg: `Delete products with id ${idList} failed!`,
     });
   }
 };

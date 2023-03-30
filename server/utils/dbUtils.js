@@ -180,6 +180,22 @@ exports.getUpdateQuery = (schema, request, update) => {
   };
 };
 
+exports.getDeleteQuery = (tableName, idList) => {
+  if (!idList || idList.length == 0) {
+    throw new Error("Invalid id list param");
+  }
+
+  let deleteStr = `DELETE FROM ${tableName} WHERE ${tableName}id in (`;
+
+  for (let i = 0; i < idList.length; i++) {
+    const id = idList[i];
+    deleteStr += `${id},`;
+  }
+  deleteStr = deleteStr.slice(0, -1); //delete last ','
+  deleteStr += `)`;
+  return deleteStr;
+};
+
 exports.getFilterProductsQuery = (
   schema,
   filter,

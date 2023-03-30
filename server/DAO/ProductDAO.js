@@ -166,6 +166,17 @@ exports.deleteProductById = async (id) => {
   return result.recordsets;
 };
 
+exports.deleteMultipleProductById = async (idList) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  const deleteStr = dbUtils.getDeleteQuery(ProductSchema.schemaName, idList);
+  console.log(deleteStr);
+  let result = await request.query(deleteStr);
+  return result.recordsets;
+};
+
 exports.updateProductById = async (id, updateInfo) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");

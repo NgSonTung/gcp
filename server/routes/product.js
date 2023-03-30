@@ -12,6 +12,11 @@ router
     authController.protect,
     authController.restrictTo(StaticData.AUTH.Role.admin),
     productController.createNewProduct
+  )
+  .delete(
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
+    productController.deleteMultipleProductById
   );
 
 router
