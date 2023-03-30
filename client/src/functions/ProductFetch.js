@@ -11,7 +11,7 @@ export const getAllProducts = (url) => {
         .get(url)
         .then((res) => {
             // console.log(url);
-            console.log(res.data);
+            // console.log(res.data);
             return res.data;
         })
         .catch((err) => console.log(err));
@@ -87,7 +87,7 @@ export const updateProductById = (id, product, jwt) => {
             return res.data.msg;
         })
         .catch((err) => {
-            console.log(err.response);
+            // console.log(err.response);
             return err.response.data.msg;
         });
 };

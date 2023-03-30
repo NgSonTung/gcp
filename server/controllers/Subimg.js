@@ -9,7 +9,7 @@ exports.getSubImgByProductId = async (req, res) => {
         .status(404) //NOT FOUND
         .json({
           code: 404,
-          msg: `Not found subimgs with Id ${id}!`,
+          msg: `Not found subimgs with productId ${id}!`,
         });
     }
     return res.status(200).json({

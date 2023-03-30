@@ -136,5 +136,5 @@ exports.getProductSubImgById = async (id) => {
     .query(
       `select * from ${SubImageSchema.schemaName} where ${SubImageSchema.schema.productID.name} = @${SubImageSchema.schema.productID.name}`
     );
-  return result.recordsets[0][0];
+  return result.recordsets[0];
 };

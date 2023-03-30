@@ -6,8 +6,9 @@ import ImageSlider from '../ImageSlider';
 
 const cx = classNames.bind(styles);
 
-function ProductMagnifier({ product }) {
+function ProductMagnifier({ product, subImg = [] }) {
     let imageList = [product?.image];
+    subImg?.map((obj) => imageList.push(obj.url));
     // imageList = imageList.concat(product?.sub_image?.map((image) => image));
 
     const [activeImage, setActiveImage] = useState(0);

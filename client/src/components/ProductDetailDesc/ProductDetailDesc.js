@@ -7,18 +7,19 @@ import { faShoppingCart, faDollarSign } from '@fortawesome/free-solid-svg-icons'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
-
+import { fortmatCurrency } from '~/utils/FormatCurrency';
 const cx = classNames.bind(styles);
 
-const formatCurrency = (str) => {
-    const regex = /\d{1,3}(?=(\d{3})+(?!\d))/g;
-    return `${str.toString().replace(regex, '$&,')}₫`;
-};
+// const formatCurrency = (str) => {
+//     const regex = /\d{1,3}(?=(\d{3})+(?!\d))/g;
+//     return `${str.toString().replace(regex, '$&,')}₫`;
+// };
 
-function ProductDetailDesc({ product, full = true, className }) {
+function ProductDetailDesc(props) {
+    const { product, feature, rating, full = true, className } = props;
+    console.log(product);
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
-    // console.log(product);
     const handleDecrement = () => {
         if (count > 1) {
             setCount(count - 1);
@@ -85,16 +86,17 @@ function ProductDetailDesc({ product, full = true, className }) {
                 progress: undefined,
                 theme: 'colored',
             });
+        } else {
+            if (product.amount === undefined) {
+                product.amount = 1;
+            }
+            const action = {
+                type: 'ADD_TO_CART',
+                payload: product,
+            };
+            dispatch(action);
         }
 
-        if (product.qty === undefined) {
-            product.qty = 1;
-        }
-        const action = {
-            type: 'ADD_TO_CART',
-            payload: product,
-        };
-        dispatch(action);
         //move to checkout page
     };
 
@@ -104,16 +106,16 @@ function ProductDetailDesc({ product, full = true, className }) {
             <p className={cx('product-detail-title')}> {product?.name}</p>
             {full && (
                 <div className={cx('product-detail-subtitle')}>
-                    <p className={cx('product-detail-id')}>{`Mã sản phẩm: ${product?.id}`}</p>
+                    <p className={cx('product-detail-id')}>{`Mã sản phẩm: ${product?.productID}`}</p>
                     <p className={cx('product-detail-brand')}>{`Thương hiệu: ${product?.brand}`}</p>
                 </div>
             )}
-            <p className={cx('product-detail-price')}>{formatCurrency(product?.price)}</p>
-            {full && <ProductRating ratings={product?.ratings} />}
+            <p className={cx('product-detail-price')}>{fortmatCurrency(product?.price)}</p>
+            {full && <ProductRating ratings={rating} />}
             <div className={cx('product-feature-wrapper')}>
-                {product?.features?.map((feature, id) => (
+                {feature?.map((feature, id) => (
                     <p className={cx('product-feature')} key={id}>
-                        - {feature}
+                        - {feature.feature}
                     </p>
                 ))}
             </div>
