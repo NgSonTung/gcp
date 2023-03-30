@@ -10,8 +10,8 @@ const SubImageSchema = new ModelSchema(
       require: true,
     }),
 
-    url: new ModelSchemaValidator({
-      name: "url",
+    image: new ModelSchemaValidator({
+      name: "image",
       sqlType: sql.VarChar,
       require: true,
     }),

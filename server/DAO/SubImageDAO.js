@@ -21,7 +21,7 @@ exports.addSubImageIfNotExisted = async (img) => {
     insertFieldNamesStr +
     ") select  " +
     insertValuesStr +
-    ` WHERE NOT EXISTS(SELECT * FROM ${SubImageSchema.schemaName} WHERE url = @url)` +
+    ` WHERE NOT EXISTS(SELECT * FROM ${SubImageSchema.schemaName} WHERE image = @image)` +
     ` SET IDENTITY_INSERT ${SubImageSchema.schemaName} OFF`;
   // console.log(query);
 

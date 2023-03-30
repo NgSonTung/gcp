@@ -49,7 +49,7 @@ go
 create table Subimg
 (
 	subimgID int identity(1,1) primary key,
-	url varchar(max) not null,
+	image varchar(max) not null,
 	alt varchar(100) not null,
 	productID int constraint FK_SrcImg references product(productID)
 )

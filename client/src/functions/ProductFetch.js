@@ -44,7 +44,6 @@ export const deleteProductById = (id, jwt) => {
 };
 
 export const deleteMultipleProductsById = (ids, jwt) => {
-    console.log(ids, jwt);
     const headers = {
         Authorization: `Bearer ${jwt}`,
     };
