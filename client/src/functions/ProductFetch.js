@@ -41,11 +41,21 @@ export const deleteProductById = (id, jwt) => {
         .catch((err) => {
             return err.response.data.msg;
         });
-    // const product = {
-    //     type: 'GET_PRODUCT_FROM_DB',
-    //     payload:
-    // };
-    // dispatch(location);
+};
+
+export const deleteMultipleProductsById = (ids, jwt) => {
+    console.log(ids, jwt);
+    const headers = {
+        Authorization: `Bearer ${jwt}`,
+    };
+    return axios
+        .delete(`product/`, { params: { id: ids }, headers: headers })
+        .then((res) => {
+            return res.data.msg;
+        })
+        .catch((err) => {
+            return err.response.data.msg;
+        });
 };
 
 export const addProduct = (product, jwt) => {

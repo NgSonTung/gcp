@@ -2,42 +2,52 @@ import classNames from 'classnames/bind';
 import styles from './UserAction.module.scss';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faPlus, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faPlus, faUpload, faTrash } from '@fortawesome/free-solid-svg-icons';
 import HandleForm from '../HandleForm/HandleForm';
+import { deleteMultipleProductsById } from '~/functions/ProductFetch';
 
 const cx = classNames.bind(styles);
 
-const UserAction = ({ jwt, setProductChange }) => {
+const UserAction = ({ setAllChecked, setDeleteIds, deleteIds, jwt, setProductChange }) => {
     const [showEditForm, setShowEditForm] = useState(false);
 
-    const handleShowEditForm = () => {
+    const HandleShowEditForm = () => {
         setShowEditForm(true);
     };
 
+    const HandleDeleteProducts = () => {
+        const msgPromise = deleteMultipleProductsById(deleteIds, jwt);
+        msgPromise.then((msg) => {
+            alert(msg);
+            setProductChange(true);
+            setDeleteIds([]);
+            setAllChecked(false);
+        });
+    };
+
     return (
-        <div className={cx('user-action')}>
-            <div className={cx('filter-box-wrapper')}>
-                <div className={cx('link-filter-box')}>
-                    <p className={cx('title')}>Dead link sản phẩm</p>
-                    <input type="checkbox" />
+        <div>
+            <div className={cx('user-action')}>
+                <div className={cx('filter-box-wrapper')}>
+                    <div className={cx('link-filter-box')}>
+                        <p className={cx('title')}>Dead link sản phẩm</p>
+                        <input type="checkbox" />
+                    </div>
+                    <div className={cx('link-filter-box')}>
+                        <p className={cx('title')}>Dead link bài viết & khác</p>
+                        <input type="checkbox" />
+                    </div>
                 </div>
-                <div className={cx('link-filter-box')}>
-                    <p className={cx('title')}>Dead link bài viết & khác</p>
-                    <input type="checkbox" />
+                <div className={cx('handle-link-wrapper')}>
+                    <button className={cx('add-btn')} onClick={HandleShowEditForm}>
+                        <FontAwesomeIcon icon={faPlus} />
+                        <p className={cx('text')}>THÊM MỚI</p>
+                    </button>
+                    <button className={cx('add-btn')} onClick={HandleDeleteProducts}>
+                        <FontAwesomeIcon icon={faTrash} />
+                        <p className={cx('text')}>XÓA</p>
+                    </button>
                 </div>
-            </div>
-            <div className={cx('handle-link-wrapper')}>
-                <button className={cx('export-btn')}>
-                    <FontAwesomeIcon icon={faUpload} />
-                </button>
-                <button className={cx('upload-template')}>
-                    <FontAwesomeIcon icon={faDownload} />
-                    <p className={cx('text')}>Template</p>
-                </button>
-                <button className={cx('add-btn')} onClick={handleShowEditForm}>
-                    <FontAwesomeIcon icon={faPlus} />
-                    <p className={cx('text')}>THÊM MỚI</p>
-                </button>
             </div>
             <div>
                 {showEditForm && (
@@ -50,7 +60,6 @@ const UserAction = ({ jwt, setProductChange }) => {
                     />
                 )}
             </div>
-            {/* <HandleForm /> */}
         </div>
     );
 };

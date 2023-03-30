@@ -1,12 +1,14 @@
 .user-action {
+    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #bdc2d2;
     padding-bottom: 2rem;
+
     .filter-box-wrapper {
         display: flex;
         gap: 2rem;
+        margin-right: 10rem;
 
         .link-filter-box {
             display: flex;
@@ -24,24 +26,12 @@
     .handle-link-wrapper {
         display: flex;
         gap: 1rem;
-
-        .export-btn,
-        .upload-template {
-            padding: 1rem;
-            background-color: #ffffff;
-            border-radius: 0.4rem;
-            cursor: pointer;
-        }
-
-        .upload-template {
-            display: flex;
-            gap: 1rem;
-        }
+        margin-right: 2rem;
 
         .add-btn {
             display: flex;
             align-items: center;
-            padding: 1rem 1.5rem;
+            padding: 1rem 5rem;
             background-color: #1a6634;
             border-radius: 0.4rem;
             cursor: pointer;

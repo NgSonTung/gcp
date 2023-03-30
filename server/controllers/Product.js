@@ -101,8 +101,13 @@ exports.deleteById = async (req, res) => {
 
 exports.deleteMultipleProductById = async (req, res) => {
   const idList = req.query.id;
-  console.log("idList", idList);
   try {
+    if (!idList || idList.length === 0) {
+      return res.status(403).json({
+        code: 403,
+        msg: `Invalid ids`,
+      });
+    }
     await ProductDAO.deleteMultipleProductById(idList);
     return res.status(200).json({
       code: 200,

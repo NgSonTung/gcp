@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './CateTitle.module.scss';
 import Checkbox from '@mui/material/Checkbox';
+import { useState, useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -10,14 +11,22 @@ const cateTitles = [
     { title: 'Giá', checkbox: false },
 ];
 
-const CateTitle = () => {
+const CateTitle = ({ checked, handleCheckAll }) => {
+    const [isChecked, setIsChecked] = useState(checked);
+    const HandleCheck = () => {
+        setIsChecked(!isChecked);
+        handleCheckAll();
+    };
+    useEffect(() => {
+        setIsChecked(checked);
+    }, [checked]);
     return (
         <div className={cx('cate-title')}>
             {cateTitles &&
                 cateTitles.map((item, index) =>
                     item.checkbox ? (
                         <div key={index} className={cx('description-link')}>
-                            <Checkbox />
+                            <Checkbox checked={isChecked} onClick={HandleCheck} />
                             <p className={cx('title-text')}>{item.title}</p>
                         </div>
                     ) : (
