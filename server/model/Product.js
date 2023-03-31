@@ -25,9 +25,9 @@ const ProductSchema = new ModelSchema(
         return 0 || 1;
       },
     }),
-    brand: new ModelSchemaValidator({
-      name: "brand",
-      sqlType: sql.VarChar,
+    category: new ModelSchemaValidator({
+      name: "category",
+      sqlType: sql.Int,
       require: true,
     }),
     price: new ModelSchemaValidator({
@@ -35,9 +35,10 @@ const ProductSchema = new ModelSchema(
       sqlType: sql.Float,
       require: true,
     }),
-    category: new ModelSchemaValidator({
-      name: "category",
-      sqlType: sql.VarChar,
+
+    brand: new ModelSchemaValidator({
+      name: "brand",
+      sqlType: sql.Int,
       require: true,
     }),
     image: new ModelSchemaValidator({

@@ -15,6 +15,10 @@ const FeatureDAO = require("../DAO/FeatureDAO");
 const RatingDAO = require("../DAO/RatingDAO");
 const CartDAO = require("../DAO/CartDAO");
 const SubImageDAO = require("../DAO/SubImageDAO");
+const CategoryDAO = require("../DAO/CategoryDAO");
+const BrandDAO = require("../DAO/BrandDAO");
+const { log } = require("console");
+
 async function importDB() {
   const PRODUCT_FILE_PATH = "../data/products.json";
   const USER_FILE_PATH = "../data/users.json";
@@ -23,6 +27,8 @@ async function importDB() {
   const CART_FILE_PATH = "../data/cart.json";
   const CARTPRODUCT_FILE_PATH = "../data/cartProduct.json";
   const SUBIMAGE_FILE_PATH = "../data/subImage.json";
+  const CATEGORY_FILE_PATH = "../data/category.json";
+  const BRAND_FILE_PATH = "../data/brand.json";
 
   let products = JSON.parse(fs.readFileSync(PRODUCT_FILE_PATH, "utf-8"));
   let users = JSON.parse(fs.readFileSync(USER_FILE_PATH, "utf-8"));
@@ -33,11 +39,34 @@ async function importDB() {
     fs.readFileSync(CARTPRODUCT_FILE_PATH, "utf-8")
   );
   let imgs = JSON.parse(fs.readFileSync(SUBIMAGE_FILE_PATH, "utf-8"));
+  let categorys = JSON.parse(fs.readFileSync(CATEGORY_FILE_PATH, "utf-8"));
+  let brands = JSON.parse(fs.readFileSync(BRAND_FILE_PATH, "utf-8"));
+
+  //import category
+  for (let i = 0; i < categorys.length; i++) {
+    let category = categorys[i];
+    try {
+      await CategoryDAO.addCateIfNotExists(category);
+      console.log("import category --- done!");
+    } catch (error) {
+      console.log("errr", category);
+    }
+  }
+  //import brand
+  for (let i = 0; i < brands.length; i++) {
+    let brand = brands[i];
+    try {
+      await BrandDAO.addBrandIfNotExists(brand);
+      console.log("import brand --- done!");
+    } catch (error) {
+      console.log("errr", brand);
+    }
+  }
   //import product
   for (let i = 0; i < products.length; i++) {
     let product = products[i];
+    await ProductDAO.addProductIfNotExisted(product);
     try {
-      await ProductDAO.addProductIfNotExisted(product);
       console.log("import product --- done!");
     } catch (error) {
       console.log("errr", product);
@@ -100,12 +129,12 @@ async function importDB() {
 
   for (let i = 0; i < imgs.length; i++) {
     let img = imgs[i];
-    await SubImageDAO.addSubImageIfNotExisted(img);
-    // try {
-    //   console.log("import carts_Product --- done!");
-    // } catch (Error) {
-    //   console.log("errr", item);
-    // }
+    try {
+      await SubImageDAO.addSubImageIfNotExisted(img);
+      console.log("import subImage --- done!");
+    } catch (Error) {
+      console.log("errr", item);
+    }
   }
 }
 
@@ -118,14 +147,6 @@ async function dbClean() {
   await UserDAO.clearAll();
   await ProductDAO.clearAll();
 }
-
-// async function test() {
-//   let tourStarDates = await TourStartDateDAO.getByTourId(1);
-//   let tourImages = await TourImageDAO.getByTourId(1);
-
-//   console.log(tourStarDates);
-//   console.log(tourImages);
-// }
 
 appPool
   .connect()
@@ -140,9 +161,6 @@ appPool
       console.log("should import");
       await importDB();
     }
-    // else if (process.argv[2] === "--test") {
-    //   await test();
-    // }
     console.log("ALL DONE !!!");
   })
   .catch(function (err) {
