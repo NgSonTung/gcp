@@ -1,3 +1,5 @@
+--drop database PhoneShop 
+
 create database PhoneShop
 go
 use PhoneShop
