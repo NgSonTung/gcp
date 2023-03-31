@@ -139,8 +139,6 @@ async function importDB() {
 }
 
 async function dbClean() {
-  await CategoryDAO.clearAll();
-  await BrandDAO.clearAll();
   await FeatureDAO.clearAll();
   await RatingDAO.clearAll();
   await SubImageDAO.clearAll();
@@ -148,6 +146,8 @@ async function dbClean() {
   await CartDAO.clearAllCart();
   await UserDAO.clearAll();
   await ProductDAO.clearAll();
+  await CategoryDAO.clearAll();
+  await BrandDAO.clearAll();
 }
 
 appPool
