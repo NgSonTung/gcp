@@ -206,7 +206,6 @@ exports.getFilterProductsQuery = (
   let filterStr;
   let paginationStr;
 
-  console.log(filter);
   const skip = (page - 1) * pageSize;
   paginationStr = "order by";
   let sort = "";
@@ -254,10 +253,8 @@ exports.getFilterProductsQuery = (
                 }
                 filterStr += criteria + " " + operator + " " + criterialVal;
                 j++;
-                console.log(filterStr);
               }
               i++;
-              console.log(filterStr);
             }
           }
         }
@@ -284,7 +281,6 @@ exports.getFilterProductsQuery = (
             schemaProp.type === "string"
           ) {
             filterStr += criteria + "='" + filter[criteria] + "')";
-            console.log(filterStr);
             i++;
           }
         }
@@ -310,13 +306,16 @@ exports.getFilterProductsQuery = (
             schemaProp.type === "string"
           ) {
             filterStr += criteria + "='" + filter[criteria] + "')";
-            console.log(filterStr);
             i++;
           }
         }
         //filter name
         if (criteria == "name" && filter[criteria].length > 0) {
-          filterStr += criteria + " like '%" + filter[criteria] + "%' ";
+          filterStr +=
+            `dbo.fuConvertToUnsign1(${criteria})` +
+            " like N'%' + " +
+            `dbo.fuConvertToUnsign1(N'${filter[criteria]}')` +
+            " + '%' ";
           i++;
         }
       }

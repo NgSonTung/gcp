@@ -2,7 +2,21 @@ import axios from 'axios';
 
 export const getAllProducts = (url) => {
     if (url === '') {
-        url = 'http://localhost:3001/api/v1/product/?';
+        url = 'http://localhost:3001/api/v1/product/?page=1&pageSize=5';
+    }
+    return axios
+        .get(url)
+        .then((res) => {
+            // console.log(url);
+            // console.log(res.data);
+            return res.data;
+        })
+        .catch((err) => console.log(err));
+};
+
+export const getProductByName = (url, searchvalue) => {
+    if (url === '') {
+        url = `http://localhost:3001/api/v1/product/?page=1&pageSize=5&name=${searchvalue}`;
     }
     return axios
         .get(url)

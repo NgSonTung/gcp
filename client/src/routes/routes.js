@@ -12,6 +12,7 @@ import Tablet from '~/pages/Products/Tablet/Tablet';
 import ProductDetail from '~/components/ProductDetail/ProductDetail';
 import CheckoutPage from '~/pages/CheckoutPage/CheckoutPage';
 import Admin from '~/pages/Admin/Admin';
+import SearchCatalog from '~/pages/SearchCatalog/SearchCatalog';
 // Public Routes
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -27,6 +28,7 @@ const publicRoutes = [
     // { path: config.routes.checkout, component: CheckoutPage },
 
     { path: config.routes.admin, component: Admin, layout: null },
+    { path: config.routes.searchcatalog, component: SearchCatalog, layout: null },
 ];
 
 export { publicRoutes };

@@ -6,10 +6,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '~/Hooks';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import HomeProductBestSale from '~/pages/Home/HomeProductBestSale/index';
-import ProductBestSale from '~/components/ProductBestSale/index';
-import ProductItem from '~/components/ProductItem/ProductItem';
+
 import SearchProducts from '~/components/SearchedProduct/SearchedProduct';
+import { Link } from 'react-router-dom';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -81,9 +81,11 @@ const Search = () => {
                             onFocus={() => setShowResult(true)}
                             onM={() => setShowResult(false)}
                         />
-                        <button className={cx('find-btn')}>
-                            <SearchIcon className={cx('icon')} />
-                        </button>
+                        <Link to={`/searchcatalog/${searchValue}`}>
+                            <button className={cx('find-btn')}>
+                                <SearchIcon className={cx('icon')} />
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </HeadlessTippy>
