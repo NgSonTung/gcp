@@ -49,10 +49,10 @@ const ImageSlider = ({ images, subImg = true, className, autoPlay = true, onImag
                         <div className={cx('image-wrapper')}>
                             <img
                                 ref={imgView}
-                                src={image.url ? image.url : image}
-                                alt={image.alt}
+                                src={image?.url ? image.url : image}
+                                alt={image?.alt}
                                 onClick={() => {
-                                    subImg && showImg(image.url ? image.url : image);
+                                    subImg && showImg(image?.url ? image.url : image);
                                     onImageClick(index);
                                 }}
                             />

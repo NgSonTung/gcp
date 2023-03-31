@@ -1,28 +1,43 @@
 import classNames from 'classnames/bind';
 import styles from './ProductDetail.module.scss';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import ProductMagnifier from '../ProductMagnifier';
 import ProductDetailDesc from '../ProductDetailDesc';
-import NavTitle from '../NavTitle';
-import ProductBestSale from '../ProductBestSale/';
-import data from '~/data/data.json';
+// import NavTitle from '../NavTitle';
+// import ProductBestSale from '../ProductBestSale/';
+// import data from '~/data/data.json';
 import { getProductByName } from '~/functions/ProductFetch';
-
+import { getSubImgByProduct } from '~/functions/SubImgFetch';
+import { getFeatureByProductID } from '~/functions/FeatureFetch';
+import { getRatingByProductId } from '~/functions/RatingFetch';
 const cx = classNames.bind(styles);
 
 function ProductDetail() {
-    const [productData, setProductData] = useState([]);
-    const [totalProduct, setTotalProduct] = useState(0);
+    // const [productData, setProductData] = useState([]);
+    // const [subImg, setSubImg] = useState([]);
+    const [data, setData] = useState({});
+
+    // const [totalProduct, setTotalProduct] = useState(0);
     const { nameproduct } = useParams();
 
     const handleGetData = async () => {
         const fetchProduct = await getProductByName(nameproduct);
-        setProductData(fetchProduct);
+
+        const fetchSubImg = await getSubImgByProduct(fetchProduct[0].productID);
         // setTotalProduct(fetchedData?.data?.products?.totalProduct);
+        const fetchFeature = await getFeatureByProductID(fetchProduct[0].productID);
+        const fetchRating = await getRatingByProductId(fetchProduct[0].productID);
+        setData({
+            productData: fetchProduct,
+            subImg: fetchSubImg,
+            feature: fetchFeature,
+            rating: fetchRating.data.rating,
+        });
     };
+    console.log('productData', data);
     useEffect(() => {
         handleGetData();
     }, []);
@@ -54,14 +69,18 @@ function ProductDetail() {
 
     return (
         <div className={cx('product-detail-container')}>
-            {productData && (
+            {data.productData && (
                 <div>
                     <div className={cx('main-detail-wrapper')}>
                         <div className={cx('product-image')}>
-                            <ProductMagnifier product={productData} />
+                            <ProductMagnifier product={data.productData[0]} subImg={data.subImg} />
                         </div>
                         <div className={cx('product-detail')}>
-                            <ProductDetailDesc product={productData} />
+                            <ProductDetailDesc
+                                product={data.productData[0]}
+                                feature={data.feature}
+                                rating={data.rating}
+                            />
                         </div>
                     </div>
                     {/* <NavTitle className={cx('product-nav')} navItems={navItems} />

@@ -22,7 +22,7 @@ const CartReducer = (state = initialState, action) => {
             const productExists = state.cartItem.some((p) => p.productID === data.productID);
             // console.log(' ADD_TO_CART', product);
             if (!productExists) {
-                console.log('not productExists');
+                // console.log('not productExists');
                 data.amount = 1;
                 const newCart = [...state.cartItem, data];
                 const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
@@ -34,7 +34,7 @@ const CartReducer = (state = initialState, action) => {
                     total: totalPrice,
                 };
             } else {
-                console.log('productExists');
+                // console.log('productExists');
                 const newCart = state.cartItem;
                 const Index = newCart.findIndex((p) => p.productID === data.productID);
                 if (newCart[Index].amount === undefined) {
@@ -90,7 +90,7 @@ const CartReducer = (state = initialState, action) => {
                     cartItem: [],
                 };
             } else {
-                console.log(data);
+                // console.log(data);
                 const newCart = [...data.product];
                 const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
                 return {

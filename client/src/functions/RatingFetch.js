@@ -2,10 +2,8 @@ import axios from 'axios';
 
 export const getRatingByProductId = (id) => {
     return axios
-        .get(`rating/byProduct/${id}}`)
+        .get(`/rating/byProduct/${id}`)
         .then((res) => {
-            // console.log(url);
-            console.log(res.data);
             return res.data;
         })
         .catch((err) => console.log(err));

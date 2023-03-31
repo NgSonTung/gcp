@@ -7,6 +7,8 @@ exports.addSubImageIfNotExisted = async (img) => {
   if (!dbPool) {
     throw new Error("Not connected to db");
   }
+  img.createdAt = new Date().toISOString();
+
   let insertData = SubImageSchema.validateData(img);
 
   let query = `SET IDENTITY_INSERT ${SubImageSchema.schemaName} ON insert into ${SubImageSchema.schemaName}`;
@@ -21,7 +23,7 @@ exports.addSubImageIfNotExisted = async (img) => {
     insertFieldNamesStr +
     ") select  " +
     insertValuesStr +
-    ` WHERE NOT EXISTS(SELECT * FROM ${SubImageSchema.schemaName} WHERE url = @url)` +
+    ` WHERE NOT EXISTS(SELECT * FROM ${SubImageSchema.schemaName} WHERE image = @image)` +
     ` SET IDENTITY_INSERT ${SubImageSchema.schemaName} OFF`;
   // console.log(query);
 
@@ -136,5 +138,5 @@ exports.getProductSubImgById = async (id) => {
     .query(
       `select * from ${SubImageSchema.schemaName} where ${SubImageSchema.schema.productID.name} = @${SubImageSchema.schema.productID.name}`
     );
-  return result.recordsets[0][0];
+  return result.recordsets[0];
 };

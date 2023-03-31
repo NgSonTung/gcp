@@ -45,8 +45,14 @@ const RatingSchema = new ModelSchema(
       sqlType: sql.Int,
       require: true,
     }),
+    createdAt: new ModelSchemaValidator({
+      name: "createdAt",
+      sqlType: sql.DateTime,
+      default: new Date().toISOString(),
+      require: true,
+    }),
   },
   "Rating",
-  "_5star"
+  "createAt"
 );
 module.exports = RatingSchema;

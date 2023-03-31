@@ -1,86 +1,92 @@
--- drop database PhoneShop
-
 create database PhoneShop
 go
-
 use PhoneShop
 go
+alter database PhoneShop set TRUSTWORTHY ON
+go
+create table Category (
+categoryID int identity(1,1) primary key,
+categoryName nvarchar(max),
+createdAt       datetime default CURRENT_TIMESTAMP not null
+)
+go
+create table Brand(
+brandID int identity(1,1) primary key,
+brandName nvarchar(max),
+createdAt       datetime default CURRENT_TIMESTAMP not null
 
-create table Product
-(
+)
+
+go
+	create table Product(
 	productID int identity(1,1) primary key,
 	stock int not null,
 	name nvarchar (200) not null unique,
-	favorite int not null check (favorite in (1,0)),
-	brand varchar(100) not null,
-	price float not null,
-	category varchar(100) not null,
+	favorite int not null  check (favorite in (1,0)),
+	category int constraint FK_Product_cate references Category(categoryID)  not null,
+	price float	not null,
+	brand int constraint FK_Product_brand references Brand(brandID)  not null,
 	image nvarchar(max),
 	sale nvarchar(100) ,
 	description nvarchar(max),
-	createdAt   datetime default CURRENT_TIMESTAMP not null,
-)
+	createdAt       datetime default CURRENT_TIMESTAMP not null
+	)
 
-go
-create table Rating
-(
-	ratingID int identity(1,1) primary key,
-	_5star int ,
-	_4star int,
-	_3star int,
-	_2star int,
-	_1star int,
-	productID int constraint FK_Rating references Product(productID)
+go 
+create table Rating(
+ratingID int identity(1,1) primary key,
+_5star	int ,
+_4star	int,
+_3star	int,
+_2star	int,
+_1star	int,
+productID int constraint FK_Rating references Product(productID),
+createdAt       datetime default CURRENT_TIMESTAMP not null
 )
-go
-create table Users
-(
-	userID int identity(1,1) primary key,
-	userName varchar(max) not null,
-	password varchar(max) not null,
-	auth int not null check (auth in (1,0)),
-	--	1 - admin   0 -	user
-	email varchar(max) not null,
-		createdAt   datetime default CURRENT_TIMESTAMP not null,
-
+go 
+create table Users(
+userID	int identity(1,1) primary key,
+userName varchar(max) not null,
+password varchar(max) not null,
+auth	int not null check (auth in (1,0)), --	1 - admin   0 -	user
+email varchar(max) not null,
+    createdAt       datetime default CURRENT_TIMESTAMP not null
 )
 go
 
-create table Subimg
-(
-	subimgID int identity(1,1) primary key,
-	url varchar(max) not null,
-	alt varchar(100) not null,
-	productID int constraint FK_SrcImg references product(productID)
+create table Subimg (
+subimgID int identity(1,1) primary key,
+image varchar(max) not null,
+alt varchar(100) not null,
+productID int constraint FK_SrcImg references product(productID),
+createdAt       datetime default CURRENT_TIMESTAMP not null
 )
-go
+go 
 
-create table Cart
-(
-	cartID int identity(1,1) primary key,
-	userID int not null constraint FK_Cart references Users(userID) unique
+create table Cart(
+cartID int identity(1,1) primary key,
+userID int not null constraint FK_Cart references Users(userID) unique,
+createdAt       datetime default CURRENT_TIMESTAMP not null
 )
-create table Cart_Product
-(
-	cartID int ,
-	productID int,
-	amount int,
-	primary key (cartID,productID)
+create table Cart_Product (
+cartID int ,
+productID int,
+amount int,
+primary key (cartID,productID),
+createdAt       datetime default CURRENT_TIMESTAMP not null
 )
-go
+go 
 alter table Cart_Product add  constraint FK_Cart_Product_Cart foreign key (cartID)  references Cart(cartID)
 go
 alter table Cart_Product add  constraint FK_Cart_Product_Product foreign key (productID)  references Product(productID)
 go
-create table Feature
-(
-	featureID int identity (1,1) primary key,
-	feature nvarchar(max) not null,
-	productID int constraint FK_Feature_Product  references Product(productID)
-)
+ create table Feature(
+ featureID int identity (1,1) primary key,
+feature nvarchar(max) not null,
+productID int constraint FK_Feature_Product  references Product(productID),
+createdAt       datetime default CURRENT_TIMESTAMP not null
+ )
 go 
-
-
 CREATE TRIGGER tr_product_delete
 ON product
 INSTEAD OF DELETE
@@ -105,7 +111,9 @@ go
 select * from Product
 select * from feature
 select * from rating
-select * from Subimg
+select * from Subimg 
 select * from Cart
 select * from Users
 select * from Cart_Product
+
+
