@@ -13,9 +13,15 @@ const BrandSchema = new ModelSchema(
       sqlType: sql.NVarChar,
       require: true,
     }),
+    createdAt: new ModelSchemaValidator({
+      name: "createdAt",
+      sqlType: sql.DateTime,
+      require: true,
+      default: new Date().toISOString(),
+    }),
   },
   "Brand",
-  "BrandID"
+  "createAt"
 );
 
 module.exports = BrandSchema;

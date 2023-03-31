@@ -6,11 +6,16 @@ alter database PhoneShop set TRUSTWORTHY ON
 go
 create table Category (
 categoryID int identity(1,1) primary key,
-categoryName nvarchar(max))
+categoryName nvarchar(max),
+createdAt       datetime default CURRENT_TIMESTAMP not null
+)
 go
 create table Brand(
 brandID int identity(1,1) primary key,
-brandName nvarchar(max))
+brandName nvarchar(max),
+createdAt       datetime default CURRENT_TIMESTAMP not null
+
+)
 
 go
 	create table Product(
@@ -35,7 +40,8 @@ _4star	int,
 _3star	int,
 _2star	int,
 _1star	int,
-productID int constraint FK_Rating references Product(productID)
+productID int constraint FK_Rating references Product(productID),
+createdAt       datetime default CURRENT_TIMESTAMP not null
 )
 go 
 create table Users(
@@ -53,18 +59,21 @@ subimgID int identity(1,1) primary key,
 image varchar(max) not null,
 alt varchar(100) not null,
 productID int constraint FK_SrcImg references product(productID),
+createdAt       datetime default CURRENT_TIMESTAMP not null
 )
 go 
 
 create table Cart(
 cartID int identity(1,1) primary key,
-userID int not null constraint FK_Cart references Users(userID) unique
+userID int not null constraint FK_Cart references Users(userID) unique,
+createdAt       datetime default CURRENT_TIMESTAMP not null
 )
 create table Cart_Product (
 cartID int ,
 productID int,
 amount int,
-primary key (cartID,productID)
+primary key (cartID,productID),
+createdAt       datetime default CURRENT_TIMESTAMP not null
 )
 go 
 alter table Cart_Product add  constraint FK_Cart_Product_Cart foreign key (cartID)  references Cart(cartID)
@@ -74,7 +83,8 @@ go
  create table Feature(
  featureID int identity (1,1) primary key,
 feature nvarchar(max) not null,
-productID int constraint FK_Feature_Product  references Product(productID)
+productID int constraint FK_Feature_Product  references Product(productID),
+createdAt       datetime default CURRENT_TIMESTAMP not null
  )
 go 
 CREATE TRIGGER tr_product_delete

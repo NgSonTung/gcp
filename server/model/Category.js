@@ -13,9 +13,15 @@ const CategorySchema = new ModelSchema(
       sqlType: sql.NVarChar,
       require: true,
     }),
+    createdAt: new ModelSchemaValidator({
+      name: "createdAt",
+      sqlType: sql.DateTime,
+      default: new Date().toISOString(),
+      require: true,
+    }),
   },
   "Category",
-  "categoryID"
+  "createAt"
 );
 
 module.exports = CategorySchema;

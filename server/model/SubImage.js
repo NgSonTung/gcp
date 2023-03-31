@@ -27,9 +27,15 @@ const SubImageSchema = new ModelSchema(
       sqlType: sql.Int,
       require: true,
     }),
+    createdAt: new ModelSchemaValidator({
+      name: "createdAt",
+      sqlType: sql.DateTime,
+      default: new Date().toISOString(),
+      require: true,
+    }),
   },
   "Subimg",
-  "productID"
+  "createAt"
 );
 
 module.exports = SubImageSchema;

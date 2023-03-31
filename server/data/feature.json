@@ -175,6 +175,36 @@
     "productID": 11
   },
   {
+    "featureID": 36,
+    "feature": "Thiết kế nhỏ gọn, sang trọng",
+    "productID": 12
+  },
+  {
+    "featureID": 37,
+    "feature": "Quan sát toàn diện nhờ góc quay bao quát tốt",
+    "productID": 12
+  },
+  {
+    "featureID": 38,
+    "feature": "Chất lượng dữ liệu quan sát cực tốt với chuẩn phân giải đến 2K (2304 x 1296)",
+    "productID": 12
+  },
+  {
+    "featureID": 39,
+    "feature": "Phát cảnh báo an toàn đến điện thoại với công nghệ Deep Learning",
+    "productID": 12
+  },
+  {
+    "featureID": 40,
+    "feature": "Sử dụng lưu trữ qua thẻ nhớ MicroSD dung lượng tối đa 32 GB",
+    "productID": 12
+  },
+  {
+    "featureID": 41,
+    "feature": "Thiết lập điều khiển qua ứng dụng MiHome",
+    "productID": 12
+  },
+  {
     "featureID": 42,
     "feature": "Thiết kế thời thượng cùng bảng màu cá tính",
     "productID": 13
@@ -508,6 +538,26 @@
     "featureID": 108,
     "feature": "Sử dụng thoải mái nhờ dung lượng pin lớn và sạc không dây nhanh chóng",
     "productID": 27
+  },
+  {
+    "featureID": 109,
+    "feature": "AVA+ JP208 sạc lại nhiều lần cho các thiết bị di động với dung lượng 10.000 mAh, hiệu suất sạc 64%",
+    "productID": 28
+  },
+  {
+    "featureID": 110,
+    "feature": "Sạc dự phòng AVA+ sạc được cùng lúc cho 2 thiết bị nhờ 2 cổng USB 5V – 2A",
+    "productID": 28
+  },
+  {
+    "featureID": 111,
+    "feature": "Sạc an toàn, bền bỉ, hạn chế chai pin tốt nhờ lõi pin Polymer chất lượng cao",
+    "productID": 28
+  },
+  {
+    "featureID": 112,
+    "feature": "Sạc lại pin cho sạc dự phòng qua cổng Micro USB 5V – 2A",
+    "productID": 28
   },
   {
     "featureID": 113,

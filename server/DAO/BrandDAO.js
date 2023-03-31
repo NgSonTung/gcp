@@ -7,6 +7,8 @@ exports.addBrandIfNotExists = async (brand) => {
   if (!dbPool) {
     throw new Error("Not connected to db");
   }
+  brand.createdAt = new Date().toISOString();
+
   let insertData = BrandShcema.validateData(brand);
   let query = `SET IDENTITY_INSERT ${BrandShcema.schemaName} ON insert into ${BrandShcema.schemaName}`;
   const { request, insertFieldNamesStr, insertValuesStr } =
@@ -23,5 +25,11 @@ exports.addBrandIfNotExists = async (brand) => {
     ` WHERE NOT EXISTS(SELECT * FROM ${BrandShcema.schemaName} WHERE brandName = @brandName)` +
     ` SET IDENTITY_INSERT ${BrandShcema.schemaName} OFF`;
   let result = await request.query(query);
+  return result.recordsets;
+};
+
+exports.clearAll = async () => {
+  query = `delete ${BrandShcema.schemaName}  DBCC CHECKIDENT ('[${BrandShcema.schemaName} ]', RESEED, 1);`;
+  let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
 };

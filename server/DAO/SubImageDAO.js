@@ -7,6 +7,8 @@ exports.addSubImageIfNotExisted = async (img) => {
   if (!dbPool) {
     throw new Error("Not connected to db");
   }
+  img.createdAt = new Date().toISOString();
+
   let insertData = SubImageSchema.validateData(img);
 
   let query = `SET IDENTITY_INSERT ${SubImageSchema.schemaName} ON insert into ${SubImageSchema.schemaName}`;

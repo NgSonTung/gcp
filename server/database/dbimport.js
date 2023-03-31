@@ -139,6 +139,8 @@ async function importDB() {
 }
 
 async function dbClean() {
+  await CategoryDAO.clearAll();
+  await BrandDAO.clearAll();
   await FeatureDAO.clearAll();
   await RatingDAO.clearAll();
   await SubImageDAO.clearAll();

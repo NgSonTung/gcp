@@ -132,6 +132,19 @@
     "description": "Là mẫu tai nghe không dây thời thượng, Mozard TS13 tạo ấn tượng mạnh với củ tai nhỏ gọn, cho thao tác đeo, sử dụng cực thoải mái, tiện lợi. Khối lượng chỉ 39 gam nên vô cùng thích hợp để mang theo bên mình đi bất kỳ đâu."
   },
   {
+    "productID": 12,
+    "stock": 3,
+    "name": "Điện thoại iPhone 14 512GB",
+    "favorite": 1,
+    "brand": 2,
+    "price": 27490000,
+    "category": 5,
+    "image": "//cdn.tgdd.vn/Products/Images/42/289670/iphone-14-do-glr-1.jpg",
+    "rating": "2.9",
+    "sale": "23%",
+    "description": "Tại sự kiện giới thiệu sản phẩm mới hàng năm đến từ nhà Apple thì chiếc iPhone 14 512GB cũng đã chính thức được cho ra mắt, đây được xem là thời điểm kết thúc mọi lời đồn đoán bấy lâu nay khi toàn bộ thông số đã đều lộ diện. Hứa hẹn sẽ trở thành một trong những sản phẩm thu hút nhiều sự quan tâm nhất trong năm 2022.."
+  },
+  {
     "productID": 13,
     "stock": 3,
     "name": "Apple Watch SE 40mm viền nhôm dây silicone",
@@ -304,6 +317,17 @@
     "price": 6990000,
     "category": 1,
     "image": "https://cdn.tgdd.vn/Products/Images/54/289781/tai-nghe-bluetooth-airpods-pro-2-magsafe-charge-apple-mqd83-trang-090922-034128-600x600.jpeg",
+    "description": "Về phần thiết kế, nhà Apple vẫn giữ nguyên kiểu dáng quen thuộc của những phiên bản tiền nhiệm trước đó như: Thiết kế gọn nhẹ, đường bo góc tinh tế, gam màu trắng trang nhã bao bọc trọn vẹn tai nghe và hộp sạc."
+  },
+  {
+    "productID": 28,
+    "stock": 3,
+    "name": "Máy tính bảng iPad Pro M1 12.9 inch WiFi Cellular 128GB (2021)",
+    "favorite": 0,
+    "brand": 2,
+    "price": 29290000,
+    "category": 6,
+    "image": "https://cdn.tgdd.vn/Products/Images/522/238649/ipad-pro-m1-129-inch-wifi-cellular-128gb-2021-1.jpg",
     "description": "Về phần thiết kế, nhà Apple vẫn giữ nguyên kiểu dáng quen thuộc của những phiên bản tiền nhiệm trước đó như: Thiết kế gọn nhẹ, đường bo góc tinh tế, gam màu trắng trang nhã bao bọc trọn vẹn tai nghe và hộp sạc."
   },
   {

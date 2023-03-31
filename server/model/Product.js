@@ -62,6 +62,7 @@ const ProductSchema = new ModelSchema(
     createdAt: new ModelSchemaValidator({
       name: "createdAt",
       sqlType: sql.DateTime,
+      default: new Date().toISOString(),
       require: true,
     }),
   },
