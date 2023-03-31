@@ -1,33 +1,27 @@
 const ModelSchema = require("./ModelSchema");
 const ModelSchemaValidator = require("./ModelSchemaValidator");
 const sql = require("mssql");
-
-const FeatureSchema = new ModelSchema(
+const BrandSchema = new ModelSchema(
   {
-    featureID: new ModelSchemaValidator({
-      name: "featureID",
+    brandID: new ModelSchemaValidator({
+      name: "brandID",
       sqlType: sql.Int,
       require: true,
     }),
-    feature: new ModelSchemaValidator({
-      name: "feature",
+    brandName: new ModelSchemaValidator({
+      name: "brandName",
       sqlType: sql.NVarChar,
-      require: true,
-      default: "",
-    }),
-    productID: new ModelSchemaValidator({
-      name: "productID",
-      sqlType: sql.Int,
       require: true,
     }),
     createdAt: new ModelSchemaValidator({
       name: "createdAt",
       sqlType: sql.DateTime,
-      default: new Date().toISOString(),
       require: true,
+      default: new Date().toISOString(),
     }),
   },
-  "feature",
+  "Brand",
   "createAt"
 );
-module.exports = FeatureSchema;
+
+module.exports = BrandSchema;

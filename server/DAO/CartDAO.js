@@ -7,6 +7,8 @@ exports.addCartIfNotExisted = async (cart) => {
   if (!dbPool) {
     throw new Error("Not connected to db");
   }
+  cart.createdAt = new Date().toISOString();
+
   let insertData = CartSchema.validateData(cart);
   let query = `SET IDENTITY_INSERT ${CartSchema.schemaName} ON insert into ${CartSchema.schemaName}`;
   const { request, insertFieldNamesStr, insertValuesStr } =

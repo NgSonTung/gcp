@@ -14,7 +14,7 @@ import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import Slider from '@mui/material/Slider';
 import { getAllProducts } from '~/functions/Fetch';
 import { fortmatCurrency } from '~/utils/FormatCurrency';
-const brands = ['Iphone', 'Xiaomi', 'Samsung', 'Vivo', 'Hp', 'Asus', 'Oppo', 'Acer', 'Linksys', 'Mesh'];
+const brands = ['Apple', 'Xiaomi', 'Samsung', 'Vivo', 'Hp', 'Asus', 'Oppo', 'Acer', 'Linksys', 'Mesh'];
 
 const cx = classNames.bind(style);
 export const ListProduct = (props) => {
@@ -32,16 +32,15 @@ export const ListProduct = (props) => {
     const [activeLayoutType, setActiveLayoutType] = useState(true);
     const [widthWindow, setWidthWindow] = useState(window.innerWidth);
     const handlePage = (page) => setCurrentPage(page);
-    const [priceRange, setPriceRange] = useState([0, 3000000000]);
+    const [priceRange, setPriceRange] = useState([0, 50000000]);
     const [brandFilter, setBrandFilter] = useState([]);
     const [productKeyword, setProductKeyword] = useState('');
     const [urlAPI, setUrlAPI] = useState('');
     const [sortKey, setSortKey] = useState('');
     const [totalProduct, setTotalProduct] = useState(0);
     const brandInputRef = useRef();
-    const handleFilterProduct = () => {
-        let filteredURL = `http://localhost:3001/api/v1/product/?page=${currentPage}&pageSize=${productPerPage}&`;
-        let first = 0;
+    const handleFilterProduct = (page) => {
+        let filteredURL = `http://localhost:3001/api/v1/product/?page=${page}&pageSize=${productPerPage}&`;
         if (brandFilter.length > 0) {
             let i = 0;
             for (i; i < brandFilter.length; i++) {
@@ -79,15 +78,16 @@ export const ListProduct = (props) => {
         const result = fetchedData?.data?.products?.dataProducts;
         await setProductDatas(result);
         await setTotalProduct(fetchedData?.data?.products?.totalProduct);
+        await setCurrentPage(fetchedData.data.products.page);
     };
 
     useEffect(() => {
         handleFilterProduct();
         handleGetData();
-    }, [currentPage, sortKey]);
+        console.log(productData);
+    }, [sortKey]);
 
     useEffect(() => {
-        console.log(currentPage);
         handleGetData();
     }, [urlAPI]);
 
@@ -176,12 +176,12 @@ export const ListProduct = (props) => {
                                 <Slider
                                     value={priceRange}
                                     min={0}
-                                    max={300000000}
+                                    max={50000000}
                                     onChange={handleChanges}
                                     valueLabelDisplay="auto"
                                     size="small"
                                 />
-                                Giá tiền {fortmatCurrency(priceRange[0])} - {fortmatCurrency(priceRange[0])}
+                                Giá tiền {fortmatCurrency(priceRange[0])} - {fortmatCurrency(priceRange[1])}
                             </div>
 
                             <div className={cx('brand-filter')}>
@@ -201,7 +201,7 @@ export const ListProduct = (props) => {
                                     ))}
                                 </div>
                             </div>
-                            <div className={cx('filter-btn')} onClick={handleFilterProduct}>
+                            <div className={cx('filter-btn')} onClick={() => handleFilterProduct(1)}>
                                 <FontAwesomeIcon icon={faArrowsRotate} />
                                 <p>LỌC SẢN PHẨM</p>
                             </div>
@@ -274,7 +274,13 @@ export const ListProduct = (props) => {
                     </Col>
                 </Row>
             </div>
-            <CusPagination itemPerPage={productPerPage} totalItem={totalProduct} handlePage={handlePage} />
+            <CusPagination
+                itemPerPage={productPerPage}
+                totalItem={totalProduct}
+                handleFilterProduct={handleFilterProduct}
+                handlePage={handlePage}
+                page={currentPage}
+            />
         </div>
     );
 };

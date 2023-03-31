@@ -3,6 +3,7 @@ import { publicRoutes } from './routes/routes';
 import MainLayout from './Layouts/MainLayout/MainLayout';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import { Fragment } from 'react';
+import SearchCatalog from './pages/SearchCatalog/SearchCatalog';
 
 function App() {
     return (
@@ -26,6 +27,10 @@ function App() {
                                     }
                                 />
                             );
+                        }
+
+                        if (route.component === SearchCatalog) {
+                            return <Route key={index} path="/searchcatalog/:searchvalue" element={<SearchCatalog />} />;
                         }
 
                         if (route.layout) {

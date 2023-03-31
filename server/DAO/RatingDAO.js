@@ -24,6 +24,8 @@ exports.addRatingIfNotExisted = async (rating) => {
   if (!dbPool) {
     throw new Error("Not connected to db");
   }
+  rating.createdAt = new Date().toISOString();
+
   let query = `SET IDENTITY_INSERT ${RatingSchema.schemaName} ON insert into ${RatingSchema.schemaName}`;
 
   let insertData = RatingSchema.validateData(rating);

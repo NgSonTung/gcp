@@ -10,6 +10,7 @@ const routes = {
     product: '/product/:nameproduct',
     checkout: '/checkout',
     admin: '/admin',
+    searchCatalog: '/searchcatalog/:searchvalue',
 };
 
 export default routes;

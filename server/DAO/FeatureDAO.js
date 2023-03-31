@@ -7,6 +7,8 @@ exports.addFeatureIfNotExisted = async (feature) => {
   if (!dbPool) {
     throw new Error("Not connected to db");
   }
+  feature.createdAt = new Date().toISOString();
+
   let insertData = FeatureSchema.validateData(feature);
   let query = `SET IDENTITY_INSERT ${FeatureSchema.schemaName} ON insert into ${FeatureSchema.schemaName}`;
   const { request, insertFieldNamesStr, insertValuesStr } =

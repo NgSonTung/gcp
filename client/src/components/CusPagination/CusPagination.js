@@ -4,9 +4,10 @@ import classNames from 'classnames/bind';
 import style from './CusPagination.module.scss';
 const cx = classNames.bind(style);
 function CusPagination(props) {
-    const { itemPerPage, totalItem, handlePage } = props;
+    const { itemPerPage, totalItem, handleFilterProduct, handlePage, page } = props;
 
     const pageChange = (page) => {
+        handleFilterProduct(page);
         handlePage(page);
         // console.log(page);
     };
@@ -28,6 +29,7 @@ function CusPagination(props) {
                     size="large"
                     fontSize="16px"
                     className={cx('pagination')}
+                    page={page}
                 />
             </Box>
         </div>

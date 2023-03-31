@@ -35,9 +35,15 @@ const Cart_ProductSchema = new ModelSchema(
       sqlType: sql.Int,
       require: true,
     }),
+    createdAt: new ModelSchemaValidator({
+      name: "createdAt",
+      sqlType: sql.DateTime,
+      default: new Date().toISOString(),
+      require: true,
+    }),
   },
   "Cart_Product",
-  "amount"
+  "createAt"
 );
 
 module.exports = { CartSchema, Cart_ProductSchema };
