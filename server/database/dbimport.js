@@ -10,7 +10,7 @@ const appPool = new sql.ConnectionPool(dbConfig.sqlConfig);
 
 const fs = require("fs");
 const ProductDAO = require("../DAO/ProductDAO");
-const UserDAO = require("../DAO/UserAccount");
+const UserDAO = require("../DAO/UserDAO");
 const FeatureDAO = require("../DAO/FeatureDAO");
 const RatingDAO = require("../DAO/RatingDAO");
 const CartDAO = require("../DAO/CartDAO");

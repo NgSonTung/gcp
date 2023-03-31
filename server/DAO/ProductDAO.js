@@ -170,10 +170,14 @@ exports.deleteMultipleProductById = async (idList) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
+  for (let i = 0; i < idList.length; i++) {
+    ProductSchema.schema.productID.validate(idList[i]);
+  }
   let request = dbConfig.db.pool.request();
-  const deleteStr = dbUtils.getDeleteQuery(ProductSchema.schemaName, idList);
-  console.log(deleteStr);
-  let result = await request.query(deleteStr);
+  const deleteStr = dbUtils.getDeleteQuery(ProductSchema, idList);
+  let result = await request.query(
+    `DELETE FROM ${ProductSchema.schemaName} WHERE ${ProductSchema.schema.productID.name} ${deleteStr}`
+  );
   return result.recordsets;
 };
 
@@ -184,7 +188,7 @@ exports.updateProductById = async (id, updateInfo) => {
   if (!updateInfo) {
     throw new Error("Invalid input param");
   }
-
+  console.log(updateInfo);
   let query = `update ${ProductSchema.schemaName} set`;
   const { request, updateStr } = dbUtils.getUpdateQuery(
     ProductSchema.schema,
@@ -194,11 +198,6 @@ exports.updateProductById = async (id, updateInfo) => {
   if (!updateStr) {
     throw new Error("Invalid update param");
   }
-  // request.input(
-  //   `${ProductSchema.schema.productID.name}`,
-  //   ProductSchema.schema.productID.sqlType,
-  //   id
-  // );
   request.input(
     `${ProductSchema.schema.productID.name}`,
     ProductSchema.schema.productID.sqlType,

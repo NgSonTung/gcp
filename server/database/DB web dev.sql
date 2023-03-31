@@ -80,7 +80,6 @@ create table Feature
 )
 go 
 
-
 CREATE TRIGGER tr_product_delete
 ON product
 INSTEAD OF DELETE
@@ -92,7 +91,29 @@ BEGIN
     DELETE FROM subImg WHERE productID IN (SELECT deleted.productID FROM deleted);
     DELETE FROM product WHERE productID IN (SELECT deleted.productID FROM deleted);
 END;
--- drop TRIGGER tr_product_delete
+
+go
+
+CREATE TRIGGER tr_user_delete
+ON users
+INSTEAD OF DELETE
+AS
+BEGIN
+    DELETE FROM Cart WHERE userID IN (SELECT deleted.userID FROM deleted);
+    DELETE FROM users WHERE userID IN (SELECT deleted.userID FROM deleted);
+END;
+
+go
+
+CREATE TRIGGER tr_cart_delete
+ON cart
+INSTEAD OF DELETE
+AS
+BEGIN
+    DELETE FROM Cart_Product WHERE cartID IN (SELECT deleted.cartID FROM deleted);
+    DELETE FROM Cart WHERE cartID IN (SELECT deleted.cartID FROM deleted);
+END;
+
 go
 
 CREATE FUNCTION [dbo].[fuConvertToUnsign1] ( @strInput NVARCHAR(4000) ) RETURNS NVARCHAR(4000) AS BEGIN IF @strInput IS NULL RETURN @strInput IF @strInput = '' RETURN @strInput DECLARE @RT NVARCHAR(4000) DECLARE @SIGN_CHARS NCHAR(136) DECLARE @UNSIGN_CHARS NCHAR (136) SET @SIGN_CHARS = N'ăâđêôơưàảãạáằẳẵặắầẩẫậấèẻẽẹéềểễệế ìỉĩịíòỏõọóồổỗộốờởỡợớùủũụúừửữựứỳỷỹỵý Ă ĐÊÔƠƯÀẢÃẠÁẰẲẴẶẮẦẨẪẬẤÈẺẼẸÉỀỂỄỆẾÌỈĨỊÍ ÒỎÕỌÓỒỔỖỘỐỜỞỠỢỚÙỦŨỤÚỪỬỮỰỨỲỶỸỴÝ' +NCHAR(272)+ NCHAR(208) SET @UNSIGN_CHARS = N'aadeoouaaaaaaaaaaaaaaaeeeeeeeeee iiiiiooooooooooooooouuuuuuuuuuyyyyy AADEOOUAAAAAAAAAAAAAAAEEEEEEEEEEIIIII OOOOOOOOOOOOOOOUUUUUUUUUUYYYYYDD' DECLARE @COUNTER int DECLARE @COUNTER1 int SET @COUNTER = 1 WHILE (@COUNTER <=LEN(@strInput)) BEGIN SET @COUNTER1 = 1 WHILE (@COUNTER1 <=LEN(@SIGN_CHARS)+1) BEGIN IF UNICODE(SUBSTRING(@SIGN_CHARS, @COUNTER1,1)) = UNICODE(SUBSTRING(@strInput,@COUNTER ,1) ) BEGIN IF @COUNTER=1 SET @strInput = SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)-1) ELSE SET @strInput = SUBSTRING(@strInput, 1, @COUNTER-1) +SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)- @COUNTER) BREAK END SET @COUNTER1 = @COUNTER1 +1 END SET @COUNTER = @COUNTER +1 END SET @strInput = replace(@strInput,' ','-') RETURN @strInput END

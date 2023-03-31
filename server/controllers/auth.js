@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const UserDAO = require("../DAO/UserAccount");
+const UserDAO = require("../DAO/UserDAO");
 const CartDAO = require("../DAO/CartDAO");
 const signToken = (id, username, auth, cartUser) => {
   return jwt.sign(

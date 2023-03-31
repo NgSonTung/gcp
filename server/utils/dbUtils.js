@@ -180,16 +180,13 @@ exports.getUpdateQuery = (schema, request, update) => {
   };
 };
 
-exports.getDeleteQuery = (tableName, idList) => {
+exports.getDeleteQuery = (schema, idList) => {
   if (!idList || idList.length == 0) {
     throw new Error("Invalid id list param");
   }
-
-  let deleteStr = `DELETE FROM ${tableName} WHERE ${tableName}id in (`;
-
+  let deleteStr = ` in (`;
   for (let i = 0; i < idList.length; i++) {
-    const id = idList[i];
-    deleteStr += `${id},`;
+    deleteStr += `${idList[i]},`;
   }
   deleteStr = deleteStr.slice(0, -1); //delete last ','
   deleteStr += `)`;
@@ -317,6 +314,58 @@ exports.getFilterProductsQuery = (
         //filter name
         if (criteria == "name" && filter[criteria].length > 0) {
           filterStr += criteria + " like '%" + filter[criteria] + "%' ";
+          i++;
+        }
+      }
+    }
+    if (sort.length == 0) {
+      paginationStr +=
+        "(SELECT NULL) OFFSET " +
+        skip +
+        " ROWS FETCH NEXT " +
+        pageSize +
+        " ROWS ONLY";
+    } else if (sort.length > 0) {
+      paginationStr += ` price ${sort}`;
+      paginationStr +=
+        " OFFSET " + skip + " ROWS FETCH NEXT " + pageSize + " ROWS ONLY";
+    }
+  }
+  console.log("filter string", filterStr);
+  filterStr = filterStr.replace(/[\n\r]/g, "");
+  return { filterStr, paginationStr };
+};
+
+exports.getFilterUserQuery = (schema, filter, page, pageSize, defaultSort) => {
+  let filterStr;
+  let paginationStr;
+
+  console.log(filter);
+  const skip = (page - 1) * pageSize;
+  paginationStr = "order by";
+  let sort = "";
+  if (filter.sort) {
+    sort = filter.sort;
+  }
+
+  delete filter.page;
+  delete filter.pageSize;
+  delete filter.sort;
+
+  if (filter) {
+    filterStr = "";
+    let i = 0;
+    for (let criteria in filter) {
+      const schemaProp = schema[criteria];
+      if (schema[criteria]) {
+        if (i > 0) {
+          filterStr += " AND ";
+        } else {
+          filterStr += " WHERE ";
+        }
+        //filter auth
+        if (criteria == "auth" && filter[criteria].length > 0) {
+          filterStr += criteria + " = " + filter[criteria];
           i++;
         }
       }

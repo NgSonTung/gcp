@@ -13,7 +13,7 @@ const formatCurrency = (str) => {
     return `${str.toString().replace(regex, '$&,')}₫`;
 };
 
-const LinkItem = ({ HandleAddDelete, checked, jwt, data, setProductChange }) => {
+const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setProductChange }) => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [isChecked, setIsChecked] = useState(checked);
     const inputRef = useRef();
@@ -26,6 +26,7 @@ const LinkItem = ({ HandleAddDelete, checked, jwt, data, setProductChange }) => 
     };
     useEffect(() => {
         setIsChecked(checked);
+        console.log('cc');
     }, [checked]);
     useEffect(() => {
         HandleAddDelete(data.productID, isChecked);
@@ -43,8 +44,9 @@ const LinkItem = ({ HandleAddDelete, checked, jwt, data, setProductChange }) => 
                         type="checkbox"
                         readOnly
                     />
-                    <p className={cx('text')}>{data?.name}</p>
+                    <p className={cx('text')}>{data?.productID}</p>
                 </div>
+                <p className={cx('old_link')}>{data?.name}</p>
                 <p className={cx('old_link')}>{data?.brand}</p>
                 <p className={cx('new_link')}>{formatCurrency(data?.price)}</p>
             </div>
@@ -60,6 +62,7 @@ const LinkItem = ({ HandleAddDelete, checked, jwt, data, setProductChange }) => 
                     setShowEditForm={setShowEditForm}
                     data={data}
                     formType={'UpdateRemove'}
+                    object={object}
                 />
             )}
         </div>

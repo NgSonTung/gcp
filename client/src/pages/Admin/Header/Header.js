@@ -2,31 +2,42 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useState, useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
-export const headerTitles = [
-    { title: 'CẤU HÌNH' },
-    { title: 'MUA HÀNG' },
-    { title: 'KHO HÀNG' },
-    { title: 'ĐIỀU PHỐI' },
-    { title: 'MARKETING' },
-    { title: 'E-COMMERCE', active: true },
-    { title: 'NHÂN SỰ' },
-    { title: 'BÁO CÁO' },
-];
+const Header = ({ setObject }) => {
+    const [headerTitles, setHeaderTitles] = useState([
+        { title: 'PRODUCTS', active: false },
+        { title: 'USERS', active: false },
+        { title: 'REPORTS', active: false },
+        { title: 'STATISTICS', active: false },
+        { title: 'MARKETING', active: false },
+    ]);
+    const [activeHeader, setActiveHeader] = useState(0);
 
-const Header = () => {
+    useEffect(() => {
+        activeHeader === 0 ? setObject('product') : setObject('user');
+        headerTitles.forEach((item, index) => {
+            item.active = index === activeHeader;
+        });
+        setHeaderTitles([...headerTitles]);
+    }, [activeHeader]);
+
     return (
         <div className={cx('header-wrapper')}>
             <div className={cx('header-menu')}>
-                <ul className={cx('title-list')}>
+                <div className={cx('title-list')}>
                     {headerTitles.map((item, index) => (
-                        <li className={cx('title', { active: item.active })} key={index}>
+                        <button
+                            className={cx('title', { active: item.active })}
+                            key={index}
+                            onClick={() => setActiveHeader(index)}
+                        >
                             {item.title}
-                        </li>
+                        </button>
                     ))}
-                </ul>
+                </div>
             </div>
             <div className={cx('user-feature')}>
                 <div className={cx('icon-search')}>

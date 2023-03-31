@@ -28,6 +28,7 @@ function Admin() {
     const handlePage = (page) => setCurrentPage(page);
     const [allChecked, setAllChecked] = useState(false);
     const [deleteIds, setDeleteIds] = useState([]);
+    const [object, setObject] = useState('product');
 
     const handleCheckAll = () => {
         setAllChecked(!allChecked);
@@ -85,7 +86,7 @@ function Admin() {
             <div className={cx('body-layout')}>
                 <div className={cx('left-side')}>{/* <SideBar /> */}</div>
                 <div className={cx('right-side')}>
-                    <Header />
+                    <Header setObject={setObject} />
                     {isAdmin && (
                         <div className={cx('content-wrapper')}>
                             <UserAction
@@ -98,6 +99,7 @@ function Admin() {
                             <Search />
                             {jwt && (
                                 <LinkPaginate
+                                    object={object}
                                     HandleAddDelete={HandleAddDelete}
                                     handleCheckAll={handleCheckAll}
                                     allChecked={allChecked}
