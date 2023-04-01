@@ -5,6 +5,7 @@ import Header from './Header/Header';
 import UserAction from './UserAction/UserAction';
 import Search from './FilterData/Search/Search';
 import { getAllProducts } from '~/functions/ProductFetch';
+import { getAllUsers } from '~/functions/UserFetch';
 import LinkPaginate from './LinkPaginate/LinkPaginate';
 import { useEffect, useState } from 'react';
 import Login from '~/components/Login';
@@ -33,13 +34,35 @@ function Admin() {
     const handleCheckAll = () => {
         setAllChecked(!allChecked);
     };
+
     const ToggleLogin = () => {
         setShowLogin(showLogin ? false : true);
     };
+
     const HandleAddDelete = (id, isChecked) => {
         isChecked
             ? setDeleteIds((prevIds) => [...prevIds, id])
             : setDeleteIds((prevIds) => prevIds.filter((item) => item !== id));
+    };
+
+    useEffect(() => {
+        console.log(productData);
+    }, [productData]);
+
+    const handleGetData = async () => {
+        let fetchedData;
+        if (object === 'product') {
+            fetchedData = await getAllProducts(
+                `http://localhost:3001/api/v1/product/?page=${currentPage}&pageSize=${productPerPage}`,
+            );
+            setTotalProduct(fetchedData?.data?.products?.totalProduct);
+            setProductDatas(fetchedData?.data?.products?.dataProducts);
+        } else if (object === 'user') {
+            fetchedData = await getAllUsers({ page: currentPage, pageSize: productPerPage });
+            setTotalProduct(fetchedData?.data?.users?.totalUser);
+            setProductDatas(fetchedData?.data?.users?.dataUsers);
+        }
+        setProductChange(false);
     };
 
     useEffect(() => {
@@ -66,19 +89,9 @@ function Admin() {
         }
     }, [isLoggedIn]);
 
-    const handleGetData = async () => {
-        const fetchedData = await getAllProducts(
-            `http://localhost:3001/api/v1/product/?page=${currentPage}&pageSize=${productPerPage}`,
-        );
-        const result = fetchedData?.data?.products?.dataProducts;
-        setProductDatas(result);
-        setTotalProduct(fetchedData?.data?.products?.totalProduct);
-        setProductChange(false);
-    };
-
     useEffect(() => {
         handleGetData();
-    }, [currentPage]);
+    }, [currentPage, object]);
 
     return (
         <div className={cx('wrapper')}>
@@ -97,7 +110,7 @@ function Admin() {
                                 setProductChange={setProductChange}
                             />
                             <Search />
-                            {jwt && (
+                            {/* {jwt && (
                                 <LinkPaginate
                                     object={object}
                                     HandleAddDelete={HandleAddDelete}
@@ -107,7 +120,7 @@ function Admin() {
                                     jwt={jwt}
                                     setProductChange={setProductChange}
                                 />
-                            )}
+                            )} */}
                             <CusPagination
                                 itemPerPage={productPerPage}
                                 totalItem={totalProduct}

@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 const HandleForm = ({ jwt, data, setProductChange, setShowEditForm, formType = '', object = 'default' }) => {
     const formRef = useRef();
-    console.log(object);
+    // console.log(object);
     const HandleAddProduct = () => {
         const currentForm = formRef.current;
         const product = {

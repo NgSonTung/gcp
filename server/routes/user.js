@@ -29,8 +29,8 @@ router
 router
   .route("/")
   .get(
-    authController.protect,
-    authController.restrictTo(StaticData.AUTH.Role.admin),
+    // authController.protect,
+    // authController.restrictTo(StaticData.AUTH.Role.admin),
     userController.getUsers
   )
   .post(userController.addUser)
