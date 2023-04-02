@@ -27,4 +27,7 @@ router
   );
 
 router.route("/byProduct/:id").get(SubImageController.getSubImgByProductId);
+
+router.route("/getFileImage/:imageName").get(SubImageController.getFileImage);
+
 module.exports = router;

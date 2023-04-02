@@ -2,6 +2,7 @@ const ProductDAO = require("../DAO/ProductDAO");
 const ProductSchema = require("../model/Product");
 
 exports.getProducts = async (req, res) => {
+  console.log("req.query", req.query);
   const products = await ProductDAO.getAllProducts(req.query);
   // console.log(products);
   res.status(200).json({

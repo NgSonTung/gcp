@@ -18,7 +18,7 @@ export const getAllProducts = (url) => {
 };
 
 export const getProductByName = (name) => {
-    console.log(name);
+    // console.log(name);
     return axios
         .get(`/product/?page=1&pageSize=1`, { params: { name: name } })
         .then((res) => {

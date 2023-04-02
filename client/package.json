@@ -43,6 +43,7 @@
         "redux": "^4.2.1",
         "redux-persist": "^6.0.0",
         "sass": "^1.58.3",
+        "stream-to-blob": "^2.0.1",
         "styled-components": "^5.3.6",
         "swiper": "^9.0.5",
         "tedious": "^15.1.3",

@@ -25,7 +25,7 @@ function ProductDetail() {
 
     const handleGetData = async () => {
         const fetchProduct = await getProductByName(nameproduct);
-
+        console.log('fetchProduct', fetchProduct);
         const fetchSubImg = await getSubImgByProduct(fetchProduct[0].productID);
         // setTotalProduct(fetchedData?.data?.products?.totalProduct);
         const fetchFeature = await getFeatureByProductID(fetchProduct[0].productID);

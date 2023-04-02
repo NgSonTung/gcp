@@ -1,5 +1,7 @@
 const SubImageDAO = require("../DAO/SubImageDAO");
-
+const path = require("path");
+const fs = require("fs");
+const { slice } = require("lodash");
 exports.getSubImgByProductId = async (req, res) => {
   const id = req.params.id * 1;
   try {
@@ -129,4 +131,29 @@ exports.updateSubImgById = async (req, res) => {
       msg: `Update subImg with id: ${id} failed!`,
     });
   }
+};
+
+exports.getFileImage = async (req, res) => {
+  let imageName = req.params.imageName;
+  console.log("req.originalUrl", req.originalUrl);
+  let folderImage;
+
+  if (imageName.includes("product")) {
+    folderImage = "productImages";
+  } else {
+    folderImage = "subImgimages";
+  }
+  const id = imageName.slice(imageName.length - 1, imageName.length);
+  imageName = `image${id}.jpg`;
+  const imagePath = path.join(
+    __dirname,
+    "..",
+    "dev-data",
+    folderImage,
+    imageName
+  );
+  console.log(imagePath);
+  // const imagePath = `../dev-data/subImgimages/${imageName}`;
+  const imageStream = fs.createReadStream(imagePath);
+  imageStream.pipe(res);
 };
