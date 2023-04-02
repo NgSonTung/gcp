@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faPlus, faUpload, faTrash } from '@fortawesome/free-solid-svg-icons';
 import HandleForm from '../HandleForm/HandleForm';
 import { deleteMultipleProductsById } from '~/functions/ProductFetch';
+import { deleteMultipleUsersById } from '~/functions/UserFetch';
 
 const cx = classNames.bind(styles);
 
-const UserAction = ({ setAllChecked, setDeleteIds, deleteIds, jwt, setProductChange }) => {
+const UserAction = ({ object, setAllChecked, setDeleteIds, deleteIds, jwt, setDataChange }) => {
     const [showEditForm, setShowEditForm] = useState(false);
 
     const HandleShowEditForm = () => {
@@ -16,10 +17,15 @@ const UserAction = ({ setAllChecked, setDeleteIds, deleteIds, jwt, setProductCha
     };
 
     const HandleDeleteProducts = () => {
-        const msgPromise = deleteMultipleProductsById(deleteIds, jwt);
+        let msgPromise;
+        if (object === 'product') {
+            msgPromise = deleteMultipleProductsById(deleteIds, jwt);
+        } else if (object === 'user') {
+            msgPromise = deleteMultipleUsersById(deleteIds, jwt);
+        }
         msgPromise.then((msg) => {
             alert(msg);
-            setProductChange(true);
+            setDataChange(true);
             setDeleteIds([]);
             setAllChecked(false);
         });
@@ -53,9 +59,10 @@ const UserAction = ({ setAllChecked, setDeleteIds, deleteIds, jwt, setProductCha
                 {showEditForm && (
                     <HandleForm
                         jwt={jwt}
-                        setProductChange={setProductChange}
+                        setDataChange={setDataChange}
                         setShowEditForm={setShowEditForm}
                         data={{}}
+                        object={object}
                         formType={'Add'}
                     />
                 )}

@@ -8,13 +8,13 @@ alter database PhoneShop set TRUSTWORTHY ON
 go
 create table Category (
 categoryID int identity(1,1) primary key,
-categoryName nvarchar(max),
+categoryName nvarchar(30),
 createdAt       datetime default CURRENT_TIMESTAMP not null
 )
 go
 create table Brand(
 brandID int identity(1,1) primary key,
-brandName nvarchar(max),
+brandName nvarchar(30),
 createdAt       datetime default CURRENT_TIMESTAMP not null
 
 )
@@ -48,7 +48,7 @@ createdAt       datetime default CURRENT_TIMESTAMP not null
 go 
 create table Users(
 userID	int identity(1,1) primary key,
-userName varchar(max) not null,
+userName varchar(30) not null unique,
 password varchar(max) not null,
 auth	int not null check (auth in (1,0)), --	1 - admin   0 -	user
 email varchar(100) unique not null ,

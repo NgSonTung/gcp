@@ -21,15 +21,16 @@ function Admin() {
     const [showLogin, setShowLogin] = useState(false);
     const { isLoggedIn, jwt, isAdmin } = useSelector((state) => state.UserReducer);
     const [loginState, setLoginState] = useState(isLoggedIn);
-    const [productData, setProductDatas] = useState([]);
+    const [data, setData] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [productPerPage, setProductPerPage] = useState(10);
     const [totalProduct, setTotalProduct] = useState(0);
-    const [productChange, setProductChange] = useState(false);
-    const handlePage = (page) => setCurrentPage(page);
+    const [dataChange, setDataChange] = useState(false);
     const [allChecked, setAllChecked] = useState(false);
     const [deleteIds, setDeleteIds] = useState([]);
     const [object, setObject] = useState('product');
+
+    const handlePage = (page) => setCurrentPage(page);
 
     const handleCheckAll = () => {
         setAllChecked(!allChecked);
@@ -45,9 +46,9 @@ function Admin() {
             : setDeleteIds((prevIds) => prevIds.filter((item) => item !== id));
     };
 
-    useEffect(() => {
-        console.log(productData);
-    }, [productData]);
+    // useEffect(() => {
+    //     console.log(currentPage);
+    // }, [currentPage]);
 
     const handleGetData = async () => {
         let fetchedData;
@@ -56,13 +57,13 @@ function Admin() {
                 `http://localhost:3001/api/v1/product/?page=${currentPage}&pageSize=${productPerPage}`,
             );
             setTotalProduct(fetchedData?.data?.products?.totalProduct);
-            setProductDatas(fetchedData?.data?.products?.dataProducts);
+            setData({ object: object, data: fetchedData?.data?.products?.dataProducts });
         } else if (object === 'user') {
-            fetchedData = await getAllUsers({ page: currentPage, pageSize: productPerPage });
+            fetchedData = await getAllUsers(`?page=${currentPage}&pageSize=${productPerPage}`);
             setTotalProduct(fetchedData?.data?.users?.totalUser);
-            setProductDatas(fetchedData?.data?.users?.dataUsers);
+            setData({ object: object, data: fetchedData?.data?.users?.dataUsers });
         }
-        setProductChange(false);
+        setDataChange(false);
     };
 
     useEffect(() => {
@@ -71,8 +72,8 @@ function Admin() {
         }
     }, []);
     useEffect(() => {
-        productChange && handleGetData();
-    }, [productChange]);
+        dataChange && handleGetData();
+    }, [dataChange]);
     useEffect(() => {
         if (isLoggedIn && !loginState) {
             setLoginState(true);
@@ -103,28 +104,30 @@ function Admin() {
                     {isAdmin && (
                         <div className={cx('content-wrapper')}>
                             <UserAction
+                                object={object}
                                 setAllChecked={setAllChecked}
                                 setDeleteIds={setDeleteIds}
                                 deleteIds={deleteIds}
                                 jwt={jwt}
-                                setProductChange={setProductChange}
+                                setDataChange={setDataChange}
                             />
                             <Search />
-                            {/* {jwt && (
+                            {jwt && (
                                 <LinkPaginate
                                     object={object}
                                     HandleAddDelete={HandleAddDelete}
                                     handleCheckAll={handleCheckAll}
                                     allChecked={allChecked}
-                                    data={productData}
+                                    data={data}
                                     jwt={jwt}
-                                    setProductChange={setProductChange}
+                                    setDataChange={setDataChange}
                                 />
-                            )} */}
+                            )}
                             <CusPagination
                                 itemPerPage={productPerPage}
                                 totalItem={totalProduct}
                                 handlePage={handlePage}
+                                handleFilterProduct={() => {}}
                             />
                         </div>
                     )}

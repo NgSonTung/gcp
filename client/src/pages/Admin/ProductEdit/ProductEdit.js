@@ -5,7 +5,7 @@ import { deleteProductById, addProduct, updateProductById } from '~/functions/Pr
 
 const cx = classNames.bind(styles);
 
-const ProductEdit = ({ jwt, data, setProductChange, setShowEditForm, formType = '' }) => {
+const ProductEdit = ({ jwt, data, setDataChange, setShowEditForm, formType = '' }) => {
     return (
         <div className={cx('form-wrapper')}>
             <div onClick={() => setShowEditForm(false)} className={cx('form-background')} />

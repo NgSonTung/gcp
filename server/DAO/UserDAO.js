@@ -158,6 +158,23 @@ exports.getUserByUserName = async (username) => {
   return null;
 };
 
+exports.getUserByEmail = async (username) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let result = await dbConfig.db.pool
+    .request()
+    .input(
+      UserSchema.schema.email.name,
+      UserSchema.schema.email.sqlType,
+      username
+    )
+    .query(
+      `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.email.name} = @${UserSchema.schema.email.name}`
+    );
+  return result.recordsets[0][0];
+};
+
 exports.updateUserById = async (id, updateInfo) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");

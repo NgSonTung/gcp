@@ -13,7 +13,7 @@ const formatCurrency = (str) => {
     return `${str.toString().replace(regex, '$&,')}₫`;
 };
 
-const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setProductChange }) => {
+const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setDataChange }) => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [isChecked, setIsChecked] = useState(checked);
     const inputRef = useRef();
@@ -29,26 +29,45 @@ const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setProductChang
     }, [checked]);
     useEffect(() => {
         HandleAddDelete(data.productID, isChecked);
+        HandleAddDelete(data.userID, isChecked);
     }, [isChecked]);
-
     return (
         <div className={cx('link-info-wrapper')}>
-            <div className={cx('link-item')}>
-                <div className={cx('description')}>
-                    <input
-                        className={cx('input-checked')}
-                        checked={isChecked}
-                        ref={inputRef}
-                        onClick={HandleCheck}
-                        type="checkbox"
-                        readOnly
-                    />
-                    <p className={cx('text')}>{data?.productID}</p>
+            {object === 'product' ? (
+                <div className={cx('link-item')}>
+                    <div className={cx('description')}>
+                        <input
+                            className={cx('input-checked')}
+                            checked={isChecked}
+                            ref={inputRef}
+                            onClick={HandleCheck}
+                            type="checkbox"
+                            readOnly
+                        />
+                        <p className={cx('text')}>{data?.productID}</p>
+                    </div>
+                    <p className={cx('old_link')}>{data?.name}</p>
+                    <p className={cx('old_link')}>{data?.brand}</p>
+                    <p className={cx('new_link')}>{data && formatCurrency(data?.price)}</p>
                 </div>
-                <p className={cx('old_link')}>{data?.name}</p>
-                <p className={cx('old_link')}>{data?.brand}</p>
-                <p className={cx('new_link')}>{data && formatCurrency(data?.price)}</p>
-            </div>
+            ) : (
+                <div className={cx('link-item', { admin: data.auth === 1 })}>
+                    <div className={cx('description')}>
+                        <input
+                            className={cx('input-checked')}
+                            checked={isChecked}
+                            ref={inputRef}
+                            onClick={HandleCheck}
+                            type="checkbox"
+                            readOnly
+                        />
+                        <p className={cx('text')}>{data?.userID}</p>
+                    </div>
+                    <p className={cx('old_link')}>{data?.userName}</p>
+                    <p className={cx('old_link')}>{data?.email}</p>
+                    <p className={cx('new_link')}>{data?.auth === 1 ? 'admin' : 'user'}</p>
+                </div>
+            )}
             <div className={cx('link-handle-wrapper')}>
                 <button className={cx('handle-link-btn')} onClick={handleShowEditForm}>
                     <FontAwesomeIcon className={cx('btn-icon')} icon={faEllipsis} />
@@ -57,7 +76,7 @@ const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setProductChang
             {showEditForm && (
                 <HandleForm
                     jwt={jwt}
-                    setProductChange={setProductChange}
+                    setDataChange={setDataChange}
                     setShowEditForm={setShowEditForm}
                     data={data}
                     formType={'UpdateRemove'}

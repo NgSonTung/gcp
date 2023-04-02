@@ -2,57 +2,86 @@ import classNames from 'classnames/bind';
 import styles from './HandleForm.module.scss';
 import { useRef } from 'react';
 import { deleteProductById, addProduct, updateProductById } from '~/functions/ProductFetch';
+import { deleteUserById, addUser2, updateUserById } from '~/functions/UserFetch';
 
 const cx = classNames.bind(styles);
 
-const HandleForm = ({ jwt, data, setProductChange, setShowEditForm, formType = '', object = 'default' }) => {
+const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', object = 'default' }) => {
     const formRef = useRef();
-    // console.log(object);
-    const HandleAddProduct = () => {
+    console.log(data);
+    const HandleAddItem = () => {
         const currentForm = formRef.current;
-        const product = {
-            stock: Number(currentForm.stock.value),
-            name: currentForm.name.value,
-            image: currentForm.image.value,
-            favorite: currentForm.favorite.value === 'on' ? 1 : 0,
-            brand: currentForm.brand.value,
-            price: Number(currentForm.price.value),
-            category: currentForm.category.value,
-            description: currentForm.description.value,
-            sale: currentForm.sale.value,
-        };
-        const msgPromise = addProduct(product, jwt);
+        let item;
+        let msgPromise;
+        if (object === 'product') {
+            item = {
+                stock: Number(currentForm.stock.value),
+                name: currentForm.name.value,
+                image: currentForm.image.value,
+                favorite: currentForm.favorite.value === 'on' ? 1 : 0,
+                brand: currentForm.brand.value,
+                price: Number(currentForm.price.value),
+                category: currentForm.category.value,
+                description: currentForm.description.value,
+                sale: currentForm.sale.value,
+            };
+            msgPromise = addProduct(item, jwt);
+        } else if (object === 'user') {
+            item = {
+                userName: currentForm.userName.value,
+                password: currentForm.password.value,
+                auth: currentForm.auth.value === 'on' ? 1 : 0,
+                email: currentForm.email.value,
+            };
+            msgPromise = addUser2(item);
+        }
         msgPromise.then((msg) => {
             alert(msg);
-            // console.log(jwt);
-            // console.log(setProductChange);
-            setProductChange(true);
+            setDataChange(true);
         });
     };
+
     const HandleUpdateProduct = () => {
         const currentForm = formRef.current;
-        const product = {
-            stock: Number(currentForm.stock.value),
-            name: currentForm.name.value,
-            image: currentForm.image.value,
-            favorite: currentForm.favorite.value === 'on' ? 1 : 0,
-            brand: currentForm.brand.value,
-            price: Number(currentForm.price.value),
-            category: currentForm.category.value,
-            description: currentForm.description.value,
-            sale: currentForm.sale.value,
-        };
-        const msgPromise = updateProductById(Number(currentForm.productID.value), product, jwt);
+        let item;
+        let msgPromise;
+        if (object === 'product') {
+            item = {
+                stock: Number(currentForm.stock.value),
+                name: currentForm.name.value,
+                image: currentForm.image.value,
+                favorite: currentForm.favorite.value === 'on' ? 1 : 0,
+                brand: currentForm.brand.value,
+                price: Number(currentForm.price.value),
+                category: currentForm.category.value,
+                description: currentForm.description.value,
+                sale: currentForm.sale.value,
+            };
+            msgPromise = updateProductById(Number(currentForm.productID.value), item, jwt);
+        } else if (object === 'user') {
+            item = {
+                userName: currentForm.userName.value,
+                password: currentForm.password.value,
+                auth: currentForm.auth.value === 'on' ? 1 : 0,
+                email: currentForm.email.value,
+            };
+            msgPromise = updateUserById(Number(currentForm.userID.value), item, jwt);
+        }
         msgPromise.then((msg) => {
             alert(msg);
-            setProductChange(true);
+            setDataChange(true);
         });
     };
     const HandleDeleteProduct = () => {
-        const msgPromise = deleteProductById(Number(formRef.current.productID.value), jwt);
+        let msgPromise;
+        if (object === 'product') {
+            msgPromise = deleteProductById(Number(formRef.current.productID.value), jwt);
+        } else if (object === 'user') {
+            msgPromise = deleteUserById(Number(formRef.current.userID.value), jwt);
+        }
         msgPromise.then((msg) => {
             alert(msg);
-            setProductChange(true);
+            setDataChange(true);
         });
     };
 
@@ -66,7 +95,7 @@ const HandleForm = ({ jwt, data, setProductChange, setShowEditForm, formType = '
                 HandleDeleteProduct();
                 break;
             case 'addBTN':
-                HandleAddProduct();
+                HandleAddItem();
                 break;
             default:
                 break;
@@ -213,7 +242,79 @@ const HandleForm = ({ jwt, data, setProductChange, setShowEditForm, formType = '
                         />
                     </div>
                 ) : (
-                    <div></div>
+                    <div>
+                        <label className={cx('label')} htmlFor="userID">
+                            User ID:
+                        </label>
+                        <input
+                            className={cx('input', 'id-input')}
+                            defaultValue={data.userID}
+                            type="number"
+                            id="userID"
+                            name="userID"
+                            placeholder="vd:101"
+                            required
+                            readOnly
+                        />
+                        <label className={cx('label')} htmlFor="userID">
+                            Created at:
+                        </label>
+                        <input
+                            className={cx('input', 'id-input')}
+                            defaultValue={data.createdAt}
+                            id="createdAt"
+                            name="createdAt"
+                            placeholder="vd:2023-03-30T14:43:59.803Z"
+                            required
+                            readOnly
+                        />
+                        <label className={cx('label')} htmlFor="userName">
+                            User Name:
+                        </label>
+                        <input
+                            className={cx('input')}
+                            defaultValue={data.userName}
+                            type="text"
+                            id="userName"
+                            name="userName"
+                            required
+                            placeholder="vd: VeryHandsome123"
+                        />
+                        <label className={cx('label')} htmlFor="password">
+                            Password:
+                        </label>
+                        <input
+                            className={cx('input')}
+                            defaultValue={data.password}
+                            id="password"
+                            name="password"
+                            required
+                            placeholder="vd:100"
+                        />
+                        <div>
+                            <label className={cx('label', 'check-box-label')} htmlFor="auth">
+                                ADMIN:
+                            </label>
+                            <input
+                                className={cx('check-box-input')}
+                                defaultChecked={data.auth === 1}
+                                type="checkbox"
+                                id="auth"
+                                name="auth"
+                            ></input>
+                        </div>
+                        <label className={cx('label')} htmlFor="email">
+                            Email:
+                        </label>
+                        <input
+                            className={cx('input')}
+                            defaultValue={data.email}
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="vd:abc@example.com"
+                        />
+                    </div>
                 )}
                 {formType === 'UpdateRemove' ? (
                     <div className={cx('button-wrapper')}>

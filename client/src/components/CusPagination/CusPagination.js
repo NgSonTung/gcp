@@ -5,7 +5,6 @@ import style from './CusPagination.module.scss';
 const cx = classNames.bind(style);
 function CusPagination(props) {
     const { itemPerPage, totalItem, handleFilterProduct, handlePage, page } = props;
-
     const pageChange = (page) => {
         handleFilterProduct(page);
         handlePage(page);
@@ -25,7 +24,7 @@ function CusPagination(props) {
             >
                 <Pagination
                     count={Math.ceil(totalItem / itemPerPage)}
-                    onChange={(event, page) => pageChange(page)}
+                    onChange={(e, page) => pageChange(page)}
                     size="large"
                     fontSize="16px"
                     className={cx('pagination')}

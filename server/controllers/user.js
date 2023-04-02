@@ -88,11 +88,27 @@ exports.getUserByUserName = async (req, res) => {
 
 exports.addUser = async (req, res) => {
   const newUser = req.body;
-  const result = await UserDAO.insertUser(newUser);
   try {
-    res.status(200).json({
+    let user = await UserDAO.getUserByEmail(req.body.email);
+    if (user) {
+      console.log(user);
+      return res.status(403).json({
+        code: 403,
+        msg: "User email used!",
+      });
+    }
+    user = await UserDAO.getUserByUserName(req.body.userName);
+    if (user) {
+      console.log(user);
+      return res.status(403).json({
+        code: 403,
+        msg: "User name used!",
+      });
+    }
+    const result = await UserDAO.insertUser(newUser);
+    return res.status(200).json({
       code: 200,
-      msg: "OK",
+      msg: "Added user successfully!",
       data: {
         result,
       },
@@ -100,7 +116,7 @@ exports.addUser = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       code: 404,
-      msg: "FAIL",
+      msg: "Add user failed!",
     });
   }
 };
