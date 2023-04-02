@@ -6,7 +6,7 @@ import ImageSlider from '~/components/ImageSlider/ImageSlider';
 const CustomerSlider = () => {
     return (
         <div>
-            <ImageSlider images={customerSlidersImg} />
+            <ImageSlider images={customerSlidersImg} type={'customer'} />
         </div>
     );
 };

@@ -49,8 +49,8 @@ const Login = ({ classname, ToggleLogin, loginType = 'user' }) => {
         const token = await UserFetch.getJWTOfLogin('', login);
 
         if (mode === 'signup') {
-            if (signUpPassword !== repeatPassword) {
-                toast.error('Nhập lại mật khẩu chưa chính xác!', {
+            if (signUpPassword !== repeatPassword || userExists) {
+                toast.error('Vui lòng nhập lại thông tin!', {
                     position: 'top-center',
                     autoClose: 2001,
                     hideProgressBar: true,

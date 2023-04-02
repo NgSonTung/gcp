@@ -8,7 +8,7 @@ import 'swiper/swiper.min.css';
 import { CloseIcon } from '../../Icons/Icons.js';
 const cx = classNames.bind(styles);
 
-const ImageSlider = ({ images, subImg = true, className, autoPlay = true, onImageClick }) => {
+const ImageSlider = ({ images, subImg = true, className, autoPlay = true, onImageClick, type = 'product' }) => {
     const imgView = useRef();
     const fullImg = useRef();
     const [showSubImg, setShowSubImg] = useState(false);
@@ -19,6 +19,10 @@ const ImageSlider = ({ images, subImg = true, className, autoPlay = true, onImag
         setTimeout(() => {
             fullImg.current.style.opacity = 1;
         }, 10);
+    };
+    const HandleClick = (id, image) => {
+        subImg && showImg(image?.url ? image.url : image);
+        type === 'product' && onImageClick(id);
     };
 
     return (
@@ -51,10 +55,7 @@ const ImageSlider = ({ images, subImg = true, className, autoPlay = true, onImag
                                 ref={imgView}
                                 src={image?.url ? image.url : image}
                                 alt={image?.alt}
-                                onClick={() => {
-                                    subImg && showImg(image?.url ? image.url : image);
-                                    onImageClick(index);
-                                }}
+                                onClick={() => HandleClick(index, image)}
                             />
                         </div>
                     </SwiperSlide>
