@@ -18,17 +18,19 @@ const UserAction = ({ object, setAllChecked, setDeleteIds, deleteIds, jwt, setDa
 
     const HandleDeleteProducts = () => {
         let msgPromise;
-        if (object === 'product') {
-            msgPromise = deleteMultipleProductsById(deleteIds, jwt);
-        } else if (object === 'user') {
-            msgPromise = deleteMultipleUsersById(deleteIds, jwt);
+        if (window.confirm('Xóa item này sẽ xóa những item ở bảng liên quan')) {
+            if (object === 'product') {
+                msgPromise = deleteMultipleProductsById(deleteIds, jwt);
+            } else if (object === 'user') {
+                msgPromise = deleteMultipleUsersById(deleteIds, jwt);
+            }
+            msgPromise.then((msg) => {
+                alert(msg);
+                setDataChange(true);
+                setDeleteIds([]);
+                setAllChecked(false);
+            });
         }
-        msgPromise.then((msg) => {
-            alert(msg);
-            setDataChange(true);
-            setDeleteIds([]);
-            setAllChecked(false);
-        });
     };
 
     return (

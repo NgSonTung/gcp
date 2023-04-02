@@ -74,15 +74,17 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
     };
     const HandleDeleteProduct = () => {
         let msgPromise;
-        if (object === 'product') {
-            msgPromise = deleteProductById(Number(formRef.current.productID.value), jwt);
-        } else if (object === 'user') {
-            msgPromise = deleteUserById(Number(formRef.current.userID.value), jwt);
+        if (window.confirm('Xóa item này sẽ xóa những item ở bảng liên quan')) {
+            if (object === 'product') {
+                msgPromise = deleteProductById(Number(formRef.current.productID.value), jwt);
+            } else if (object === 'user') {
+                msgPromise = deleteUserById(Number(formRef.current.userID.value), jwt);
+            }
+            msgPromise.then((msg) => {
+                alert(msg);
+                setDataChange(true);
+            });
         }
-        msgPromise.then((msg) => {
-            alert(msg);
-            setDataChange(true);
-        });
     };
 
     const HandleSubmit = (e) => {
@@ -118,7 +120,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             id="productID"
                             name="productID"
                             placeholder="vd:101"
-                            required
+                            // required
                             readOnly
                         />
                         <label className={cx('label')} htmlFor="productID">
@@ -130,7 +132,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             id="createdAt"
                             name="createdAt"
                             placeholder="vd:2023-03-30T14:43:59.803Z"
-                            required
+                            // required
                             readOnly
                         />
                         <label className={cx('label')} htmlFor="name">
@@ -142,7 +144,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="text"
                             id="name"
                             name="name"
-                            required
+                            // required
                             placeholder="vd:latop XYZ100"
                         />
                         <div>
@@ -166,7 +168,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="number"
                             id="stock"
                             name="stock"
-                            required
+                            // required
                             placeholder="vd:100"
                         />
                         <label className={cx('label')} htmlFor="sale">
@@ -189,7 +191,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="text"
                             id="image"
                             name="image"
-                            required
+                            // required
                             placeholder="vd:abc.com"
                         />
                         <label className={cx('label')} htmlFor="brand">
@@ -201,7 +203,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="text"
                             id="brand"
                             name="brand"
-                            required
+                            // required
                             placeholder="vd:apple"
                         />
                         <label className={cx('label')} htmlFor="price">
@@ -213,7 +215,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="number"
                             id="price"
                             name="price"
-                            required
+                            // required
                             placeholder="vd:1000"
                         />
                         <label className={cx('label')} htmlFor="category">
@@ -225,7 +227,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="text"
                             id="category"
                             name="category"
-                            required
+                            // required
                             placeholder="vd:laptop"
                         />
                         <label className={cx('label')} htmlFor="description">
@@ -237,7 +239,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="text"
                             id="description"
                             name="description"
-                            required
+                            // required
                             placeholder="vd:laptop nay cuc manh "
                         />
                     </div>
@@ -253,7 +255,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             id="userID"
                             name="userID"
                             placeholder="vd:101"
-                            required
+                            // required
                             readOnly
                         />
                         <label className={cx('label')} htmlFor="userID">
@@ -265,7 +267,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             id="createdAt"
                             name="createdAt"
                             placeholder="vd:2023-03-30T14:43:59.803Z"
-                            required
+                            // required
                             readOnly
                         />
                         <label className={cx('label')} htmlFor="userName">
@@ -277,7 +279,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="text"
                             id="userName"
                             name="userName"
-                            required
+                            // required
                             placeholder="vd: VeryHandsome123"
                         />
                         <label className={cx('label')} htmlFor="password">
@@ -285,10 +287,10 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                         </label>
                         <input
                             className={cx('input')}
-                            defaultValue={data.password}
+                            // defaultValue={data.password}
                             id="password"
                             name="password"
-                            required
+                            // required
                             placeholder="vd:100"
                         />
                         <div>
