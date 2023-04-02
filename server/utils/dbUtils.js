@@ -213,10 +213,19 @@ exports.getFilterProductsQuery = (
   delete filter.page;
   delete filter.pageSize;
   delete filter.sort;
-
+  console.log(filter);
+  console.log("brand filter", filter["brand"]);
   if (filter) {
     filterStr = "";
     let i = 0;
+
+    if (filter["brandID"]) {
+      filterStr += "join brand on brand.brandID = product.brandID ";
+    }
+    if (filter["categoryID"]) {
+      filterStr += "join category on category.categoryID = product.categoryID";
+    }
+
     for (let criteria in filter) {
       const schemaProp = schema[criteria];
       if (schema[criteria]) {
@@ -248,7 +257,8 @@ exports.getFilterProductsQuery = (
                 if (j > 0) {
                   filterStr += " AND ";
                 }
-                filterStr += criteria + " " + operator + " " + criterialVal;
+                filterStr +=
+                  " Product." + criteria + " " + operator + " " + criterialVal;
                 j++;
               }
               i++;
@@ -257,13 +267,17 @@ exports.getFilterProductsQuery = (
         }
 
         //filter brand
-        if (criteria == "brand") {
+        if (criteria == "brandID") {
           filterStr += "(";
           if (filter[criteria].constructor === Array) {
-            if (schemaProp.type === "string") {
+            if (schemaProp.type === "number") {
               for (let valueIdx in filter[criteria]) {
                 filterStr +=
-                  criteria + " = '" + filter[criteria][valueIdx] + "'";
+                  "Product." +
+                  criteria +
+                  " = " +
+                  filter[criteria][valueIdx] +
+                  "";
                 if (valueIdx * 1 === filter[criteria].length - 1) {
                   filterStr += ")";
                 } else if (valueIdx * 1 !== filter[criteria].length - 1) {
@@ -275,36 +289,19 @@ exports.getFilterProductsQuery = (
           }
           if (
             filter[criteria].constructor !== Array &&
-            schemaProp.type === "string"
+            schemaProp.type === "number"
           ) {
-            filterStr += criteria + "='" + filter[criteria] + "')";
+            filterStr += "Product." + criteria + "=" + filter[criteria] + ")";
             i++;
           }
         }
         //filter category
-        if (criteria == "category") {
-          filterStr += "(";
-          if (filter[criteria].constructor === Array) {
-            if (schemaProp.type === "string") {
-              for (let valueIdx in filter[criteria]) {
-                filterStr +=
-                  criteria + " = '" + filter[criteria][valueIdx] + "'";
-                if (valueIdx * 1 === filter[criteria].length - 1) {
-                  filterStr += ")";
-                } else if (valueIdx * 1 !== filter[criteria].length - 1) {
-                  filterStr += " or ";
-                }
-              }
-            }
-            i++;
+        if (criteria == "categoryID") {
+          if (schemaProp.type === "number") {
+            filterStr +=
+              "Product." + criteria + " = '" + filter[criteria] + "'";
           }
-          if (
-            filter[criteria].constructor !== Array &&
-            schemaProp.type === "string"
-          ) {
-            filterStr += criteria + "='" + filter[criteria] + "')";
-            i++;
-          }
+          i++;
         }
         //filter name
         if (criteria == "name" && filter[criteria].length > 0) {
