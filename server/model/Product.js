@@ -25,8 +25,8 @@ const ProductSchema = new ModelSchema(
         return 0 || 1;
       },
     }),
-    category: new ModelSchemaValidator({
-      name: "category",
+    categoryID: new ModelSchemaValidator({
+      name: "categoryID",
       sqlType: sql.Int,
       require: true,
     }),
@@ -36,8 +36,8 @@ const ProductSchema = new ModelSchema(
       require: true,
     }),
 
-    brand: new ModelSchemaValidator({
-      name: "brand",
+    brandID: new ModelSchemaValidator({
+      name: "brandID",
       sqlType: sql.Int,
       require: true,
     }),

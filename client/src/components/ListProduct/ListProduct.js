@@ -84,7 +84,6 @@ export const ListProduct = (props) => {
     useEffect(() => {
         handleFilterProduct();
         handleGetData();
-        console.log(productData);
     }, [sortKey]);
 
     useEffect(() => {

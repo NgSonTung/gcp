@@ -1,4 +1,4 @@
---drop database PhoneShop 
+drop database PhoneShop 
 
 create database PhoneShop
 go
@@ -25,9 +25,9 @@ go
 	stock int not null,
 	name nvarchar (200) not null unique,
 	favorite int not null  check (favorite in (1,0)),
-	category int constraint FK_Product_cate references Category(categoryID)  not null,
+	categoryID int constraint FK_Product_cate references Category(categoryID)  not null,
 	price float	not null,
-	brand int constraint FK_Product_brand references Brand(brandID)  not null,
+	brandID int constraint FK_Product_brand references Brand(brandID)  not null,
 	image nvarchar(max),
 	sale nvarchar(100) ,
 	description nvarchar(max),
