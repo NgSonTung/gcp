@@ -51,7 +51,7 @@ userID	int identity(1,1) primary key,
 userName varchar(max) not null,
 password varchar(max) not null,
 auth	int not null check (auth in (1,0)), --	1 - admin   0 -	user
-email varchar(max) not null,
+email varchar(100) unique not null ,
     createdAt       datetime default CURRENT_TIMESTAMP not null
 )
 go

@@ -26,7 +26,6 @@ const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setProductChang
     };
     useEffect(() => {
         setIsChecked(checked);
-        console.log('cc');
     }, [checked]);
     useEffect(() => {
         HandleAddDelete(data.productID, isChecked);
@@ -48,7 +47,7 @@ const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setProductChang
                 </div>
                 <p className={cx('old_link')}>{data?.name}</p>
                 <p className={cx('old_link')}>{data?.brand}</p>
-                <p className={cx('new_link')}>{formatCurrency(data?.price)}</p>
+                <p className={cx('new_link')}>{data && formatCurrency(data?.price)}</p>
             </div>
             <div className={cx('link-handle-wrapper')}>
                 <button className={cx('handle-link-btn')} onClick={handleShowEditForm}>

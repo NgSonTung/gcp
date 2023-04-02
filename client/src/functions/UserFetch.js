@@ -16,6 +16,15 @@ export const getJWTOfLogin = (url = '', login) => {
         });
 };
 
+export const getAllUsers = (params) => {
+    return axios
+        .get(`user/`, { params: { params } })
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => console.log(err));
+};
+
 export const getUserByUserName = (url = '', username) => {
     if (url === '') {
         url = `http://localhost:3001/api/v1/user/${username}`;
