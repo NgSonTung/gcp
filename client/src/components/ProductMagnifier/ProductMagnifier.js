@@ -3,12 +3,27 @@ import classNames from 'classnames/bind';
 import styles from './ProductMagnifier.module.scss';
 import ImageMagnify from 'react-image-magnify';
 import ImageSlider from '../ImageSlider';
-
+import { getFileImage } from '~/functions/SubImgFetch';
 const cx = classNames.bind(styles);
 
 function ProductMagnifier({ product, subImg = [] }) {
     let imageList = [product?.image];
-    subImg?.map((obj) => imageList.push(obj.url));
+    subImg?.map((obj) => imageList.push(obj.image));
+    const [listSrc, setListSrc] = useState([]);
+    async function getImage(list) {
+        let listImageSrc = [];
+        for (let element of list) {
+            const response = await getFileImage(element);
+            const blob = new Blob([response.data], { type: 'image/jpg' });
+            const blobUrl = URL.createObjectURL(blob);
+            listImageSrc.push(blobUrl);
+        }
+        setListSrc(listImageSrc);
+    }
+
+    useEffect(() => {
+        getImage(imageList);
+    }, []);
     // imageList = imageList.concat(product?.sub_image?.map((image) => image));
 
     const [activeImage, setActiveImage] = useState(0);
@@ -26,10 +41,10 @@ function ProductMagnifier({ product, subImg = [] }) {
                         smallImage: {
                             alt: 'product-image',
                             isFluidWidth: true,
-                            src: imageList[activeImage],
+                            src: listSrc[activeImage],
                         },
                         largeImage: {
-                            src: imageList[activeImage],
+                            src: listSrc[activeImage],
                             width: 1000,
                             height: 1000,
                         },
@@ -48,7 +63,7 @@ function ProductMagnifier({ product, subImg = [] }) {
             <ImageSlider
                 onImageClick={(index) => setActiveImage(index)}
                 className={cx('sub-img-container')}
-                images={imageList}
+                images={listSrc}
                 subImg={false}
                 autoPlay={false}
             />
