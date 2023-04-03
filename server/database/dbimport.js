@@ -49,7 +49,7 @@ async function importDB() {
       await CategoryDAO.addCateIfNotExists(category);
       console.log("import category --- done!");
     } catch (error) {
-      console.log("errr", category);
+      throw new error("errr", category);
     }
   }
   //import brand
@@ -59,17 +59,17 @@ async function importDB() {
       await BrandDAO.addBrandIfNotExists(brand);
       console.log("import brand --- done!");
     } catch (error) {
-      console.log("errr", brand);
+      throw new error("errr", brand);
     }
   }
   //import product
   for (let i = 0; i < products.length; i++) {
     let product = products[i];
-    await ProductDAO.addProductIfNotExisted(product);
     try {
+      await ProductDAO.addProductIfNotExisted(product);
       console.log("import product --- done!");
     } catch (error) {
-      console.log("errr", product);
+      throw new error("errr", product);
     }
   }
   //import users
@@ -79,7 +79,7 @@ async function importDB() {
       await UserDAO.addUserIfNotExisted(user);
       console.log("import user --- done!");
     } catch (error) {
-      console.log("errr", user);
+      throw new error("errr", user);
     }
   }
   // import feature
@@ -89,7 +89,7 @@ async function importDB() {
       await FeatureDAO.addFeatureIfNotExisted(feature);
       console.log("import feature --- done!");
     } catch (Error) {
-      console.log("errr", feature);
+      throw new Error("errr", feature);
     }
   }
 
@@ -102,7 +102,7 @@ async function importDB() {
       await RatingDAO.addRatingIfNotExisted(rating);
       console.log("import rating --- done!");
     } catch (Error) {
-      console.log("errr", rating);
+      throw new Error("errr", rating);
     }
   }
   //import cart
@@ -113,7 +113,7 @@ async function importDB() {
       await CartDAO.addCartIfNotExisted(cart);
       console.log("import cart --- done!");
     } catch (Error) {
-      console.log("errr", cart);
+      throw new Error("errr", cart);
     }
   }
 
@@ -123,7 +123,7 @@ async function importDB() {
       await CartDAO.addCart_ProductIfNotExisted(item);
       console.log("import carts_Product --- done!");
     } catch (Error) {
-      console.log("errr", item);
+      throw new Error("errr", item);
     }
   }
 
@@ -133,7 +133,7 @@ async function importDB() {
       await SubImageDAO.addSubImageIfNotExisted(img);
       console.log("import subImage --- done!");
     } catch (Error) {
-      console.log("errr", item);
+      throw new Error("errr", item);
     }
   }
 }

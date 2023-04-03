@@ -21,10 +21,10 @@ function ProductDetail(type = 'default') {
     const { nameproduct } = useParams();
     const handleGetData = async () => {
         const fetchProduct = await getProductByName(nameproduct);
-
-        const url = `product/?page=1&pageSize=10&categoryID=${fetchProduct[0].category}`;
-        const fetchProductCategory = await getAllProducts(url);
         console.log(fetchProduct);
+        const url = `product/?page=1&pageSize=10&categoryID=${fetchProduct[0].category}`;
+        // const fetchProductCategory = await getAllProducts(url);
+        // console.log(fetchProductCategory);
         const fetchSubImg = await getSubImgByProduct(fetchProduct[0].productID);
         const fetchFeature = await getFeatureByProductID(fetchProduct[0].productID);
         const fetchRating = await getRatingByProductId(fetchProduct[0].productID);
@@ -33,7 +33,7 @@ function ProductDetail(type = 'default') {
             subImg: fetchSubImg,
             feature: fetchFeature,
             rating: fetchRating.data.rating,
-            sameCategory: fetchProductCategory,
+            // sameCategory: fetchProductCategory,
         });
     };
     console.log(data);
