@@ -1,5 +1,5 @@
--- drop database PhoneShop 
-
+drop database PhoneShop 
+use master
 create database PhoneShop
 go
 use PhoneShop

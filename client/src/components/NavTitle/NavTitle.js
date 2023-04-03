@@ -15,7 +15,7 @@ const NavTitle = (props) => {
                     const isActive = activeIndex === index;
                     return (
                         <li
-                            key={item.id}
+                            key={index}
                             className={cx('title-wrapper', { active: isActive })}
                             onClick={() => {
                                 setActiveIndex(index);
