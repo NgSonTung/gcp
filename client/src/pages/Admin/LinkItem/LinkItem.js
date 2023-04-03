@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
 import HandleForm from '../HandleForm/HandleForm';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -32,6 +33,7 @@ const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setDataChange }
         HandleAddDelete(data.userID, isChecked);
     }, [isChecked]);
     return (
+        // <Link to={`/product/${data?.name}`}>
         <div className={cx('link-info-wrapper')}>
             {object === 'product' ? (
                 <div className={cx('link-item')}>
@@ -84,6 +86,7 @@ const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setDataChange }
                 />
             )}
         </div>
+        // </Link>
     );
 };
 

@@ -12,24 +12,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import * as CartFetch from '~/functions/CartFetch';
+import { getAllCategories } from '~/functions/CategoryFetch';
 
 const cx = classNames.bind(styles);
 
-const menuTitles = [
-    { title: 'Home', to: config.routes.home },
-    { title: 'All Products', to: config.routes.allProducts },
-    { title: 'Phone', to: config.routes.phone },
-    { title: 'Laptop', to: config.routes.laptop },
-    { title: 'Tablet', to: config.routes.tablet },
-    { title: 'Watch', to: config.routes.watch },
-    { title: 'Network Device', to: config.routes.networkDevice },
-    { title: 'Keyboard', to: config.routes.keyboard },
-];
 const Header = () => {
+    const [categories, setCategories] = useState([]);
     const [showLogin, setShowLogin] = useState(false);
     const { isLoggedIn, userID, cartID } = useSelector((state) => state.UserReducer);
     // console.log(isLoggedIn);
     const [loginState, setLoginState] = useState(isLoggedIn);
+
+    const getCategories = async () => {
+        const fetchedData = await getAllCategories();
+        const result = await fetchedData.data.categories;
+        setCategories(result);
+    };
+
     const ToggleLogin = () => {
         setShowLogin(showLogin ? false : true);
     };
@@ -104,6 +103,7 @@ const Header = () => {
         dispatch(location);
     }, [windowWidth]);
     useEffect(() => {
+        getCategories();
         window.addEventListener('resize', setWindowWidth);
         return () => window.removeEventListener('resize', setWindowWidth);
     }, []);
@@ -116,9 +116,15 @@ const Header = () => {
             <div className={cx('header-navigation')}>
                 <div className={cx('menu-container')}>
                     <ul className={cx('item-list')}>
-                        {menuTitles.map((item, index) => (
-                            <Link key={index} to={item.to}>
-                                <li>{item.title}</li>
+                        <Link to={config.routes.home}>
+                            <li>Home</li>
+                        </Link>
+                        <Link to={config.routes.allProducts}>
+                            <li>All Products</li>
+                        </Link>
+                        {categories?.map((item) => (
+                            <Link key={item?.categoryID} to={`/${item?.categoryName}`}>
+                                <li>{item?.categoryName}</li>
                             </Link>
                         ))}
                     </ul>

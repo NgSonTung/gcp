@@ -1,6 +1,6 @@
 const dbConfig = require("../database/dbconfig");
-const dbUtils = require("../utils/dbUtils");
 const BrandShcema = require("../model/Brand");
+const dbUtils = require("../utils/dbUtils");
 
 exports.addBrandIfNotExists = async (brand) => {
   const dbPool = dbConfig.db.pool;
@@ -32,4 +32,13 @@ exports.clearAll = async () => {
   query = `delete ${BrandShcema.schemaName}  DBCC CHECKIDENT ('[${BrandShcema.schemaName} ]', RESEED, 1);`;
   let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
+};
+
+exports.getBrands = async () => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request.query(`select * from brand`);
+  return result.recordsets[0];
 };

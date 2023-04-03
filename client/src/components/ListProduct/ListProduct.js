@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import Slider from '@mui/material/Slider';
 import { getAllProducts } from '~/functions/Fetch';
+import { getAllBrands } from '~/functions/BrandFetch';
 import { fortmatCurrency } from '~/utils/FormatCurrency';
 const brands = ['Apple', 'Xiaomi', 'Samsung', 'Vivo', 'Hp', 'Asus', 'Oppo', 'Acer', 'Linksys', 'Mesh'];
 
@@ -38,17 +39,25 @@ export const ListProduct = (props) => {
     const [urlAPI, setUrlAPI] = useState('');
     const [sortKey, setSortKey] = useState('');
     const [totalProduct, setTotalProduct] = useState(0);
+    const [brands, setBrands] = useState([]);
     const brandInputRef = useRef();
+
+    const handleGetBrandsAPI = async () => {
+        const fetchedResult = await getAllBrands();
+        const data = await fetchedResult.data.brands;
+        setBrands(data);
+    };
+
     const handleFilterProduct = (page) => {
         let filteredURL = `http://localhost:3001/api/v1/product/?page=${page}&pageSize=${productPerPage}&`;
         if (brandFilter.length > 0) {
             let i = 0;
             for (i; i < brandFilter.length; i++) {
                 if (i <= 0) {
-                    filteredURL += 'brand=' + `${brandFilter[i]}`;
+                    filteredURL += 'brandID=' + `${brandFilter[i]}`;
                     console.log(filteredURL);
                 } else {
-                    filteredURL += '&brand=' + `${brandFilter[i]}`;
+                    filteredURL += '&brandID=' + `${brandFilter[i]}`;
                     console.log(filteredURL);
                 }
             }
@@ -91,11 +100,16 @@ export const ListProduct = (props) => {
     }, [urlAPI]);
 
     useEffect(() => {
+        handleGetBrandsAPI();
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    useEffect(() => {
+        console.log(brands);
+    });
 
     const handleChangeLayout = (num) => {
         num === 1 ? setActiveLayoutType(true) : setActiveLayoutType(false);
@@ -186,16 +200,16 @@ export const ListProduct = (props) => {
                             <div className={cx('brand-filter')}>
                                 <FilterTitle title="THƯƠNG HIỆU" />
                                 <div className={cx('filter-wrapper')}>
-                                    {brands.map((item, index) => (
+                                    {brands?.map((item, index) => (
                                         <div className={cx('checkbox')} key={index}>
                                             <input
                                                 type="checkbox"
-                                                value={item.toLocaleLowerCase()}
+                                                value={item?.brandID}
                                                 onChange={addBrandFilter}
-                                                id={item.toLocaleLowerCase()}
+                                                id={item?.brandID}
                                                 ref={brandInputRef}
                                             />
-                                            <label for={item.toLocaleLowerCase()}>{item}</label>
+                                            <label for={item?.brandID}>{item?.brandName}</label>
                                         </div>
                                     ))}
                                 </div>

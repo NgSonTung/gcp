@@ -24,6 +24,8 @@ const cartRouter = require("./routes/cart");
 const ratingRouter = require("./routes/rating");
 const subimgRouter = require("./routes/subimg");
 const featureRouter = require("./routes/feature");
+const brandRouter = require("./routes/brand");
+const categoryRouter = require("./routes/category");
 
 const userRouter = require("./routes/user");
 // app.use("/api", tourRouter);
@@ -33,4 +35,6 @@ app.use("/api/v1/rating", ratingRouter);
 app.use("/api/v1/subimg", subimgRouter);
 app.use("/api/v1/feature", featureRouter);
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/brand", brandRouter);
+app.use("/api/v1/category", categoryRouter);
 module.exports = app;

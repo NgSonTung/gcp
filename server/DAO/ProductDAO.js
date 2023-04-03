@@ -99,14 +99,18 @@ exports.getAllProducts = async (filter) => {
     ProductSchema.defaultSort
   );
 
+  console.log(filterStr);
+
   if (filterStr) {
-    selectQuery += filterStr;
+    selectQuery += " " + filterStr;
     countQuery += " " + filterStr;
   }
 
   if (paginationStr) {
     selectQuery += " " + paginationStr;
   }
+
+  console.log(selectQuery);
 
   const result = await dbConfig.db.pool.request().query(selectQuery);
   let countResult = await dbConfig.db.pool.request().query(countQuery);

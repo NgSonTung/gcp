@@ -1,7 +1,7 @@
 const dbConfig = require("../database/dbconfig");
-const dbUtils = require("../utils/dbUtils");
 const CategorySchema = require("../model/Category");
 
+const dbUtils = require("../utils/dbUtils");
 exports.addCateIfNotExists = async (cate) => {
   const dbPool = dbConfig.db.pool;
   if (!dbPool) {
@@ -32,4 +32,12 @@ exports.clearAll = async () => {
   query = `delete ${CategorySchema.schemaName}  DBCC CHECKIDENT ('[${CategorySchema.schemaName} ]', RESEED, 1);`;
   let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
+};
+exports.getCategories = async () => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request.query(`select * from category`);
+  return result.recordsets[0];
 };
