@@ -1,9 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
 const app = express();
 //The order of middleware in stack is defined by the order they are defined in the code
-
+app.use(bodyParser.json({ limit: "40mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "40mb" }));
 app.use(cors());
 if (process.env.NODE_ENV === "dev") {
   //3RD-party MIDDLE WARE - HTTP request logger middleware

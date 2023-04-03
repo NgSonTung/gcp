@@ -7,7 +7,6 @@ const CartSchema = new ModelSchema(
     cartID: new ModelSchemaValidator({
       name: "cartID",
       sqlType: sql.Int,
-      require: true,
     }),
     userID: new ModelSchemaValidator({
       name: "userID",
@@ -22,8 +21,8 @@ const Cart_ProductSchema = new ModelSchema(
   {
     cartID: new ModelSchemaValidator({
       name: "cartID",
-      sqlType: sql.Int,
       require: true,
+      sqlType: sql.Int,
     }),
     productID: new ModelSchemaValidator({
       name: "productID",

@@ -7,7 +7,6 @@ const RatingSchema = new ModelSchema(
     ratingID: new ModelSchemaValidator({
       name: "ratingID",
       sqlType: sql.Int,
-      require: true,
       default: 0,
     }),
     _5star: new ModelSchemaValidator({

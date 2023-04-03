@@ -22,7 +22,6 @@ function ProductDetail() {
 
     // const [totalProduct, setTotalProduct] = useState(0);
     const { nameproduct } = useParams();
-
     const handleGetData = async () => {
         const fetchProduct = await getProductByName(nameproduct);
         console.log(fetchProduct);

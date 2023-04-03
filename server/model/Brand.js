@@ -6,7 +6,6 @@ const BrandSchema = new ModelSchema(
     brandID: new ModelSchemaValidator({
       name: "brandID",
       sqlType: sql.Int,
-      require: true,
     }),
     brandName: new ModelSchemaValidator({
       name: "brandName",

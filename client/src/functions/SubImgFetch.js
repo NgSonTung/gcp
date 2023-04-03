@@ -21,11 +21,8 @@ export const getFileImage = (imageName) => {
         });
 };
 
-export const postUrlFileImage = (infor) => {
-    // infor.url,
-    // infor.folderImage,
-    // infor.imageName,
-    // infor.createAt
+export const postUrlFileImage = (blob, folderImage, imageName, productID, alt) => {
+    const infor = { blob: blob, folderImage: folderImage, imageName: imageName, productID: productID, alt: alt };
     return axios
         .post(`/subimg/saveFileImage/`, infor)
         .then((res) => {
