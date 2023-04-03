@@ -1,4 +1,5 @@
 const dbConfig = require("../database/dbconfig");
+const BrandSchema = require("../model/Brand");
 const BrandShcema = require("../model/Brand");
 const dbUtils = require("../utils/dbUtils");
 
@@ -41,4 +42,21 @@ exports.getBrands = async () => {
   let request = dbConfig.db.pool.request();
   let result = await request.query(`select * from brand`);
   return result.recordsets[0];
+};
+
+exports.getBrandById = async (id) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request
+    .input(
+      `${BrandSchema.schema.brandID.name}`,
+      BrandSchema.schema.brandID.sqlType,
+      id
+    )
+    .query(
+      `select * from ${BrandSchema.schemaName} where ${BrandSchema.schema.brandID.name} = @${BrandSchema.schema.brandID.name}`
+    );
+  return result.recordsets[0][0];
 };

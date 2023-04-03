@@ -6,9 +6,7 @@ import ImageSlider from '../ImageSlider';
 import { getFileImage } from '~/functions/SubImgFetch';
 const cx = classNames.bind(styles);
 
-function ProductMagnifier({ product, subImg = [] }) {
-    let imageList = [product?.image];
-    subImg?.map((obj) => imageList.push(obj.image));
+function ProductMagnifier({ type, product, subImg = [] }) {
     const [listSrc, setListSrc] = useState([]);
     async function getImage(list) {
         let listImageSrc = [];
@@ -18,18 +16,27 @@ function ProductMagnifier({ product, subImg = [] }) {
             const blobUrl = URL.createObjectURL(blob);
             listImageSrc.push(blobUrl);
         }
+        if (type === 'admin')
+            listImageSrc.push(
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRal66RNJGRaNvsBcwWGY8S9rZO5UPXXpAEwg&usqp=CAU',
+            );
+
         setListSrc(listImageSrc);
     }
 
     useEffect(() => {
+        let imageList = [product?.image];
+        subImg?.map((obj) => imageList.push(obj.image));
         getImage(imageList);
-    }, []);
-    // imageList = imageList.concat(product?.sub_image?.map((image) => image));
-
-    const [activeImage, setActiveImage] = useState(0);
-    useEffect(() => {
         setActiveImage(0);
     }, [product]);
+
+    // useEffect(() => {
+    //     let imageList = [product?.image];
+    //     subImg?.map((obj) => imageList.push(obj.image));
+    // }, [product]);
+
+    const [activeImage, setActiveImage] = useState(0);
 
     return (
         <div>
