@@ -117,18 +117,34 @@ function ProductDetailDesc(props) {
             )}
             {type !== 'admin' && <p className={cx('product-detail-price')}>{fortmatCurrency(product?.price)}</p>}
             {full && type !== 'admin' && <ProductRating ratings={rating} />}
-            <div className={cx('product-feature-wrapper')}>
-                {feature?.map((feature, id) => (
-                    <p className={cx('product-feature')} key={id}>
-                        - {feature.feature}
-                    </p>
-                ))}
-                {type === 'admin' && (
-                    <button>
-                        <p className={cx('product-feature')}>Thêm Feature</p>
+            {type !== 'admin' ? (
+                <div className={cx('product-feature-wrapper')}>
+                    {feature?.map((feature, id) => (
+                        <p className={cx('product-feature')} key={id}>
+                            - {feature.feature}
+                        </p>
+                    ))}
+                </div>
+            ) : (
+                <div className={cx('product-feature-wrapper')}>
+                    {feature?.map((feature, id) => (
+                        <input
+                            className={cx('input')}
+                            defaultValue={feature.feature}
+                            type="text"
+                            id={`feature${id}`}
+                            name={`feature${id}`}
+                            // required
+                            placeholder="vd: VeryHandsome123"
+                        />
+                    ))}
+
+                    <button className={cx('product-feature-add')}>
+                        <p>Thêm Feature</p>
                     </button>
-                )}
-            </div>
+                </div>
+            )}
+
             {full && type !== 'admin' && (
                 <div className={cx('counter')}>
                     <button className={cx('decrement', { disable: count <= 1 })} onClick={handleDecrement}>
