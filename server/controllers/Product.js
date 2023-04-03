@@ -1,8 +1,19 @@
 const ProductDAO = require("../DAO/ProductDAO");
+const CategoryDAO = require("../DAO/CategoryDAO");
 const ProductSchema = require("../model/Product");
 
 exports.getProducts = async (req, res) => {
   console.log("req.query", req.query);
+  if (req.query.categoryName) {
+    const cateid = await CategoryDAO.getCategoryIdByName(
+      req.query["categoryName"]
+    );
+    req.query.categoryID = cateid;
+
+    delete req.query.categoryName;
+
+    console.log("cc", req.query);
+  }
   const products = await ProductDAO.getAllProducts(req.query);
   // console.log(products);
   res.status(200).json({

@@ -140,5 +140,6 @@ select * from Subimg
 select * from Cart
 select * from Users
 select * from Cart_Product
+select * from category
 
 
