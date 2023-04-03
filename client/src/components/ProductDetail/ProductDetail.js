@@ -15,7 +15,7 @@ import { getFeatureByProductID } from '~/functions/FeatureFetch';
 import { getRatingByProductId } from '~/functions/RatingFetch';
 const cx = classNames.bind(styles);
 
-function ProductDetail() {
+function ProductDetail(type = 'default') {
     // const [productData, setProductData] = useState([]);
     // const [subImg, setSubImg] = useState([]);
     const [data, setData] = useState({});

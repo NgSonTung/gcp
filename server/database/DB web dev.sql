@@ -1,4 +1,4 @@
-drop database PhoneShop 
+--drop database PhoneShop 
 
 create database PhoneShop
 go

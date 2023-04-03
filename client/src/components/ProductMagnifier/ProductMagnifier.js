@@ -18,6 +18,10 @@ function ProductMagnifier({ product, subImg = [] }) {
             const blobUrl = URL.createObjectURL(blob);
             listImageSrc.push(blobUrl);
         }
+        listImageSrc.push(
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRal66RNJGRaNvsBcwWGY8S9rZO5UPXXpAEwg&usqp=CAU',
+        );
+
         setListSrc(listImageSrc);
     }
 
