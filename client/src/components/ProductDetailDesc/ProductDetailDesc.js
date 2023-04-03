@@ -17,7 +17,7 @@ const cx = classNames.bind(styles);
 
 function ProductDetailDesc(props) {
     const { product, feature, rating, full = true, className } = props;
-    console.log(product);
+    // console.log(product);
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
     const handleDecrement = () => {

@@ -30,4 +30,5 @@ router.route("/byProduct/:id").get(SubImageController.getSubImgByProductId);
 
 router.route("/getFileImage/:imageName").get(SubImageController.getFileImage);
 
+router.route("/saveFileImage").post(SubImageController.saveFileImage);
 module.exports = router;

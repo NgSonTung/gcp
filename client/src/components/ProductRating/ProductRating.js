@@ -11,11 +11,16 @@ const cx = classNames.bind(styles);
 
 function ProductRating({ ratings }) {
     const [hoveredStars, setHoveredStars] = useState(0);
-
     const totalRatings = ratings._5star + ratings._4star + ratings._3star + ratings._2star + ratings._1star;
-    const averageRating =
-        (5 * ratings._5star + 4 * ratings._4star + 3 * ratings._3star + 2 * ratings._2star + 1 * ratings._1star) /
-        totalRatings;
+    let averageRating;
+    if (totalRatings !== 0) {
+        averageRating =
+            (5 * ratings._5star + 4 * ratings._4star + 3 * ratings._3star + 2 * ratings._2star + 1 * ratings._1star) /
+            totalRatings;
+    } else {
+        averageRating = 0;
+    }
+
     const fullStars = Math.floor(averageRating);
     const halfStars = Math.round(averageRating - fullStars);
     const emptyStars = 5 - fullStars - halfStars;
