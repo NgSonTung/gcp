@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
 import HandleForm from '../HandleForm/HandleForm';
-import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -14,10 +13,25 @@ const formatCurrency = (str) => {
     return `${str.toString().replace(regex, '$&,')}₫`;
 };
 
-const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setDataChange }) => {
+const LinkItem = ({
+    setProductData,
+    brands,
+    categories,
+    object,
+    HandleAddDelete,
+    checked,
+    jwt,
+    data,
+    setDataChange,
+}) => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [isChecked, setIsChecked] = useState(checked);
     const inputRef = useRef();
+
+    const getBrandNameById = (brandID) => {
+        const brand = brands?.find((brand) => brand.brandID === brandID);
+        return brand ? brand.brandName : null;
+    };
 
     const handleShowEditForm = () => {
         setShowEditForm(true);
@@ -35,7 +49,7 @@ const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setDataChange }
     return (
         <div className={cx('link-info-wrapper')}>
             {object === 'product' ? (
-                <div className={cx('link-item')}>
+                <div className={cx('link-item')} onClick={() => setProductData(data)}>
                     <div className={cx('description')}>
                         <input
                             className={cx('input-checked')}
@@ -48,7 +62,7 @@ const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setDataChange }
                         <p className={cx('text')}>{data?.productID}</p>
                     </div>
                     <p className={cx('old_link')}>{data?.name}</p>
-                    <p className={cx('old_link')}>{data?.brand}</p>
+                    <p className={cx('old_link')}>{getBrandNameById(data?.brandID)}</p>
                     <p className={cx('new_link')}>{data && formatCurrency(data?.price)}</p>
                 </div>
             ) : (

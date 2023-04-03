@@ -22,7 +22,7 @@ exports.getBrandById = async (req, res) => {
   console.log("req.params", req.params);
   const id = req.params.id * 1;
   try {
-    const brand = await BrandDAO.getBrandById(id);
+    const brand = await brandDAO.getBrandById(id);
     if (!brand) {
       return res
         .status(404) //NOT FOUND
