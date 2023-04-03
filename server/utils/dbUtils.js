@@ -298,8 +298,7 @@ exports.getFilterProductsQuery = (
         //filter category
         if (criteria == "categoryID") {
           if (schemaProp.type === "number") {
-            filterStr +=
-              "Product." + criteria + " = '" + filter[criteria] + "'";
+            filterStr += "Product." + criteria + " = " + filter[criteria] + "";
           }
           i++;
         }
