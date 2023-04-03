@@ -58,3 +58,17 @@ exports.getCategoryIdByName = async (name) => {
     );
   return result.recordsets[0][0].categoryID;
 };
+
+exports.getCategoryById = async (id) => {
+  let request = dbConfig.db.pool.request();
+  let result = await request
+    .input(
+      `${CategorySchema.schema.categoryID.name}`,
+      CategorySchema.schema.categoryID.sqlType,
+      id
+    )
+    .query(
+      `select * from ${CategorySchema.schemaName} where ${CategorySchema.schema.categoryID.name} = @${CategorySchema.schema.categoryID.name}`
+    );
+  return result.recordsets[0][0];
+};

@@ -7,7 +7,6 @@ const FeatureSchema = new ModelSchema(
     featureID: new ModelSchemaValidator({
       name: "featureID",
       sqlType: sql.Int,
-      require: true,
     }),
     feature: new ModelSchemaValidator({
       name: "feature",

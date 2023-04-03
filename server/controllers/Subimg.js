@@ -1,7 +1,7 @@
 const SubImageDAO = require("../DAO/SubImageDAO");
+const ProductDAO = require("../DAO/ProductDAO");
 const path = require("path");
 const fs = require("fs");
-const { slice } = require("lodash");
 exports.getSubImgByProductId = async (req, res) => {
   const id = req.params.id * 1;
   try {
@@ -133,17 +133,15 @@ exports.updateSubImgById = async (req, res) => {
   }
 };
 
-exports.getFileImage = async (req, res) => {
+exports.getFileImage = (req, res) => {
   let imageName = req.params.imageName;
-  console.log("req.originalUrl", req.originalUrl);
   let folderImage;
-
   if (imageName.includes("product")) {
     folderImage = "productImages";
   } else {
     folderImage = "subImgimages";
   }
-  const id = imageName.slice(imageName.length - 1, imageName.length);
+  const id = parseInt(imageName.match(/\d+/)[0]);
   imageName = `image${id}.jpg`;
   const imagePath = path.join(
     __dirname,
@@ -153,7 +151,41 @@ exports.getFileImage = async (req, res) => {
     imageName
   );
   console.log(imagePath);
-  // const imagePath = `../dev-data/subImgimages/${imageName}`;
   const imageStream = fs.createReadStream(imagePath);
   imageStream.pipe(res);
+};
+exports.saveFileImage = async (req, res) => {
+  let infor = req.body;
+  const imagePath = path.join(
+    __dirname,
+    "..",
+    "dev-data",
+    infor.folderImage,
+    infor.imageName
+  );
+  const buffer = Buffer.from(infor.blob, "base64");
+  fs.writeFile(imagePath, buffer, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: "Failed to save the file." });
+    } else {
+      console.log("File saved successfully.");
+      res.status(200).json({ message: "File ssaved successfully." });
+    }
+  });
+  let img;
+  if (infor.folderImage == "subImgimages") {
+    img = {
+      image: infor.imageName,
+      alt: infor.alt,
+      productID: infor.productID,
+    };
+    await SubImageDAO.addImage(img);
+  } else {
+    const Name = "product" + infor.imageName;
+    img = {
+      image: Name,
+    };
+    await ProductDAO.updateProductById(infor.productID, img);
+  }
 };

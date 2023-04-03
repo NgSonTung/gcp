@@ -16,10 +16,15 @@ const cx = classNames.bind(styles);
 // };
 
 function ProductDetailDesc(props) {
-    const { product, feature, rating, full = true, className } = props;
-    console.log(product);
+    const { brands, categories, type = 'default', product, feature, rating, full = true, className } = props;
+    // console.log(product);
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
+    const getBrandNameById = (brandID) => {
+        const brand = brands?.find((brand) => brand.brandID === brandID);
+        return brand ? brand.brandName : null;
+    };
+
     const handleDecrement = () => {
         if (count > 1) {
             setCount(count - 1);
@@ -103,23 +108,28 @@ function ProductDetailDesc(props) {
     return (
         <div className={cx('product-detail-container', className)}>
             <ToastContainer style={{ zIndex: 1000000 }} />
-            <p className={cx('product-detail-title')}> {product?.name}</p>
-            {full && (
+            {type !== 'admin' && <p className={cx('product-detail-title')}> {product?.name}</p>}
+            {full && type !== 'admin' && (
                 <div className={cx('product-detail-subtitle')}>
                     <p className={cx('product-detail-id')}>{`Mã sản phẩm: ${product?.productID}`}</p>
-                    <p className={cx('product-detail-brand')}>{`Thương hiệu: ${product?.brand}`}</p>
+                    <p className={cx('product-detail-brand')}>{`Thương hiệu: ${getBrandNameById(product?.brandID)}`}</p>
                 </div>
             )}
-            <p className={cx('product-detail-price')}>{fortmatCurrency(product?.price)}</p>
-            {full && <ProductRating ratings={rating} />}
+            {type !== 'admin' && <p className={cx('product-detail-price')}>{fortmatCurrency(product?.price)}</p>}
+            {full && type !== 'admin' && <ProductRating ratings={rating} />}
             <div className={cx('product-feature-wrapper')}>
                 {feature?.map((feature, id) => (
                     <p className={cx('product-feature')} key={id}>
                         - {feature.feature}
                     </p>
                 ))}
+                {type === 'admin' && (
+                    <button>
+                        <p className={cx('product-feature')}>Thêm Feature</p>
+                    </button>
+                )}
             </div>
-            {full && (
+            {full && type !== 'admin' && (
                 <div className={cx('counter')}>
                     <button className={cx('decrement', { disable: count <= 1 })} onClick={handleDecrement}>
                         -
@@ -132,7 +142,7 @@ function ProductDetailDesc(props) {
                     </button>
                 </div>
             )}
-            {full && (
+            {full && type !== 'admin' && (
                 <>
                     <button className={cx('cart-add')} onClick={handleBuyNow}>
                         <FontAwesomeIcon className={cx('text-icon')} icon={faDollarSign} />

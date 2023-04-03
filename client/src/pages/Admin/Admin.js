@@ -12,6 +12,8 @@ import Login from '~/components/Login';
 import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import CusPagination from '~/components/CusPagination/index';
+import { getAllCategories } from '~/functions/CategoryFetch';
+import { getAllBrands } from '~/functions/BrandFetch';
 
 // import useDebounce from '~/Hook/useDebounce';
 
@@ -29,7 +31,8 @@ function Admin() {
     const [allChecked, setAllChecked] = useState(false);
     const [deleteIds, setDeleteIds] = useState([]);
     const [object, setObject] = useState('product');
-
+    const [brands, setBrands] = useState();
+    const [categories, setCategories] = useState();
     const handlePage = (page) => setCurrentPage(page);
 
     const handleCheckAll = () => {
@@ -46,9 +49,16 @@ function Admin() {
             : setDeleteIds((prevIds) => prevIds.filter((item) => item !== id));
     };
 
-    // useEffect(() => {
-    //     console.log(currentPage);
-    // }, [currentPage]);
+    useEffect(() => {
+        console.log(brands, categories);
+    }, [brands, categories]);
+
+    const handleGetBrandsnCategories = async () => {
+        const fetchedBrands = await getAllBrands();
+        const fetchedCategories = await getAllCategories();
+        setBrands(fetchedBrands.data.brands);
+        setCategories(fetchedCategories.data.categories);
+    };
 
     const handleGetData = async () => {
         let fetchedData;
@@ -70,6 +80,7 @@ function Admin() {
         if (!isLoggedIn) {
             setShowLogin(true);
         }
+        handleGetBrandsnCategories();
     }, []);
     useEffect(() => {
         dataChange && handleGetData();
@@ -114,6 +125,8 @@ function Admin() {
                             <Search />
                             {jwt && (
                                 <LinkPaginate
+                                    brands={brands}
+                                    categories={categories}
                                     object={object}
                                     HandleAddDelete={HandleAddDelete}
                                     handleCheckAll={handleCheckAll}

@@ -287,7 +287,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                         </label>
                         <input
                             className={cx('input')}
-                            // defaultValue={data.password}
+                            defaultValue={data.password}
                             id="password"
                             name="password"
                             // required

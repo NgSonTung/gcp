@@ -17,6 +17,7 @@ export const getJWTOfLogin = (url = '', login) => {
 };
 
 export const getAllUsers = (params) => {
+    console.log(params);
     return axios
         .get(`user/${params}`)
         .then((res) => {

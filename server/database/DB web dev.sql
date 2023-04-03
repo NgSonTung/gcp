@@ -1,4 +1,4 @@
-drop database PhoneShop 
+-- drop database PhoneShop 
 
 create database PhoneShop
 go
@@ -8,13 +8,13 @@ alter database PhoneShop set TRUSTWORTHY ON
 go
 create table Category (
 categoryID int identity(1,1) primary key,
-categoryName nvarchar(30),
+categoryName nvarchar(30) unique not null,
 createdAt       datetime default CURRENT_TIMESTAMP not null
 )
 go
 create table Brand(
 brandID int identity(1,1) primary key,
-brandName nvarchar(30),
+brandName nvarchar(30) unique not null,
 createdAt       datetime default CURRENT_TIMESTAMP not null
 
 )

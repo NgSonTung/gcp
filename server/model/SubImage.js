@@ -7,7 +7,6 @@ const SubImageSchema = new ModelSchema(
     subimgID: new ModelSchemaValidator({
       name: "subimgID",
       sqlType: sql.Int,
-      require: true,
     }),
 
     image: new ModelSchemaValidator({

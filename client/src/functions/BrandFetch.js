@@ -10,3 +10,12 @@ export const getAllBrands = () => {
         })
         .catch((err) => console.log(err));
 };
+
+export const getBrandById = (id) => {
+    return axios
+        .get(`brand/${id}`)
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => console.log(err));
+};
