@@ -42,10 +42,24 @@ exports.getCategories = async () => {
   return result.recordsets[0];
 };
 
-exports.getCategoryById = async (id) => {
+exports.getCategoryIdByName = async (name) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
+  let request = dbConfig.db.pool.request();
+  let result = await request
+    .input(
+      `${CategorySchema.schema.categoryName.name}`,
+      CategorySchema.schema.categoryName.sqlType,
+      name
+    )
+    .query(
+      `select categoryID from ${CategorySchema.schemaName} where ${CategorySchema.schema.categoryName.name} = @${CategorySchema.schema.categoryName.name}`
+    );
+  return result.recordsets[0][0].categoryID;
+};
+
+exports.getCategoryById = async (id) => {
   let request = dbConfig.db.pool.request();
   let result = await request
     .input(

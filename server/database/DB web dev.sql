@@ -1,5 +1,5 @@
---drop database PhoneShop 
-
+drop database PhoneShop 
+use master
 create database PhoneShop
 go
 use PhoneShop
@@ -8,13 +8,13 @@ alter database PhoneShop set TRUSTWORTHY ON
 go
 create table Category (
 categoryID int identity(1,1) primary key,
-categoryName nvarchar(30),
+categoryName nvarchar(30) unique not null,
 createdAt       datetime default CURRENT_TIMESTAMP not null
 )
 go
 create table Brand(
 brandID int identity(1,1) primary key,
-brandName nvarchar(30),
+brandName nvarchar(30) unique not null,
 createdAt       datetime default CURRENT_TIMESTAMP not null
 
 )
@@ -140,5 +140,6 @@ select * from Subimg
 select * from Cart
 select * from Users
 select * from Cart_Product
+select * from category
 
 

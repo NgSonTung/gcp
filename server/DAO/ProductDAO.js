@@ -4,6 +4,7 @@ const ProductSchema = require("../model/Product");
 const dbConfig = require("../database/dbconfig");
 const dbUtils = require("../utils/dbUtils");
 const StaticData = require("../utils/StaticData");
+const categoryController = require("../controllers/Category");
 
 exports.addProductIfNotExisted = async (product) => {
   if (!dbConfig.db.pool) {
@@ -83,6 +84,7 @@ exports.getAllProducts = async (filter) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
+
   const page = filter.page * 1 || 1;
   let pageSize = filter.pageSize * 1 || StaticData.config.MAX_PAGE_SIZE;
   if (pageSize > StaticData.config.MAX_PAGE_SIZE) {

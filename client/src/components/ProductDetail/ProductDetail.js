@@ -9,27 +9,23 @@ import ProductDetailDesc from '../ProductDetailDesc';
 import NavTitle from '../NavTitle';
 import ProductBestSale from '../ProductBestSale/';
 // import data from '~/data/data.json';
-import { getProductByName } from '~/functions/ProductFetch';
+import { getProductByName, getAllProducts } from '~/functions/ProductFetch';
 import { getSubImgByProduct } from '~/functions/SubImgFetch';
 import { getFeatureByProductID } from '~/functions/FeatureFetch';
 import { getRatingByProductId } from '~/functions/RatingFetch';
 const cx = classNames.bind(styles);
 
 function ProductDetail(type = 'default') {
-    // const [productData, setProductData] = useState([]);
-    // const [subImg, setSubImg] = useState([]);
     const [data, setData] = useState(null);
 
-    // const [totalProduct, setTotalProduct] = useState(0);
     const { nameproduct } = useParams();
-
     const handleGetData = async () => {
         const fetchProduct = await getProductByName(nameproduct);
-        console.log(fetchProduct);
 
-        // console.log('fetchProduct', fetchProduct);
+        const url = `product/?page=1&pageSize=10&categoryID=${fetchProduct[0].category}`;
+        const fetchProductCategory = await getAllProducts(url);
+        console.log(fetchProduct);
         const fetchSubImg = await getSubImgByProduct(fetchProduct[0].productID);
-        // setTotalProduct(fetchedData?.data?.products?.totalProduct);
         const fetchFeature = await getFeatureByProductID(fetchProduct[0].productID);
         const fetchRating = await getRatingByProductId(fetchProduct[0].productID);
         setData({
@@ -37,8 +33,10 @@ function ProductDetail(type = 'default') {
             subImg: fetchSubImg,
             feature: fetchFeature,
             rating: fetchRating.data.rating,
+            sameCategory: fetchProductCategory,
         });
     };
+    console.log(data);
     useEffect(() => {
         handleGetData();
     }, []);

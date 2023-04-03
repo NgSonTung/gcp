@@ -7,7 +7,7 @@ import { getFileImage } from '~/functions/SubImgFetch';
 const cx = classNames.bind(styles);
 
 function ProductMagnifier({ type, product, subImg = [] }) {
-    const [listSrc, setListSrc] = useState([]);
+    const [listSrc, setListSrc] = useState(null);
     async function getImage(list) {
         let listImageSrc = [];
         for (let element of list) {
@@ -26,46 +26,45 @@ function ProductMagnifier({ type, product, subImg = [] }) {
 
     useEffect(() => {
         let imageList = [product?.image];
-        subImg?.map((obj) => imageList.push(obj.image));
+        subImg?.forEach((obj) => {
+            imageList.push(obj.image);
+        });
         getImage(imageList);
         setActiveImage(0);
     }, [product]);
-
-    // useEffect(() => {
-    //     let imageList = [product?.image];
-    //     subImg?.map((obj) => imageList.push(obj.image));
-    // }, [product]);
 
     const [activeImage, setActiveImage] = useState(0);
 
     return (
         <div>
             <div className={cx('product-image-container')}>
-                <ImageMagnify
-                    className={cx('product-image-wrapper')}
-                    imageClassName={cx('product-image')}
-                    {...{
-                        smallImage: {
-                            alt: 'product-image',
-                            isFluidWidth: true,
-                            src: listSrc[activeImage],
-                        },
-                        largeImage: {
-                            src: listSrc[activeImage],
-                            width: 1000,
-                            height: 1000,
-                        },
-                        enlargedImageContainerStyle: {
-                            zIndex: 999,
-                        },
-                        lensStyle: {
-                            backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                            border: '1px solid #ccc',
-                        },
-                        isHintEnabled: true,
-                        shouldUsePositiveSpaceLens: true,
-                    }}
-                />
+                {listSrc && (
+                    <ImageMagnify
+                        className={cx('product-image-wrapper')}
+                        imageClassName={cx('product-image')}
+                        {...{
+                            smallImage: {
+                                alt: 'product-image',
+                                isFluidWidth: true,
+                                src: listSrc[activeImage],
+                            },
+                            largeImage: {
+                                src: listSrc[activeImage],
+                                width: 1000,
+                                height: 1000,
+                            },
+                            enlargedImageContainerStyle: {
+                                zIndex: 999,
+                            },
+                            lensStyle: {
+                                backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                                border: '1px solid #ccc',
+                            },
+                            isHintEnabled: true,
+                            shouldUsePositiveSpaceLens: true,
+                        }}
+                    />
+                )}
             </div>
             <ImageSlider
                 onImageClick={(index) => setActiveImage(index)}

@@ -6,7 +6,6 @@ const CategorySchema = new ModelSchema(
     categoryID: new ModelSchemaValidator({
       name: "categoryID",
       sqlType: sql.Int,
-      require: true,
     }),
     categoryName: new ModelSchemaValidator({
       name: "categoryName",
