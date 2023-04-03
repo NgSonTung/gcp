@@ -1,6 +1,5 @@
 import axios from 'axios';
 export const getSubImgByProduct = (productID) => {
-    console.log(productID);
     return axios
         .get(`/subimg/byProduct/${productID}`)
         .then((res) => {
@@ -14,6 +13,21 @@ export const getSubImgByProduct = (productID) => {
 export const getFileImage = (imageName) => {
     return axios
         .get(`/subimg/getFileImage/${imageName}`, { responseType: 'blob' })
+        .then((res) => {
+            return res;
+        })
+        .catch((err) => {
+            return false;
+        });
+};
+
+export const postUrlFileImage = (infor) => {
+    // infor.url,
+    // infor.folderImage,
+    // infor.imageName,
+    // infor.createAt
+    return axios
+        .post(`/subimg/saveFileImage/`, infor)
         .then((res) => {
             return res;
         })

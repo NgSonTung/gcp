@@ -33,7 +33,6 @@ const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setDataChange }
         HandleAddDelete(data.userID, isChecked);
     }, [isChecked]);
     return (
-        // <Link to={`/product/${data?.name}`}>
         <div className={cx('link-info-wrapper')}>
             {object === 'product' ? (
                 <div className={cx('link-item')}>
@@ -86,7 +85,6 @@ const LinkItem = ({ object, HandleAddDelete, checked, jwt, data, setDataChange }
                 />
             )}
         </div>
-        // </Link>
     );
 };
 

@@ -17,3 +17,32 @@ exports.getAllBrands = async (req, res) => {
     });
   }
 };
+
+exports.getBrandById = async (req, res) => {
+  console.log("req.params", req.params);
+  const id = req.params.id * 1;
+  try {
+    const brand = await BrandDAO.getBrandById(id);
+    if (!brand) {
+      return res
+        .status(404) //NOT FOUND
+        .json({
+          code: 404,
+          msg: `Not found brand with Id ${id}!`,
+        });
+    }
+    return res.status(200).json({
+      code: 200,
+      msg: `Got brand with id ${id} successfully!`,
+      data: {
+        brand,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      code: 500,
+      msg: e,
+    });
+  }
+};
