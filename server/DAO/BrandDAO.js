@@ -1,5 +1,6 @@
 const dbConfig = require("../database/dbconfig");
 const BrandShcema = require("../model/Brand");
+const dbUtils = require("../utils/dbUtils");
 
 exports.addBrandIfNotExists = async (brand) => {
   const dbPool = dbConfig.db.pool;

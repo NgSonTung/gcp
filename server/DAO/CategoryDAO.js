@@ -1,6 +1,7 @@
 const dbConfig = require("../database/dbconfig");
 const CategorySchema = require("../model/Category");
 
+const dbUtils = require("../utils/dbUtils");
 exports.addCateIfNotExists = async (cate) => {
   const dbPool = dbConfig.db.pool;
   if (!dbPool) {
