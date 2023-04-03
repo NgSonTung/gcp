@@ -1,14 +1,20 @@
 import { faCompressAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ProductItem.module.scss';
 import { fortmatCurrency } from '~/utils/FormatCurrency';
+import { getURLImage } from '~/functions/SubImgFetch';
+
 const cx = classNames.bind(styles);
 
 function ProductItem(props) {
     const { data, hotTag = false, secondLayout = false } = props;
+    const [imageSrc, setImageSrc] = useState(null);
+    useEffect(() => {
+        getURLImage([data?.image]).then((result) => setImageSrc(result));
+    }, [data]);
     const [activeShow, setActiveShow] = useState(false);
     const icon = require('~/Icons/index');
     const itemPrice = fortmatCurrency(data?.price);
@@ -23,7 +29,7 @@ function ProductItem(props) {
                     onMouseOver={() => setActiveShow(true)}
                     onMouseOut={() => setActiveShow(false)}
                 >
-                    <img src={data.image} alt="avtar-Product" className={cx('avtar-product')} />
+                    <img src={imageSrc} alt="avtar-Product" className={cx('avtar-product')} />
                     <div className={activeShow ? cx('action-product', 'active') : cx('action-product')}>
                         <Link to={`/product/${data?.name}`}>
                             <span>{icon.SearchIcon('icon-search')}</span>

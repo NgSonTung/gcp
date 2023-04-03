@@ -8,7 +8,7 @@ export const getAllProducts = (url) => {
         url = 'product/?page=1&pageSize=10';
     }
     return axios
-        .get(url)
+        .get(`${url}`)
         .then((res) => {
             // console.log(url);
             // console.log(res.data);

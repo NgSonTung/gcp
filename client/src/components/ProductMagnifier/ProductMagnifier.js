@@ -3,33 +3,19 @@ import classNames from 'classnames/bind';
 import styles from './ProductMagnifier.module.scss';
 import ImageMagnify from 'react-image-magnify';
 import ImageSlider from '../ImageSlider';
-import { getFileImage } from '~/functions/SubImgFetch';
+import { getURLImage } from '~/functions/SubImgFetch';
 const cx = classNames.bind(styles);
 
 function ProductMagnifier({ type, product, subImg = [] }) {
     const [listSrc, setListSrc] = useState(null);
-    async function getImage(list) {
-        let listImageSrc = [];
-        for (let element of list) {
-            const response = await getFileImage(element);
-            const blob = new Blob([response.data], { type: 'image/jpg' });
-            const blobUrl = URL.createObjectURL(blob);
-            listImageSrc.push(blobUrl);
-        }
-        if (type === 'admin')
-            listImageSrc.push(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRal66RNJGRaNvsBcwWGY8S9rZO5UPXXpAEwg&usqp=CAU',
-            );
-
-        setListSrc(listImageSrc);
-    }
 
     useEffect(() => {
         let imageList = [product?.image];
         subImg?.forEach((obj) => {
             imageList.push(obj.image);
         });
-        getImage(imageList);
+        //cach dung fetch img
+        getURLImage(imageList, type).then((result) => setListSrc(result));
         setActiveImage(0);
     }, [product]);
 
