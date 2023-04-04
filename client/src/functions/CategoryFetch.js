@@ -11,7 +11,7 @@ export const getAllCategories = async () => {
 
 export const getCategoryId = (id) => {
     return axios
-        .get(`category/${id}`)
+        .get(`http://localhost:3001/api/v1/category/${id}`)
         .then((res) => {
             return res.data;
         })

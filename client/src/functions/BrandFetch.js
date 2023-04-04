@@ -13,7 +13,7 @@ export const getAllBrands = () => {
 
 export const getBrandById = (id) => {
     return axios
-        .get(`brand/${id}`)
+        .get(`http://localhost:3001/api/v1/brand/${id}`)
         .then((res) => {
             return res.data;
         })

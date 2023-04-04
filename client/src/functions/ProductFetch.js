@@ -10,8 +10,8 @@ export const getAllProducts = (url) => {
     return axios
         .get(`${url}`)
         .then((res) => {
-            // console.log(url);
-            // console.log(res.data);
+            console.log(url);
+            console.log(res.data);
             return res.data;
         })
         .catch((err) => console.log(err));
@@ -20,7 +20,7 @@ export const getAllProducts = (url) => {
 export const getProductByName = (name) => {
     // console.log(name);
     return axios
-        .get(`/product/?page=1&pageSize=1`, { params: { name: name } })
+        .get(`http://localhost:3001/api/v1/product/?page=1&pageSize=1`, { params: { name: name } })
         .then((res) => {
             return res.data.data.products.dataProducts;
         })
@@ -32,7 +32,7 @@ export const deleteProductById = (id, jwt) => {
         Authorization: `Bearer ${jwt}`,
     };
     return axios
-        .delete(`/product/${id}`, {
+        .delete(`http://localhost:3001/api/v1/product/${id}`, {
             headers: headers,
         })
         .then((res) => {
@@ -48,7 +48,7 @@ export const deleteMultipleProductsById = (ids, jwt) => {
         Authorization: `Bearer ${jwt}`,
     };
     return axios
-        .delete(`product/`, { params: { id: ids }, headers: headers })
+        .delete(`http://localhost:3001/api/v1/product/`, { params: { id: ids }, headers: headers })
         .then((res) => {
             return res.data.msg;
         })
@@ -63,7 +63,7 @@ export const addProduct = (product, jwt) => {
         Authorization: `Bearer ${jwt}`,
     };
     return axios
-        .post(`product/`, product, {
+        .post(`http://localhost:3001/api/v1/product/`, product, {
             headers: headers,
         })
         .then((res) => {
@@ -79,7 +79,7 @@ export const updateProductById = (id, product, jwt) => {
         Authorization: `Bearer ${jwt}`,
     };
     return axios
-        .patch(`product/${id}`, product, {
+        .patch(`http://localhost:3001/api/v1/product/${id}`, product, {
             headers: headers,
         })
         .then((res) => {

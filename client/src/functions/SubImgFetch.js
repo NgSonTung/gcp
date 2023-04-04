@@ -1,7 +1,7 @@
 import axios from 'axios';
 export const getSubImgByProduct = (productID) => {
     return axios
-        .get(`/subimg/byProduct/${productID}`)
+        .get(`http://localhost:3001/api/v1/subimg/byProduct/${productID}`)
         .then((res) => {
             return res.data.data.subimgs;
         })
@@ -25,9 +25,10 @@ export const getURLImage = async (listImage, type = 'default') => {
 
     return listImageSrc;
 };
+
 export const getFileImage = (imageName) => {
     return axios
-        .get(`/subimg/getFileImage/${imageName}`, { responseType: 'blob' })
+        .get(`http://localhost:3001/api/v1/subimg/getFileImage/${imageName}`, { responseType: 'blob' })
         .then((res) => {
             return res;
         })
@@ -39,7 +40,7 @@ export const getFileImage = (imageName) => {
 export const postUrlFileImage = (blob, folderImage, imageName, productID, alt) => {
     const infor = { blob: blob, folderImage: folderImage, imageName: imageName, productID: productID, alt: alt };
     return axios
-        .post(`/subimg/saveFileImage/`, infor)
+        .post(`http://localhost:3001/api/v1/subimg/saveFileImage/`, infor)
         .then((res) => {
             return res;
         })

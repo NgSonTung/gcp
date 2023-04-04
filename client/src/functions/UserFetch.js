@@ -19,7 +19,7 @@ export const getJWTOfLogin = (url = '', login) => {
 export const getAllUsers = (params) => {
     console.log(params);
     return axios
-        .get(`user/${params}`)
+        .get(`http://localhost:3001/api/v1/user/${params}`)
         .then((res) => {
             return res.data;
         })
