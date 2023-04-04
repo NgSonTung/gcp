@@ -31,7 +31,7 @@ const publicRoutes = [
     // { path: config.routes.checkout, component: CheckoutPage },
 
     { path: config.routes.admin, component: Admin, layout: null },
-    { path: config.routes.searchcatalog, component: SearchCatalog, layout: null },
+    { path: config.routes.searchCatalog, component: SearchCatalog, layout: null },
 ];
 
 export { publicRoutes };

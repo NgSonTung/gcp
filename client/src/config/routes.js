@@ -11,7 +11,7 @@ const routes = {
     productByCate: '/category/:categoryName',
     checkout: '/checkout',
     admin: '/admin',
-    searchCatalog: '/searchcatalog/:searchvalue',
+    searchCatalog: '/searchcatalog',
 };
 
 export default routes;
