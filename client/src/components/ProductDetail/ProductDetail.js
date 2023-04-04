@@ -65,7 +65,7 @@ function ProductDetail(type = 'default') {
             title: 'điểm nổi bật',
             component: (
                 <div className={cx('product-desc-wrapper')}>
-                    {data && <p className={cx('product-desc')}>{data?.productData[0]?.description}</p>}{' '}
+                    {data && <p className={cx('product-desc')}>{data?.productData[0]?.description}</p>}
                 </div>
             ),
         },

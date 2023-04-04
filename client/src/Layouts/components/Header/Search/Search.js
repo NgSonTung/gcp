@@ -3,17 +3,17 @@ import styles from './Search.module.scss';
 import { SearchIcon } from '~/Icons';
 import { FetchFn } from '~/functions';
 import { useEffect, useRef, useState } from 'react';
-import { useDebounce } from '~/Hooks';
+import useDebounce from '~/Hooks/useDebounce';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-
 import SearchProducts from '~/components/SearchedProduct/SearchedProduct';
-import { Link } from 'react-router-dom';
-import config from '~/config';
+import { Link, useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 const Search = () => {
+    let navigate = useNavigate();
+
     const [searchValue, setSearchValue] = useState('');
     const [outputProducts, setOutputProducts] = useState([]);
     const [showResult, setShowResult] = useState(false);
@@ -31,11 +31,12 @@ const Search = () => {
     }, [debouncedValue]);
 
     const fetchProducts = async () => {
-        const products = await FetchFn.getAllProducts('https://api.npoint.io/c682cd1927ef20da8d42');
-        const searchProducts = await products.filter((item) =>
-            item.name.toLowerCase().includes(debouncedValue.toLowerCase()),
+        const products = await FetchFn.getProductByName(
+            `http://localhost:3001/api/v1/product/?page=1&pageSize=6&name=${searchValue}`,
         );
-        setOutputProducts(searchProducts);
+        const result = await products?.data?.products?.dataProducts;
+        console.log(result);
+        setOutputProducts(result);
     };
 
     const HandleClearInput = () => {
@@ -50,6 +51,15 @@ const Search = () => {
 
         if (!KEY_SPACE.test(searchValue[0])) {
             setSearchValue(searchValue);
+        }
+    };
+
+    const handleSubmitSearch = (e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            if (searchValue !== '') {
+                navigate(`/searchcatalog/?name=${searchValue}`);
+            }
         }
     };
 
@@ -80,8 +90,9 @@ const Search = () => {
                             onChange={handleInputChange}
                             onFocus={() => setShowResult(true)}
                             onM={() => setShowResult(false)}
+                            onKeyDown={handleSubmitSearch}
                         />
-                        <Link to={`/searchcatalog/${searchValue}`}>
+                        <Link to={`/searchCatalog/?name=${searchValue}`}>
                             <button className={cx('find-btn')}>
                                 <SearchIcon className={cx('icon')} />
                             </button>

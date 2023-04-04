@@ -1,18 +1,23 @@
 import classNames from 'classnames/bind';
 import styles from './SearchedProduct.module.scss';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fortmatCurrency } from '~/utils/FormatCurrency';
+import { getURLImage } from '~/functions/SubImgFetch';
 
 const cx = classNames.bind(styles);
 function SearchProducts({ data }) {
+    const [imageSrc, setImageSrc] = useState(null);
+    useEffect(() => {
+        getURLImage([data?.image]).then((result) => setImageSrc(result));
+    }, [data]);
     return (
         <Link to={`/product/${data.name}`} className={cx('wrapper')}>
-            <img src={data.image} alt={data.image} />
+            <img src={imageSrc} alt={imageSrc} />
             <div className={cx('product-info')}>
                 <p className={cx('product-name')}>{data.name}</p>
                 <div className={cx('price-info')}>
                     <p className={cx('sale-price')}>{fortmatCurrency(data?.price)}</p>
-                    <p className={cx('old-price')}>{fortmatCurrency(data?.price * data?.old_price)}</p>
                 </div>
             </div>
         </Link>

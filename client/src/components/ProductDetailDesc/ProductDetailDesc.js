@@ -3,11 +3,14 @@ import classNames from 'classnames/bind';
 import styles from './ProductDetailDesc.module.scss';
 import ProductRating from '../ProductRating/ProductRating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { useRef, useEffect } from 'react';
+import { faShoppingCart, faDollarSign, faTrash, faFileUpload } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { fortmatCurrency } from '~/utils/FormatCurrency';
+import { deleteFeatureById, addFeature, updateFeatureById } from '~/functions/FeatureFetch';
+
 const cx = classNames.bind(styles);
 
 // const formatCurrency = (str) => {
@@ -15,16 +18,61 @@ const cx = classNames.bind(styles);
 //     return `${str.toString().replace(regex, '$&,')}₫`;
 // };
 
-function ProductDetailDesc(props) {
-    const { brands, type = 'default', product, feature, rating, full = true, className } = props;
-    console.log(product);
+function ProductDetailDesc({
+    handleGetData = () => {},
+    HandleSetProductData = () => {},
+    jwt = '',
+    brands,
+    type = 'default',
+    product,
+    feature,
+    rating,
+    full = true,
+    className,
+}) {
+    const formRef = useRef();
+    // console.log(product);
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
     const getBrandNameById = (brandID) => {
         const brand = brands?.find((brand) => brand.brandID === brandID);
         return brand ? brand.brandName : null;
     };
+    const HandleFeatureDelete = (id) => {
+        const msgPromise = deleteFeatureById(id, jwt);
+        msgPromise.then((msg) => {
+            alert(msg);
+            handleGetData();
+            HandleSetProductData();
+        });
+    };
+    // useEffect(() => {
+    //     console.log();
+    // }, [feature]);
+    const HandleFeatureUpdate = (id, inputID) => {
+        const newFeature = { feature: formRef.current[inputID].value, productID: feature[0].productID };
+        const msgPromise = updateFeatureById(id, newFeature, jwt);
+        msgPromise.then((msg) => {
+            alert(msg);
+            handleGetData();
+            HandleSetProductData();
+        });
+    };
 
+    const HandleSubmit = (e) => {
+        e.preventDefault();
+        if (formRef.current['newFeature'].value) {
+            const newFeature = { feature: formRef.current['newFeature'].value, productID: feature[0].productID };
+            const msgPromise = addFeature(newFeature, jwt);
+            msgPromise.then((msg) => {
+                alert(msg);
+                handleGetData();
+                HandleSetProductData();
+            });
+        } else {
+            alert('Hãy điền thông tin feature muốn thêm');
+        }
+    };
     const handleDecrement = () => {
         if (count > 1) {
             setCount(count - 1);
@@ -126,23 +174,44 @@ function ProductDetailDesc(props) {
                     ))}
                 </div>
             ) : (
-                <div className={cx('product-feature-wrapper')}>
-                    {feature?.map((feature, id) => (
+                <form onSubmit={(e) => HandleSubmit(e)} ref={formRef}>
+                    <div className={cx('product-feature-wrapper')}>
+                        {feature?.map((feature, id) => (
+                            <div className={cx('input-wrapper')}>
+                                <input
+                                    className={cx('input')}
+                                    defaultValue={feature.feature}
+                                    type="text"
+                                    id={`feature${id}`}
+                                    name={`feature${id}`}
+                                    // required
+                                />
+                                <FontAwesomeIcon
+                                    className={cx('icon')}
+                                    icon={faFileUpload}
+                                    onClick={() => HandleFeatureUpdate(feature.featureID, `feature${id}`)}
+                                />
+                                <FontAwesomeIcon
+                                    className={cx('icon')}
+                                    icon={faTrash}
+                                    onClick={() => HandleFeatureDelete(feature.featureID)}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    <div className={cx('newInput-wrapper')}>
                         <input
-                            className={cx('input')}
-                            defaultValue={feature.feature}
+                            placeholder="vd: Sản phẩm này cực xịn"
+                            className={cx('newInput')}
                             type="text"
-                            id={`feature${id}`}
-                            name={`feature${id}`}
-                            // required
-                            placeholder="vd: VeryHandsome123"
+                            id={`newFeature`}
+                            name={`newFeature`}
                         />
-                    ))}
-
-                    <button className={cx('product-feature-add')}>
-                        <p>Thêm Feature</p>
-                    </button>
-                </div>
+                        <button className={cx('product-feature-add')}>
+                            <p>Thêm Feature</p>
+                        </button>
+                    </div>
+                </form>
             )}
 
             {full && type !== 'admin' && (

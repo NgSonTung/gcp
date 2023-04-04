@@ -9,7 +9,8 @@ import * as UserFetch from '~/functions/UserFetch';
 import jwt from 'jwt-decode';
 
 import { CircularProgress } from '@mui/material';
-import { useDebounce } from '~/Hooks';
+import useDebounce from '~/Hooks/useDebounce';
+
 const cx = classNames.bind(styles);
 
 const Login = ({ classname, ToggleLogin, loginType = 'user' }) => {
