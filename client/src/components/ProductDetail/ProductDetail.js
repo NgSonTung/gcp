@@ -22,18 +22,22 @@ function ProductDetail(type = 'default') {
     const { nameproduct } = useParams();
     const handleGetData = async () => {
         const fetchProduct = await getProductByName(nameproduct);
-        // const fetchCategoryName = await getCategoryId(fetchProduct[0].categoryID);
-        // console.log('fetchCategoryName', fetchCategoryName);
+        const [fetchSubImg, fetchFeature, fetchRating, fetchBrand] = await Promise.all([
+            getSubImgByProduct(fetchProduct[0].productID),
+            getFeatureByProductID(fetchProduct[0].productID),
+            getRatingByProductId(fetchProduct[0].productID),
+            getAllBrands(),
+        ]);
+        // const fetchSubImg = await getSubImgByProduct(fetchProduct[0].productID);
+        // const fetchFeature = await getFeatureByProductID(fetchProduct[0].productID);
+        // const fetchRating = await getRatingByProductId(fetchProduct[0].productID);
+        // const fetchBrand = await getAllBrands();
         const urlCate = `http://localhost:3001/api/v1/product/?page=1&pageSize=10&categoryID=${fetchProduct[0].categoryID}`;
         const fetchProductCategory = await getAllProducts(urlCate);
         const urlBrand = `http://localhost:3001/api/v1/product/?page=1&pageSize=10&brandID=${fetchProduct[0].brandID}`;
         const fetchProductBrand = await getAllProducts(urlBrand);
-        const fetchSubImg = await getSubImgByProduct(fetchProduct[0].productID);
-        const fetchFeature = await getFeatureByProductID(fetchProduct[0].productID);
-        const fetchRating = await getRatingByProductId(fetchProduct[0].productID);
-        const fetchBrand = await getAllBrands();
 
-        setData({
+        return {
             productData: fetchProduct,
             subImg: fetchSubImg,
             feature: fetchFeature,
@@ -41,12 +45,16 @@ function ProductDetail(type = 'default') {
             similarItems: fetchProductCategory.data.products.dataProducts,
             brands: fetchBrand.data.brands,
             similarItemsByBrand: fetchProductBrand.data.products.dataProducts,
-        });
+        };
     };
-    console.log(data);
+    const loadData = async () => {
+        const data = await handleGetData();
+        setData(data);
+    };
     useEffect(() => {
-        handleGetData();
-    }, []);
+        loadData();
+        window.scrollTo(0, 0);
+    }, [nameproduct]);
 
     const navItems = [
         {
@@ -57,7 +65,7 @@ function ProductDetail(type = 'default') {
             title: 'điểm nổi bật',
             component: (
                 <div className={cx('product-desc-wrapper')}>
-                    {data && <p className={cx('product-desc')}>{data?.productData[0]?.description}</p>}{' '}
+                    {data && <p className={cx('product-desc')}>{data?.productData[0]?.description}</p>}
                 </div>
             ),
         },

@@ -1,6 +1,6 @@
 // cre : https://github.com/Ahmed-Elswerky/react-flying-item
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import products from '~/data/products';
 const DEFAULT_TARGET_TOP = '5%',
     DEFAULT_TARGET_LEFT = '5%',

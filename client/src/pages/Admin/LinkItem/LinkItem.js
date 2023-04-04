@@ -24,10 +24,11 @@ const LinkItem = ({ brands, categories, object, HandleAddDelete, checked, jwt, d
     const inputRef = useRef();
     const [fullProductData, setFullProductData] = useState();
     const [productData, setProductData] = useState();
-    useEffect(() => {
-        console.log(fullProductData);
-    }, [fullProductData]);
-    const HandleSetProductData = () => {
+
+    // useEffect(() => {
+    //     console.log('full product data');
+    // }, [fullProductData]);
+    const HandleSetProductData = (times) => {
         !productData ? setProductData(data) : setProductData();
     };
     const handleGetData = async () => {
@@ -36,12 +37,12 @@ const LinkItem = ({ brands, categories, object, HandleAddDelete, checked, jwt, d
             const fetchSubImg = await getSubImgByProduct(productData.productID);
             // setTotalProduct(fetchedData?.data?.products?.totalProduct);
             const fetchFeature = await getFeatureByProductID(productData.productID);
-            const fetchRating = await getRatingByProductId(productData.productID);
+            // const fetchRating = await getRatingByProductId(productData.productID);
             setFullProductData({
                 productData: productData,
                 subImg: fetchSubImg,
                 feature: fetchFeature,
-                rating: fetchRating.data.rating,
+                // rating: fetchRating.data.rating,
             });
         }
     };
@@ -121,32 +122,41 @@ const LinkItem = ({ brands, categories, object, HandleAddDelete, checked, jwt, d
                     />
                 )}
             </div>
-            <div className={cx('product-detail-container')}>
-                {fullProductData?.productData && productData && (
-                    <div>
-                        <div className={cx('main-detail-wrapper')}>
-                            <div className={cx('product-image')}>
-                                <ProductMagnifier
-                                    type={'admin'}
-                                    product={fullProductData?.productData}
-                                    subImg={fullProductData?.subImg}
-                                />
-                            </div>
-                            <div className={cx('product-detail')}>
-                                <ProductDetailDesc
-                                    type={'admin'}
-                                    // full={false}
-                                    brands={brands}
-                                    categories={categories}
-                                    product={fullProductData?.productData}
-                                    feature={fullProductData?.feature}
-                                    rating={fullProductData?.rating}
-                                />
+            {object === 'product' && (
+                <div className={cx('product-detail-container')}>
+                    {fullProductData?.productData && productData && (
+                        <div>
+                            <div className={cx('main-detail-wrapper')}>
+                                <div className={cx('product-image')}>
+                                    <ProductMagnifier
+                                        type={'admin'}
+                                        product={fullProductData?.productData}
+                                        subImg={fullProductData?.subImg}
+                                    />
+                                </div>
+                                <div className={cx('product-detail')}>
+                                    <ProductDetailDesc
+                                        HandleSetProductData={HandleSetProductData}
+                                        handleGetData={handleGetData}
+                                        jwt={jwt}
+                                        type={'admin'}
+                                        brands={brands}
+                                        product={fullProductData?.productData}
+                                        feature={fullProductData?.feature}
+                                        rating={fullProductData?.rating}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )}
-            </div>
+                    )}
+                    {/* <div className={cx('label')}>
+                        <label className={cx('label')} htmlFor="uploadIMG">
+                            uploadIMG:
+                        </label>
+                        <input className={cx('input', 'id-input')} type="file" id="uploadIMG" name="uploadIMG" />
+                    </div> */}
+                </div>
+            )}
         </div>
     );
 };
