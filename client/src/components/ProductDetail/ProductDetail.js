@@ -23,7 +23,7 @@ function ProductDetail(type = 'default') {
         const fetchProduct = await getProductByName(nameproduct);
         // const fetchCategoryName = await getCategoryId(fetchProduct[0].categoryID);
         // console.log('fetchCategoryName', fetchCategoryName);
-        const url = `/product/?page=1&pageSize=10&categoryID=${fetchProduct[0].categoryID}`;
+        const url = `http://localhost:3001/api/v1/product/?page=1&pageSize=10&categoryID=${fetchProduct[0].categoryID}`;
         const fetchProductCategory = await getAllProducts(url);
         const fetchSubImg = await getSubImgByProduct(fetchProduct[0].productID);
         const fetchFeature = await getFeatureByProductID(fetchProduct[0].productID);
