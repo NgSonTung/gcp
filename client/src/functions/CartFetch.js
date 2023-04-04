@@ -32,7 +32,7 @@ export const deleteProductInCart = (url) => {
     });
 };
 
-export const insertProductToCart = (url = '', cart_product) => {
+export const insertProductToCart = (url, cart_product) => {
     if (url === '') {
         url = 'http://localhost:3001/api/v1/checkout/';
     }

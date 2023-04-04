@@ -9,10 +9,10 @@ import { useDispatch } from 'react-redux';
 const cx = classNames.bind(style);
 
 const ItemInCart = (props) => {
-    const { product } = props;
+    const { product, productImage } = props;
     const [number, setNumber] = useState();
     const dispatch = useDispatch();
-    // console.log('product', product);
+    // console.log(product);
     useEffect(() => {
         setNumber(product.amount);
     }, [product]);
@@ -62,7 +62,7 @@ const ItemInCart = (props) => {
                 <Row className={cx('row')}>
                     <Col xs={4} sm={4} md={4} lg={4} className={cx('col-item-img')}>
                         <div className={cx('img-product')}>
-                            <img src={product.image} alt="img-product" />
+                            <img src={productImage} alt="img-product" />
                         </div>
                     </Col>
                     <Col xs={8} sm={8} md={8} lg={8} className={cx('col-item-detail')}>

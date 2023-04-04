@@ -16,8 +16,8 @@ const cx = classNames.bind(styles);
 // };
 
 function ProductDetailDesc(props) {
-    const { brands, categories, type = 'default', product, feature, rating, full = true, className } = props;
-    // console.log(product);
+    const { brands, type = 'default', product, feature, rating, full = true, className } = props;
+    console.log(product);
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
     const getBrandNameById = (brandID) => {
@@ -54,12 +54,11 @@ function ProductDetailDesc(props) {
                 theme: 'colored',
             });
             //handle buy
-            if (product.qty === undefined) {
-                product.qty = 1;
-            }
+            product.amount = count;
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
+                url: 'http://localhost:3001/api/v1/checkout',
             };
             dispatch(action);
             setCount(0);
@@ -92,14 +91,15 @@ function ProductDetailDesc(props) {
                 theme: 'colored',
             });
         } else {
-            if (product.amount === undefined) {
-                product.amount = 1;
-            }
+            product.amount = count;
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
+                url: 'http://localhost:3001/api/v1/checkout',
             };
             dispatch(action);
+
+            // window.location.href = 'http://localhost:3000/checkout';
         }
 
         //move to checkout page

@@ -3,7 +3,6 @@ const initialState = {
     cartItem: [],
     total: 0,
     cartID: -1,
-    CartID: -1,
 };
 
 const CartReducer = (state = initialState, action) => {
@@ -20,7 +19,7 @@ const CartReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_TO_CART': {
             const productExists = state.cartItem.some((p) => p.productID === data.productID);
-            // console.log(' ADD_TO_CART', product);
+            console.log(' ADD_TO_CART', data);
             if (!productExists) {
                 // console.log('not productExists');
                 data.amount = 1;
@@ -34,13 +33,17 @@ const CartReducer = (state = initialState, action) => {
                     total: totalPrice,
                 };
             } else {
-                // console.log('productExists');
+                console.log('productExists', data);
                 const newCart = state.cartItem;
                 const Index = newCart.findIndex((p) => p.productID === data.productID);
                 if (newCart[Index].amount === undefined) {
                     newCart[Index].amount = 1;
                 } else {
-                    newCart[Index].amount += 1;
+                    if (data.amount > 0) {
+                        newCart[Index].amount += data.amount;
+                    } else {
+                        newCart[Index].amount += 1;
+                    }
                 }
                 const productChange = newCart[Index];
                 updateInCart(action.url, productChange);
