@@ -38,6 +38,20 @@ $buttonWidth: 5rem;
             font-size: 1.5rem;
             color: rgba(0, 0, 0, 0.561);
         }
+        .product_feature_admin {
+            font-size: 1.5rem;
+            color: rgb(0, 0, 0);
+            background-color: rgba(233, 233, 233, 0.973);
+        }
+        .product-feature-add {
+            font-size: 1.5rem;
+            background-color: white;
+            border-radius: 100rem;
+            border: rgb(224, 224, 224) 1px solid;
+            height: 4rem;
+            width: 100%;
+            align-items: center;
+        }
     }
 
     .counter {
@@ -100,4 +114,10 @@ $buttonWidth: 5rem;
 
 .disable {
     background-color: #f7f6f6 !important;
+}
+
+.input {
+    background-color: rgb(255, 255, 255);
+    border: 1px rgb(211, 211, 211) solid;
+    padding: 1rem;
 }

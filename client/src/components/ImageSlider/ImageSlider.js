@@ -48,7 +48,7 @@ const ImageSlider = ({ images, subImg = true, className, autoPlay = true, onImag
                     },
                 }}
             >
-                {images.map((image, index) => (
+                {images?.map((image, index) => (
                     <SwiperSlide key={index} className={cx('swiper-item')}>
                         <div className={cx('image-wrapper')}>
                             <img

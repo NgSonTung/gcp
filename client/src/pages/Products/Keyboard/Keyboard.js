@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import * as ProductFetch from '~/functions/ProductFetch';
 import classNames from 'classnames/bind';
 import style from './Keyboard.module.scss';
+
 const cx = classNames.bind(style);
 
 function Keyboard() {
@@ -34,5 +35,4 @@ function Keyboard() {
         </div>
     );
 }
-
 export default Keyboard;

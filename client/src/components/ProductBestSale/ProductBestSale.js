@@ -51,7 +51,7 @@ const ProductBestSale = (props) => {
                             },
                         }}
                     >
-                        {data.map((item, index) => (
+                        {data?.map((item, index) => (
                             <SwiperSlide //khung nho hon chua item
                                 key={index}
                                 className={cx('swiper-item')}
