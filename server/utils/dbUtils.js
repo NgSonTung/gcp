@@ -251,6 +251,9 @@ exports.getFilterProductsQuery = (
               } else if (criteriaOperator === "eq") {
                 operator = "=";
                 criterialVal = filter[criteria]["eq"];
+              } else if (criteriaOperator === "gt") {
+                operator = ">";
+                criterialVal = filter[criteria]["gt"];
               }
 
               if (operator && criterialVal) {

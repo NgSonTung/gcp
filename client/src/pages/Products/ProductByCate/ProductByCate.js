@@ -4,10 +4,10 @@ import ListProduct from '../../../components/ListProduct/index';
 import { useParams } from 'react-router-dom';
 import * as ProductFetch from '~/functions/ProductFetch';
 import classNames from 'classnames/bind';
-import style from './Keyboard.module.scss';
+import style from './ProductByCate.module.scss';
 const cx = classNames.bind(style);
 
-function Keyboard() {
+function ProductByCate() {
     const { categoryName } = useParams();
     console.log(categoryName);
     const [products, setProducts] = useState([]);
@@ -35,4 +35,4 @@ function Keyboard() {
     );
 }
 
-export default Keyboard;
+export default ProductByCate;

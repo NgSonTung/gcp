@@ -4,6 +4,10 @@ import MainLayout from './Layouts/MainLayout/MainLayout';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import { Fragment } from 'react';
 import SearchCatalog from './pages/SearchCatalog/SearchCatalog';
+import Keyboard from './pages/Products/Keyboard/Keyboard';
+import Laptop from './pages/Products/Laptop/Laptop';
+import AllProducts from './pages/Products/AllProducts/AllProducts';
+import ProductByCate from './pages/Products/ProductByCate/ProductByCate';
 
 function App() {
     return (
@@ -23,6 +27,48 @@ function App() {
                                     element={
                                         <Layout>
                                             <ProductDetail />
+                                        </Layout>
+                                    }
+                                />
+                            );
+                        }
+
+                        if (route.component === Keyboard) {
+                            return (
+                                <Route
+                                    key={index}
+                                    path="/keyboard/:categoryName"
+                                    element={
+                                        <Layout>
+                                            <Page />
+                                        </Layout>
+                                    }
+                                />
+                            );
+                        }
+
+                        if (route.component === ProductByCate) {
+                            return (
+                                <Route
+                                    key={index}
+                                    path="/category/:categoryName"
+                                    element={
+                                        <Layout>
+                                            <ProductByCate />
+                                        </Layout>
+                                    }
+                                />
+                            );
+                        }
+
+                        if (route.component === AllProducts) {
+                            return (
+                                <Route
+                                    key={index}
+                                    path="/allProducts/:categoryName"
+                                    element={
+                                        <Layout>
+                                            <AllProducts />
                                         </Layout>
                                     }
                                 />

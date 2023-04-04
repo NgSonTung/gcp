@@ -119,11 +119,11 @@ const Header = () => {
                         <Link to={config.routes.home}>
                             <li>Home</li>
                         </Link>
-                        <Link to={config.routes.allProducts}>
+                        <Link to={'/allProducts/allProducts'}>
                             <li>All Products</li>
                         </Link>
                         {categories?.map((item) => (
-                            <Link key={item?.categoryID} to={`/${item?.categoryName}`}>
+                            <Link key={item?.categoryID} to={`/category/${item?.categoryName}`}>
                                 <li>{item?.categoryName}</li>
                             </Link>
                         ))}

@@ -15,7 +15,6 @@ exports.getProducts = async (req, res) => {
     console.log("cc", req.query);
   }
   const products = await ProductDAO.getAllProducts(req.query);
-  // console.log(products);
   res.status(200).json({
     code: 200,
     msg: "OK",

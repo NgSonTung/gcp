@@ -15,6 +15,7 @@ import Slider from '@mui/material/Slider';
 import { getAllProducts } from '~/functions/Fetch';
 import { getAllBrands } from '~/functions/BrandFetch';
 import { fortmatCurrency } from '~/utils/FormatCurrency';
+import { useParams } from 'react-router-dom';
 const brands = ['Apple', 'Xiaomi', 'Samsung', 'Vivo', 'Hp', 'Asus', 'Oppo', 'Acer', 'Linksys', 'Mesh'];
 
 const cx = classNames.bind(style);
@@ -25,6 +26,7 @@ export const ListProduct = (props) => {
         ColOnPerRowMiddle = 3,
         ColOnPerRowLarge = 3,
         ColOnPerRowExtraLarge = 2,
+        categoryName,
     } = props;
 
     const [productData, setProductDatas] = useState([]);
@@ -44,21 +46,22 @@ export const ListProduct = (props) => {
 
     const handleGetBrandsAPI = async () => {
         const fetchedResult = await getAllBrands();
-        const data = await fetchedResult.data.brands;
+        const data = await fetchedResult?.data?.brands;
         setBrands(data);
     };
 
     const handleFilterProduct = (page) => {
         let filteredURL = `http://localhost:3001/api/v1/product/?page=${page}&pageSize=${productPerPage}&`;
+        if (categoryName !== 'allProducts' && categoryName !== undefined) {
+            filteredURL += `&categoryName=${categoryName}`;
+        }
         if (brandFilter.length > 0) {
             let i = 0;
             for (i; i < brandFilter.length; i++) {
                 if (i <= 0) {
-                    filteredURL += 'brandID=' + `${brandFilter[i]}`;
-                    console.log(filteredURL);
+                    filteredURL += '&brandID=' + `${brandFilter[i]}`;
                 } else {
                     filteredURL += '&brandID=' + `${brandFilter[i]}`;
-                    console.log(filteredURL);
                 }
             }
         }
@@ -70,6 +73,7 @@ export const ListProduct = (props) => {
             } else if (priceRange[0] === priceRange[1]) {
                 filteredURL += `&price[gte]=${priceRange[0] * 1}`;
             }
+            console.log(filteredURL);
         }
         if (productKeyword.length > 0) {
             filteredURL += `&name=${productKeyword}`;
@@ -87,13 +91,14 @@ export const ListProduct = (props) => {
         const result = fetchedData?.data?.products?.dataProducts;
         await setProductDatas(result);
         await setTotalProduct(fetchedData?.data?.products?.totalProduct);
-        await setCurrentPage(fetchedData.data.products.page);
+        await setCurrentPage(fetchedData?.data?.products?.page);
     };
 
     useEffect(() => {
         handleFilterProduct();
         handleGetData();
-    }, [sortKey]);
+        console.log(categoryName);
+    }, [sortKey, categoryName]);
 
     useEffect(() => {
         handleGetData();
@@ -106,10 +111,6 @@ export const ListProduct = (props) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
-    useEffect(() => {
-        console.log(brands);
-    });
 
     const handleChangeLayout = (num) => {
         num === 1 ? setActiveLayoutType(true) : setActiveLayoutType(false);

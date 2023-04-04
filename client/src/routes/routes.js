@@ -13,6 +13,8 @@ import ProductDetail from '~/components/ProductDetail/ProductDetail';
 import CheckoutPage from '~/pages/CheckoutPage/CheckoutPage';
 import Admin from '~/pages/Admin/Admin';
 import SearchCatalog from '~/pages/SearchCatalog/SearchCatalog';
+import ProductByCate from '~/pages/Products/ProductByCate/ProductByCate';
+
 // Public Routes
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -25,6 +27,7 @@ const publicRoutes = [
     { path: config.routes.tablet, component: Tablet },
     { path: config.routes.product, component: ProductDetail },
     { path: config.routes.checkout, component: CheckoutPage },
+    { path: config.routes.productByCate, component: ProductByCate },
     // { path: config.routes.checkout, component: CheckoutPage },
 
     { path: config.routes.admin, component: Admin, layout: null },
