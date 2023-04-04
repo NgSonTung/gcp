@@ -8,7 +8,7 @@ export const getAllProducts = (url) => {
         url = 'product/?page=1&pageSize=10';
     }
     return axios
-        .get(`${url}`)
+        .get(`http://localhost:3001/api/v1${url}`)
         .then((res) => {
             // console.log(url);
             // console.log(res.data);
@@ -20,7 +20,7 @@ export const getAllProducts = (url) => {
 export const getProductByName = (name) => {
     // console.log(name);
     return axios
-        .get(`/product/?page=1&pageSize=1`, { params: { name: name } })
+        .get(`http://localhost:3001/api/v1/product/?page=1&pageSize=1`, { params: { name: name } })
         .then((res) => {
             return res.data.data.products.dataProducts;
         })
