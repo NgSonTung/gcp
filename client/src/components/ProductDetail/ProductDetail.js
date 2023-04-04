@@ -14,6 +14,7 @@ import { getSubImgByProduct } from '~/functions/SubImgFetch';
 import { getFeatureByProductID } from '~/functions/FeatureFetch';
 import { getRatingByProductId } from '~/functions/RatingFetch';
 import { getCategoryId } from '~/functions/CategoryFetch';
+import { getAllBrands } from '~/functions/BrandFetch';
 const cx = classNames.bind(styles);
 
 function ProductDetail(type = 'default') {
@@ -23,18 +24,23 @@ function ProductDetail(type = 'default') {
         const fetchProduct = await getProductByName(nameproduct);
         // const fetchCategoryName = await getCategoryId(fetchProduct[0].categoryID);
         // console.log('fetchCategoryName', fetchCategoryName);
-        const url = `http://localhost:3001/api/v1/product/?page=1&pageSize=10&categoryID=${fetchProduct[0].categoryID}`;
-        const fetchProductCategory = await getAllProducts(url);
+        const urlCate = `http://localhost:3001/api/v1/product/?page=1&pageSize=10&categoryID=${fetchProduct[0].categoryID}`;
+        const fetchProductCategory = await getAllProducts(urlCate);
+        const urlBrand = `http://localhost:3001/api/v1/product/?page=1&pageSize=10&brandID=${fetchProduct[0].brandID}`;
+        const fetchProductBrand = await getAllProducts(urlBrand);
         const fetchSubImg = await getSubImgByProduct(fetchProduct[0].productID);
         const fetchFeature = await getFeatureByProductID(fetchProduct[0].productID);
         const fetchRating = await getRatingByProductId(fetchProduct[0].productID);
+        const fetchBrand = await getAllBrands();
+
         setData({
             productData: fetchProduct,
             subImg: fetchSubImg,
             feature: fetchFeature,
             rating: fetchRating.data.rating,
             similarItems: fetchProductCategory.data.products.dataProducts,
-            // CategoryName: fetchCategoryName,
+            brands: fetchBrand.data.brands,
+            similarItemsByBrand: fetchProductBrand.data.products.dataProducts,
         });
     };
     console.log(data);
@@ -45,7 +51,7 @@ function ProductDetail(type = 'default') {
     const navItems = [
         {
             title: 'sản phẩm cùng loại',
-            component: <ProductBestSale data={data?.similarItems} title={'DEMO'} srcImg={''} banner={false} />,
+            component: <ProductBestSale data={data?.similarItems} srcImg={''} banner={false} />,
         },
         {
             title: 'điểm nổi bật',
@@ -60,12 +66,12 @@ function ProductDetail(type = 'default') {
     // const similarItems = data.filter((item) => item.category === product?.category);
     // const favItems = data.filter((item) => item.favorite === true);
 
-    // const defaultNavItems = [
-    //     {
-    //         title: 'yêu thích',
-    //         component: <ProductBestSale data={favItems} title={product?.category} srcImg={''} banner={false} />,
-    //     },
-    // ];
+    const defaultNavItems = [
+        {
+            title: 'sản phẩm cùng hãng',
+            component: <ProductBestSale data={data?.similarItemsByBrand} srcImg={''} banner={false} />,
+        },
+    ];
 
     return (
         <div className={cx('product-detail-container')}>
@@ -80,11 +86,12 @@ function ProductDetail(type = 'default') {
                                 product={data?.productData[0]}
                                 feature={data?.feature}
                                 rating={data?.rating}
+                                brands={data?.brands}
                             />
                         </div>
                     </div>
                     <NavTitle className={cx('product-nav')} navItems={navItems} />
-                    {/* <NavTitle className={cx('product-nav')} navItems={defaultNavItems} /> */}
+                    <NavTitle className={cx('product-nav')} navItems={defaultNavItems} />
                 </div>
             )}
         </div>

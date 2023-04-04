@@ -10,8 +10,8 @@ export const getAllProducts = (url) => {
     return axios
         .get(`${url}`)
         .then((res) => {
-            // console.log(url);
-            // console.log(res.data);
+            console.log(url);
+            console.log(res.data);
             return res.data;
         })
         .catch((err) => console.log(err));
