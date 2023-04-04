@@ -13,12 +13,13 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import CusPagination from '../../components/CusPagination/CusPagination';
 import * as FetchFn from '~/functions/Fetch';
 import ProductItem from '~/components/ProductItem/ProductItem';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 const SearchCatalog = () => {
     const { searchvalue } = useParams();
-
+    let navigate = useNavigate();
     const [productSearched, setProductSearched] = useState([]);
     const [searchValue, setSearchValue] = useState(searchvalue);
     const [showLoading, setShowLoading] = useState(false);
@@ -29,34 +30,66 @@ const SearchCatalog = () => {
     const [totalProduct, setTotalProduct] = useState(0);
     const [productPerPage, setProductPerPage] = useState(5);
     const [searchAPI, setSearchAPI] = useState('');
-
+    const [searched, setSearched] = useState(false);
     const handleFilterProduct = (page) => {
         let filteredURL = `http://localhost:3001/api/v1/product/?page=${page}&pageSize=${productPerPage}&`;
-        filteredURL += `&name=${searchValue}`;
-        console.log(searchValue);
+        filteredURL += `name=${searchValue}`;
+        console.log(filteredURL);
         setSearchAPI(filteredURL);
     };
 
     const getSearchedDate = async () => {
         const fetchedData = await FetchFn.getProductByName(searchAPI, searchValue);
         const result = await fetchedData?.data?.products?.dataProducts;
-        await setProductSearched(result);
-        await setCurrentPage(fetchedData.data.products.page);
-        await setTotalProduct(fetchedData?.data?.products?.totalProduct);
+        setProductSearched(result);
+        setCurrentPage(fetchedData.data.products.page);
+        setTotalProduct(fetchedData?.data?.products?.totalProduct);
         console.log(result);
         console.log(fetchedData);
     };
 
-    useEffect(() => {
+    const handleSubmitSearch = (e) => {
+        e.preventDefault();
         handleFilterProduct();
         getSearchedDate();
-    }, [searchAPI]);
-
-    const handleClearInput = () => {
-        setSearchValue('');
-        setProductSearched([]);
-        inputRef.current.focus();
     };
+
+    const handleKeyDown = (e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            console.log(searchValue);
+            navigate(`/searchcatalog/${searchValue}`);
+            handleFilterProduct();
+            getSearchedDate();
+        }
+    };
+
+    // useEffect(() => {
+    //     if (searched) {
+    //         // fetch data immediately after user presses enter
+    //         setSearched(false);
+    //         handleFilterProduct(1);
+    //         getSearchedDate();
+    //     }
+    // }, [searched]);
+
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         await handleFilterProduct(currentPage);
+    //         await getSearchedDate();
+    //     }
+    //     fetchData();
+    // }, [currentPage]);
+
+    useEffect(() => {
+        console.log('searchvalue changed');
+        console.log(searchvalue);
+        async function fetchData() {
+            await handleFilterProduct(1);
+            await getSearchedDate();
+        }
+        fetchData();
+    }, []);
 
     const handleInputChange = (e) => {
         const searchValue = e.target.value;
@@ -65,21 +98,13 @@ const SearchCatalog = () => {
         if (!KEY_SPACE.test(searchValue[0])) {
             setSearchValue(searchValue);
         }
+        console.log(searchValue);
     };
 
-    const handleSubmitSearch = (e) => {
-        e.preventDefault();
-        handleFilterProduct(1);
-        getSearchedDate();
-    };
-
-    const handleKeyDown = (e) => {
-        if (e.keyCode === 13) {
-            // check if the pressed key is Enter
-            e.preventDefault();
-            handleFilterProduct(1);
-            getSearchedDate(); // call the function that handles the form submission
-        }
+    const handleClearInput = () => {
+        setSearchValue('');
+        setProductSearched([]);
+        inputRef.current.focus();
     };
 
     return (
@@ -116,7 +141,7 @@ const SearchCatalog = () => {
             <div className={cx('content-wrapper')}>
                 <h1 className={cx('title')}>Được tìm kiếm nhiều nhất</h1>
                 <div className={cx('products-wrapper')}>
-                    {productSearched?.map((item, index) => (
+                    {productSearched.map((item, index) => (
                         <div className={cx('product-item')}>
                             <ProductItem key={index} data={item} />
                         </div>
