@@ -107,3 +107,13 @@ export const deleteProductInCart = (url) => {
         console.log(res);
     });
 };
+
+export const getProductsByCateName = (name) => {
+    const url = `http://localhost:3001/api/v1/product/?page=1&pageSize=20&categoryName=${name}`;
+    return axios
+        .get(url)
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => console.log(err));
+};

@@ -4,6 +4,7 @@ import ProductBestSale from '~/components/ProductBestSale/index';
 import NavTitle from '~/components/NavTitle/index';
 import { useState, useEffect } from 'react';
 import * as ProductFetch from '~/functions/Fetch';
+
 const cx = classNames.bind(styles);
 
 function HomeProductBestSale(props) {
@@ -15,10 +16,9 @@ function HomeProductBestSale(props) {
     }, []);
 
     const getProducts = async () => {
-        const fetchedResult = await ProductFetch.getAllProductsNonPage('');
-        const data = await fetchedResult?.data;
-        const filterProducts = await data?.filter((item) => item.category == cate);
-        await setCateProducts(filterProducts);
+        const fetchedResult = await ProductFetch.getProductsByCateName(cate);
+        const data = await fetchedResult.data.products.dataProducts;
+        await setCateProducts(data);
     };
     const navItems = [
         {
