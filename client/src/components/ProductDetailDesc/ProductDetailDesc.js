@@ -76,16 +76,16 @@ function ProductDetailDesc({
     const handleDecrement = () => {
         if (count > 1) {
             setCount(count - 1);
-            product.qty -= 1;
+            product.amount -= 1;
         }
     };
 
     const handleIncrement = () => {
         setCount(count + 1);
-        if (product.qty === undefined) {
-            product.qty = 1;
+        if (product.amount === undefined) {
+            product.amount = 1;
         } else {
-            product.qty += 1;
+            product.amount += 1;
         }
     };
 
@@ -103,6 +103,7 @@ function ProductDetailDesc({
             });
             //handle buy
             product.amount = count;
+            console.log(product);
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
@@ -147,7 +148,7 @@ function ProductDetailDesc({
             };
             dispatch(action);
 
-            // window.location.href = 'http://localhost:3000/checkout';
+            window.location.href = 'http://localhost:3000/checkout';
         }
 
         //move to checkout page

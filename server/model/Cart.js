@@ -11,7 +11,6 @@ const CartSchema = new ModelSchema(
     userID: new ModelSchemaValidator({
       name: "userID",
       sqlType: sql.Int,
-      require: true,
     }),
   },
   "Cart",
