@@ -14,7 +14,6 @@ import useDebounce from '~/Hooks/useDebounce';
 const cx = classNames.bind(styles);
 
 const Login = ({ classname, ToggleLogin, loginType = 'user' }) => {
-    console.log(loginType);
     const [mode, setMode] = useState('login');
     const [signUpValue, setSignUpValue] = useState('');
     const [userExists, setUserExists] = useState(false);
@@ -78,34 +77,6 @@ const Login = ({ classname, ToggleLogin, loginType = 'user' }) => {
             if (!isMountedRef.current) {
                 isMountedRef.current = true;
             }
-            if (loginType === 'user') {
-                dispatch({
-                    type: 'LOGIN',
-                    payload: {
-                        token,
-                    },
-                });
-            }
-            if (loginType === 'admin' && jwt(token.token).auth !== 1) {
-                toast.error('Vui lòng đăng nhập bằng tài khoản có quyền admin', {
-                    position: 'top-center',
-                    autoClose: 2001,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'colored',
-                });
-            } else {
-                dispatch({
-                    type: 'LOGIN',
-                    payload: {
-                        loginType: loginType,
-                        token,
-                    },
-                });
-            }
             if (token === false) {
                 console.log('login is false');
                 toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
@@ -119,6 +90,12 @@ const Login = ({ classname, ToggleLogin, loginType = 'user' }) => {
                     theme: 'colored',
                 });
             }
+            dispatch({
+                type: 'LOGIN',
+                payload: {
+                    token,
+                },
+            });
         }
     };
 
