@@ -102,12 +102,11 @@ function ProductDetailDesc({
                 theme: 'colored',
             });
             //handle buy
-            if (product.qty === undefined) {
-                product.qty = 1;
-            }
+            product.amount = count;
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
+                url: 'http://localhost:3001/api/v1/checkout',
             };
             dispatch(action);
             setCount(0);
@@ -140,14 +139,15 @@ function ProductDetailDesc({
                 theme: 'colored',
             });
         } else {
-            if (product.amount === undefined) {
-                product.amount = 1;
-            }
+            product.amount = count;
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
+                url: 'http://localhost:3001/api/v1/checkout',
             };
             dispatch(action);
+
+            // window.location.href = 'http://localhost:3000/checkout';
         }
 
         //move to checkout page

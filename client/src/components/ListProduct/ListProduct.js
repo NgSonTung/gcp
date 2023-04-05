@@ -274,7 +274,7 @@ export const ListProduct = (props) => {
                                                                 dataHover={
                                                                     widthWindow < 1060 ? `Thêm` : 'Thêm vào giỏ hàng'
                                                                 }
-                                                                productID={item?.productID}
+                                                                product={item}
                                                             />
                                                         </div>
                                                     </Col>

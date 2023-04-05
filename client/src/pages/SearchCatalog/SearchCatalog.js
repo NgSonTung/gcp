@@ -3,7 +3,7 @@ import styles from './SearchCatalog.module.scss';
 import { useState } from 'react';
 import { CloseIcon, SearchIcon } from '~/Icons/Icons';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import images from '~/assets/images';
 import useDebounce from '~/Hooks/useDebounce';
 import { useRef } from 'react';
@@ -13,12 +13,14 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import CusPagination from '../../components/CusPagination/CusPagination';
 import * as FetchFn from '~/functions/Fetch';
 import ProductItem from '~/components/ProductItem/ProductItem';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
 const SearchCatalog = () => {
-    const { searchvalue } = useParams();
+    let location = useLocation();
+    let searchvalue = new URLSearchParams(location.search).get('name');
     let navigate = useNavigate();
     const [productSearched, setProductSearched] = useState([]);
     const [searchValue, setSearchValue] = useState(searchvalue);
@@ -30,66 +32,65 @@ const SearchCatalog = () => {
     const [totalProduct, setTotalProduct] = useState(0);
     const [productPerPage, setProductPerPage] = useState(5);
     const [searchAPI, setSearchAPI] = useState('');
-    const [searched, setSearched] = useState(false);
     const handleFilterProduct = (page) => {
-        let filteredURL = `http://localhost:3001/api/v1/product/?page=${page}&pageSize=${productPerPage}&`;
-        filteredURL += `name=${searchValue}`;
-        console.log(filteredURL);
-        setSearchAPI(filteredURL);
+        if (searchValue !== '') {
+            let filteredURL = `http://localhost:3001/api/v1/product/?page=${page}&pageSize=${productPerPage}&name=${searchValue}`;
+            setSearchAPI(filteredURL);
+        }
     };
 
-    const getSearchedDate = async () => {
-        const fetchedData = await FetchFn.getProductByName(searchAPI, searchValue);
+    const getSearchedData = async () => {
+        const fetchedData = await FetchFn.getProductByName(searchAPI);
         const result = await fetchedData?.data?.products?.dataProducts;
-        setProductSearched(result);
-        setCurrentPage(fetchedData.data.products.page);
-        setTotalProduct(fetchedData?.data?.products?.totalProduct);
-        console.log(result);
         console.log(fetchedData);
+        setProductSearched(result);
+        setCurrentPage(fetchedData?.data?.products?.page);
+        setTotalProduct(fetchedData?.data?.products?.totalProduct);
     };
 
     const handleSubmitSearch = (e) => {
         e.preventDefault();
-        handleFilterProduct();
-        getSearchedDate();
     };
 
     const handleKeyDown = (e) => {
         if (e.keyCode === 13) {
-            e.preventDefault();
-            console.log(searchValue);
-            navigate(`/searchcatalog/${searchValue}`);
-            handleFilterProduct();
-            getSearchedDate();
+            if (searchValue !== '') {
+                e.preventDefault();
+                navigate(`/searchcatalog/?name=${searchValue}`);
+                handleFilterProduct(1, searchValue);
+                console.log(location);
+                console.log(new URLSearchParams(location.search).get('name'));
+            }
         }
     };
 
-    // useEffect(() => {
-    //     if (searched) {
-    //         // fetch data immediately after user presses enter
-    //         setSearched(false);
-    //         handleFilterProduct(1);
-    //         getSearchedDate();
-    //     }
-    // }, [searched]);
-
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         await handleFilterProduct(currentPage);
-    //         await getSearchedDate();
-    //     }
-    //     fetchData();
-    // }, [currentPage]);
+    useEffect(() => {
+        if (searchValue == '') {
+            async function fetchData() {
+                await getSearchedData();
+            }
+            fetchData();
+        }
+    }, []);
 
     useEffect(() => {
-        console.log('searchvalue changed');
-        console.log(searchvalue);
+        if (searchValue) {
+            async function getData() {
+                await getSearchedData();
+            }
+            getData();
+        }
+
+        console.log(productSearched);
+    }, [searchAPI]);
+
+    useEffect(() => {
         async function fetchData() {
-            await handleFilterProduct(1);
-            await getSearchedDate();
+            handleFilterProduct(currentPage);
+            await getSearchedData();
         }
         fetchData();
-    }, []);
+    }, [currentPage]);
 
     const handleInputChange = (e) => {
         const searchValue = e.target.value;
@@ -98,21 +99,25 @@ const SearchCatalog = () => {
         if (!KEY_SPACE.test(searchValue[0])) {
             setSearchValue(searchValue);
         }
-        console.log(searchValue);
     };
 
     const handleClearInput = () => {
         setSearchValue('');
         setProductSearched([]);
+        setCurrentPage(1);
+        setTotalProduct(0);
+        navigate(`/searchcatalog`);
         inputRef.current.focus();
     };
 
     return (
         <div className={cx('search-container')}>
             <div className={cx('search-input-container')}>
-                <div className={cx('logo')}>
-                    <img src={images.logo} alt="logo" />
-                </div>
+                <Link to={config.routes.home}>
+                    <div className={cx('logo')}>
+                        <img style={{ width: '120px' }} src={require('~/assets/images/logo-page.png')} alt="logo" />
+                    </div>
+                </Link>
                 <div className={cx('search-input')}>
                     <form onSubmit={handleSubmitSearch}>
                         <input
@@ -129,19 +134,13 @@ const SearchCatalog = () => {
                             </button>
                         )}
                         {showLoading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                        <button className={cx('search-icon')} type="submit">
-                            <SearchIcon />
-                        </button>
                     </form>
                 </div>
-                <button className={cx('close-icon')}>
-                    <CloseIcon className={cx('icon')} />
-                </button>
             </div>
             <div className={cx('content-wrapper')}>
                 <h1 className={cx('title')}>Được tìm kiếm nhiều nhất</h1>
                 <div className={cx('products-wrapper')}>
-                    {productSearched.map((item, index) => (
+                    {productSearched?.map((item, index) => (
                         <div className={cx('product-item')}>
                             <ProductItem key={index} data={item} />
                         </div>

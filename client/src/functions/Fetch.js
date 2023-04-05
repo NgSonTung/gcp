@@ -14,10 +14,7 @@ export const getAllProducts = (url) => {
         .catch((err) => console.log(err));
 };
 
-export const getProductByName = (url, searchvalue) => {
-    if (url === '') {
-        url = `http://localhost:3001/api/v1/product/?page=1&pageSize=5&name=${searchvalue}`;
-    }
+export const getProductByName = (url) => {
     return axios
         .get(url)
         .then((res) => {

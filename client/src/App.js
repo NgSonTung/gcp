@@ -76,7 +76,7 @@ function App() {
                         }
 
                         if (route.component === SearchCatalog) {
-                            return <Route key={index} path="/searchcatalog/:searchvalue" element={<SearchCatalog />} />;
+                            return <Route key={index} path="/searchcatalog" element={<SearchCatalog />} />;
                         }
 
                         if (route.layout) {

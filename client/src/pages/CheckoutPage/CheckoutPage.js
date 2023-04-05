@@ -6,17 +6,30 @@ import ItemInCart from './ItemInCart/index';
 import { fortmatCurrency } from '~/utils/FormatCurrency.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceSmileWink } from '@fortawesome/free-solid-svg-icons';
-
+import { getURLImage } from '~/functions/SubImgFetch';
+import { useEffect } from 'react';
+import { useState } from 'react';
 const cx = classNames.bind(style);
 const CheckoutPage = () => {
-    const cartItem = useSelector((state) => state.CartReducer);
-    // useEffect(() => {}, [cartItem]);
-    // console.log('cartItem.total', cartItem);
+    let cartItem = useSelector((state) => state.CartReducer);
+    const [data, setData] = useState(null);
+    useEffect(() => {
+        let item = [];
+        console.log('product', item);
+        let listImage = [];
+        cartItem?.cartItem.forEach((p) => listImage.push(p.image));
+        getURLImage(listImage).then((result) => {
+            for (let i = 0; i < result.length; i++) {
+                item.push({ product: cartItem.cartItem[i], productImage: result[i] });
+            }
+            setData(item);
+        });
+    }, [cartItem]);
     return (
         <div className={cx('check-out-warpper')}>
             <Container className={cx('container-check-out')}>
                 <Row className={cx('row-box')}>
-                    {cartItem.cartItem.length === 0 ? (
+                    {cartItem?.cartItem.length === 0 ? (
                         <>
                             <Col xs={12} sm={12} md={12} lg={12}>
                                 <div className={cx('check-out-infor')}>
@@ -48,15 +61,19 @@ const CheckoutPage = () => {
                                     <div className={cx('box-infor')}>
                                         <>
                                             <span className={cx('title')}> THÔNG TIN ĐƠN HÀNG</span>
-                                            {cartItem.cartItem.map((item, index) => (
-                                                <ItemInCart key={index} product={item} />
+                                            {data?.map((item, index) => (
+                                                <ItemInCart
+                                                    key={index}
+                                                    product={item.product}
+                                                    productImage={item.productImage}
+                                                />
                                             ))}
                                         </>
                                     </div>
-                                    {cartItem.cartItem.length !== 0 && (
+                                    {data?.length !== 0 && (
                                         <div className={cx('total-price-warpper')}>
                                             <span>Thành Tiền :</span>
-                                            <span>{fortmatCurrency(cartItem.total)}</span>
+                                            <span>{fortmatCurrency(cartItem?.total)}</span>
                                         </div>
                                     )}
                                 </div>
