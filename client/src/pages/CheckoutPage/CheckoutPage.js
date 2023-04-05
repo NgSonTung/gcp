@@ -6,23 +6,23 @@ import ItemInCart from './ItemInCart/index';
 import { fortmatCurrency } from '~/utils/FormatCurrency.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFaceSmileWink } from '@fortawesome/free-solid-svg-icons';
-import { getURLImage } from '~/functions/SubImgFetch';
+import { getURLProductImage } from '~/functions/ProductFetch';
 import { useEffect } from 'react';
 import { useState } from 'react';
 const cx = classNames.bind(style);
 const CheckoutPage = () => {
     let cartItem = useSelector((state) => state.CartReducer);
-    console.log('cartItem', cartItem);
     const [data, setData] = useState(null);
+    // console.log('cartItem', data);
     useEffect(() => {
         let item = [];
-        console.log('product', item);
         let listImage = [];
         cartItem?.cartItem.forEach((p) => listImage.push(p.image));
-        getURLImage(listImage).then((result) => {
+        getURLProductImage(listImage).then((result) => {
             for (let i = 0; i < result.length; i++) {
                 item.push({ product: cartItem.cartItem[i], productImage: result[i] });
             }
+
             setData(item);
         });
     }, [cartItem]);

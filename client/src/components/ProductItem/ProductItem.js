@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ProductItem.module.scss';
 import { fortmatCurrency } from '~/utils/FormatCurrency';
-import { getURLImage } from '~/functions/SubImgFetch';
+import { getURLProductImage } from '~/functions/ProductFetch';
 
 const cx = classNames.bind(styles);
 
@@ -13,7 +13,7 @@ function ProductItem(props) {
     const { data, hotTag = false, secondLayout = false } = props;
     const [imageSrc, setImageSrc] = useState(null);
     useEffect(() => {
-        getURLImage([data?.image]).then((result) => setImageSrc(result));
+        getURLProductImage([data?.image]).then((result) => setImageSrc(result));
     }, [data]);
     const [activeShow, setActiveShow] = useState(false);
     const icon = require('~/Icons/index');

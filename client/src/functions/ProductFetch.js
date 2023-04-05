@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 // const dispatch = useDispatch();
 
@@ -89,5 +89,33 @@ export const updateProductById = (id, product, jwt) => {
         .catch((err) => {
             // console.log(err.response);
             return err.response.data.msg;
+        });
+};
+
+export const getURLProductImage = async (listImage, type = 'default') => {
+    let listImageSrc = [];
+    for (let element of listImage) {
+        const response = await getFileProductImage(element);
+        const blob = new Blob([response.data], { type: 'image/jpg' });
+        const blobUrl = URL.createObjectURL(blob);
+        listImageSrc.push(blobUrl);
+    }
+    if (type === 'admin')
+        listImageSrc.push(
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRal66RNJGRaNvsBcwWGY8S9rZO5UPXXpAEwg&usqp=CAU',
+        );
+
+    return listImageSrc;
+};
+
+export const getFileProductImage = (imageName) => {
+    return axios
+        .get(`http://localhost:3001/api/v1/product/getFileProductImage/${imageName}`, { responseType: 'blob' })
+        .then((res) => {
+            console.log(res);
+            return res;
+        })
+        .catch((err) => {
+            return false;
         });
 };

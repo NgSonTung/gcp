@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from 'react';
 import { deleteProductById, addProduct, updateProductById } from '~/functions/ProductFetch';
 import { deleteUserById, addUser2, updateUserById } from '~/functions/UserFetch';
 import DropdownList from 'react-widgets/DropdownList';
-import { postUrlFileImage } from '~/functions/SubImgFetch';
+// import { postUrlFileImage } from '~/functions/SubImgFetch';
 
 const cx = classNames.bind(styles);
 
@@ -26,7 +26,7 @@ const HandleForm = ({
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
         reader.onloadend = async () => {
-            await postUrlFileImage(reader.result.split(',')[1], 'productImages', image.name, productID, alt);
+            // await postUrlFileImage(reader.result.split(',')[1], 'productImages', image.name, productID, alt);
         };
     };
     const brandNames = brands.map((brand) => brand.brandName);

@@ -37,4 +37,9 @@ router
     productController.updateProductById
   );
 
+router
+  .route("/getFileProductImage/:imageName")
+  .get(productController.getFileProductImage);
+
+// router.route("/saveFileImage").post(productController.saveFileImage);
 module.exports = router;

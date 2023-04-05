@@ -10,11 +10,12 @@ export const getSubImgByProduct = (productID) => {
         });
 };
 
-export const getURLImage = async (listImage, type = 'default') => {
+export const getURLSubImage = async (listImage, type = 'default') => {
     let listImageSrc = [];
     for (let element of listImage) {
-        const response = await getFileImage(element);
-        const blob = new Blob([response.data], { type: 'image/jpg' });
+        const response = await getFileSubImage(element);
+        const contentType = response.headers['content-type'];
+        const blob = new Blob([response.data], { type: contentType });
         const blobUrl = URL.createObjectURL(blob);
         listImageSrc.push(blobUrl);
     }
@@ -26,22 +27,11 @@ export const getURLImage = async (listImage, type = 'default') => {
     return listImageSrc;
 };
 
-export const getFileImage = (imageName) => {
+export const getFileSubImage = (imageName) => {
     return axios
-        .get(`http://localhost:3001/api/v1/subimg/getFileImage/${imageName}`, { responseType: 'blob' })
+        .get(`http://localhost:3001/api/v1/subimg/getFileSubImage/${imageName}`, { responseType: 'arraybuffer' })
         .then((res) => {
-            return res;
-        })
-        .catch((err) => {
-            return false;
-        });
-};
-
-export const postUrlFileImage = (blob, folderImage, imageName, productID, alt) => {
-    const infor = { blob: blob, folderImage: folderImage, imageName: imageName, productID: productID, alt: alt };
-    return axios
-        .post(`http://localhost:3001/api/v1/subimg/saveFileImage/`, infor)
-        .then((res) => {
+            console.log(res);
             return res;
         })
         .catch((err) => {

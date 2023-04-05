@@ -3,20 +3,28 @@ import classNames from 'classnames/bind';
 import styles from './ProductMagnifier.module.scss';
 import ImageMagnify from 'react-image-magnify';
 import ImageSlider from '../ImageSlider';
-import { getURLImage } from '~/functions/SubImgFetch';
+import { getURLSubImage } from '~/functions/SubImgFetch';
+import { getURLProductImage } from '~/functions/ProductFetch';
 
 const cx = classNames.bind(styles);
 
 function ProductMagnifier({ type = 'default', product, subImg = [] }) {
-    const [listSrc, setListSrc] = useState(null);
-
-    useEffect(() => {
-        let imageList = [product?.image];
+    const [listSrc, setListSrc] = useState([]);
+    console.log(listSrc);
+    const fetchImage = async () => {
+        let listResult = [];
+        await getURLProductImage([product?.image], type).then((result) => (listResult = [...listResult, ...result]));
+        let subImageList = [];
         subImg?.forEach((obj) => {
-            imageList.push(obj.image);
+            subImageList.push(obj.image);
         });
         //cach dung fetch img
-        getURLImage(imageList, type).then((result) => setListSrc(result));
+        console.log(listResult);
+        await getURLSubImage(subImageList, type).then((result) => (listResult = [...listResult, ...result]));
+        setListSrc([...listResult]);
+    };
+    useEffect(() => {
+        fetchImage();
         setActiveImage(0);
     }, [product]);
     const [activeImage, setActiveImage] = useState(0);
@@ -24,7 +32,7 @@ function ProductMagnifier({ type = 'default', product, subImg = [] }) {
     return (
         <div>
             <div className={cx('product-image-container')}>
-                {listSrc && type !== 'admin' ? (
+                {listSrc.length > 0 && type !== 'admin' ? (
                     <ImageMagnify
                         className={cx('product-image-wrapper')}
                         imageClassName={cx('product-image')}
