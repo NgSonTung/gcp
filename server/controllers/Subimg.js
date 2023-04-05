@@ -141,8 +141,8 @@ exports.getFileImage = (req, res) => {
   } else {
     folderImage = "subImgimages";
   }
-  const id = parseInt(imageName.match(/\d+/)[0]);
-  imageName = `image${id}.jpg`;
+  // const id = parseInt(imageName.match(/\d+/)[0]);
+  // imageName = `image${id}.jpg`;
   const imagePath = path.join(
     __dirname,
     "..",

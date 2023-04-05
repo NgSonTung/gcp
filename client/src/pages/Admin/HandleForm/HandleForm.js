@@ -22,8 +22,7 @@ const HandleForm = ({
     const formRef = useRef();
 
     const HandleUploadProductImg = async (image, productID, alt) => {
-        console.log('anh?', image);
-        const fileBlob = new Blob(image);
+        const fileBlob = new Blob([image]);
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
         reader.onloadend = async () => {
