@@ -113,6 +113,8 @@ const LinkItem = ({ brands, categories, object, HandleAddDelete, checked, jwt, d
                 </div>
                 {showEditForm && (
                     <HandleForm
+                        brands={brands}
+                        categories={categories}
                         jwt={jwt}
                         setDataChange={setDataChange}
                         setShowEditForm={setShowEditForm}

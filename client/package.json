@@ -39,6 +39,7 @@
         "react-router-hash-history": "git+https://github.com/ymzuiku/react-router-hash-history.git",
         "react-scripts": "^5.0.1",
         "react-toastify": "^9.1.1",
+        "react-widgets": "^5.8.4",
         "redux": "^4.2.1",
         "redux-persist": "^6.0.0",
         "sass": "^1.58.3",

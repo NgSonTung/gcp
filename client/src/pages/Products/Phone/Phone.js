@@ -8,20 +8,15 @@ function Phone() {
     const [selectedFile, setSelectedFile] = useState(null);
     // const [listImage,setListImage] = useState(null)
 
-    const handleFile = async (event, folderImage = 'subImgimages', productID, alt) => {
+    const handleFile = async (event, folderImage = 'productImages', productID, alt) => {
         setSelectedFile(event.target.files[0]); // hien thi nguoc lai fe
         const filename = event.target.files[0].name;
+        console.log(event.target.files[0]);
         const fileBlob = new Blob([event.target.files[0]]);
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
         reader.onloadend = async () => {
-            await postUrlFileImage(
-                reader.result.split(',')[1],
-                folderImage,
-                filename,
-                productID,
-                (alt = `image${productID}`),
-            );
+            await postUrlFileImage(reader.result.split(',')[1], folderImage, filename, 1, (alt = `image${productID}`));
         };
     };
     const handleSend = async () => {};

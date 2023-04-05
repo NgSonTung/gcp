@@ -4,9 +4,10 @@ import styles from './ProductMagnifier.module.scss';
 import ImageMagnify from 'react-image-magnify';
 import ImageSlider from '../ImageSlider';
 import { getURLImage } from '~/functions/SubImgFetch';
+
 const cx = classNames.bind(styles);
 
-function ProductMagnifier({ type, product, subImg = [] }) {
+function ProductMagnifier({ type = 'default', product, subImg = [] }) {
     const [listSrc, setListSrc] = useState(null);
 
     useEffect(() => {
@@ -18,13 +19,12 @@ function ProductMagnifier({ type, product, subImg = [] }) {
         getURLImage(imageList, type).then((result) => setListSrc(result));
         setActiveImage(0);
     }, [product]);
-
     const [activeImage, setActiveImage] = useState(0);
 
     return (
         <div>
             <div className={cx('product-image-container')}>
-                {listSrc && (
+                {listSrc && type !== 'admin' ? (
                     <ImageMagnify
                         className={cx('product-image-wrapper')}
                         imageClassName={cx('product-image')}
@@ -50,12 +50,15 @@ function ProductMagnifier({ type, product, subImg = [] }) {
                             shouldUsePositiveSpaceLens: true,
                         }}
                     />
+                ) : (
+                    <img className={cx('product-image-wrapper')} src={listSrc && listSrc[0]} />
                 )}
             </div>
             <ImageSlider
+                admin={type}
                 onImageClick={(index) => setActiveImage(index)}
                 className={cx('sub-img-container')}
-                images={listSrc}
+                images={listSrc && type === 'admin' ? listSrc.slice(1) : listSrc}
                 subImg={false}
                 autoPlay={false}
             />
