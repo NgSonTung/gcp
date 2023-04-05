@@ -12,6 +12,7 @@ import { useState } from 'react';
 const cx = classNames.bind(style);
 const CheckoutPage = () => {
     let cartItem = useSelector((state) => state.CartReducer);
+    console.log('cartItem', cartItem);
     const [data, setData] = useState(null);
     useEffect(() => {
         let item = [];
@@ -82,9 +83,12 @@ const CheckoutPage = () => {
                                 <div className={cx('check-out-address-warpper')}>
                                     <div className={cx('check-out-address')}>
                                         <div className={cx('shipping-details')}>
-                                            <div className={cx('name-details')}></div>
+                                            {/* <div className={cx('name-details')}></div>
                                             <div className={cx('adress-details')}></div>
-                                            <div className={cx('city-details')}></div>
+                                            <div className={cx('city-details')}></div> */}
+                                            <form>
+                                                <input type="submit" value="Submit" />
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -92,9 +96,6 @@ const CheckoutPage = () => {
                         </>
                     )}
                 </Row>
-                {/* <Row>
-                    <Col></Col>
-                </Row> */}
             </Container>
         </div>
     );

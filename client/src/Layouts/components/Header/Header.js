@@ -51,6 +51,11 @@ const Header = () => {
     useEffect(() => {
         if (!loginState && isLoggedIn) {
             HandleLogOut();
+            const action = {
+                type: 'LOAD_DEFAULT_CART_FROM_DB',
+                payload: { product: [] },
+            };
+            dispatch(action);
         }
     }, [loginState]);
     const dispatch = useDispatch();
@@ -65,12 +70,6 @@ const Header = () => {
                 payload: { product: result.result, userID: userID, cartID: cartID },
             };
             // console.log(action);
-            dispatch(action);
-        } else {
-            const action = {
-                type: 'LOAD_DEFAULT_CART_FROM_DB',
-                payload: { product: [] },
-            };
             dispatch(action);
         }
     };
@@ -87,25 +86,25 @@ const Header = () => {
             theme: 'colored',
         });
     }; //get location of cartIcon
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    useEffect(() => {
-        const cartIcon = document.querySelector(`.${cx('cart-btn')}`);
-        const locate = cartIcon.getBoundingClientRect();
-        const location = {
-            type: 'GET_LOCATION',
-            payload: {
-                bottom: locate.bottom,
-                top: locate.top,
-                right: locate.right,
-                left: locate.left,
-            },
-        };
-        dispatch(location);
-    }, [windowWidth]);
+    // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    // useEffect(() => {
+    //     const cartIcon = document.querySelector(`.${cx('cart-btn')}`);
+    //     const locate = cartIcon.getBoundingClientRect();
+    //     const location = {
+    //         type: 'GET_LOCATION',
+    //         payload: {
+    //             bottom: locate.bottom,
+    //             top: locate.top,
+    //             right: locate.right,
+    //             left: locate.left,
+    //         },
+    //     };
+    //     dispatch(location);
+    // }, [windowWidth]);
     useEffect(() => {
         getCategories();
-        window.addEventListener('resize', setWindowWidth);
-        return () => window.removeEventListener('resize', setWindowWidth);
+        // window.addEventListener('resize', setWindowWidth);
+        // return () => window.removeEventListener('resize', setWindowWidth);
     }, []);
     //get the product qty in cart
     const cartReducer = useSelector((state) => state.CartReducer);

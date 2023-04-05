@@ -67,7 +67,7 @@ go
 
 create table Cart(
 cartID int identity(1,1) primary key,
-userID int not null constraint FK_Cart references Users(userID) unique,
+userID int constraint FK_Cart references Users(userID) unique,
 createdAt       datetime default CURRENT_TIMESTAMP not null
 )
 create table Cart_Product (
@@ -90,6 +90,12 @@ createdAt       datetime default CURRENT_TIMESTAMP not null
  )
 go 
 
+create table Bill (
+	billID int identity(1,1) primary key,
+	cartID int constraint FK_BIll_Cart_Product references Cart_Product(cartID)
+)
+
+go
 CREATE TRIGGER tr_product_delete
 ON product
 INSTEAD OF DELETE

@@ -7,6 +7,7 @@ const initialState = {
 
 const CartReducer = (state = initialState, action) => {
     const data = action.payload;
+    console.log('data reducer', action);
     const updateInCart = async (url, productUpdated) => {
         await CartFetch.updateProductInCart(url, productUpdated);
     };
@@ -22,11 +23,16 @@ const CartReducer = (state = initialState, action) => {
             console.log(' ADD_TO_CART', data);
             if (!productExists) {
                 // console.log('not productExists');
-                data.amount = 1;
+                if (data.amount === undefined) {
+                    data.amount = 1;
+                }
+
                 const newCart = [...state.cartItem, data];
                 const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
                 data.cartID = state.cartID;
-                insertInCart(action.url, data);
+                if (data.cartID && data.cartID > 0) {
+                    insertInCart(action.url, data);
+                }
                 return {
                     ...state,
                     cartItem: [...newCart],
@@ -46,7 +52,9 @@ const CartReducer = (state = initialState, action) => {
                     }
                 }
                 const productChange = newCart[Index];
-                updateInCart(action.url, productChange);
+                if (data.cartID && data.cartID > 0) {
+                    updateInCart(action.url, productChange);
+                }
                 const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
                 return {
                     ...state,
@@ -62,8 +70,9 @@ const CartReducer = (state = initialState, action) => {
             url += `/${newCart[index].productID}`;
             newCart.splice(index, 1);
             const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
-            deleteInCart(url);
-
+            if (data.cartID && data.cartID > 0) {
+                deleteInCart(url);
+            }
             return {
                 ...state,
                 cartItem: [...newCart],
@@ -79,7 +88,9 @@ const CartReducer = (state = initialState, action) => {
             });
             const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
             const productChange = newCart.find((p) => p.productID === data.productID);
-            updateInCart(action.url, productChange);
+            if (data.cartID && data.cartID > 0) {
+                updateInCart(action.url, productChange);
+            }
             return {
                 ...state,
                 cartItem: [...newCart],
