@@ -1,14 +1,49 @@
 import classNames from 'classnames/bind';
+import 'react-widgets/scss/styles.scss';
 import styles from './HandleForm.module.scss';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { deleteProductById, addProduct, updateProductById } from '~/functions/ProductFetch';
 import { deleteUserById, addUser2, updateUserById } from '~/functions/UserFetch';
+import DropdownList from 'react-widgets/DropdownList';
+import { postUrlFileImage } from '~/functions/SubImgFetch';
 
 const cx = classNames.bind(styles);
 
-const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', object = 'default' }) => {
+const HandleForm = ({
+    brands = [],
+    categories = [],
+    jwt,
+    data,
+    setDataChange,
+    setShowEditForm,
+    formType = '',
+    object = 'default',
+}) => {
     const formRef = useRef();
-    console.log(data);
+
+    const HandleUploadProductImg = async (image, productID, alt) => {
+        console.log('anh?', image);
+        const fileBlob = new Blob(image);
+        const reader = new FileReader();
+        reader.readAsDataURL(fileBlob);
+        reader.onloadend = async () => {
+            await postUrlFileImage(reader.result.split(',')[1], 'productImages', image.name, productID, alt);
+        };
+    };
+    const brandNames = brands.map((brand) => brand.brandName);
+    const getBrandById = (id) => {
+        return brands.find((brand) => brand.brandID == id);
+    };
+    const getBrandByName = (name) => {
+        return brands.find((brand) => brand.brandName == name);
+    };
+    const cateNames = categories.map((category) => category.categoryName);
+    const getCateById = (id) => {
+        return categories.find((category) => category.categoryID == id);
+    };
+    const getCateByName = (name) => {
+        return categories.find((category) => category.categoryName == name);
+    };
     const HandleAddItem = () => {
         const currentForm = formRef.current;
         let item;
@@ -19,9 +54,9 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                 name: currentForm.name.value,
                 image: currentForm.image.value,
                 favorite: currentForm.favorite.value === 'on' ? 1 : 0,
-                brand: currentForm.brand.value,
+                brandID: getBrandByName(currentForm.brand.value).brandID,
                 price: Number(currentForm.price.value),
-                category: currentForm.category.value,
+                categoryID: getCateByName(currentForm.category.value).categoryID,
                 description: currentForm.description.value,
                 sale: currentForm.sale.value,
             };
@@ -43,20 +78,27 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
 
     const HandleUpdateProduct = () => {
         const currentForm = formRef.current;
+        const image = currentForm.image.files[0];
         let item;
         let msgPromise;
+        console.log('file', currentForm.image.files[0]);
         if (object === 'product') {
             item = {
                 stock: Number(currentForm.stock.value),
-                name: currentForm.name.value,
-                image: currentForm.image.value,
+                // name: currentForm.name.value,
+                image: image.name,
                 favorite: currentForm.favorite.value === 'on' ? 1 : 0,
-                brand: currentForm.brand.value,
+                brandID: getBrandByName(currentForm.brand.value).brandID,
                 price: Number(currentForm.price.value),
-                category: currentForm.category.value,
+                categoryID: getCateByName(currentForm.category.value).categoryID,
                 description: currentForm.description.value,
                 sale: currentForm.sale.value,
             };
+            HandleUploadProductImg(
+                image,
+                Number(currentForm.productID.value),
+                `product${Number(currentForm.productID.value)}Img`,
+            );
             msgPromise = updateProductById(Number(currentForm.productID.value), item, jwt);
         } else if (object === 'user') {
             item = {
@@ -103,7 +145,6 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                 break;
         }
     };
-
     return (
         <div className={cx('form-wrapper')}>
             <div onClick={() => setShowEditForm(false)} className={cx('form-background')} />
@@ -120,7 +161,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             id="productID"
                             name="productID"
                             placeholder="vd:101"
-                            // required
+                            required
                             readOnly
                         />
                         <label className={cx('label')} htmlFor="productID">
@@ -132,7 +173,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             id="createdAt"
                             name="createdAt"
                             placeholder="vd:2023-03-30T14:43:59.803Z"
-                            // required
+                            required
                             readOnly
                         />
                         <label className={cx('label')} htmlFor="name">
@@ -144,7 +185,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="text"
                             id="name"
                             name="name"
-                            // required
+                            required
                             placeholder="vd:latop XYZ100"
                         />
                         <div>
@@ -168,7 +209,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="number"
                             id="stock"
                             name="stock"
-                            // required
+                            required
                             placeholder="vd:100"
                         />
                         <label className={cx('label')} htmlFor="sale">
@@ -183,28 +224,25 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             placeholder="vd:10%"
                         />
                         <label className={cx('label')} htmlFor="image">
-                            Image Link:
+                            {`Image: ${data.image}.jpg`}
                         </label>
                         <input
-                            className={cx('input')}
-                            defaultValue={data.image}
-                            type="text"
+                            className={cx('input-file')}
+                            type="file"
                             id="image"
                             name="image"
-                            // required
+                            required
                             placeholder="vd:abc.com"
                         />
                         <label className={cx('label')} htmlFor="brand">
                             Brand:
                         </label>
-                        <input
-                            className={cx('input')}
-                            defaultValue={data.brand}
-                            type="text"
+                        <DropdownList
+                            defaultValue={getBrandById(data.brandID)?.brandName}
+                            data={brandNames}
+                            placeholder="Chọn brand"
                             id="brand"
                             name="brand"
-                            // required
-                            placeholder="vd:apple"
                         />
                         <label className={cx('label')} htmlFor="price">
                             Price:
@@ -215,20 +253,18 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="number"
                             id="price"
                             name="price"
-                            // required
+                            required
                             placeholder="vd:1000"
                         />
                         <label className={cx('label')} htmlFor="category">
                             Category:
                         </label>
-                        <input
-                            className={cx('input')}
-                            defaultValue={data.category}
-                            type="text"
+                        <DropdownList
+                            defaultValue={getCateById(data.categoryID)?.categoryName}
+                            data={cateNames}
+                            placeholder="Chọn category"
                             id="category"
                             name="category"
-                            // required
-                            placeholder="vd:laptop"
                         />
                         <label className={cx('label')} htmlFor="description">
                             Description:
@@ -239,7 +275,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="text"
                             id="description"
                             name="description"
-                            // required
+                            required
                             placeholder="vd:laptop nay cuc manh "
                         />
                     </div>
@@ -255,7 +291,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             id="userID"
                             name="userID"
                             placeholder="vd:101"
-                            // required
+                            required
                             readOnly
                         />
                         <label className={cx('label')} htmlFor="userID">
@@ -267,7 +303,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             id="createdAt"
                             name="createdAt"
                             placeholder="vd:2023-03-30T14:43:59.803Z"
-                            // required
+                            required
                             readOnly
                         />
                         <label className={cx('label')} htmlFor="userName">
@@ -279,7 +315,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             type="text"
                             id="userName"
                             name="userName"
-                            // required
+                            required
                             placeholder="vd: VeryHandsome123"
                         />
                         <label className={cx('label')} htmlFor="password">
@@ -290,7 +326,7 @@ const HandleForm = ({ jwt, data, setDataChange, setShowEditForm, formType = '', 
                             defaultValue={data.password}
                             id="password"
                             name="password"
-                            // required
+                            required
                             placeholder="vd:100"
                         />
                         <div>

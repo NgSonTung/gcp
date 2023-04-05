@@ -49,9 +49,9 @@ function Admin() {
             : setDeleteIds((prevIds) => prevIds.filter((item) => item !== id));
     };
 
-    useEffect(() => {
-        console.log(brands, categories);
-    }, [brands, categories]);
+    // useEffect(() => {
+    //     console.log(brands, categories);
+    // }, [brands, categories]);
 
     const handleGetBrandsnCategories = async () => {
         const fetchedBrands = await getAllBrands();
@@ -115,6 +115,8 @@ function Admin() {
                     {isAdmin && (
                         <div className={cx('content-wrapper')}>
                             <UserAction
+                                brands={brands}
+                                categories={categories}
                                 object={object}
                                 setAllChecked={setAllChecked}
                                 setDeleteIds={setDeleteIds}

@@ -170,7 +170,7 @@ exports.saveFileImage = async (req, res) => {
       res.status(500).json({ error: "Failed to save the file." });
     } else {
       console.log("File saved successfully.");
-      res.status(200).json({ message: "File ssaved successfully." });
+      res.status(200).json({ message: "File saved successfully." });
     }
   });
   let img;
