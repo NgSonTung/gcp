@@ -6,10 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import * as RatingFetch from '~/functions/RatingFetch';
 
 const cx = classNames.bind(styles);
 
-function ProductRating({ ratings }) {
+function ProductRating({ ratings, productID }) {
     const [hoveredStars, setHoveredStars] = useState(0);
     const totalRatings = ratings._5star + ratings._4star + ratings._3star + ratings._2star + ratings._1star;
     let averageRating;
@@ -40,7 +41,19 @@ function ProductRating({ ratings }) {
             progress: undefined,
             theme: 'colored',
         });
+        console.log(starCount);
+        console.log(productID);
         //update db
+        const ratingUpdateInfo = {
+            productID: productID,
+            rating: starCount,
+        };
+        handleRatingProduct(ratingUpdateInfo);
+    };
+
+    const handleRatingProduct = async (updateInfo) => {
+        const result = await RatingFetch.ratingProduct(updateInfo);
+        console.log(result);
     };
 
     return (

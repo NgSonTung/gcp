@@ -78,6 +78,7 @@ function ProductDetailDesc({
             setCount(count - 1);
             product.amount -= 1;
         }
+        console.log(product);
     };
 
     const handleIncrement = () => {
@@ -165,7 +166,7 @@ function ProductDetailDesc({
                 </div>
             )}
             {type !== 'admin' && <p className={cx('product-detail-price')}>{fortmatCurrency(product?.price)}</p>}
-            {full && type !== 'admin' && <ProductRating ratings={rating} />}
+            {full && type !== 'admin' && <ProductRating productID={product?.productID} ratings={rating} />}
             {type !== 'admin' ? (
                 <div className={cx('product-feature-wrapper')}>
                     {feature?.map((feature, id) => (

@@ -19,4 +19,5 @@ router
   );
 router.route("/").post(ratingController.createNewRating);
 router.route("/byProduct/:id").get(ratingController.getRatingByProductId);
+router.route("/add").post(ratingController.updateRatingById);
 module.exports = router;

@@ -102,21 +102,16 @@ exports.deleteRatingById = async (req, res) => {
 
 exports.updateRatingById = async (req, res) => {
   // console.log("Id update", req.params.id);
-  const id = req.params.id * 1;
   try {
     const updateInfo = req.body;
-    let rating = await RatingDAO.getRatingById(id);
-    if (!rating) {
-      return res.status(404).json({
-        code: 404,
-        msg: `Not found rating with Id ${id}!`,
-      });
-    }
-    await RatingDAO.updateRatingById(id, updateInfo);
-    rating = await RatingDAO.getRatingById(id);
+    const productID = updateInfo.productID;
+    delete updateInfo.productID;
+    console.log(updateInfo);
+    await RatingDAO.updateRatingById(productID, updateInfo);
+    rating = await RatingDAO.getRatingByProductId(productID);
     return res.status(200).json({
       code: 200,
-      msg: `Updated rating with id: ${id} successfully!`,
+      msg: `Updated rating with id: ${productID} successfully!`,
       data: {
         rating,
       },
@@ -125,7 +120,7 @@ exports.updateRatingById = async (req, res) => {
     console.log(e);
     res.status(500).json({
       code: 500,
-      msg: `Update rating with id: ${id} failed!`,
+      msg: `Update rating with id failed!`,
     });
   }
 };
