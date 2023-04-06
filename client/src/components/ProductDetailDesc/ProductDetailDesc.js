@@ -50,7 +50,7 @@ function ProductDetailDesc({
     //     console.log();
     // }, [feature]);
     const HandleFeatureUpdate = (id, inputID) => {
-        const newFeature = { feature: formRef.current[inputID].value, productID: feature[0].productID };
+        const newFeature = { feature: formRef.current[inputID].value, productID: product.productID };
         const msgPromise = updateFeatureById(id, newFeature, jwt);
         msgPromise.then((msg) => {
             alert(msg);
@@ -62,7 +62,7 @@ function ProductDetailDesc({
     const HandleSubmit = (e) => {
         e.preventDefault();
         if (formRef.current['newFeature'].value) {
-            const newFeature = { feature: formRef.current['newFeature'].value, productID: feature[0].productID };
+            const newFeature = { feature: formRef.current['newFeature'].value, productID: product.productID };
             const msgPromise = addFeature(newFeature, jwt);
             msgPromise.then((msg) => {
                 alert(msg);

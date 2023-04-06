@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from 'react';
 import { deleteProductById, addProduct, updateProductById } from '~/functions/ProductFetch';
 import { deleteUserById, addUser2, updateUserById } from '~/functions/UserFetch';
 import DropdownList from 'react-widgets/DropdownList';
-// import { postUrlFileImage } from '~/functions/SubImgFetch';
+import { postUrlFileImage } from '~/functions/Upload';
 
 const cx = classNames.bind(styles);
 
@@ -26,7 +26,7 @@ const HandleForm = ({
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
         reader.onloadend = async () => {
-            // await postUrlFileImage(reader.result.split(',')[1], 'productImages', image.name, productID, alt);
+            await postUrlFileImage(reader.result.split(',')[1], 'productImages', image.name, productID, alt);
         };
     };
     const brandNames = brands.map((brand) => brand.brandName);
@@ -48,23 +48,29 @@ const HandleForm = ({
         let item;
         let msgPromise;
         if (object === 'product') {
+            const image = currentForm.image.files[0];
             item = {
                 stock: Number(currentForm.stock.value),
                 name: currentForm.name.value,
-                image: currentForm.image.value,
-                favorite: currentForm.favorite.value === 'on' ? 1 : 0,
+                image: image.name,
+                favorite: currentForm.favorite.checked ? 1 : 0,
                 brandID: getBrandByName(currentForm.brand.value).brandID,
                 price: Number(currentForm.price.value),
                 categoryID: getCateByName(currentForm.category.value).categoryID,
                 description: currentForm.description.value,
                 sale: currentForm.sale.value,
             };
+            HandleUploadProductImg(
+                image,
+                Number(currentForm.productID.value),
+                `product${Number(currentForm.productID.value)}Img`,
+            );
             msgPromise = addProduct(item, jwt);
         } else if (object === 'user') {
             item = {
                 userName: currentForm.userName.value,
                 password: currentForm.password.value,
-                auth: currentForm.auth.value === 'on' ? 1 : 0,
+                auth: currentForm.auth.checked ? 1 : 0,
                 email: currentForm.email.value,
             };
             msgPromise = addUser2(item);
@@ -77,33 +83,32 @@ const HandleForm = ({
 
     const HandleUpdateProduct = () => {
         const currentForm = formRef.current;
-        const image = currentForm.image.files[0];
         let item;
         let msgPromise;
-        console.log('file', currentForm.image.files[0]);
         if (object === 'product') {
+            const image = currentForm.image.files[0];
             item = {
                 stock: Number(currentForm.stock.value),
-                // name: currentForm.name.value,
-                image: image.name,
-                favorite: currentForm.favorite.value === 'on' ? 1 : 0,
+                name: currentForm.name.value,
+                favorite: currentForm.favorite.checked ? 1 : 0,
                 brandID: getBrandByName(currentForm.brand.value).brandID,
                 price: Number(currentForm.price.value),
                 categoryID: getCateByName(currentForm.category.value).categoryID,
                 description: currentForm.description.value,
                 sale: currentForm.sale.value,
             };
-            HandleUploadProductImg(
-                image,
-                Number(currentForm.productID.value),
-                `product${Number(currentForm.productID.value)}Img`,
-            );
+            image &&
+                HandleUploadProductImg(
+                    image,
+                    Number(currentForm.productID.value),
+                    `product${Number(currentForm.productID.value)}Img`,
+                );
             msgPromise = updateProductById(Number(currentForm.productID.value), item, jwt);
         } else if (object === 'user') {
             item = {
                 userName: currentForm.userName.value,
                 password: currentForm.password.value,
-                auth: currentForm.auth.value === 'on' ? 1 : 0,
+                auth: currentForm.auth.checked ? 1 : 0,
                 email: currentForm.email.value,
             };
             msgPromise = updateUserById(Number(currentForm.userID.value), item, jwt);
@@ -155,7 +160,7 @@ const HandleForm = ({
                         </label>
                         <input
                             className={cx('input', 'id-input')}
-                            defaultValue={data.productID}
+                            defaultValue={data?.productID}
                             type="number"
                             id="productID"
                             name="productID"
@@ -230,7 +235,7 @@ const HandleForm = ({
                             type="file"
                             id="image"
                             name="image"
-                            required
+                            // required
                             placeholder="vd:abc.com"
                         />
                         <label className={cx('label')} htmlFor="brand">

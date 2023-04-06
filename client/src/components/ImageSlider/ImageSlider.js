@@ -8,10 +8,12 @@ import 'swiper/swiper.min.css';
 import { CloseIcon } from '../../Icons/Icons.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { postUrlFileImage } from '~/functions/Upload';
 
 const cx = classNames.bind(styles);
 
 const ImageSlider = ({
+    productID = '',
     admin = 'false',
     images,
     subImg = true,
@@ -27,7 +29,7 @@ const ImageSlider = ({
     const [hoveredIndex, setHoveredIndex] = useState(-1);
 
     const handleHover = (id) => {
-        admin === 'admin' && setHoveredIndex(id);
+        admin === 'admin' && id !== 0 && setHoveredIndex(id);
     };
     const handleUnhover = () => {
         admin === 'admin' && setHoveredIndex(-1);
@@ -39,7 +41,32 @@ const ImageSlider = ({
             fullImg.current.style.opacity = 1;
         }, 10);
     };
+    const HandleUploadSubImg = async (image, productID, alt) => {
+        const fileBlob = new Blob([image]);
+        const reader = new FileReader();
+        reader.readAsDataURL(fileBlob);
+        reader.onloadend = async () => {
+            await postUrlFileImage(reader.result.split(',')[1], 'subImgimages', image.name, productID, alt);
+        };
+    };
     const HandleClick = (id, image) => {
+        if (admin === 'admin') {
+            if (id === 0) {
+                // Create an input element for selecting a file
+                const fileInput = document.createElement('input');
+                fileInput.type = 'file';
+                fileInput.accept = 'image/*';
+                fileInput.style.display = 'none';
+                // Attach a change event listener to the file input to save the selected file
+                fileInput.addEventListener('change', () => {
+                    const img = fileInput.files[0];
+                    HandleUploadSubImg(img, productID, `subImg${productID}`);
+                });
+                // Trigger the file input click event when the first div is clicked
+
+                fileInput.click();
+            }
+        }
         subImg && showImg(image?.url ? image.url : image);
         type === 'product' && onImageClick(id);
     };
