@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 import styles from './ProductDetailDesc.module.scss';
 import ProductRating from '../ProductRating/ProductRating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useRef, useEffect } from 'react';
 import { faShoppingCart, faDollarSign, faTrash, faFileUpload } from '@fortawesome/free-solid-svg-icons';
+import { useRef, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
@@ -76,17 +76,17 @@ function ProductDetailDesc({
     const handleDecrement = () => {
         if (count > 1) {
             setCount(count - 1);
-            product.qty -= 1;
+            product.amount -= 1;
         }
         console.log(product);
     };
 
     const handleIncrement = () => {
         setCount(count + 1);
-        if (product.qty === undefined) {
-            product.qty = 1;
+        if (product.amount === undefined) {
+            product.amount = 1;
         } else {
-            product.qty += 1;
+            product.amount += 1;
         }
     };
 
@@ -103,12 +103,12 @@ function ProductDetailDesc({
                 theme: 'colored',
             });
             //handle buy
-            if (product.qty === undefined) {
-                product.qty = 1;
-            }
+            product.amount = count;
+            console.log(product);
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
+                url: 'http://localhost:3001/api/v1/checkout',
             };
             dispatch(action);
             setCount(0);
@@ -141,14 +141,15 @@ function ProductDetailDesc({
                 theme: 'colored',
             });
         } else {
-            if (product.amount === undefined) {
-                product.amount = 1;
-            }
+            product.amount = count;
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
+                url: 'http://localhost:3001/api/v1/checkout',
             };
             dispatch(action);
+
+            window.location.href = 'http://localhost:3000/checkout';
         }
 
         //move to checkout page

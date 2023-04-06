@@ -6,13 +6,32 @@ import { Autoplay, FreeMode } from 'swiper';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import { CloseIcon } from '../../Icons/Icons.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 const cx = classNames.bind(styles);
 
-const ImageSlider = ({ images, subImg = true, className, autoPlay = true, onImageClick, type = 'product' }) => {
+const ImageSlider = ({
+    admin = 'false',
+    images,
+    subImg = true,
+    className,
+    autoPlay = true,
+    onImageClick,
+    type = 'product',
+}) => {
     const imgView = useRef();
     const fullImg = useRef();
     const [showSubImg, setShowSubImg] = useState(false);
     const [imgURL, setImgURL] = useState('');
+    const [hoveredIndex, setHoveredIndex] = useState(-1);
+
+    const handleHover = (id) => {
+        admin === 'admin' && setHoveredIndex(id);
+    };
+    const handleUnhover = () => {
+        admin === 'admin' && setHoveredIndex(-1);
+    };
     const showImg = (url) => {
         setShowSubImg(true);
         setImgURL(url);
@@ -50,13 +69,21 @@ const ImageSlider = ({ images, subImg = true, className, autoPlay = true, onImag
             >
                 {images?.map((image, index) => (
                     <SwiperSlide key={index} className={cx('swiper-item')}>
-                        <div className={cx('image-wrapper')}>
-                            <img
-                                ref={imgView}
-                                src={image?.url ? image.url : image}
-                                alt={image?.alt}
-                                onClick={() => HandleClick(index, image)}
-                            />
+                        <div
+                            className={cx('image-wrapper')}
+                            onMouseEnter={() => handleHover(index)}
+                            onMouseLeave={handleUnhover}
+                        >
+                            {hoveredIndex !== index ? (
+                                <img
+                                    ref={imgView}
+                                    src={image?.url ? image.url : image}
+                                    alt={image?.alt}
+                                    onClick={() => HandleClick(index, image)}
+                                />
+                            ) : (
+                                <FontAwesomeIcon className={cx('icon')} icon={faTrash} />
+                            )}
                         </div>
                     </SwiperSlide>
                 ))}

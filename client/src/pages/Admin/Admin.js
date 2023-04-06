@@ -14,6 +14,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import CusPagination from '~/components/CusPagination/index';
 import { getAllCategories } from '~/functions/CategoryFetch';
 import { getAllBrands } from '~/functions/BrandFetch';
+import Page401 from '~/components/401/Page401';
 
 // import useDebounce from '~/Hook/useDebounce';
 
@@ -49,9 +50,9 @@ function Admin() {
             : setDeleteIds((prevIds) => prevIds.filter((item) => item !== id));
     };
 
-    useEffect(() => {
-        console.log(brands, categories);
-    }, [brands, categories]);
+    // useEffect(() => {
+    //     console.log(brands, categories);
+    // }, [brands, categories]);
 
     const handleGetBrandsnCategories = async () => {
         const fetchedBrands = await getAllBrands();
@@ -75,7 +76,10 @@ function Admin() {
         }
         setDataChange(false);
     };
-
+    useEffect(() => {
+        console.log('isLoggedIn,', isLoggedIn);
+        console.log('isAdmin', isAdmin);
+    }, [isLoggedIn, isAdmin]);
     useEffect(() => {
         if (!isLoggedIn) {
             setShowLogin(true);
@@ -115,6 +119,8 @@ function Admin() {
                     {isAdmin && (
                         <div className={cx('content-wrapper')}>
                             <UserAction
+                                brands={brands}
+                                categories={categories}
                                 object={object}
                                 setAllChecked={setAllChecked}
                                 setDeleteIds={setDeleteIds}
@@ -144,6 +150,7 @@ function Admin() {
                             />
                         </div>
                     )}
+                    {isLoggedIn && !isAdmin && <Page401 />}
                 </div>
             </div>
             {showLogin && <Login loginType="admin" ToggleLogin={ToggleLogin} />}

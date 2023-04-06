@@ -11,11 +11,7 @@ const Page401 = () => {
         <div>
             <div className={cx('wrapper')}>
                 <img src={require('./401-1.jpg')} alt="401" />
-                <div className={cx('wrapper-text')}>
-                    <div>
-                        <p>Get F****** out</p>
-                    </div>
-                </div>
+                <div className={cx('wrapper-text')}></div>
             </div>
         </div>
     );

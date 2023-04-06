@@ -7,7 +7,7 @@ import FlyingButton from '../../FlyingItem/Fly';
 import { useSelector } from 'react-redux';
 const cx = classNames.bind(style);
 const BuyButton = (props) => {
-    const { srcImg, dataHover = '', productID } = props;
+    const { srcImg, dataHover = '', product } = props;
     const location = useSelector((state) => state.LocationReducer);
     const heightOfWindow = window.innerHeight;
     const widthOfWindow = window.innerWidth;
@@ -21,7 +21,7 @@ const BuyButton = (props) => {
                                 <FontAwesomeIcon icon={faCartPlus} className={cx('cart-icon')} />
                             </div>
                         }
-                        productID={productID}
+                        product={product}
                         src={srcImg}
                         dataHover={dataHover}
                         classForBtn={cx('btn-buy')}

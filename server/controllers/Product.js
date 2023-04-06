@@ -1,6 +1,8 @@
 const ProductDAO = require("../DAO/ProductDAO");
 const CategoryDAO = require("../DAO/CategoryDAO");
-const ProductSchema = require("../model/Product");
+// const ProductSchema = require("../model/Product");
+const path = require("path");
+const fs = require("fs");
 
 exports.getProducts = async (req, res) => {
   console.log("req.query", req.query);
@@ -185,5 +187,65 @@ exports.updateProductById = async (req, res) => {
       code: 500,
       msg: `Update product with id: ${id} failed!`,
     });
+  }
+};
+
+exports.getFileProductImage = (req, res) => {
+  let imageName = req.params.imageName;
+  const dirPath = path.join(
+    __dirname,
+    "..",
+    "dev-data",
+    "productImages"
+    // imageName + ".jpg"
+  );
+  fs.readdir(dirPath, (err, files) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    const matchingFile = files.find((file) => file.startsWith(imageName));
+    if (matchingFile) {
+      const imagePath = path.join(dirPath, matchingFile);
+      console.log(`Found file: ${imagePath}`);
+      const imageStream = fs.createReadStream(imagePath);
+      imageStream.pipe(res);
+    }
+  });
+};
+
+exports.saveFileImage = async (req, res) => {
+  let infor = req.body;
+  const imagePath = path.join(
+    __dirname,
+    "..",
+    "dev-data",
+    infor.folderImage,
+    infor.imageName
+  );
+  const buffer = Buffer.from(infor.blob, "base64");
+  fs.writeFile(imagePath, buffer, (err) => {
+    if (err) {
+      // console.error(err);
+      res.status(500).json({ error: "Failed to save the file." });
+    } else {
+      // console.log("File saved successfully.");
+      res.status(200).json({ message: "File ssaved successfully." });
+    }
+  });
+  let img;
+  if (infor.folderImage == "subImgimages") {
+    img = {
+      image: infor.imageName,
+      alt: infor.alt,
+      productID: infor.productID,
+    };
+    await SubImageDAO.addImage(img);
+  } else {
+    const Name = infor.imageName;
+    img = {
+      image: Name,
+    };
+    await ProductDAO.updateProductById(infor.productID, img);
   }
 };
