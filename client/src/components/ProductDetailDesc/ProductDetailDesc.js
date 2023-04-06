@@ -26,7 +26,6 @@ function ProductDetailDesc({
     type = 'default',
     product,
     feature,
-    rating,
     full = true,
     className,
 }) {
@@ -166,7 +165,7 @@ function ProductDetailDesc({
                 </div>
             )}
             {type !== 'admin' && <p className={cx('product-detail-price')}>{fortmatCurrency(product?.price)}</p>}
-            {full && type !== 'admin' && <ProductRating productID={product?.productID} ratings={rating} />}
+            {full && type !== 'admin' && <ProductRating productID={product?.productID} />}
             {type !== 'admin' ? (
                 <div className={cx('product-feature-wrapper')}>
                     {feature?.map((feature, id) => (

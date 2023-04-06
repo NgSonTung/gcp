@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './ProductRating.module.scss';
 import classNames from 'classnames/bind';
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
@@ -10,24 +10,50 @@ import * as RatingFetch from '~/functions/RatingFetch';
 
 const cx = classNames.bind(styles);
 
-function ProductRating({ ratings, productID }) {
+function ProductRating({ productID }) {
+    const [ratings, setRatings] = useState();
+    const [isRated, setIsRated] = useState(false);
     const [hoveredStars, setHoveredStars] = useState(0);
-    const totalRatings = ratings._5star + ratings._4star + ratings._3star + ratings._2star + ratings._1star;
+    const totalRatings = ratings?._5star + ratings?._4star + ratings?._3star + ratings?._2star + ratings?._1star;
     let averageRating;
-    if (totalRatings !== 0) {
+    if (totalRatings !== 0 && !isNaN(totalRatings)) {
         averageRating =
-            (5 * ratings._5star + 4 * ratings._4star + 3 * ratings._3star + 2 * ratings._2star + 1 * ratings._1star) /
+            (5 * ratings?._5star +
+                4 * ratings?._4star +
+                3 * ratings?._3star +
+                2 * ratings?._2star +
+                1 * ratings?._1star) /
             totalRatings;
-    } else {
+    } else if (isNaN(totalRatings)) {
         averageRating = 0;
     }
 
     const fullStars = Math.floor(averageRating);
-    const halfStars = Math.round(averageRating - fullStars);
+    const halfStars = Math.round(averageRating === 0 ? 0 : averageRating - fullStars);
     const emptyStars = 5 - fullStars - halfStars;
 
     const handleStarHover = (starCount) => {
         setHoveredStars(starCount);
+    };
+
+    useEffect(() => {
+        getProductRating();
+        console.log(ratings);
+        console.log(totalRatings);
+        console.log(averageRating);
+        console.log(fullStars);
+        console.log(halfStars);
+        console.log(
+            [...Array(0)].map((i) => {
+                console.log(i);
+            }),
+        );
+    }, []);
+
+    const getProductRating = async () => {
+        const result = await RatingFetch.getRatingByProductId(productID);
+        const fetchedRatings = await result?.data?.rating;
+        await setRatings(fetchedRatings);
     };
 
     const handleStarClick = (starCount) => {
@@ -52,39 +78,49 @@ function ProductRating({ ratings, productID }) {
     };
 
     const handleRatingProduct = async (updateInfo) => {
-        const result = await RatingFetch.ratingProduct(updateInfo);
-        console.log(result);
+        await RatingFetch.ratingProduct(updateInfo);
+        await getProductRating();
+        console.log(ratings);
     };
 
     return (
         <div className={cx('rating')}>
             <ToastContainer style={{ zIndex: 1 }} />
-            {[...Array(fullStars)].map((_, i) => (
-                <FontAwesomeIcon
-                    key={`star-${i}`}
-                    className={cx('full-star', { highlighted: i + 1 <= hoveredStars })}
-                    icon={faStar}
-                    onMouseEnter={() => handleStarHover(i + 1)}
-                    onMouseLeave={() => handleStarHover(0)}
-                    onClick={() => handleStarClick(i + 1)}
-                />
-            ))}
-            {[...Array(halfStars)].map((_, i) => (
-                <div
-                    className={cx('half-star-wrapper')}
-                    onMouseEnter={() => handleStarHover(fullStars + i + 1)}
-                    onMouseLeave={() => handleStarHover(0)}
-                    onClick={() => handleStarClick(fullStars + i + 1)}
-                    key={`half-star-${i}`}
-                >
-                    <FontAwesomeIcon className={cx('half-star')} icon={faStarHalf} />
+            {console.log([...Array(0)])}
+            {[...Array(fullStars)]?.map((_, i) => {
+                console.log(_, i);
+                return (
                     <FontAwesomeIcon
-                        className={cx('half-star-background', { halfhighlighted: i + fullStars + 1 <= hoveredStars })}
+                        key={`star-${i}`}
+                        className={cx('full-star', { highlighted: i + 1 <= hoveredStars })}
                         icon={faStar}
+                        onMouseEnter={() => handleStarHover(i + 1)}
+                        onMouseLeave={() => handleStarHover(0)}
+                        onClick={() => handleStarClick(i + 1)}
                     />
-                </div>
-            ))}
-            {[...Array(emptyStars)].map((_, i) => (
+                );
+            })}
+            {[...Array(halfStars)]?.map((_, i) => {
+                console.log(_, i);
+                return (
+                    <div
+                        className={cx('half-star-wrapper')}
+                        onMouseEnter={() => handleStarHover(fullStars + i + 1)}
+                        onMouseLeave={() => handleStarHover(0)}
+                        onClick={() => handleStarClick(fullStars + i + 1)}
+                        key={`half-star-${i}`}
+                    >
+                        <FontAwesomeIcon className={cx('half-star')} icon={faStarHalf} />
+                        <FontAwesomeIcon
+                            className={cx('half-star-background', {
+                                halfhighlighted: i + fullStars + 1 <= hoveredStars,
+                            })}
+                            icon={faStar}
+                        />
+                    </div>
+                );
+            })}
+            {[...Array(emptyStars)]?.map((_, i) => (
                 <FontAwesomeIcon
                     key={`empty-star${i}`}
                     className={cx('no-star', { highlighted: i + fullStars + halfStars + 1 <= hoveredStars })}

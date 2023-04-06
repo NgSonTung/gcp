@@ -12,7 +12,6 @@ import ProductBestSale from '../ProductBestSale/';
 import { getProductByName, getAllProducts } from '~/functions/ProductFetch';
 import { getSubImgByProduct } from '~/functions/SubImgFetch';
 import { getFeatureByProductID } from '~/functions/FeatureFetch';
-import { getRatingByProductId } from '~/functions/RatingFetch';
 import { getCategoryId } from '~/functions/CategoryFetch';
 import { getAllBrands } from '~/functions/BrandFetch';
 const cx = classNames.bind(styles);
@@ -22,15 +21,13 @@ function ProductDetail(type = 'default') {
     const { nameproduct } = useParams();
     const handleGetData = async () => {
         const fetchProduct = await getProductByName(nameproduct);
-        const [fetchSubImg, fetchFeature, fetchRating, fetchBrand] = await Promise.all([
+        const [fetchSubImg, fetchFeature, fetchBrand] = await Promise.all([
             getSubImgByProduct(fetchProduct[0]?.productID),
             getFeatureByProductID(fetchProduct[0]?.productID),
-            getRatingByProductId(fetchProduct[0]?.productID),
             getAllBrands(),
         ]);
         // const fetchSubImg = await getSubImgByProduct(fetchProduct[0].productID);
         // const fetchFeature = await getFeatureByProductID(fetchProduct[0].productID);
-        // const fetchRating = await getRatingByProductId(fetchProduct[0].productID);
         // const fetchBrand = await getAllBrands();
         const urlCate = `http://localhost:3001/api/v1/product/?page=1&pageSize=10&categoryID=${fetchProduct[0].categoryID}`;
         const fetchProductCategory = await getAllProducts(urlCate);
@@ -41,7 +38,6 @@ function ProductDetail(type = 'default') {
             productData: fetchProduct,
             subImg: fetchSubImg,
             feature: fetchFeature,
-            rating: fetchRating.data.rating,
             similarItems: fetchProductCategory.data.products.dataProducts,
             brands: fetchBrand.data.brands,
             similarItemsByBrand: fetchProductBrand.data.products.dataProducts,
@@ -93,7 +89,6 @@ function ProductDetail(type = 'default') {
                             <ProductDetailDesc
                                 product={data?.productData[0]}
                                 feature={data?.feature}
-                                rating={data?.rating}
                                 brands={data?.brands}
                             />
                         </div>

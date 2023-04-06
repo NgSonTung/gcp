@@ -10,7 +10,6 @@ const cx = classNames.bind(styles);
 
 function ProductMagnifier({ type = 'default', product, subImg = [] }) {
     const [listSrc, setListSrc] = useState([]);
-    console.log(listSrc);
     const fetchImage = async () => {
         let listResult = [];
         await getURLProductImage([product?.image], type).then((result) => (listResult = [...listResult, ...result]));
@@ -19,7 +18,6 @@ function ProductMagnifier({ type = 'default', product, subImg = [] }) {
             subImageList.push(obj.image);
         });
         //cach dung fetch img
-        console.log(listResult);
         await getURLSubImage(subImageList, type).then((result) => (listResult = [...listResult, ...result]));
         setListSrc([...listResult]);
     };
