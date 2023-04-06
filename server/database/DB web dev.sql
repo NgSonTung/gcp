@@ -91,10 +91,10 @@ createdAt       datetime default CURRENT_TIMESTAMP not null
  )
 go 
 
-create table Bill (
-	billID int identity(1,1) primary key,
-	cartID int constraint FK_BIll_Cart_Product references Cart_Product(cartID)
-)
+-- create table Bill (
+-- 	billID int identity(1,1) primary key,
+-- 	cartID int constraint FK_BIll_Cart_Product references Cart_Product(cartID)
+-- )
 
 go
 CREATE TRIGGER tr_product_delete
