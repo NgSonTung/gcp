@@ -86,9 +86,9 @@ const CheckoutPage = () => {
                                             {/* <div className={cx('name-details')}></div>
                                             <div className={cx('adress-details')}></div>
                                             <div className={cx('city-details')}></div> */}
-                                            <form>
+                                            {/* <form>
                                                 <input type="submit" value="Submit" />
-                                            </form>
+                                            </form> */}
                                         </div>
                                     </div>
                                 </div>

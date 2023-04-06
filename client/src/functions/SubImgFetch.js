@@ -19,10 +19,10 @@ export const getURLSubImage = async (listImage, type = 'default') => {
         const blobUrl = URL.createObjectURL(blob);
         listImageSrc.push(blobUrl);
     }
-    if (type === 'admin')
-        listImageSrc.push(
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRal66RNJGRaNvsBcwWGY8S9rZO5UPXXpAEwg&usqp=CAU',
-        );
+    // if (type === 'admin')
+    //     listImageSrc.push(
+    //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRal66RNJGRaNvsBcwWGY8S9rZO5UPXXpAEwg&usqp=CAU',
+    //     );
 
     return listImageSrc;
 };
