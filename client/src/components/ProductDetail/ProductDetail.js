@@ -23,9 +23,9 @@ function ProductDetail(type = 'default') {
     const handleGetData = async () => {
         const fetchProduct = await getProductByName(nameproduct);
         const [fetchSubImg, fetchFeature, fetchRating, fetchBrand] = await Promise.all([
-            getSubImgByProduct(fetchProduct[0].productID),
-            getFeatureByProductID(fetchProduct[0].productID),
-            getRatingByProductId(fetchProduct[0].productID),
+            getSubImgByProduct(fetchProduct[0]?.productID),
+            getFeatureByProductID(fetchProduct[0]?.productID),
+            getRatingByProductId(fetchProduct[0]?.productID),
             getAllBrands(),
         ]);
         // const fetchSubImg = await getSubImgByProduct(fetchProduct[0].productID);
