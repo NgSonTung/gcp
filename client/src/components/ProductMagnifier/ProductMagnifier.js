@@ -63,6 +63,7 @@ function ProductMagnifier({ type = 'default', product, subImg = [] }) {
                 )}
             </div>
             <ImageSlider
+                productID={product.productID}
                 admin={type}
                 onImageClick={(index) => setActiveImage(index)}
                 className={cx('sub-img-container')}

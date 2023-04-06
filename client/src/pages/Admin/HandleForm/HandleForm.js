@@ -46,14 +46,14 @@ const HandleForm = ({
     const HandleAddItem = () => {
         const currentForm = formRef.current;
         let item;
-        const image = currentForm.image.files[0];
         let msgPromise;
         if (object === 'product') {
+            const image = currentForm.image.files[0];
             item = {
                 stock: Number(currentForm.stock.value),
                 name: currentForm.name.value,
                 image: image.name,
-                favorite: currentForm.favorite.value === 'on' ? 1 : 0,
+                favorite: currentForm.favorite.checked ? 1 : 0,
                 brandID: getBrandByName(currentForm.brand.value).brandID,
                 price: Number(currentForm.price.value),
                 categoryID: getCateByName(currentForm.category.value).categoryID,
@@ -70,7 +70,7 @@ const HandleForm = ({
             item = {
                 userName: currentForm.userName.value,
                 password: currentForm.password.value,
-                auth: currentForm.auth.value === 'on' ? 1 : 0,
+                auth: currentForm.auth.checked ? 1 : 0,
                 email: currentForm.email.value,
             };
             msgPromise = addUser2(item);
@@ -83,14 +83,14 @@ const HandleForm = ({
 
     const HandleUpdateProduct = () => {
         const currentForm = formRef.current;
-        const image = currentForm.image.files[0];
         let item;
         let msgPromise;
         if (object === 'product') {
+            const image = currentForm.image.files[0];
             item = {
                 stock: Number(currentForm.stock.value),
                 name: currentForm.name.value,
-                favorite: currentForm.favorite.value === 'on' ? 1 : 0,
+                favorite: currentForm.favorite.checked ? 1 : 0,
                 brandID: getBrandByName(currentForm.brand.value).brandID,
                 price: Number(currentForm.price.value),
                 categoryID: getCateByName(currentForm.category.value).categoryID,
@@ -108,7 +108,7 @@ const HandleForm = ({
             item = {
                 userName: currentForm.userName.value,
                 password: currentForm.password.value,
-                auth: currentForm.auth.value === 'on' ? 1 : 0,
+                auth: currentForm.auth.checked ? 1 : 0,
                 email: currentForm.email.value,
             };
             msgPromise = updateUserById(Number(currentForm.userID.value), item, jwt);

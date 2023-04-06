@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 
 export const getJWTOfLogin = (url = '', login) => {
     console.log(login);
@@ -59,7 +58,7 @@ export const addUser = (url, user) => {
 
 export const addUser2 = (user) => {
     return axios
-        .post(`user`, user)
+        .post(`http://localhost:3001/api/v1/user`, user)
         .then((res) => {
             return res.data.msg;
         })
@@ -73,7 +72,7 @@ export const deleteUserById = (id, jwt) => {
         Authorization: `Bearer ${jwt}`,
     };
     return axios
-        .delete(`/user/${id}`, {
+        .delete(`http://localhost:3001/api/v1/user/${id}`, {
             headers: headers,
         })
         .then((res) => {
@@ -90,7 +89,7 @@ export const deleteMultipleUsersById = (ids, jwt) => {
     };
     console.log(ids);
     return axios
-        .delete(`user/`, { params: { id: ids }, headers: headers })
+        .delete(`http://localhost:3001/api/v1/user/`, { params: { id: ids }, headers: headers })
         .then((res) => {
             return res.data.msg;
         })
@@ -105,7 +104,7 @@ export const updateUserById = (id, user, jwt) => {
     };
     console.log(id, user, 'jwt:', jwt);
     return axios
-        .patch(`user/${id}`, user, {
+        .patch(`http://localhost:3001/api/v1/user/${id}`, user, {
             headers: headers,
         })
         .then((res) => {

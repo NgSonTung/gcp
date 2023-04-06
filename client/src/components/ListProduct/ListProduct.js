@@ -31,7 +31,7 @@ export const ListProduct = (props) => {
 
     const [productData, setProductDatas] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [productPerPage, setProductPerPage] = useState(5);
+    const [productPerPage, setProductPerPage] = useState(10);
     const [activeLayoutType, setActiveLayoutType] = useState(true);
     const [widthWindow, setWidthWindow] = useState(window.innerWidth);
     const handlePage = (page) => setCurrentPage(page);
