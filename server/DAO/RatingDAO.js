@@ -109,32 +109,24 @@ exports.deleteRatingById = async (id) => {
   return result.recordsets;
 };
 
-exports.updateRatingById = async (id, updateInfo) => {
+exports.updateRatingById = async (productID, updateInfo) => {
+  console.log(productID);
+  console.log(updateInfo);
+  const { rating } = updateInfo;
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }
-  if (!updateInfo) {
-    throw new Error("Invalid input param");
-  }
-
-  let query = `update ${RatingSchema.schemaName} set`;
-  const { request, updateStr } = dbUtils.getUpdateQuery(
-    RatingSchema.schema,
-    dbConfig.db.pool.request(),
-    updateInfo
-  );
-  if (!updateStr) {
-    throw new Error("Invalid update param");
-  }
+  const starQuantity = `_${rating}star`;
+  let query = `update ${RatingSchema.schemaName} set ${starQuantity} = ${starQuantity} + 1`;
+  let request = dbConfig.db.pool.request();
   request.input(
-    `${RatingSchema.schema.ratingID.name}`,
-    RatingSchema.schema.ratingID.sqlType,
-    id
+    `${RatingSchema.schema.productID.name}`,
+    RatingSchema.schema.productID.sqlType,
+    productID
   );
   query +=
     " " +
-    updateStr +
-    ` where ${RatingSchema.schema.ratingID.name} = @${RatingSchema.schema.produratingIDctID.name}`;
+    ` where ${RatingSchema.schema.productID.name} = @${RatingSchema.schema.productID.name}`;
   let result = await request.query(query);
   return result.recordsets;
 };
