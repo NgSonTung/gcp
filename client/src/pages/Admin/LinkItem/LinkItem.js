@@ -10,6 +10,7 @@ import ProductDetailDesc from '~/components/ProductDetailDesc';
 import { getSubImgByProduct } from '~/functions/SubImgFetch';
 import { getFeatureByProductID } from '~/functions/FeatureFetch';
 import { getRatingByProductId } from '~/functions/RatingFetch';
+import $ from 'jquery';
 
 const cx = classNames.bind(styles);
 
@@ -18,31 +19,35 @@ const formatCurrency = (str) => {
     return `${str.toString().replace(regex, '$&,')}₫`;
 };
 
-const LinkItem = ({ brands, categories, object, HandleAddDelete, checked, jwt, data, setDataChange }) => {
+const LinkItem = ({
+    brands,
+    categories,
+    object,
+    HandleAddDelete,
+    checked,
+    jwt,
+    data,
+    setDataChange,
+    isDeleted,
+    openProductDetail,
+}) => {
     const [showEditForm, setShowEditForm] = useState(false);
-    const [isChecked, setIsChecked] = useState(checked);
     const inputRef = useRef();
     const [fullProductData, setFullProductData] = useState();
     const [productData, setProductData] = useState();
 
-    // useEffect(() => {
-    //     console.log('full product data');
-    // }, [fullProductData]);
     const HandleSetProductData = (times) => {
         !productData ? setProductData(data) : setProductData();
+        openProductDetail();
     };
     const handleGetData = async () => {
         if (productData) {
-            // console.log('productData', productData);
             const fetchSubImg = await getSubImgByProduct(productData.productID);
-            // setTotalProduct(fetchedData?.data?.products?.totalProduct);
             const fetchFeature = await getFeatureByProductID(productData.productID);
-            // const fetchRating = await getRatingByProductId(productData.productID);
             setFullProductData({
                 productData: productData,
                 subImg: fetchSubImg,
                 feature: fetchFeature,
-                // rating: fetchRating.data.rating,
             });
         }
     };
@@ -59,15 +64,13 @@ const LinkItem = ({ brands, categories, object, HandleAddDelete, checked, jwt, d
         setShowEditForm(true);
     };
     const HandleCheck = () => {
-        setIsChecked(!isChecked);
+        if (object === 'product') {
+            HandleAddDelete(data.productID);
+        } else {
+            HandleAddDelete(data.userID);
+        }
     };
-    useEffect(() => {
-        setIsChecked(checked);
-    }, [checked]);
-    useEffect(() => {
-        HandleAddDelete(data.productID, isChecked);
-        HandleAddDelete(data.userID, isChecked);
-    }, [isChecked]);
+
     return (
         <div className={cx('container')}>
             <div className={cx('link-info-wrapper')}>
@@ -76,10 +79,10 @@ const LinkItem = ({ brands, categories, object, HandleAddDelete, checked, jwt, d
                         <div className={cx('description')}>
                             <input
                                 className={cx('input-checked')}
-                                checked={isChecked}
                                 ref={inputRef}
                                 onClick={HandleCheck}
                                 type="checkbox"
+                                name="product"
                                 readOnly
                             />
                             <p className={cx('text')}>{data?.productID}</p>
@@ -93,10 +96,10 @@ const LinkItem = ({ brands, categories, object, HandleAddDelete, checked, jwt, d
                         <div className={cx('description')}>
                             <input
                                 className={cx('input-checked')}
-                                checked={isChecked}
                                 ref={inputRef}
                                 onClick={HandleCheck}
                                 type="checkbox"
+                                name="user"
                                 readOnly
                             />
                             <p className={cx('text')}>{data?.userID}</p>
@@ -124,7 +127,7 @@ const LinkItem = ({ brands, categories, object, HandleAddDelete, checked, jwt, d
                     />
                 )}
             </div>
-            {object === 'product' && (
+            {object === 'product' && isDeleted && (
                 <div className={cx('product-detail-container')}>
                     {fullProductData?.productData && productData && (
                         <div>

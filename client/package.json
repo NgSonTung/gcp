@@ -25,6 +25,7 @@
         "dotenv": "^16.0.3",
         "express": "^4.18.2",
         "image-magnify": "^2.7.5",
+        "jquery": "^3.6.4",
         "jwt-decode": "^3.1.2",
         "morgan": "^1.10.0",
         "mssql": "^9.1.1",
@@ -74,6 +75,7 @@
         ]
     },
     "devDependencies": {
+        "@types/jquery": "^3.5.16",
         "babel-plugin-module-resolver": "^5.0.0",
         "nodemon": "^2.0.21",
         "react-app-rewired": "^2.2.1"
