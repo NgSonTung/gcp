@@ -9,7 +9,17 @@ import { deleteMultipleUsersById } from '~/functions/UserFetch';
 
 const cx = classNames.bind(styles);
 
-const UserAction = ({ brands, categories, object, setAllChecked, setDeleteIds, deleteIds, jwt, setDataChange }) => {
+const UserAction = ({
+    brands,
+    categories,
+    object,
+    setAllChecked,
+    setDeleteIds,
+    deleteIds,
+    jwt,
+    handleDataChange,
+    handleStateDeleted,
+}) => {
     const [showEditForm, setShowEditForm] = useState(false);
 
     const HandleShowEditForm = () => {
@@ -26,9 +36,11 @@ const UserAction = ({ brands, categories, object, setAllChecked, setDeleteIds, d
             }
             msgPromise.then((msg) => {
                 alert(msg);
-                setDataChange(true);
+                // setDataChange(true);
+                handleDataChange();
                 setDeleteIds([]);
                 setAllChecked(false);
+                handleStateDeleted();
             });
         }
     };
@@ -63,7 +75,7 @@ const UserAction = ({ brands, categories, object, setAllChecked, setDeleteIds, d
                         brands={brands}
                         categories={categories}
                         jwt={jwt}
-                        setDataChange={setDataChange}
+                        // setDataChange={setDataChange}
                         setShowEditForm={setShowEditForm}
                         data={{}}
                         object={object}

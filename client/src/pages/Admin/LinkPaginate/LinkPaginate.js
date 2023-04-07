@@ -15,6 +15,8 @@ const LinkPaginate = ({
     jwt,
     data,
     setDataChange,
+    isDeleted,
+    openProductDetail,
 }) => {
     return (
         <div>
@@ -22,18 +24,19 @@ const LinkPaginate = ({
                 <CateTitle object={object} checked={allChecked} handleCheckAll={handleCheckAll} />
                 <div className={cx('link-item-wrapper')}>
                     {data?.data?.map((item, index) => (
-                        <div key={index}>
-                            <LinkItem
-                                brands={brands}
-                                categories={categories}
-                                object={data.object}
-                                HandleAddDelete={HandleAddDelete}
-                                checked={allChecked}
-                                jwt={jwt}
-                                data={item}
-                                setDataChange={setDataChange}
-                            />
-                        </div>
+                        <LinkItem
+                            key={item.productID}
+                            brands={brands}
+                            categories={categories}
+                            object={data.object}
+                            HandleAddDelete={HandleAddDelete}
+                            checked={allChecked}
+                            jwt={jwt}
+                            data={item}
+                            setDataChange={setDataChange}
+                            isDeleted={isDeleted}
+                            openProductDetail={openProductDetail}
+                        />
                     ))}
                 </div>
             </div>

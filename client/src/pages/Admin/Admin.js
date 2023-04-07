@@ -34,6 +34,7 @@ function Admin() {
     const [object, setObject] = useState('product');
     const [brands, setBrands] = useState();
     const [categories, setCategories] = useState();
+    const [isDeleted, setIsDeleted] = useState(false);
     const handlePage = (page) => setCurrentPage(page);
 
     const handleCheckAll = () => {
@@ -44,21 +45,71 @@ function Admin() {
         setShowLogin(showLogin ? false : true);
     };
 
-    const HandleAddDelete = (id, isChecked) => {
-        isChecked
-            ? setDeleteIds((prevIds) => [...prevIds, id])
-            : setDeleteIds((prevIds) => prevIds.filter((item) => item !== id));
+    const HandleAddDelete = (id) => {
+        let idsArr = [...deleteIds];
+        if (deleteIds.length === totalProduct) {
+            setDeleteIds([]);
+            setAllChecked(true);
+        } else {
+            if (idsArr.length === 0) {
+                idsArr.push(id);
+                console.log('delete arr1', idsArr);
+            } else if (!idsArr.includes(id)) {
+                idsArr.push(id);
+                console.log('delete arr2', idsArr);
+            } else if (idsArr.includes(id)) {
+                idsArr = idsArr.filter((item) => item !== id);
+                console.log('delete arr3', deleteIds);
+            }
+            setDeleteIds(idsArr);
+        }
     };
 
-    // useEffect(() => {
-    //     console.log(brands, categories);
-    // }, [brands, categories]);
+    useEffect(() => {
+        console.log(deleteIds);
+    });
+
+    const handleGetAllIdChecked = () => {
+        let ids = [];
+        if (object === 'product') {
+            let allIdsArr = data?.data.map((item) => item.productID);
+            if (deleteIds.length === 0) {
+                ids = [...allIdsArr];
+                console.log(ids);
+            } else {
+                ids = [...allIdsArr, ...deleteIds];
+                console.log(ids);
+            }
+        } else {
+            let allIdsArr = data?.data.map((item) => item.userID);
+            if (deleteIds.length === 0) {
+                ids = [...allIdsArr];
+                console.log(ids);
+            } else {
+                ids = [...allIdsArr, ...deleteIds];
+                console.log(ids);
+            }
+        }
+        setDeleteIds(ids);
+    };
+
+    useEffect(() => {
+        if (allChecked) {
+            handleGetAllIdChecked();
+        } else {
+            setDeleteIds([]);
+        }
+    }, [allChecked]);
 
     const handleGetBrandsnCategories = async () => {
         const fetchedBrands = await getAllBrands();
         const fetchedCategories = await getAllCategories();
         setBrands(fetchedBrands.data.brands);
         setCategories(fetchedCategories.data.categories);
+    };
+
+    const handleStateDeleted = () => {
+        setIsDeleted(false);
     };
 
     const handleGetData = async () => {
@@ -109,6 +160,14 @@ function Admin() {
         handleGetData();
     }, [currentPage, object]);
 
+    const handleDataChange = () => {
+        setDataChange(true);
+    };
+
+    const openProductDetail = () => {
+        setIsDeleted(!isDeleted);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <ToastContainer style={{ zIndex: 999999999 }} />
@@ -126,7 +185,8 @@ function Admin() {
                                 setDeleteIds={setDeleteIds}
                                 deleteIds={deleteIds}
                                 jwt={jwt}
-                                setDataChange={setDataChange}
+                                handleDataChange={handleDataChange}
+                                handleStateDeleted={handleStateDeleted}
                             />
                             <Search />
                             {jwt && (
@@ -139,7 +199,9 @@ function Admin() {
                                     allChecked={allChecked}
                                     data={data}
                                     jwt={jwt}
-                                    setDataChange={setDataChange}
+                                    handleDataChange={handleDataChange}
+                                    openProductDetail={openProductDetail}
+                                    isDeleted={isDeleted}
                                 />
                             )}
                             <CusPagination

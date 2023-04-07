@@ -18,6 +18,7 @@ export const updateProductInCart = (url, cart_product) => {
     if (url === '') {
         url = 'http://localhost:3001/api/v1/cart';
     }
+    console.log(url, cart_product);
     return axios.patch(url, cart_product).then((res) => {
         console.log(res);
     });

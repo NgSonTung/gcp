@@ -207,7 +207,7 @@ exports.getFileProductImage = (req, res) => {
     const matchingFile = files.find((file) => file.startsWith(imageName));
     if (matchingFile) {
       const imagePath = path.join(dirPath, matchingFile);
-      console.log(`Found file: ${imagePath}`);
+      // console.log(`Found file: ${imagePath}`);
       const imageStream = fs.createReadStream(imagePath);
       imageStream.pipe(res);
     }

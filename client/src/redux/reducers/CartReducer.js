@@ -45,14 +45,12 @@ const CartReducer = (state = initialState, action) => {
                 if (newCart[Index].amount === undefined) {
                     newCart[Index].amount = 1;
                 } else {
-                    if (data.amount > 0) {
-                        newCart[Index].amount += data.amount;
-                    } else {
-                        newCart[Index].amount += 1;
-                    }
+                    newCart[Index].amount += data.amount;
                 }
                 const productChange = newCart[Index];
+                data.cartID = state.cartID;
                 if (data.cartID && data.cartID > 0) {
+                    // console.log('productChange update ');
                     updateInCart(action.url, productChange);
                 }
                 const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
@@ -88,6 +86,7 @@ const CartReducer = (state = initialState, action) => {
             });
             const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
             const productChange = newCart.find((p) => p.productID === data.productID);
+            data.cartID = state.cartID;
             if (data.cartID && data.cartID > 0) {
                 updateInCart(action.url, productChange);
             }
