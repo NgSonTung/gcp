@@ -214,13 +214,13 @@ exports.getFileProductImage = (req, res) => {
   });
 };
 
-exports.saveFileImage = async (req, res) => {
+exports.saveFileProductImage = async (req, res) => {
   let infor = req.body;
   const imagePath = path.join(
     __dirname,
     "..",
     "dev-data",
-    infor.folderImage,
+    "productImages",
     infor.imageName
   );
   const buffer = Buffer.from(infor.blob, "base64");
@@ -233,19 +233,9 @@ exports.saveFileImage = async (req, res) => {
       res.status(200).json({ message: "File ssaved successfully." });
     }
   });
-  let img;
-  if (infor.folderImage == "subImgimages") {
-    img = {
-      image: infor.imageName,
-      alt: infor.alt,
-      productID: infor.productID,
-    };
-    await SubImageDAO.addImage(img);
-  } else {
-    const Name = infor.imageName;
-    img = {
-      image: Name,
-    };
-    await ProductDAO.updateProductById(infor.productID, img);
-  }
+  const Name = infor.imageName;
+  img = {
+    image: Name,
+  };
+  await ProductDAO.updateProductById(infor.productID, img);
 };

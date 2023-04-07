@@ -50,7 +50,14 @@ exports.clearAll = async () => {
   let result = await dbConfig.db.pool.request().query(query);
   return result.recordsets;
 };
-
+exports.getAllRatings = async () => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request.query(`select * from ${RatingSchema.schemaName}`);
+  return result.recordsets[0];
+};
 exports.getRatingByProductId = async (id) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
@@ -65,9 +72,6 @@ exports.getRatingByProductId = async (id) => {
     .query(
       `select * from ${RatingSchema.schemaName} where ${RatingSchema.schema.productID.name} = @${RatingSchema.schema.productID.name}`
     );
-  console.log(
-    `select * from ${RatingSchema.schemaName} where ${RatingSchema.schema.productID.name} = @${RatingSchema.schema.productID.name}`
-  );
   console.log(result.recordsets[0][0]);
   return result.recordsets[0][0];
 };

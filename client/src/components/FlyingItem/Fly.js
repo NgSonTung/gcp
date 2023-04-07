@@ -39,7 +39,7 @@ export default function FlyingButton(props) {
         const action = {
             type: 'ADD_TO_CART',
             payload: productById,
-            url: 'http://localhost:3001/api/v1/checkout',
+            url: 'http://localhost:3001/api/v1/cart',
         };
         dispatch(action);
     };

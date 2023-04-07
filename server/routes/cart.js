@@ -4,8 +4,9 @@ const router = express.Router();
 
 router
   .route("/")
+  .get(cartController.getProductInCartByUSerID)
   .patch(cartController.updateProductInCart)
   .post(cartController.insertProductToCart);
 router.route("/:productID").delete(cartController.deleteProductInCart);
-router.route("/:userID").get(cartController.getProductInCartByUSerID);
+// router.route("/:userID").get(cartController.getProductInCartByUSerID);
 module.exports = router;

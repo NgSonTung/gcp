@@ -2,21 +2,31 @@ const SubImageDAO = require("../DAO/SubImageDAO");
 const ProductDAO = require("../DAO/ProductDAO");
 const path = require("path");
 const fs = require("fs");
-exports.getSubImgByProductId = async (req, res) => {
-  const id = req.params.id * 1;
+exports.getSubImages = async (req, res) => {
   try {
-    const subimgs = await SubImageDAO.getProductSubImgById(id);
+    let subimgs;
+    let id;
+    if (req.query.productId) {
+      id = req.query.productId * 1;
+      subimgs = await SubImageDAO.getProductSubImgById(id);
+    } else {
+      subimgs = await SubImageDAO.getAllSubImages();
+    }
     if (!subimgs) {
       return res
         .status(404) //NOT FOUND
         .json({
           code: 404,
-          msg: `Not found subimgs with productId ${id}!`,
+          msg: id
+            ? `Not found subimgs with productId ${id}!`
+            : `Not found subimgs!`,
         });
     }
     return res.status(200).json({
       code: 200,
-      msg: `Got subimgs with id ${id} successfully!`,
+      msg: id
+        ? `Got subimgs with productId ${id} successfully!`
+        : `Got subimgs successfully!`,
       data: {
         subimgs,
       },
@@ -133,8 +143,10 @@ exports.updateSubImgById = async (req, res) => {
   }
 };
 
-exports.getFileSubImage = (req, res) => {
-  let imageName = req.params.imageName;
+exports.getFileSubImage = async (req, res) => {
+  let id = req.params.id;
+  const result = await SubImageDAO.getSubImgById(id);
+  const imageName = result.image;
   const dirPath = path.join(__dirname, "..", "dev-data", "subImgimages");
   fs.readdir(dirPath, (err, files) => {
     if (err) {
@@ -150,13 +162,13 @@ exports.getFileSubImage = (req, res) => {
     }
   });
 };
-exports.saveFileImage = async (req, res) => {
+exports.saveFileSubImage = async (req, res) => {
   let infor = req.body;
   const imagePath = path.join(
     __dirname,
     "..",
     "dev-data",
-    infor.folderImage,
+    "subImgimages",
     infor.imageName
   );
   const buffer = Buffer.from(infor.blob, "base64");
@@ -169,21 +181,12 @@ exports.saveFileImage = async (req, res) => {
       res.status(200).json({ message: "File ssaved successfully." });
     }
   });
-  let img;
-  if (infor.folderImage == "subImgimages") {
-    img = {
-      image: infor.imageName,
-      alt: infor.alt,
-      productID: infor.productID,
-    };
-    await SubImageDAO.addImage(img);
-  } else {
-    const Name = "product" + infor.imageName;
-    img = {
-      image: Name,
-    };
-    await ProductDAO.updateProductById(infor.productID, img);
-  }
+  let img = {
+    image: infor.imageName,
+    alt: infor.alt,
+    productID: infor.productID,
+  };
+  await SubImageDAO.addImage(img);
 };
 exports.deleteFileSubImage = async (req, res, next) => {
   let id = req.params.id;

@@ -2,7 +2,6 @@ const express = require("express");
 const productController = require("../controllers/Product");
 const authController = require("./../controllers/auth");
 const StaticData = require("../utils/StaticData");
-
 const router = express.Router();
 
 router
@@ -37,9 +36,8 @@ router
     productController.updateProductById
   );
 
-router
-  .route("/getFileProductImage/:imageName")
-  .get(productController.getFileProductImage);
+router.route("/image").post(productController.saveFileProductImage);
+router.route("/image/:imageName").get(productController.getFileProductImage);
 
 // router.route("/saveFileImage").post(productController.saveFileImage);
 module.exports = router;

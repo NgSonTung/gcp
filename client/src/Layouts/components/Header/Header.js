@@ -61,7 +61,7 @@ const Header = () => {
     const dispatch = useDispatch();
 
     const getDataOfCartByUserID = async () => {
-        const url = `http://localhost:3001/api/v1/checkout/${userID}`;
+        const url = `http://localhost:3001/api/v1/cart/?userID=${userID}`;
         let result = await CartFetch.getProductInCartByUSerID(url);
         // console.log('result && isLoggedIn', result && isLoggedIn);
         if (result && isLoggedIn) {

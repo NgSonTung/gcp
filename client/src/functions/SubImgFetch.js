@@ -1,7 +1,7 @@
 import axios from 'axios';
 export const getSubImgByProduct = (productID) => {
     return axios
-        .get(`http://localhost:3001/api/v1/subimg/byProduct/${productID}`)
+        .get(`http://localhost:3001/api/v1/subimg/?productId=${productID}`)
         .then((res) => {
             return res.data.data.subimgs;
         })
@@ -13,6 +13,7 @@ export const getSubImgByProduct = (productID) => {
 export const getURLSubImage = async (listImage, type = 'default') => {
     let listImageSrc = [];
     for (let element of listImage) {
+        console.log(element);
         const response = await getFileSubImage(element);
         const contentType = response.headers['content-type'];
         const blob = new Blob([response.data], { type: contentType });
@@ -27,9 +28,9 @@ export const getURLSubImage = async (listImage, type = 'default') => {
     return listImageSrc;
 };
 
-export const getFileSubImage = (imageName) => {
+export const getFileSubImage = (subImageId) => {
     return axios
-        .get(`http://localhost:3001/api/v1/subimg/getFileSubImage/${imageName}`, { responseType: 'arraybuffer' })
+        .get(`http://localhost:3001/api/v1/subimg/image/${subImageId}`, { responseType: 'arraybuffer' })
         .then((res) => {
             return res;
         })
@@ -40,7 +41,7 @@ export const getFileSubImage = (imageName) => {
 
 export const deleteFileSubImage = (subImageId) => {
     return axios
-        .delete(`http://localhost:3001/api/v1/subimg/deleteFileSubImage/${subImageId}`)
+        .delete(`http://localhost:3001/api/v1/subimg/image/${subImageId}`)
         .then((res) => {
             console.log(res);
             return res;

@@ -29,21 +29,31 @@ exports.getRatingById = async (req, res) => {
   }
 };
 
-exports.getRatingByProductId = async (req, res) => {
-  const id = req.params.id * 1;
+exports.getRatings = async (req, res) => {
   try {
-    const rating = await RatingDAO.getRatingByProductId(id);
+    let rating;
+    let id;
+    if (req.query.productId) {
+      id = req.query.productId * 1;
+      rating = await RatingDAO.getRatingByProductId(id);
+    } else {
+      rating = await RatingDAO.getAllRatings();
+    }
     if (!rating) {
       return res
         .status(404) //NOT FOUND
         .json({
           code: 404,
-          msg: `Not found rating with productID ${id}!`,
+          msg: id
+            ? `Not found ratings with productId ${id}!`
+            : `Not found ratings!`,
         });
     }
     return res.status(200).json({
       code: 200,
-      msg: `Got rating with productID ${id} successfully!`,
+      msg: id
+        ? `Got ratings with productId ${id} successfully!`
+        : `Got ratings successfully!`,
       data: {
         rating,
       },

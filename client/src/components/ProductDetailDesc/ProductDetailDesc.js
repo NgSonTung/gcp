@@ -30,7 +30,6 @@ function ProductDetailDesc({
     className,
 }) {
     const formRef = useRef();
-    // console.log(product);
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
     const getBrandNameById = (brandID) => {
@@ -107,7 +106,7 @@ function ProductDetailDesc({
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
-                url: 'http://localhost:3001/api/v1/checkout',
+                url: 'http://localhost:3001/api/v1/cart',
             };
             dispatch(action);
             setCount(0);
@@ -144,7 +143,7 @@ function ProductDetailDesc({
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
-                url: 'http://localhost:3001/api/v1/checkout',
+                url: 'http://localhost:3001/api/v1/cart',
             };
             dispatch(action);
 
@@ -166,7 +165,7 @@ function ProductDetailDesc({
             )}
             {type !== 'admin' && <p className={cx('product-detail-price')}>{fortmatCurrency(product?.price)}</p>}
             {full && type !== 'admin' && <ProductRating productID={product?.productID} />}
-            {type !== 'admin' ? (
+            {type !== 'admin' && feature ? (
                 <div className={cx('product-feature-wrapper')}>
                     {feature?.map((feature, id) => (
                         <p className={cx('product-feature')} key={id}>

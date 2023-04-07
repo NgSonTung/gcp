@@ -6,7 +6,7 @@ const StaticData = require("../utils/StaticData");
 
 router
   .route("/:id")
-  .get(SubImageController.getSubImgByProductId)
+  .get(SubImageController.getSubImages)
   .delete(
     authController.protect,
     authController.restrictTo(StaticData.AUTH.Role.admin),
@@ -20,19 +20,18 @@ router
 
 router
   .route("/")
+  .get(SubImageController.getSubImages)
   .post(
     authController.protect,
     authController.restrictTo(StaticData.AUTH.Role.admin),
     SubImageController.createNewSubImg
   );
 
-router.route("/byProduct/:id").get(SubImageController.getSubImgByProductId);
-
+// router.route("/byProduct/:id").get(SubImageController.getSubImgByProductId);
+router.route("/image/").post(SubImageController.saveFileSubImage);
 router
-  .route("/getFileSubImage/:imageName")
-  .get(SubImageController.getFileSubImage);
-router
-  .route("/deleteFileSubImage/:id")
+  .route("/image/:id")
+  .get(SubImageController.getFileSubImage)
   .delete(
     SubImageController.deleteFileSubImage,
     SubImageController.deleteSubImgById

@@ -15,7 +15,7 @@ function ProductMagnifier({ type = 'default', product, subImg = [] }) {
         await getURLProductImage([product?.image], type).then((result) => (listResult = [...listResult, ...result]));
         let subImageList = [];
         subImg?.forEach((obj) => {
-            subImageList.push(obj.image);
+            subImageList.push(obj.subimgID);
         });
         //cach dung fetch img
         await getURLSubImage(subImageList, type).then((result) => (listResult = [...listResult, ...result]));

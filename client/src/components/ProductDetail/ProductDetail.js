@@ -51,7 +51,7 @@ function ProductDetail(type = 'default') {
         loadData();
         window.scrollTo(0, 0);
     }, [nameproduct]);
-
+    console.log('data', data);
     const navItems = [
         {
             title: 'sản phẩm cùng loại',

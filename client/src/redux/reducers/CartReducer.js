@@ -7,7 +7,7 @@ const initialState = {
 
 const CartReducer = (state = initialState, action) => {
     const data = action.payload;
-    console.log('data reducer', action);
+    // console.log('data reducer', action);
     const updateInCart = async (url, productUpdated) => {
         await CartFetch.updateProductInCart(url, productUpdated);
     };
