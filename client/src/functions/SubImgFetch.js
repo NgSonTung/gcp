@@ -31,7 +31,6 @@ export const getFileSubImage = (imageName) => {
     return axios
         .get(`http://localhost:3001/api/v1/subimg/getFileSubImage/${imageName}`, { responseType: 'arraybuffer' })
         .then((res) => {
-            console.log(res);
             return res;
         })
         .catch((err) => {

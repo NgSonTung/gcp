@@ -10,8 +10,6 @@ export const getAllProducts = (url) => {
     return axios
         .get(`${url}`)
         .then((res) => {
-            console.log(url);
-            console.log(res.data);
             return res.data;
         })
         .catch((err) => console.log(err));
@@ -112,7 +110,6 @@ export const getFileProductImage = (imageName) => {
     return axios
         .get(`http://localhost:3001/api/v1/product/getFileProductImage/${imageName}`, { responseType: 'blob' })
         .then((res) => {
-            console.log(res);
             return res;
         })
         .catch((err) => {

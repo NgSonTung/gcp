@@ -68,6 +68,7 @@ exports.getRatingByProductId = async (id) => {
   console.log(
     `select * from ${RatingSchema.schemaName} where ${RatingSchema.schema.productID.name} = @${RatingSchema.schema.productID.name}`
   );
+  console.log(result.recordsets[0][0]);
   return result.recordsets[0][0];
 };
 
