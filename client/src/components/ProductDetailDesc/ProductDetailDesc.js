@@ -75,18 +75,18 @@ function ProductDetailDesc({
     const handleDecrement = () => {
         if (count > 1) {
             setCount(count - 1);
-            product.amount -= 1;
+            // product.amount -= 1;
         }
         console.log(product);
     };
 
     const handleIncrement = () => {
         setCount(count + 1);
-        if (product.amount === undefined) {
-            product.amount = 1;
-        } else {
-            product.amount += 1;
-        }
+        // if (product.amount === undefined) {
+        //     product.amount = 1;
+        // } else {
+        //     product.amount += 1;
+        // }
     };
 
     const handleCartAdd = () => {
@@ -141,6 +141,7 @@ function ProductDetailDesc({
             });
         } else {
             product.amount = count;
+            console.log(product);
             const action = {
                 type: 'ADD_TO_CART',
                 payload: product,
