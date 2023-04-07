@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
-const Header = ({ setObject }) => {
+const Header = ({ setObject, setAllChecked }) => {
     const [headerTitles, setHeaderTitles] = useState([
         { title: 'PRODUCTS', active: false },
         { title: 'USERS', active: false },
@@ -17,7 +17,13 @@ const Header = ({ setObject }) => {
     const [activeHeader, setActiveHeader] = useState(0);
 
     useEffect(() => {
-        activeHeader === 0 ? setObject('product') : setObject('user');
+        if (activeHeader === 0) {
+            setObject('product');
+            setAllChecked(false);
+        } else {
+            setAllChecked(false);
+            setObject('user');
+        }
         headerTitles.forEach((item, index) => {
             item.active = index === activeHeader;
         });

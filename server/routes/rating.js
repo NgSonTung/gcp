@@ -20,6 +20,6 @@ router
 router
   .route("/")
   .get(ratingController.getRatings)
-  .post(ratingController.createNewRating);
-router.route("/add").post(ratingController.updateRatingById);
+  .post(ratingController.updateRatingById);
+// router.route("/add").post(ratingController.updateRatingById);
 module.exports = router;

@@ -8,7 +8,7 @@ import 'swiper/swiper.min.css';
 import { CloseIcon } from '../../Icons/Icons.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { postUrlFileImage } from '~/functions/Upload';
+import { postUrlFileImage } from '~/functions/UploadFetch';
 
 const cx = classNames.bind(styles);
 

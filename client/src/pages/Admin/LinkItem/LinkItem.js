@@ -30,12 +30,13 @@ const LinkItem = ({
     setDataChange,
     isDeleted,
     openProductDetail,
+    handleDataChange,
 }) => {
     const [showEditForm, setShowEditForm] = useState(false);
     const inputRef = useRef();
     const [fullProductData, setFullProductData] = useState();
     const [productData, setProductData] = useState();
-
+    const [isChecked, setIsChecked] = useState(checked);
     const HandleSetProductData = (times) => {
         !productData ? setProductData(data) : setProductData();
         openProductDetail();
@@ -54,7 +55,9 @@ const LinkItem = ({
     useEffect(() => {
         handleGetData();
     }, [productData]);
-
+    useEffect(() => {
+        setIsChecked(checked);
+    }, [checked]);
     const getBrandNameById = (brandID) => {
         const brand = brands?.find((brand) => brand.brandID === brandID);
         return brand ? brand.brandName : null;
@@ -65,6 +68,8 @@ const LinkItem = ({
     };
     const HandleCheck = () => {
         if (object === 'product') {
+            console.log('checked', isChecked);
+            setIsChecked(!isChecked);
             HandleAddDelete(data.productID);
         } else {
             HandleAddDelete(data.userID);
@@ -83,6 +88,7 @@ const LinkItem = ({
                                 onClick={HandleCheck}
                                 type="checkbox"
                                 name="product"
+                                checked={isChecked}
                                 readOnly
                             />
                             <p className={cx('text')}>{data?.productID}</p>
@@ -100,6 +106,7 @@ const LinkItem = ({
                                 onClick={HandleCheck}
                                 type="checkbox"
                                 name="user"
+                                checked={isChecked}
                                 readOnly
                             />
                             <p className={cx('text')}>{data?.userID}</p>
@@ -116,6 +123,7 @@ const LinkItem = ({
                 </div>
                 {showEditForm && (
                     <HandleForm
+                        handleDataChange={handleDataChange}
                         brands={brands}
                         categories={categories}
                         jwt={jwt}
@@ -127,7 +135,7 @@ const LinkItem = ({
                     />
                 )}
             </div>
-            {object === 'product' && isDeleted && (
+            {object === 'product' && (
                 <div className={cx('product-detail-container')}>
                     {fullProductData?.productData && productData && (
                         <div>

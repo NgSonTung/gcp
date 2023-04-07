@@ -174,7 +174,7 @@ function Admin() {
             <div className={cx('body-layout')}>
                 <div className={cx('left-side')}>{/* <SideBar /> */}</div>
                 <div className={cx('right-side')}>
-                    <Header setObject={setObject} />
+                    <Header setObject={setObject} setAllChecked={setAllChecked} />
                     {isAdmin && (
                         <div className={cx('content-wrapper')}>
                             <UserAction

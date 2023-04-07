@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from 'react';
 import { deleteProductById, addProduct, updateProductById } from '~/functions/ProductFetch';
 import { deleteUserById, addUser2, updateUserById } from '~/functions/UserFetch';
 import DropdownList from 'react-widgets/DropdownList';
-import { postUrlFileImage } from '~/functions/Upload';
+import { postUrlFileImage } from '~/functions/UploadFetch';
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +17,7 @@ const HandleForm = ({
     setDataChange,
     setShowEditForm,
     formType = '',
+    handleDataChange,
     object = 'default',
 }) => {
     const formRef = useRef();
@@ -77,7 +78,8 @@ const HandleForm = ({
         }
         msgPromise.then((msg) => {
             alert(msg);
-            setDataChange(true);
+            // setDataChange(true);
+            handleDataChange();
         });
     };
 
@@ -115,7 +117,8 @@ const HandleForm = ({
         }
         msgPromise.then((msg) => {
             alert(msg);
-            setDataChange(true);
+            // setDataChange(true);
+            handleDataChange();
         });
     };
     const HandleDeleteProduct = () => {
@@ -128,7 +131,8 @@ const HandleForm = ({
             }
             msgPromise.then((msg) => {
                 alert(msg);
-                setDataChange(true);
+                // setDataChange(true);
+                handleDataChange();
             });
         }
     };

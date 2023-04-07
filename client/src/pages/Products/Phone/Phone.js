@@ -3,7 +3,7 @@ import style from './Phone.module.scss';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { deleteFileSubImage } from '~/functions/SubImgFetch';
-import { postUrlFileImage, check } from '~/functions/Upload';
+import { postUrlFileImage, check } from '~/functions/UploadFetch';
 const cx = classNames.bind(style);
 function Phone() {
     const [selectedFile, setSelectedFile] = useState(null);

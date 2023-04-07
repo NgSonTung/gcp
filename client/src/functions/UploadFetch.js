@@ -13,26 +13,10 @@ export const postUrlFileImage = (blob, folderImage, imageName, productID, alt) =
     // } else if (folderImage === 'subImgimages') {
     //     urlAPI = 'http://localhost:3001/api/v1/subimg/saveFileImage/';
     // }
-    urlAPI = 'http://localhost:3001/api/v1/upload/save';
+    urlAPI = 'http://localhost:3001/api/v1/subimg/image';
     return axios
         .post(`${urlAPI}`, infor)
         .then((res) => {
-            return res;
-        })
-        .catch((err) => {
-            return false;
-        });
-};
-
-export const check = (folderImage, imageName) => {
-    const infor = { folderImage: folderImage, imageName: imageName };
-    let urlAPI;
-    urlAPI = 'http://localhost:3001/api/v1/upload/check';
-
-    return axios
-        .post(`${urlAPI}`, infor)
-        .then((res) => {
-            console.log(res);
             return res;
         })
         .catch((err) => {

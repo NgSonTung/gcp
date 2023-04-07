@@ -15,6 +15,7 @@ const LinkPaginate = ({
     jwt,
     data,
     setDataChange,
+    handleDataChange,
     isDeleted,
     openProductDetail,
 }) => {
@@ -29,6 +30,7 @@ const LinkPaginate = ({
                             brands={brands}
                             categories={categories}
                             object={data.object}
+                            handleDataChange={handleDataChange}
                             HandleAddDelete={HandleAddDelete}
                             checked={allChecked}
                             jwt={jwt}
