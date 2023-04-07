@@ -1,8 +1,9 @@
 import classNames from 'classnames/bind';
 import style from './Phone.module.scss';
-import { postUrlFileImage, check } from '~/functions/Upload';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { deleteFileSubImage } from '~/functions/SubImgFetch';
+import { postUrlFileImage, check } from '~/functions/Upload';
 const cx = classNames.bind(style);
 function Phone() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -21,16 +22,20 @@ function Phone() {
             await postUrlFileImage(reader.result.split(',')[1], folderImage, filename, 1, (alt = `image${productID}`));
         };
     };
-    const handleSend = async () => {};
+
+    const handleDelete = async (subImageId = 8) => {
+        await deleteFileSubImage(subImageId);
+    };
 
     useEffect(() => {
-        handleSend();
+        // handleSend();
     }, [selectedFile]);
     return (
         <div>
-            <input type="file" accept="image/*" onChange={(e) => handleFile(e)} className={cx('input-file')} />
+            {/* <input type="file" accept="image/*" onChange={(e) => handleFile(e)} className={cx('input-file')} /> */}
             <div>
-                <img src={selectedFile && URL.createObjectURL(selectedFile)} alt="Selected file" />
+                {/* <img src={selectedFile && URL.createObjectURL(selectedFile)} alt="Selected file" /> */}
+                <button onClick={handleDelete}>delete img</button>
             </div>
         </div>
     );

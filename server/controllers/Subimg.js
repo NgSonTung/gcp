@@ -83,7 +83,7 @@ exports.deleteSubImgById = async (req, res) => {
   try {
     const subImg = await SubImageDAO.getSubImgById(id);
     if (!subImg) {
-      return res
+      res
         .status(404) //NOT FOUND
         .json({
           code: 404,
@@ -91,13 +91,13 @@ exports.deleteSubImgById = async (req, res) => {
         });
     }
     await SubImageDAO.deleteSubImgById(id);
-    return res.status(200).json({
+    res.status(200).json({
       code: 200,
       msg: `Deleted subImg with id ${id} successfully!`,
     });
   } catch (e) {
     console.log(e);
-    return res.status(500).json({
+    res.status(500).json({
       code: 500,
       msg: e,
     });
@@ -184,4 +184,33 @@ exports.saveFileImage = async (req, res) => {
     };
     await ProductDAO.updateProductById(infor.productID, img);
   }
+};
+exports.deleteFileSubImage = async (req, res, next) => {
+  let id = req.params.id;
+  await SubImageDAO.getSubImgById(id).then((result) => {
+    console.log(result);
+    const dirPath = path.join(__dirname, "..", "dev-data", "subImgimages");
+    fs.readdir(dirPath, (err, files) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      const matchingFile = files.find((file) => file.startsWith(result.image));
+      if (matchingFile) {
+        const imagePath = path.join(dirPath, matchingFile);
+        // console.log(`Found file: ${imagePath}`);
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            console.error(err);
+            return res
+              .status(500)
+              .json({ error: "Failed to delete the file." });
+          } else {
+            console.log("File deleted successfully.");
+            next();
+          }
+        });
+      }
+    });
+  });
 };
