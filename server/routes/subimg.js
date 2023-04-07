@@ -31,6 +31,12 @@ router.route("/byProduct/:id").get(SubImageController.getSubImgByProductId);
 router
   .route("/getFileSubImage/:imageName")
   .get(SubImageController.getFileSubImage);
+router
+  .route("/deleteFileSubImage/:id")
+  .delete(
+    SubImageController.deleteFileSubImage,
+    SubImageController.deleteSubImgById
+  );
 
 // router.route("/saveFileImage").post(SubImageController.saveFileImage);
 module.exports = router;

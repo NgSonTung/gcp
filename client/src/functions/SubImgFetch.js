@@ -37,3 +37,15 @@ export const getFileSubImage = (imageName) => {
             return false;
         });
 };
+
+export const deleteFileSubImage = (subImageId) => {
+    return axios
+        .delete(`http://localhost:3001/api/v1/subimg/deleteFileSubImage/${subImageId}`)
+        .then((res) => {
+            console.log(res);
+            return res;
+        })
+        .catch((err) => {
+            return false;
+        });
+};

@@ -31,7 +31,7 @@ exports.saveFileImage = async (req, res) => {
     infor.folderImage,
     infor.imageName
   );
-  console.log("imagePath", imagePath);
+  // console.log("imagePath", imagePath);
   const buffer = Buffer.from(infor.blob, "base64");
   fs.writeFile(imagePath, buffer, (err) => {
     if (err) {

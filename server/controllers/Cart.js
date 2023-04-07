@@ -56,7 +56,7 @@ exports.insertProductToCart = async (req, res) => {
 };
 
 exports.updateProductInCart = async (req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
   try {
     let result = await CartDAO.updateCart(req.body);
     res.status(200).json({
