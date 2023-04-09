@@ -65,9 +65,9 @@ function Admin() {
         }
     };
 
-    useEffect(() => {
-        console.log(deleteIds);
-    });
+    // useEffect(() => {
+    //     console.log(deleteIds);
+    // });
 
     const handleGetAllIdChecked = () => {
         let ids = [];

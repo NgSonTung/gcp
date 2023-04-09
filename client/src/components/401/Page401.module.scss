@@ -1,13 +1,12 @@
 .wrapper {
     background-color: #fea918;
-
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100vw;
     height: 100vh;
-    position: fixed;
+    position: absolute;
     z-index: 10000000;
     object-fit: cover;
     display: flex;

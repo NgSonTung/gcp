@@ -30,7 +30,7 @@ const publicRoutes = [
     { path: config.routes.productByCate, component: ProductByCate },
     // { path: config.routes.checkout, component: CheckoutPage },
 
-    { path: config.routes.admin, component: Admin, layout: null },
+    { path: config.routes.admin, component: Admin },
     { path: config.routes.searchCatalog, component: SearchCatalog, layout: null },
 ];
 
