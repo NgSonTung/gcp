@@ -9,14 +9,18 @@ import { CloseIcon } from '../../Icons/Icons.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { postUrlFileImage } from '~/functions/UploadFetch';
+import { deleteFileSubImage } from '~/functions/SubImgFetch';
 
 const cx = classNames.bind(styles);
 
 const ImageSlider = ({
+    handleGetData = () => {},
+    HandleSetProductData = () => {},
     productID = '',
     admin = 'false',
     images,
     subImg = true,
+    subImgList = [],
     className,
     autoPlay = true,
     onImageClick,
@@ -27,7 +31,6 @@ const ImageSlider = ({
     const [showSubImg, setShowSubImg] = useState(false);
     const [imgURL, setImgURL] = useState('');
     const [hoveredIndex, setHoveredIndex] = useState(-1);
-
     const handleHover = (id) => {
         admin === 'admin' && id !== 0 && setHoveredIndex(id);
     };
@@ -46,29 +49,46 @@ const ImageSlider = ({
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
         reader.onloadend = async () => {
-            await postUrlFileImage(reader.result.split(',')[1], 'subImgimages', image.name, productID, alt);
+            const msgPromise = postUrlFileImage(
+                reader.result.split(',')[1],
+                'subImgimages',
+                image.name,
+                productID,
+                alt,
+            );
+            msgPromise.then((msg) => {
+                alert(msg);
+                handleGetData();
+                HandleSetProductData();
+            });
         };
     };
     const HandleClick = (id, image) => {
+        console.log('cc1');
         if (admin === 'admin') {
             if (id === 0) {
-                // Create an input element for selecting a file
                 const fileInput = document.createElement('input');
                 fileInput.type = 'file';
                 fileInput.accept = 'image/*';
                 fileInput.style.display = 'none';
-                // Attach a change event listener to the file input to save the selected file
                 fileInput.addEventListener('change', () => {
                     const img = fileInput.files[0];
                     HandleUploadSubImg(img, productID, `subImg${productID}`);
                 });
-                // Trigger the file input click event when the first div is clicked
-
                 fileInput.click();
+            } else {
+                console.log('cc');
+                const msgPromise = deleteFileSubImage(subImgList[id - 1].subimgID);
+                msgPromise.then((msg) => {
+                    alert(msg);
+                    handleGetData();
+                    HandleSetProductData();
+                });
             }
+        } else {
+            subImg && showImg(image?.url ? image.url : image);
+            type === 'product' && onImageClick(id);
         }
-        subImg && showImg(image?.url ? image.url : image);
-        type === 'product' && onImageClick(id);
     };
 
     return (
@@ -109,7 +129,11 @@ const ImageSlider = ({
                                     onClick={() => HandleClick(index, image)}
                                 />
                             ) : (
-                                <FontAwesomeIcon className={cx('icon')} icon={faTrash} />
+                                <FontAwesomeIcon
+                                    className={cx('icon')}
+                                    icon={faTrash}
+                                    onClick={() => HandleClick(index, image)}
+                                />
                             )}
                         </div>
                     </SwiperSlide>

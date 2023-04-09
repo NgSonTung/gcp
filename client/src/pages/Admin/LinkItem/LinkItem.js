@@ -37,7 +37,7 @@ const LinkItem = ({
     const [fullProductData, setFullProductData] = useState();
     const [productData, setProductData] = useState();
     const [isChecked, setIsChecked] = useState(checked);
-    const HandleSetProductData = (times) => {
+    const HandleSetProductData = () => {
         !productData ? setProductData(data) : setProductData();
         openProductDetail();
     };
@@ -123,6 +123,8 @@ const LinkItem = ({
                 </div>
                 {showEditForm && (
                     <HandleForm
+                        HandleSetProductData={HandleSetProductData}
+                        handleGetData={handleGetData}
                         handleDataChange={handleDataChange}
                         brands={brands}
                         categories={categories}
@@ -145,6 +147,8 @@ const LinkItem = ({
                                         type={'admin'}
                                         product={fullProductData?.productData}
                                         subImg={fullProductData?.subImg}
+                                        handleGetData={handleGetData}
+                                        HandleSetProductData={HandleSetProductData}
                                     />
                                 </div>
                                 <div className={cx('product-detail')}>

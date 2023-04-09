@@ -14,12 +14,14 @@ export const postUrlFileImage = (blob, folderImage, imageName, productID, alt) =
     //     urlAPI = 'http://localhost:3001/api/v1/subimg/saveFileImage/';
     // }
     urlAPI = 'http://localhost:3001/api/v1/subimg/image';
+    console.log(infor);
     return axios
         .post(`${urlAPI}`, infor)
         .then((res) => {
-            return res;
+            console.log(res);
+            return res.data.message;
         })
         .catch((err) => {
-            return false;
+            return err.response.data.message;
         });
 };

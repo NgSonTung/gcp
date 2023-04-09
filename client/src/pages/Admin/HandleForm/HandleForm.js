@@ -14,7 +14,9 @@ const HandleForm = ({
     categories = [],
     jwt,
     data,
-    setDataChange,
+    HandleSetProductData = () => {},
+    handleGetData = () => {},
+    // setDataChange,
     setShowEditForm,
     formType = '',
     handleDataChange,
@@ -28,6 +30,8 @@ const HandleForm = ({
         reader.readAsDataURL(fileBlob);
         reader.onloadend = async () => {
             await postUrlFileImage(reader.result.split(',')[1], 'productImages', image.name, productID, alt);
+            HandleSetProductData();
+            handleGetData();
         };
     };
     const brandNames = brands.map((brand) => brand.brandName);
@@ -99,12 +103,13 @@ const HandleForm = ({
                 description: currentForm.description.value,
                 sale: currentForm.sale.value,
             };
-            image &&
+            if (image) {
                 HandleUploadProductImg(
                     image,
                     Number(currentForm.productID.value),
                     `product${Number(currentForm.productID.value)}Img`,
                 );
+            }
             msgPromise = updateProductById(Number(currentForm.productID.value), item, jwt);
         } else if (object === 'user') {
             item = {

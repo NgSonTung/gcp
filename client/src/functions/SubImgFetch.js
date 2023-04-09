@@ -44,9 +44,9 @@ export const deleteFileSubImage = (subImageId) => {
         .delete(`http://localhost:3001/api/v1/subimg/image/${subImageId}`)
         .then((res) => {
             console.log(res);
-            return res;
+            return res.data.msg;
         })
         .catch((err) => {
-            return false;
+            return err.data.msg;
         });
 };
