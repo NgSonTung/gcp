@@ -2,7 +2,7 @@ const CartDAO = require("../DAO/CartDAO");
 
 exports.getProductInCartByUSerID = async (req, res) => {
   try {
-    let result = await CartDAO.getProductInCartByUSerID(req.params.userID);
+    let result = await CartDAO.getProductInCartByUSerID(req.query.userID);
     res.status(200).json({
       code: 200,
       msg: "OK",

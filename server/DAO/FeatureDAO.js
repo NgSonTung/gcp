@@ -49,7 +49,15 @@ exports.getFeatureById = async (id) => {
   return result.recordsets[0][0];
 };
 
-exports.getFeatureByProductId = async (id) => {
+exports.getAllFeatures = async () => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request.query(`select * from ${FeatureSchema.schemaName}`);
+  return result.recordsets[0];
+};
+exports.getFeaturesByProductId = async (id) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
   }

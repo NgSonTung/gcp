@@ -108,7 +108,7 @@ export const getURLProductImage = async (listImage, type = 'default') => {
 
 export const getFileProductImage = (imageName) => {
     return axios
-        .get(`http://localhost:3001/api/v1/product/getFileProductImage/${imageName}`, { responseType: 'blob' })
+        .get(`http://localhost:3001/api/v1/product/image/${imageName}`, { responseType: 'blob' })
         .then((res) => {
             return res;
         })

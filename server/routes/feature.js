@@ -20,11 +20,12 @@ router
 
 router
   .route("/")
+  .get(FeatureController.getFeatures)
   .post(
     authController.protect,
     authController.restrictTo(StaticData.AUTH.Role.admin),
     FeatureController.createNewFeature
   );
-router.route("/byProduct/:id").get(FeatureController.getFeatureByProductId);
+// router.route("/:productId").get(FeatureController.getFeatureByProductId);
 
 module.exports = router;

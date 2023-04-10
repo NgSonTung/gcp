@@ -27,21 +27,31 @@ exports.getFeatureById = async (req, res) => {
     });
   }
 };
-exports.getFeatureByProductId = async (req, res) => {
-  const id = req.params.id * 1;
+exports.getFeatures = async (req, res) => {
   try {
-    const features = await FeatureDAO.getFeatureByProductId(id);
+    let features;
+    let id;
+    if (req.query.productId) {
+      id = req.query.productId * 1;
+      features = await FeatureDAO.getFeaturesByProductId(id);
+    } else {
+      features = await FeatureDAO.getAllFeatures();
+    }
     if (!features) {
       return res
         .status(404) //NOT FOUND
         .json({
           code: 404,
-          msg: `Not found features with Id ${id}!`,
+          msg: id
+            ? `Not found features with productId ${id}!`
+            : `Not found features!`,
         });
     }
     return res.status(200).json({
       code: 200,
-      msg: `Got features with id ${id} successfully!`,
+      msg: id
+        ? `Got features with productId ${id} successfully!`
+        : `Got features successfully!`,
       data: {
         features,
       },

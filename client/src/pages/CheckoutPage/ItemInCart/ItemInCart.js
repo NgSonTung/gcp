@@ -22,7 +22,7 @@ const ItemInCart = (props) => {
         const action = {
             type: 'CHANGE_AMOUNT',
             payload: product,
-            url: 'http://localhost:3001/api/v1/checkout',
+            url: 'http://localhost:3001/api/v1/cart',
         };
         dispatch(action);
     };
@@ -52,7 +52,7 @@ const ItemInCart = (props) => {
         const action = {
             type: 'DELETE_FROM_CART',
             payload: product,
-            url: 'http://localhost:3001/api/v1/checkout',
+            url: 'http://localhost:3001/api/v1/cart',
         };
         dispatch(action);
     };

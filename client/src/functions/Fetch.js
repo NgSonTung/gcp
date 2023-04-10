@@ -41,7 +41,7 @@ export const getAllProductsNonPage = (url) => {
 
 export const getProductInCart = (url) => {
     if (url === '') {
-        url = 'http://localhost:3001/api/v1/checkout/';
+        url = 'http://localhost:3001/api/v1/cart/';
     }
     return axios
         .get(url)
@@ -90,7 +90,7 @@ export const updateProductById = (id, product) => {
 
 export const updateProductInCart = (url = '', cart_product) => {
     if (url === '') {
-        url = 'http://localhost:3001/api/v1/checkout/';
+        url = 'http://localhost:3001/api/v1/cart/';
     }
     return axios.patch(url, cart_product).then((res) => {
         console.log(res);
@@ -98,7 +98,7 @@ export const updateProductInCart = (url = '', cart_product) => {
 };
 export const deleteProductInCart = (url) => {
     if (url === '') {
-        url = 'http://localhost:3001/api/v1/checkout/';
+        url = 'http://localhost:3001/api/v1/cart/';
     }
     return axios.delete(url).then((res) => {
         console.log(res);

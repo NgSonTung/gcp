@@ -154,6 +154,17 @@ exports.updateSubImgById = async (id, updateInfo) => {
   return result.recordsets;
 };
 
+exports.getAllSubImages = async () => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  let request = dbConfig.db.pool.request();
+  let result = await request.query(
+    `select * from ${SubImageSchema.schemaName}`
+  );
+  return result.recordsets[0];
+};
+
 exports.getProductSubImgById = async (id) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");

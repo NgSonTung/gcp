@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUserCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { CartIcon } from '~/Icons';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -16,13 +16,12 @@ import { getAllCategories } from '~/functions/CategoryFetch';
 
 const cx = classNames.bind(styles);
 
-const Header = () => {
+const Header = ({ type = 'default' }) => {
     const [categories, setCategories] = useState([]);
     const [showLogin, setShowLogin] = useState(false);
     const { isLoggedIn, userID, cartID } = useSelector((state) => state.UserReducer);
     // console.log(isLoggedIn);
     const [loginState, setLoginState] = useState(isLoggedIn);
-
     const getCategories = async () => {
         const fetchedData = await getAllCategories();
         const result = await fetchedData.data.categories;
@@ -61,7 +60,7 @@ const Header = () => {
     const dispatch = useDispatch();
 
     const getDataOfCartByUserID = async () => {
-        const url = `http://localhost:3001/api/v1/checkout/${userID}`;
+        const url = `http://localhost:3001/api/v1/cart/?userID=${userID}`;
         let result = await CartFetch.getProductInCartByUSerID(url);
         // console.log('result && isLoggedIn', result && isLoggedIn);
         if (result && isLoggedIn) {
@@ -144,28 +143,32 @@ const Header = () => {
                     )}
                 </div>
             </div>
-            <div className={cx('middle-header')}>
-                <Link to={config.routes.home} className={cx('left-side-logo')}>
-                    <div className={cx('logo')}>
-                        <img src={require('~/assets/images/logo-page.png')} />
-                    </div>
-                </Link>
-                <Search />
-                <div className={cx('cart-feature')}>
-                    <Link to={config.routes.checkout}>
-                        <div className={cx('cart-btn')}>
-                            <CartIcon className={cx('icon')} />
+            {type !== 'admin' ? (
+                <div className={cx('middle-header')}>
+                    <Link to={config.routes.home} className={cx('left-side-logo')}>
+                        <div className={cx('logo')}>
+                            <img src={require('~/assets/images/logo-page.png')} />
                         </div>
                     </Link>
-                    <div className={cx('cart-detail')}>
-                        <Link to={config.routes.checkout} className={cx('title')}>
-                            <h1>Giỏ hàng</h1>
+                    <Search />
+                    <div className={cx('cart-feature')}>
+                        <Link to={config.routes.checkout}>
+                            <div className={cx('cart-btn')}>
+                                <CartIcon className={cx('icon')} />
+                            </div>
                         </Link>
-                        <p className={cx('cart-quantity')}>({productQty}) sản phẩm</p>
+                        <div className={cx('cart-detail')}>
+                            <Link to={config.routes.checkout} className={cx('title')}>
+                                <h1>Giỏ hàng</h1>
+                            </Link>
+                            <p className={cx('cart-quantity')}>({productQty}) sản phẩm</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {showLogin && <Login loginType="user" ToggleLogin={ToggleLogin} />}
+            ) : (
+                <div className={cx('middle-header')}></div>
+            )}
+            {showLogin && <Login loginType={type === 'default' ? 'user' : 'admin'} ToggleLogin={ToggleLogin} />}
         </div>
     );
 };

@@ -10,7 +10,6 @@ import LinkPaginate from './LinkPaginate/LinkPaginate';
 import { useEffect, useState } from 'react';
 import Login from '~/components/Login';
 import { useSelector } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
 import CusPagination from '~/components/CusPagination/index';
 import { getAllCategories } from '~/functions/CategoryFetch';
 import { getAllBrands } from '~/functions/BrandFetch';
@@ -65,9 +64,9 @@ function Admin() {
         }
     };
 
-    useEffect(() => {
-        console.log(deleteIds);
-    });
+    // useEffect(() => {
+    //     console.log(deleteIds);
+    // });
 
     const handleGetAllIdChecked = () => {
         let ids = [];
@@ -143,16 +142,6 @@ function Admin() {
     useEffect(() => {
         if (isLoggedIn && !loginState) {
             setLoginState(true);
-            toast.success('Đăng nhập thành công!', {
-                position: 'top-center',
-                autoClose: 2001,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'colored',
-            });
         }
     }, [isLoggedIn]);
 
@@ -170,11 +159,10 @@ function Admin() {
 
     return (
         <div className={cx('wrapper')}>
-            <ToastContainer style={{ zIndex: 999999999 }} />
             <div className={cx('body-layout')}>
                 <div className={cx('left-side')}>{/* <SideBar /> */}</div>
                 <div className={cx('right-side')}>
-                    <Header setObject={setObject} />
+                    <Header setObject={setObject} setAllChecked={setAllChecked} />
                     {isAdmin && (
                         <div className={cx('content-wrapper')}>
                             <UserAction

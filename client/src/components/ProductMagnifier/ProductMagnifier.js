@@ -8,14 +8,20 @@ import { getURLProductImage } from '~/functions/ProductFetch';
 
 const cx = classNames.bind(styles);
 
-function ProductMagnifier({ type = 'default', product, subImg = [] }) {
+function ProductMagnifier({
+    handleGetData = () => {},
+    HandleSetProductData = () => {},
+    type = 'default',
+    product,
+    subImg = [],
+}) {
     const [listSrc, setListSrc] = useState([]);
     const fetchImage = async () => {
         let listResult = [];
         await getURLProductImage([product?.image], type).then((result) => (listResult = [...listResult, ...result]));
         let subImageList = [];
         subImg?.forEach((obj) => {
-            subImageList.push(obj.image);
+            subImageList.push(obj.subimgID);
         });
         //cach dung fetch img
         await getURLSubImage(subImageList, type).then((result) => (listResult = [...listResult, ...result]));
@@ -61,6 +67,9 @@ function ProductMagnifier({ type = 'default', product, subImg = [] }) {
                 )}
             </div>
             <ImageSlider
+                subImgList={subImg}
+                handleGetData={handleGetData}
+                HandleSetProductData={HandleSetProductData}
                 productID={product.productID}
                 admin={type}
                 onImageClick={(index) => setActiveImage(index)}

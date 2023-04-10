@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from 'react';
 import { deleteProductById, addProduct, updateProductById } from '~/functions/ProductFetch';
 import { deleteUserById, addUser2, updateUserById } from '~/functions/UserFetch';
 import DropdownList from 'react-widgets/DropdownList';
-import { postUrlFileImage } from '~/functions/Upload';
+import { postUrlFileImage } from '~/functions/UploadFetch';
 
 const cx = classNames.bind(styles);
 
@@ -14,9 +14,12 @@ const HandleForm = ({
     categories = [],
     jwt,
     data,
-    setDataChange,
+    HandleSetProductData = () => {},
+    handleGetData = () => {},
+    // setDataChange,
     setShowEditForm,
     formType = '',
+    handleDataChange,
     object = 'default',
 }) => {
     const formRef = useRef();
@@ -27,6 +30,8 @@ const HandleForm = ({
         reader.readAsDataURL(fileBlob);
         reader.onloadend = async () => {
             await postUrlFileImage(reader.result.split(',')[1], 'productImages', image.name, productID, alt);
+            HandleSetProductData();
+            handleGetData();
         };
     };
     const brandNames = brands.map((brand) => brand.brandName);
@@ -77,7 +82,8 @@ const HandleForm = ({
         }
         msgPromise.then((msg) => {
             alert(msg);
-            setDataChange(true);
+            // setDataChange(true);
+            handleDataChange();
         });
     };
 
@@ -97,12 +103,13 @@ const HandleForm = ({
                 description: currentForm.description.value,
                 sale: currentForm.sale.value,
             };
-            image &&
+            if (image) {
                 HandleUploadProductImg(
                     image,
                     Number(currentForm.productID.value),
                     `product${Number(currentForm.productID.value)}Img`,
                 );
+            }
             msgPromise = updateProductById(Number(currentForm.productID.value), item, jwt);
         } else if (object === 'user') {
             item = {
@@ -115,7 +122,8 @@ const HandleForm = ({
         }
         msgPromise.then((msg) => {
             alert(msg);
-            setDataChange(true);
+            // setDataChange(true);
+            handleDataChange();
         });
     };
     const HandleDeleteProduct = () => {
@@ -128,7 +136,8 @@ const HandleForm = ({
             }
             msgPromise.then((msg) => {
                 alert(msg);
-                setDataChange(true);
+                // setDataChange(true);
+                handleDataChange();
             });
         }
     };

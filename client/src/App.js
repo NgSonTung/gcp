@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from './routes/routes';
 import MainLayout from './Layouts/MainLayout/MainLayout';
+import AdminLayout from './Layouts/AdminLayout';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import { Fragment } from 'react';
 import SearchCatalog from './pages/SearchCatalog/SearchCatalog';
@@ -8,6 +9,7 @@ import Keyboard from './pages/Products/Keyboard/Keyboard';
 import Laptop from './pages/Products/Laptop/Laptop';
 import AllProducts from './pages/Products/AllProducts/AllProducts';
 import ProductByCate from './pages/Products/ProductByCate/ProductByCate';
+import Admin from '~/pages/Admin/Admin';
 
 function App() {
     return (
@@ -18,7 +20,6 @@ function App() {
                         const Page = route.component;
 
                         let Layout = MainLayout;
-
                         if (route.component === ProductDetail) {
                             return (
                                 <Route
@@ -78,7 +79,19 @@ function App() {
                         if (route.component === SearchCatalog) {
                             return <Route key={index} path="/searchcatalog" element={<SearchCatalog />} />;
                         }
-
+                        if (route.component === Admin) {
+                            return (
+                                <Route
+                                    key={index}
+                                    path="/Admin"
+                                    element={
+                                        <AdminLayout>
+                                            <Admin />
+                                        </AdminLayout>
+                                    }
+                                />
+                            );
+                        }
                         if (route.layout) {
                             Layout = route.layout;
                         } else if (route.layout === null) {

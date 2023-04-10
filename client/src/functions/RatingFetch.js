@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getRatingByProductId = (id) => {
     return axios
-        .get(`http://localhost:3001/api/v1/rating/byProduct/${id}`)
+        .get(`http://localhost:3001/api/v1/rating/?productId=${id}`)
         .then((res) => {
             return res.data;
         })
@@ -11,7 +11,7 @@ export const getRatingByProductId = (id) => {
 
 export const ratingProduct = (ratingInfo) => {
     return axios
-        .post(`http://localhost:3001/api/v1/rating/add`, ratingInfo)
+        .post(`http://localhost:3001/api/v1/rating`, ratingInfo)
         .then((res) => {
             return res.data;
         })
