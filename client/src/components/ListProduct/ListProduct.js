@@ -66,9 +66,9 @@ export const ListProduct = (props) => {
             }
         }
         if (priceRange.length > 0) {
-            if (priceRange[0] !== priceRange[1] && priceRange[1] !== 3000000000 && priceRange[0] !== 0) {
+            if (priceRange[0] !== priceRange[1] && priceRange[1] !== 50000000 && priceRange[0] !== 0) {
                 filteredURL += `&price[gt]=${priceRange[0] * 1}&price[lt]=${priceRange[1] * 1}`;
-            } else if (priceRange[0] !== priceRange[1] && priceRange[1] !== 3000000000 && priceRange[0] === 0) {
+            } else if (priceRange[0] !== priceRange[1] && priceRange[1] !== 50000000 && priceRange[0] === 0) {
                 filteredURL += `&price[lt]=${priceRange[1] * 1}`;
             } else if (priceRange[0] === priceRange[1]) {
                 filteredURL += `&price[gte]=${priceRange[0] * 1}`;
@@ -144,8 +144,9 @@ export const ListProduct = (props) => {
     const handleResetFilter = () => {
         setBrandFilter([]);
         setProductKeyword('');
-        setPriceRange([0, 3000000000]);
+        setPriceRange([0, 50000000]);
         brandInputRef.current.checked = false;
+        console.log(brandInputRef);
         setUrlAPI('');
     };
 
