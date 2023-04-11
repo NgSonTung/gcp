@@ -5,6 +5,7 @@ exports.getRatingById = async (req, res) => {
   const id = req.params.id * 1;
   try {
     const rating = await RatingDAO.getRatingById(id);
+    console.log(rating);
     if (!rating) {
       return res
         .status(404) //NOT FOUND
@@ -13,6 +14,7 @@ exports.getRatingById = async (req, res) => {
           msg: `Not found rating with Id ${id}!`,
         });
     }
+
     return res.status(200).json({
       code: 200,
       msg: `Got rating with id ${id} successfully!`,
