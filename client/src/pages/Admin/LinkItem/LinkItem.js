@@ -67,8 +67,8 @@ const LinkItem = ({
         setShowEditForm(true);
     };
     const HandleCheck = () => {
+        setIsChecked(!isChecked);
         if (object === 'product') {
-            console.log('checked', isChecked);
             setIsChecked(!isChecked);
             HandleAddDelete(data.productID);
         } else {
