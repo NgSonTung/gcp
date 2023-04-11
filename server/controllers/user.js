@@ -162,6 +162,14 @@ exports.deleteUserById = async (req, res) => {
           msg: `User with Id ${id} not found!`,
         });
     }
+    if (user.auth === 1) {
+      return res
+        .status(403) //NOT FOUND
+        .json({
+          code: 403,
+          msg: `Cannot delete admin account!`,
+        });
+    }
     await UserDAO.deleteUserById(id);
     return res.status(200).json({
       code: 200,
