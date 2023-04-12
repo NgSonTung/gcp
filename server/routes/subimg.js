@@ -28,11 +28,19 @@ router
   );
 
 // router.route("/byProduct/:id").get(SubImageController.getSubImgByProductId);
-router.route("/image/").post(SubImageController.saveFileSubImage);
+router
+  .route("/image/")
+  .post(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    SubImageController.saveFileSubImage
+  );
 router
   .route("/image/:id")
   .get(SubImageController.getFileSubImage)
   .delete(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
     SubImageController.deleteFileSubImage,
     SubImageController.deleteSubImgById
   );
