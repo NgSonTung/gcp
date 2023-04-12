@@ -120,10 +120,12 @@ function Admin() {
             setTotalProduct(fetchedData?.data?.products?.totalProduct);
             setData({ object: object, data: fetchedData?.data?.products?.dataProducts });
         } else if (object === 'user') {
+            setAllChecked(true);
             fetchedData = await getAllUsers(`?page=${currentPage}&pageSize=${productPerPage}`);
             setTotalProduct(fetchedData?.data?.users?.totalUser);
             setData({ object: object, data: fetchedData?.data?.users?.dataUsers });
         }
+        setAllChecked(false);
         setDataChange(false);
     };
     useEffect(() => {

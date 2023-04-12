@@ -38,9 +38,9 @@ const UserAction = ({
                 alert(msg);
                 // setDataChange(true);
                 handleDataChange();
+                handleStateDeleted();
                 setDeleteIds([]);
                 setAllChecked(false);
-                handleStateDeleted();
             });
         }
     };
