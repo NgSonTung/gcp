@@ -2,7 +2,7 @@ const CategoryDAO = require("../DAO/CategoryDAO");
 
 exports.getAllCategories = async (req, res) => {
   try {
-    let categories = await CategoryDAO.getCategories(req.query);
+    let categories = await CategoryDAO.getCategories();
     res.status(200).json({
       code: 200,
       msg: "OK",
