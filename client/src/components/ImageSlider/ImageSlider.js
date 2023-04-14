@@ -64,7 +64,6 @@ const ImageSlider = ({
         };
     };
     const HandleClick = (id, image) => {
-        console.log('cc1');
         if (admin === 'admin') {
             if (id === 0) {
                 const fileInput = document.createElement('input');

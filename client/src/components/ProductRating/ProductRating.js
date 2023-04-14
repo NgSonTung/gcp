@@ -38,22 +38,22 @@ function ProductRating({ productID }) {
 
     useEffect(() => {
         getProductRating();
-        console.log(ratings);
-        console.log(totalRatings);
-        console.log(averageRating);
-        console.log(fullStars);
-        console.log(halfStars);
-        console.log(
-            [...Array(0)].map((i) => {
-                console.log(i);
-            }),
-        );
+        // console.log(ratings);
+        // console.log(totalRatings);
+        // console.log(averageRating);
+        // console.log(fullStars);
+        // console.log(halfStars);
+        // console.log(
+        //     [...Array(0)].map((i) => {
+        //         console.log(i);
+        //     }),
+        // );
     }, []);
 
     const getProductRating = async () => {
         const result = await RatingFetch.getRatingByProductId(productID);
         const fetchedRatings = await result?.data?.rating;
-        await setRatings(fetchedRatings);
+        setRatings(fetchedRatings);
     };
 
     const handleStarClick = (starCount) => {
@@ -86,7 +86,7 @@ function ProductRating({ productID }) {
     return (
         <div className={cx('rating')}>
             <ToastContainer style={{ zIndex: 1 }} />
-            {console.log([...Array(0)])}
+            {/* {console.log([...Array(0)])} */}
             {[...Array(fullStars)]?.map((_, i) => {
                 console.log(_, i);
                 return (
@@ -130,7 +130,7 @@ function ProductRating({ productID }) {
                     onClick={() => handleStarClick(fullStars + halfStars + i + 1)}
                 />
             ))}
-            <span className={cx('total-ratings')}>({totalRatings})</span>
+            <span className={cx('total-ratings')}>({totalRatings ? totalRatings : 0})</span>
         </div>
     );
 }
