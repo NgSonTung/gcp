@@ -15,8 +15,7 @@ import Slider from '@mui/material/Slider';
 import { getAllProducts } from '~/functions/Fetch';
 import { getAllBrands } from '~/functions/BrandFetch';
 import { fortmatCurrency } from '~/utils/FormatCurrency';
-import { useParams } from 'react-router-dom';
-const brands = ['Apple', 'Xiaomi', 'Samsung', 'Vivo', 'Hp', 'Asus', 'Oppo', 'Acer', 'Linksys', 'Mesh'];
+// import { useParams } from 'react-router-dom';
 
 const cx = classNames.bind(style);
 export const ListProduct = (props) => {
