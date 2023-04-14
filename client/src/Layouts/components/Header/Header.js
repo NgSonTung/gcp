@@ -117,7 +117,7 @@ const Header = ({ type = 'default' }) => {
                         <Link to={config.routes.home}>
                             <li>Home</li>
                         </Link>
-                        <Link to={'/allProducts/allProducts'}>
+                        <Link to={'/allProducts'}>
                             <li>All Products</li>
                         </Link>
                         {categories?.map((item) => (
