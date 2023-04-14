@@ -29,7 +29,7 @@ router
 
 // router.route("/byProduct/:id").get(SubImageController.getSubImgByProductId);
 router
-  .route("/image/")
+  .route("/image")
   .post(
     authController.protect,
     authController.restrictTo(StaticData.AUTH.Role.admin),

@@ -36,7 +36,13 @@ router
     productController.updateProductById
   );
 
-router.route("/image").post(productController.saveFileProductImage);
+router
+  .route("/image")
+  .post(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    productController.saveFileProductImage
+  );
 router.route("/image/:imageName").get(productController.getFileProductImage);
 
 // router.route("/saveFileImage").post(productController.saveFileImage);
