@@ -33,17 +33,19 @@ exports.createNewCart = async (userID) => {
   if (!dbPool) {
     throw new Error("Not connected to db");
   }
-  let result = await dbPool
-    .request()
-    .input(
-      CartSchema.schema.userID.name,
-      CartSchema.schema.userID.sqlType,
-      userID
-    )
-    .query(
-      `insert into ${CartSchema.schemaName} values (@${CartSchema.schema.userID.name})`
-    );
-  console.log(result);
+  let cart = {
+    userID: userID,
+  };
+
+  let insertData = CartSchema.validateData(cart);
+  const { request, insertFieldNamesStr, insertValuesStr } =
+    dbUtils.getInsertQuery(CartSchema.schema, dbPool.request(), insertData);
+  if (!insertFieldNamesStr || !insertValuesStr) {
+    throw new Error("Invalid insert param");
+  }
+  const query = `insert into ${CartSchema.schemaName} ( ${insertFieldNamesStr} ) select ${insertValuesStr}`;
+  let result = await request.query(query);
+  // console.log(result);
   return result;
 };
 

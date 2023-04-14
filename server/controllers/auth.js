@@ -81,7 +81,8 @@ exports.signup = async (req, res) => {
     const user = await UserDAO.getUserByUserName(form.userName);
     await CartDAO.createNewCart(user.userID);
     delete user.password;
-    res.status(200).json({
+    // console.log("usertest", user);
+    return res.status(200).json({
       code: 200,
       msg: "sign up success",
       data: { user },

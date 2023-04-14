@@ -12,6 +12,12 @@ const CartSchema = new ModelSchema(
       name: "userID",
       sqlType: sql.Int,
     }),
+    createdAt: new ModelSchemaValidator({
+      name: "createdAt",
+      sqlType: sql.DateTime,
+      default: new Date().toISOString(),
+      require: true,
+    }),
   },
   "Cart",
   "cartID"
