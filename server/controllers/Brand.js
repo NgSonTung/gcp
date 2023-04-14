@@ -19,7 +19,7 @@ exports.getAllBrands = async (req, res) => {
 };
 
 exports.getBrandById = async (req, res) => {
-  console.log("req.params", req.params);
+  // console.log("req.params", req.params);
   const id = req.params.id * 1;
   try {
     const brand = await brandDAO.getBrandById(id);

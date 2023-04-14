@@ -101,7 +101,7 @@ exports.getAllProducts = async (filter) => {
     ProductSchema.defaultSort
   );
 
-  console.log(filterStr);
+  // console.log(filterStr);
 
   if (filterStr) {
     selectQuery += " " + filterStr;
@@ -112,7 +112,7 @@ exports.getAllProducts = async (filter) => {
     selectQuery += " " + paginationStr;
   }
 
-  console.log(selectQuery);
+  // console.log(selectQuery);
 
   const result = await dbConfig.db.pool.request().query(selectQuery);
   let countResult = await dbConfig.db.pool.request().query(countQuery);
@@ -123,7 +123,7 @@ exports.getAllProducts = async (filter) => {
   }
   let totalPage = Math.ceil(totalProduct / pageSize); //round up
   const products = result.recordsets[0];
-  console.log("finish log", selectQuery);
+  // console.log("finish log", selectQuery);
   return {
     page,
     pageSize,
@@ -194,7 +194,7 @@ exports.updateProductById = async (id, updateInfo) => {
   if (!updateInfo) {
     throw new Error("Invalid input param");
   }
-  console.log(updateInfo);
+  // console.log(updateInfo);
   let query = `update ${ProductSchema.schemaName} set`;
   const { request, updateStr } = dbUtils.getUpdateQuery(
     ProductSchema.schema,

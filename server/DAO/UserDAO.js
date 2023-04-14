@@ -97,7 +97,7 @@ exports.getAllUsers = async (filter) => {
   }
   let totalPage = Math.ceil(totalUser / pageSize); //round up
   const users = result.recordsets[0];
-  console.log("finish log", selectQuery);
+  // console.log("finish log", selectQuery);
   return {
     page,
     pageSize,
@@ -147,10 +147,10 @@ exports.getUserByUserName = async (username) => {
     .query(
       `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.userName.name} = @${UserSchema.schema.userName.name}`
     );
-  console.log(
-    `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.userName.name} = @${UserSchema.schema.userName.name}`
-  );
-  console.log("result", result);
+  // console.log(
+  //   `SELECT * from ${UserSchema.schemaName} where ${UserSchema.schema.userName.name} = @${UserSchema.schema.userName.name}`
+  // );
+  // console.log("result", result);
   if (result.recordsets[0].length > 0) {
     return result.recordsets[0][0];
   }
@@ -184,7 +184,7 @@ exports.updateUserById = async (id, updateInfo) => {
   }
   updateInfo = UserSchema.validateData(updateInfo);
   updateInfo.password = await bcrypt.hash(updateInfo.password, 10);
-  console.log(updateInfo);
+  // console.log(updateInfo);
   let query = `update ${UserSchema.schemaName} set`;
   const { request, updateStr } = dbUtils.getUpdateQuery(
     UserSchema.schema,

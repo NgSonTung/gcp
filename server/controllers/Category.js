@@ -19,7 +19,7 @@ exports.getAllCategories = async (req, res) => {
 };
 
 exports.getCateIdByName = async (req, res) => {
-  console.log("req.params", req.params);
+  // console.log("req.params", req.params);
   const name = req.params.categoryName;
   try {
     const category = await CategoryDAO.getCategoryIdByName(name);

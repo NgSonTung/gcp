@@ -213,8 +213,8 @@ exports.getFilterProductsQuery = (
   delete filter.page;
   delete filter.pageSize;
   delete filter.sort;
-  console.log(filter);
-  console.log("brand filter", filter["brand"]);
+  // console.log(filter);
+  // console.log("brand filter", filter["brand"]);
   if (filter) {
     filterStr = "";
     let i = 0;
@@ -329,7 +329,7 @@ exports.getFilterProductsQuery = (
         " OFFSET " + skip + " ROWS FETCH NEXT " + pageSize + " ROWS ONLY";
     }
   }
-  console.log("filter string", filterStr);
+  // console.log("filter string", filterStr);
   filterStr = filterStr.replace(/[\n\r]/g, "");
   return { filterStr, paginationStr };
 };
@@ -338,7 +338,7 @@ exports.getFilterUserQuery = (schema, filter, page, pageSize, defaultSort) => {
   let filterStr;
   let paginationStr;
 
-  console.log(filter);
+  // console.log(filter);
   const skip = (page - 1) * pageSize;
   paginationStr = "order by";
   let sort = "";
@@ -381,7 +381,7 @@ exports.getFilterUserQuery = (schema, filter, page, pageSize, defaultSort) => {
         " OFFSET " + skip + " ROWS FETCH NEXT " + pageSize + " ROWS ONLY";
     }
   }
-  console.log("filter string", filterStr);
+  // console.log("filter string", filterStr);
   filterStr = filterStr.replace(/[\n\r]/g, "");
   return { filterStr, paginationStr };
 };

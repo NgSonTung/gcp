@@ -1,7 +1,7 @@
 const RatingDAO = require("../DAO/RatingDAO");
 
 exports.getRatingById = async (req, res) => {
-  console.log(req.params);
+  // console.log(req.params);
   const id = req.params.id * 1;
   try {
     const rating = await RatingDAO.getRatingById(id);
@@ -118,7 +118,7 @@ exports.updateRatingById = async (req, res) => {
     const updateInfo = req.body;
     const productID = updateInfo.productID;
     delete updateInfo.productID;
-    console.log(updateInfo);
+    // console.log(updateInfo);
     await RatingDAO.updateRatingById(productID, updateInfo);
     rating = await RatingDAO.getRatingByProductId(productID);
     return res.status(200).json({

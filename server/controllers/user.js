@@ -91,7 +91,7 @@ exports.addUser = async (req, res) => {
   try {
     let user = await UserDAO.getUserByEmail(req.body.email);
     if (user) {
-      console.log(user);
+      // console.log(user);
       return res.status(403).json({
         code: 403,
         msg: "User email used!",
@@ -99,7 +99,7 @@ exports.addUser = async (req, res) => {
     }
     user = await UserDAO.getUserByUserName(req.body.userName);
     if (user) {
-      console.log(user);
+      // console.log(user);
       return res.status(403).json({
         code: 403,
         msg: "User name used!",

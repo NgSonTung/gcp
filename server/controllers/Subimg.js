@@ -41,7 +41,7 @@ exports.getSubImages = async (req, res) => {
 };
 
 exports.getSubImgById = async (req, res) => {
-  console.log(req.params);
+  // console.log(req.params);
   const id = req.params.id * 1;
   try {
     const subImg = await SubImageDAO.getSubImgById(id);
@@ -89,7 +89,7 @@ exports.createNewSubImg = async (req, res) => {
 
 exports.deleteSubImgById = async (req, res) => {
   const id = req.params.id * 1;
-  console.log("id", id);
+  // console.log("id", id);
   try {
     const subImg = await SubImageDAO.getSubImgById(id);
     if (!subImg) {
@@ -194,7 +194,7 @@ exports.saveFileSubImage = async (req, res) => {
 exports.deleteFileSubImage = async (req, res, next) => {
   let id = req.params.id;
   await SubImageDAO.getSubImgById(id).then((result) => {
-    console.log(result);
+    // console.log(result);
     const dirPath = path.join(__dirname, "..", "dev-data", "subImgimages");
     fs.readdir(dirPath, (err, files) => {
       if (err) {
@@ -212,7 +212,7 @@ exports.deleteFileSubImage = async (req, res, next) => {
               .status(500)
               .json({ error: "Failed to delete the file." });
           } else {
-            console.log("File deleted successfully.");
+            // console.log("File deleted successfully.");
             next();
           }
         });

@@ -26,13 +26,11 @@ const Cart_ProductSchema = new ModelSchema(
   {
     cartID: new ModelSchemaValidator({
       name: "cartID",
-      require: true,
       sqlType: sql.Int,
     }),
     productID: new ModelSchemaValidator({
       name: "productID",
       sqlType: sql.Int,
-      require: true,
     }),
     amount: new ModelSchemaValidator({
       name: "amount",

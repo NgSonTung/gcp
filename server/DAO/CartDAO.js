@@ -123,6 +123,7 @@ exports.updateCart = async (cart_Product) => {
   }
   let updateData = Cart_ProductSchema.validateData(cart_Product);
   let q = `update ${Cart_ProductSchema.schemaName} set `;
+  // console.log(updateData);
 
   const { request, updateStr } = dbUtils.getUpdateQuery(
     Cart_ProductSchema.schema,
@@ -130,8 +131,9 @@ exports.updateCart = async (cart_Product) => {
     updateData
   );
 
-  q += updateStr + ` where productID =@productID`;
+  q += updateStr + ` where productID =@productID and cartID = @cartID`;
   let result = await request.query(q);
+  // console.log(q);
   return result.recordsets;
 };
 

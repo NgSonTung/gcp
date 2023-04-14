@@ -73,7 +73,7 @@ exports.getRatingByProductId = async (id) => {
     .query(
       `select * from ${RatingSchema.schemaName} where ${RatingSchema.schema.productID.name} = @${RatingSchema.schema.productID.name}`
     );
-  console.log(result);
+  // console.log(result);
   return result.recordsets[0][0];
 };
 
@@ -116,8 +116,8 @@ exports.deleteRatingById = async (id) => {
 };
 
 exports.updateRatingById = async (productID, updateInfo) => {
-  console.log(productID);
-  console.log(updateInfo);
+  // console.log(productID);
+  // console.log(updateInfo);
   const { rating } = updateInfo;
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
