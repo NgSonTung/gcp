@@ -146,6 +146,7 @@ const LinkItem = ({
                                 <div className={cx('product-image')}>
                                     <ProductMagnifier
                                         type={'admin'}
+                                        jwt={jwt}
                                         product={fullProductData?.productData}
                                         subImg={fullProductData?.subImg}
                                         handleGetData={handleGetData}

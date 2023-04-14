@@ -25,6 +25,7 @@ const ImageSlider = ({
     autoPlay = true,
     onImageClick,
     type = 'product',
+    jwt,
 }) => {
     const imgView = useRef();
     const fullImg = useRef();
@@ -50,6 +51,7 @@ const ImageSlider = ({
         reader.readAsDataURL(fileBlob);
         reader.onloadend = async () => {
             const msgPromise = postUrlFileImage(
+                jwt,
                 reader.result.split(',')[1],
                 'subImgimages',
                 image.name,
@@ -77,7 +79,7 @@ const ImageSlider = ({
                 fileInput.click();
             } else {
                 console.log('cc');
-                const msgPromise = deleteFileSubImage(subImgList[id - 1].subimgID);
+                const msgPromise = deleteFileSubImage(jwt, subImgList[id - 1].subimgID);
                 msgPromise.then((msg) => {
                     alert(msg);
                     handleGetData();

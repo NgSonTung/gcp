@@ -14,6 +14,7 @@ function ProductMagnifier({
     type = 'default',
     product,
     subImg = [],
+    jwt,
 }) {
     const [listSrc, setListSrc] = useState([]);
     const fetchImage = async () => {
@@ -67,6 +68,7 @@ function ProductMagnifier({
                 )}
             </div>
             <ImageSlider
+                jwt={jwt}
                 subImgList={subImg}
                 handleGetData={handleGetData}
                 HandleSetProductData={HandleSetProductData}
