@@ -38,9 +38,9 @@ const UserAction = ({
                 alert(msg);
                 // setDataChange(true);
                 handleDataChange();
+                handleStateDeleted();
                 setDeleteIds([]);
                 setAllChecked(false);
-                handleStateDeleted();
             });
         }
     };
@@ -76,6 +76,7 @@ const UserAction = ({
                         categories={categories}
                         jwt={jwt}
                         // setDataChange={setDataChange}
+                        handleDataChange={handleDataChange}
                         setShowEditForm={setShowEditForm}
                         data={{}}
                         object={object}

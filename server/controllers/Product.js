@@ -14,16 +14,23 @@ exports.getProducts = async (req, res) => {
 
     delete req.query.categoryName;
 
-    console.log("cc", req.query);
+    // console.log("cc", req.query);
   }
-  const products = await ProductDAO.getAllProducts(req.query);
-  res.status(200).json({
-    code: 200,
-    msg: "OK",
-    data: {
-      products,
-    },
-  });
+  try {
+    const products = await ProductDAO.getAllProducts(req.query);
+    res.status(200).json({
+      code: 200,
+      msg: "OK",
+      data: {
+        products,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      code: 500,
+      msg: `FAIL with ${err}`,
+    });
+  }
 };
 
 exports.getProductById = async (req, res) => {

@@ -54,23 +54,28 @@ const HandleForm = ({
         let msgPromise;
         if (object === 'product') {
             const image = currentForm.image.files[0];
-            item = {
-                stock: Number(currentForm.stock.value),
-                name: currentForm.name.value,
-                image: image.name,
-                favorite: currentForm.favorite.checked ? 1 : 0,
-                brandID: getBrandByName(currentForm.brand.value).brandID,
-                price: Number(currentForm.price.value),
-                categoryID: getCateByName(currentForm.category.value).categoryID,
-                description: currentForm.description.value,
-                sale: currentForm.sale.value,
-            };
-            HandleUploadProductImg(
-                image,
-                Number(currentForm.productID.value),
-                `product${Number(currentForm.productID.value)}Img`,
-            );
-            msgPromise = addProduct(item, jwt);
+            if (image) {
+                item = {
+                    stock: Number(currentForm.stock.value),
+                    name: currentForm.name.value,
+                    image: image.name,
+                    favorite: currentForm.favorite.checked ? 1 : 0,
+                    brandID: getBrandByName(currentForm.brand.value).brandID,
+                    price: Number(currentForm.price.value),
+                    categoryID: getCateByName(currentForm.category.value).categoryID,
+                    description: currentForm.description.value,
+                    sale: currentForm.sale.value,
+                };
+                image &&
+                    HandleUploadProductImg(
+                        image,
+                        Number(currentForm.productID.value),
+                        `product${Number(currentForm.productID.value)}Img`,
+                    );
+                msgPromise = addProduct(item, jwt);
+            } else {
+                alert('Image required');
+            }
         } else if (object === 'user') {
             item = {
                 userName: currentForm.userName.value,
@@ -80,7 +85,7 @@ const HandleForm = ({
             };
             msgPromise = addUser2(item);
         }
-        msgPromise.then((msg) => {
+        msgPromise?.then((msg) => {
             alert(msg);
             // setDataChange(true);
             handleDataChange();

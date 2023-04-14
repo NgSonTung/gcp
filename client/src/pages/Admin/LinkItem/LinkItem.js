@@ -72,6 +72,7 @@ const LinkItem = ({
             setIsChecked(!isChecked);
             HandleAddDelete(data.productID);
         } else {
+            setIsChecked(!isChecked);
             HandleAddDelete(data.userID);
         }
     };

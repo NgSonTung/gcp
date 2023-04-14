@@ -2,7 +2,7 @@ const brandDAO = require("../DAO/BrandDAO");
 
 exports.getAllBrands = async (req, res) => {
   try {
-    let brands = await brandDAO.getBrands(req.query);
+    let brands = await brandDAO.getBrands();
     res.status(200).json({
       code: 200,
       msg: "OK",
