@@ -6,7 +6,7 @@ router
   .route("/")
   .get(cartController.getProductInCartByUSerID)
   .patch(cartController.updateProductInCart)
-  .post(cartController.insertProductToCart);
-router.route("/:productID").delete(cartController.deleteProductInCart);
+  .post(cartController.insertProductToCart)
+  .delete(cartController.deleteProductInCart);
 // router.route("/:userID").get(cartController.getProductInCartByUSerID);
 module.exports = router;

@@ -135,12 +135,12 @@ exports.updateCart = async (cart_Product) => {
   return result.recordsets;
 };
 
-exports.deleteItemInCart = async (productID) => {
+exports.deleteItemInCart = async (urlQuery) => {
   const dbPool = dbConfig.db.pool;
   if (!dbPool) {
     throw new Error("Not connected to db");
   }
-  let q = `delete cart_product where productID = ${productID} `;
+  let q = `delete cart_product where productID = ${urlQuery.productID} and cartID = ${urlQuery.cartID} `;
   let result = await dbPool.request().query(q);
 };
 

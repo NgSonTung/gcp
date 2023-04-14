@@ -65,7 +65,7 @@ const CartReducer = (state = initialState, action) => {
             const newCart = state.cartItem;
             const index = newCart.findIndex((p) => p.productID === data.productID);
             let url = action.url;
-            url += `/${newCart[index].productID}`;
+            url += `/?productID=${newCart[index].productID}&cartID=${state.cartID}`;
             newCart.splice(index, 1);
             const totalPrice = newCart.reduce((total, product) => total + product.price * product.amount, 0);
             if (data.cartID && data.cartID > 0) {

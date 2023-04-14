@@ -75,9 +75,9 @@ exports.updateProductInCart = async (req, res) => {
 };
 
 exports.deleteProductInCart = async (req, res) => {
-  const productID = req.params.productID;
+  const q = req.query;
   try {
-    let result = await CartDAO.deleteItemInCart(productID);
+    let result = await CartDAO.deleteItemInCart(q);
     res.status(200).json({
       code: 200,
       msg: "OK",
