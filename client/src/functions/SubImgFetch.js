@@ -39,9 +39,12 @@ export const getFileSubImage = (subImageId) => {
         });
 };
 
-export const deleteFileSubImage = (subImageId) => {
+export const deleteFileSubImage = (jwt, subImageId) => {
+    const headers = {
+        Authorization: `Bearer ${jwt}`,
+    };
     return axios
-        .delete(`http://localhost:3001/api/v1/subimg/image/${subImageId}`)
+        .delete(`http://localhost:3001/api/v1/subimg/image/${subImageId}`, { headers: headers })
         .then((res) => {
             console.log(res);
             return res.data.msg;

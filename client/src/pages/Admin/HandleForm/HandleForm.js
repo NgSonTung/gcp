@@ -29,7 +29,7 @@ const HandleForm = ({
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
         reader.onloadend = async () => {
-            await postUrlFileImage(reader.result.split(',')[1], 'productImages', image.name, productID, alt);
+            await postUrlFileImage(jwt, reader.result.split(',')[1], 'productImages', image.name, productID, alt);
             HandleSetProductData();
             handleGetData();
         };
