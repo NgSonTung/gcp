@@ -151,7 +151,10 @@ exports.getFileSubImage = async (req, res) => {
   fs.readdir(dirPath, (err, files) => {
     if (err) {
       console.error(err);
-      return;
+      return res.status(404).json({
+        code: 404,
+        msg: `FAIL`,
+      });
     }
     const matchingFile = files.find((file) => file.startsWith(imageName));
     if (matchingFile) {
