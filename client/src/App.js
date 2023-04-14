@@ -66,7 +66,7 @@ function App() {
                             return (
                                 <Route
                                     key={index}
-                                    path="/allProducts/:categoryName"
+                                    path="/:categoryName"
                                     element={
                                         <Layout>
                                             <AllProducts />

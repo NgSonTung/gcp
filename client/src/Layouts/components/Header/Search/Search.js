@@ -72,7 +72,7 @@ const Search = () => {
                 render={(attrs) => (
                     <div className={cx('popper-wrapper')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
-                            {outputProducts.slice(1, limitProducts + 1).map((item, index) => (
+                            {outputProducts.map((item, index) => (
                                 <SearchProducts key={index} data={item} />
                             ))}
                         </PopperWrapper>
