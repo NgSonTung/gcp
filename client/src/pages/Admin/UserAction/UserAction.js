@@ -76,6 +76,7 @@ const UserAction = ({
                         categories={categories}
                         jwt={jwt}
                         // setDataChange={setDataChange}
+                        handleDataChange={handleDataChange}
                         setShowEditForm={setShowEditForm}
                         data={{}}
                         object={object}

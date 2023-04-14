@@ -86,7 +86,7 @@ function Admin() {
                 console.log(ids);
             } else {
                 ids = [...allIdsArr, ...deleteIds];
-                console.log(ids);
+                // console.log(ids);
             }
         }
         setDeleteIds(ids);
