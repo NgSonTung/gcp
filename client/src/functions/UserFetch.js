@@ -27,7 +27,7 @@ export const getAllUsers = (params) => {
 
 export const getUserByUserName = (url = '', username) => {
     if (url === '') {
-        url = `http://localhost:3001/api/v1/user/${username}`;
+        url = `http://localhost:3001/api/v1/user/byname/${username}`;
     }
     // console.log(url);
     return axios

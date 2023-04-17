@@ -40,6 +40,6 @@ router
     userController.deleteMultipleUserById //param id=1,id=2,...
   );
 
-router.route("/:username").post(userController.getUserByUserName);
+router.route("/byname/:username").post(userController.getUserByUserName);
 
 module.exports = router;
