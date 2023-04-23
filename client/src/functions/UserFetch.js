@@ -15,10 +15,12 @@ export const getJWTOfLogin = (url = '', login) => {
         });
 };
 
-export const getAllUsers = (params) => {
-    console.log(params);
+export const getAllUsers = (params, jwt) => {
+    const headers = {
+        Authorization: `Bearer ${jwt}`,
+    };
     return axios
-        .get(`http://localhost:3001/api/v1/user/${params}`)
+        .get(`http://localhost:3001/api/v1/user/${params}`, { headers: headers })
         .then((res) => {
             return res.data;
         })
@@ -31,7 +33,7 @@ export const getUserByUserName = (url = '', username) => {
     }
     // console.log(url);
     return axios
-        .post(url)
+        .get(url)
         .then((res) => {
             return res.data.data;
         })
@@ -56,9 +58,12 @@ export const addUser = (url, user) => {
         });
 };
 
-export const addUser2 = (user) => {
+export const addUser2 = (user, jwt) => {
+    const headers = {
+        Authorization: `Bearer ${jwt}`,
+    };
     return axios
-        .post(`http://localhost:3001/api/v1/user`, user)
+        .post(`http://localhost:3001/api/v1/user`, user, { headers: headers })
         .then((res) => {
             return res.data.msg;
         })

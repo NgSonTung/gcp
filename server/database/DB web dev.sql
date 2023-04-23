@@ -38,11 +38,11 @@ go
 go 
 create table Rating(
 ratingID int identity(1,1) primary key,
-_5star	int,
-_4star	int,
-_3star	int,
-_2star	int,
-_1star	int,
+_5star	int default 0,
+_4star	int default 0,
+_3star	int default 0,
+_2star	int default 0,
+_1star	int default 0,
 productID int constraint FK_Rating references Product(productID),
 createdAt       datetime default CURRENT_TIMESTAMP not null
 )
@@ -121,7 +121,7 @@ go
 -- END;
 
 
-go
+-- go
 
 CREATE TRIGGER tr_user_delete
 ON users

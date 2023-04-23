@@ -76,6 +76,7 @@ exports.createNewProduct = async (req, res) => {
     }
     await ProductDAO.createNewProduct(newProduct);
     product = await ProductDAO.getProductByName(newProduct.name);
+    product && (await ProductDAO.createNewRating(product));
     // console.log(`Created new product successfully!`);
     return res.status(200).json({
       code: 200,
