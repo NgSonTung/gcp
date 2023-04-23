@@ -121,7 +121,7 @@ function Admin() {
             setData({ object: object, data: fetchedData?.data?.products?.dataProducts });
         } else if (object === 'user') {
             setAllChecked(true);
-            fetchedData = await getAllUsers(`?page=${currentPage}&pageSize=${productPerPage}`);
+            fetchedData = await getAllUsers(`?page=${currentPage}&pageSize=${productPerPage}`, jwt);
             setTotalProduct(fetchedData?.data?.users?.totalUser);
             setData({ object: object, data: fetchedData?.data?.users?.dataUsers });
         }

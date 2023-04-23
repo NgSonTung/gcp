@@ -1,6 +1,7 @@
 // const products = require("../../client/src/data/products.json");
 const sql = require("mssql");
 const ProductSchema = require("../model/Product");
+const RatingSchema = require("../model/Rating");
 const dbConfig = require("../database/dbconfig");
 const dbUtils = require("../utils/dbUtils");
 const StaticData = require("../utils/StaticData");
@@ -132,7 +133,20 @@ exports.getAllProducts = async (filter) => {
     dataProducts: products,
   };
 };
-
+exports.createNewRating = async (product) => {
+  if (!dbConfig.db.pool) {
+    throw new Error("Not connected to db");
+  }
+  if (!product) {
+    throw new Error("Invalid input param");
+  }
+  let request = dbConfig.db.pool.request();
+  console.log(product);
+  let query = `insert into ${RatingSchema.schemaName}(${ProductSchema.schema.productID.name}) values(${product.productID})`;
+  console.log(query);
+  let result = await request.query(query);
+  return result.recordsets;
+};
 exports.createNewProduct = async (product) => {
   if (!dbConfig.db.pool) {
     throw new Error("Not connected to db");
