@@ -106,6 +106,8 @@ exports.addUser = async (req, res) => {
       });
     }
     const result = await UserDAO.insertUser(newUser);
+    const u = await UserDAO.getUserByUserName(newUser.userName);
+    await CartDAO.createNewCart(u.userID);
     return res.status(200).json({
       code: 200,
       msg: "Added user successfully!",

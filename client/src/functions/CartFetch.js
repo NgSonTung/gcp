@@ -41,9 +41,3 @@ export const insertProductToCart = (url, cart_product) => {
         console.log(res);
     });
 };
-
-// export const createCartByAddUser = (url, userID) => {
-//     if (url === '') {
-//         url = 'http://localhost:3001/api/v1/cart/';
-//     }
-// };
