@@ -83,7 +83,7 @@ const HandleForm = ({
                 auth: currentForm.auth.checked ? 1 : 0,
                 email: currentForm.email.value,
             };
-            msgPromise = addUser2(item);
+            msgPromise = addUser2(item, jwt);
         }
         msgPromise?.then((msg) => {
             alert(msg);

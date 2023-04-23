@@ -33,7 +33,11 @@ router
     authController.restrictTo(StaticData.AUTH.Role.admin),
     userController.getUsers
   )
-  .post(userController.addUser)
+  .post(
+    authController.protect,
+    authController.restrictTo(StaticData.AUTH.Role.admin),
+    userController.addUser
+  )
   .delete(
     authController.protect,
     authController.restrictTo(StaticData.AUTH.Role.admin),
