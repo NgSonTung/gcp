@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { Box, Tab } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import ProductSlider from '../ProductSlider/ProductSlider';
-// import data from '~/data/data.json';
 import { getAllProducts } from '~/functions/ProductFetch';
 
 const cx = classNames.bind(styles);
@@ -19,6 +18,7 @@ function TabProductCate(props) {
         { title: 'Samsung', products: samsungProducts },
         { title: 'Xiaomi', products: xiaomiProducts },
     ];
+
     const handleGetData = async () => {
         const appleData = await getAllProducts('http://localhost:3001/api/v1/product/?page=1&pageSize=20?&brandID=2');
         setAppleProducts(appleData?.data?.products?.dataProducts);
