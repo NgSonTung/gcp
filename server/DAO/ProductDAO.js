@@ -117,7 +117,7 @@ exports.getAllProducts = async (filter) => {
 
   const result = await dbConfig.db.pool.request().query(selectQuery);
   let countResult = await dbConfig.db.pool.request().query(countQuery);
-
+  console.log(selectQuery);
   let totalProduct = 0;
   if (countResult.recordsets[0].length > 0) {
     totalProduct = countResult.recordsets[0][0].totalItem;

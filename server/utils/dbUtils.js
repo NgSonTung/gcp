@@ -271,6 +271,7 @@ exports.getFilterProductsQuery = (
 
         //filter brand
         if (criteria == "brandID") {
+          console.log("brand");
           filterStr += "(";
           if (filter[criteria].constructor === Array) {
             if (schemaProp.type === "number") {
