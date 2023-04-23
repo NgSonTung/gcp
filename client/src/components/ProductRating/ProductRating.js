@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import * as RatingFetch from '~/functions/RatingFetch';
 
 const cx = classNames.bind(styles);
-
+console.log('hello');
 function ProductRating({ productID }) {
     const [ratings, setRatings] = useState();
     const [isRated, setIsRated] = useState(false);
