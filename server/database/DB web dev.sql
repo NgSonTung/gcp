@@ -1,5 +1,5 @@
--- drop database PhoneShop 
 -- use master
+-- drop database PhoneShop 
 
 create database PhoneShop
 go
@@ -111,14 +111,14 @@ END;
 
 go
 
-CREATE TRIGGER tr_product_create
-ON product
-AFTER INSERT
-AS
-BEGIN
-	INSERT INTO Rating(_5star,_4star,_3star,_2star,_1star,productID)
-  	VALUES (0,0,0,0,0,(SELECT inserted.productID FROM inserted))
-END;
+-- CREATE TRIGGER tr_product_create
+-- ON product
+-- AFTER INSERT
+-- AS
+-- BEGIN
+-- 	INSERT INTO Rating(_5star,_4star,_3star,_2star,_1star,productID)
+--   	VALUES (0,0,0,0,0,(SELECT inserted.productID FROM inserted))
+-- END;
 
 
 go
